@@ -287,6 +287,13 @@ function syncSliderValues() {
     btn.classList.toggle("active", btn.dataset.shape === (inst.vibrato.shape || "sine"));
   });
 
+  const vibRateInp = document.getElementById("vibRate");
+  if (vibRateInp) {
+    vibRateInp.value = inst.vibrato.rate ?? 5.2;
+    const outRate = document.getElementById("v_vibRate");
+    if (outRate) outRate.textContent = (inst.vibrato.rate ?? 5.2).toFixed(2) + " Hz";
+  }
+
   const vibDelayInp = document.getElementById("vibDelay");
   if (vibDelayInp) {
     vibDelayInp.value = inst.vibrato.delay ?? 0.25;
@@ -300,7 +307,7 @@ function syncSliderValues() {
   }
 
   const vibKnobVal = document.querySelector("#knob_vibDepth .knob-val");
-  if (vibKnobVal) vibKnobVal.textContent = (inst.vibrato.rate ?? 5.2).toFixed(1) + " Hz";
+  if (vibKnobVal) vibKnobVal.textContent = Math.round(inst.oscillators.vibDepth?.speed ?? 20);
 
   document.getElementById("wet").value = GLOBAL.wet;
   document.getElementById("v_wet").textContent = Math.round(GLOBAL.wet * 100) + " %";
@@ -321,6 +328,12 @@ function applyParamChange(k, synthIdx = activeSynthIdx) {
     inst.vibrato.depth = val;
     for (const vo of inst.voices.values()) {
       if (vo.vibGainNode) vo.vibGainNode.gain.setTargetAtTime(val, now, 0.04);
+    }
+  }
+  if (k === "vibRate") {
+    const rVal = inst.vibrato.rate ?? 5.2;
+    for (const vo of inst.voices.values()) {
+      if (vo.vibLfo) vo.vibLfo.frequency.setTargetAtTime(rVal, now, 0.03);
     }
   }
   if (k === "ratio") {
@@ -365,6 +378,23 @@ document.querySelectorAll(".vib-shape-btn").forEach(btn => {
     btn.classList.add("active");
   });
 });
+
+const vibRateInp = document.getElementById("vibRate");
+if (vibRateInp) {
+  vibRateInp.addEventListener("input", () => {
+    const inst = synthInstances[activeSynthIdx];
+    const val = parseFloat(vibRateInp.value);
+    inst.vibrato.rate = val;
+    const outRate = document.getElementById("v_vibRate");
+    if (outRate) outRate.textContent = val.toFixed(2) + " Hz";
+    if (ctx) {
+      const now = ctx.currentTime;
+      for (const vo of inst.voices.values()) {
+        if (vo.vibLfo) vo.vibLfo.frequency.setTargetAtTime(val, now, 0.03);
+      }
+    }
+  });
+}
 
 const vibDelayInp = document.getElementById("vibDelay");
 if (vibDelayInp) {
