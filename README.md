@@ -1,6 +1,6 @@
 # FM Music Composer 🎹✨
 
-> **Advanced Web Audio 20-Synthesizer Workstation, Multi-Layer Looper & Live Parameter-Automation Engine**
+> **Advanced Web Audio 70-Synthesizer Workstation (7 Soundbanks), Multi-Layer Looper & Live Parameter-Automation Engine**
 
 ![Web Audio API](https://img.shields.io/badge/Web%20Audio-API-ff4757.svg?style=flat-square)
 ![HTML5 Canvas](https://img.shields.io/badge/Canvas-60%20FPS-6ee7c0.svg?style=flat-square)
@@ -8,14 +8,14 @@
 ![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-38c7ff.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)
 
-**FM Music Composer** is a zero-dependency, browser-based modular music studio that combines 20 complex Frequency Modulation (FM) synthesizer architectures, a real-time multi-layer audio looper, per-parameter sine-wave automation with rotary speed knobs, complete song session serialization (`.json`), and 4 synchronized high-resolution oscilloscopes.
+**FM Music Composer** is a zero-dependency, browser-based modular music studio that combines 70 complex Frequency Modulation (FM) synthesizer architectures across 7 soundbanks, a real-time multi-layer audio looper, per-parameter sine-wave automation with rotary speed knobs, complete song session serialization (`.json`), a programmable 16-step arpeggiator, and 4 synchronized high-resolution oscilloscopes.
 
 ---
 
 ## 🌟 Key Features
 
-### 1. 20 Distinct FM Synthesizer Engines (2 Banks)
-- **Bank A (Exotik & Chaos — Keys `1` to `0`):**
+### 1. 70 Distinct FM Synthesizer Engines (7 Soundbanks)
+- **Bank A (Exotik & Chaos — Keys `1` to `0` / Bank `A`):**
   1. **`1` Lorenz Chaos FM:** Runge-Kutta 4th-order ($\text{RK4}$) chaotic attractor $\dot{x}=\sigma(y-x), \dot{y}=x(\rho-z)-y, \dot{z}=xy-\beta z$.
   2. **`2` Chebyshev Wavefolder:** Orthogonal Chebyshev polynomials $T_3(x), T_5(x)$ and hyperbolic tangent saturation in feedback loop.
   3. **`3` Jacobi Soliton FM:** Jacobian elliptic functions $\text{sn}(u, m)$ and $\text{cn}(u, m)$ with continuous modulus morphing.
@@ -26,17 +26,72 @@
   8. **`8` Waveguide Tension FM:** Dispersive all-pass waveguide with nonlinear strike amplitude-dependent string tension $D(y)$.
   9. **`9` Cybernetic Vocal FM:** 3-formant vocal tract interpolation ($F_1, F_2, F_3$) with Rosenberg glottal pulse shaping.
   10. **`0` Wavelet Fractal FM:** Dyadic multiscale fractal cascade ($2^{-jH}$) based on Morlet wavelets.
-- **Bank B (Classic & Laboratory — Keys `Shift + 1` to `Shift + 0`):**
-  11. **`⇧1` Tiefsee-Drone:** Subharmonic 2-operator deep drone with ultra-slow modulation breathing.
-  12. **`⇧2` Crystal Bell:** Inharmonic tubular chime FM with exponential Bessel transient decay.
-  13. **`⇧3` Vocal Choir:** Harmonic vowel formant FM with 5.5 Hz natural vibrato modulation.
-  14. **`⇧4` Cascade FM:** 3-operator nonlinear cascade ($\text{Mod}_2 \to \text{Mod}_1 \to \text{Carrier}$).
-  15. **`⇧5` Cosmos Pad:** Dual parallel modulators with ultra-fine detune beating and shimmer convolution.
-  16. **`⇧6` Pluck Koto / Tines:** DX-style electric piano / plucked string with steep transient attack index.
-  17. **`⇧7` Swarm Texture:** 3-voice unison cluster with stereo spread detuning and phase LFO.
-  18. **`⇧8` Golden Ratio FM:** Inharmonic Fibonacci ratio ($r = \phi \approx 1.618034$) with non-periodic sidebands.
-  19. **`⇧9` Glitch Pulse:** Sample & Hold quantized stepped ratio and index arpeggiator.
-  20. **`⇧0` Vector FM:** 2-phase quadrature Lissajous sphere rotation.
+- **Bank B (Classic & Laboratory — Bank `B`):**
+  11. **`11` Tiefsee-Drone:** Subharmonic 2-operator deep drone with ultra-slow modulation breathing.
+  12. **`12` Crystal Bell:** Inharmonic tubular chime FM with exponential Bessel transient decay.
+  13. **`13` Vocal Choir:** Harmonic vowel formant FM with 5.5 Hz natural vibrato modulation.
+  14. **`14` Cascade FM:** 3-operator nonlinear cascade ($\text{Mod}_2 \to \text{Mod}_1 \to \text{Carrier}$).
+  15. **`15` Cosmos Pad:** Dual parallel modulators with ultra-fine detune beating and shimmer convolution.
+  16. **`16` Pluck Koto / Tines:** DX-style electric piano / plucked string with steep transient attack index.
+  17. **`17` Swarm Texture:** 3-voice unison cluster with stereo spread detuning and phase LFO.
+  18. **`18` Golden Ratio FM:** Inharmonic Fibonacci ratio ($r = \phi \approx 1.618034$) with non-periodic sidebands.
+  19. **`19` Glitch Pulse:** Sample & Hold quantized stepped ratio and index arpeggiator.
+  20. **`20` Vector FM:** 2-phase quadrature Lissajous sphere rotation.
+- **Bank C (DX7 & Vintage 80s Icons — Bank `C`):**
+  21. **`21` DX7 E-Piano Rhodes:** Classic 6-Op dual-carrier Rhodes (body 1:1 + bell tine 1:14).
+  22. **`22` Tubular Bells & Glocke:** Inharmonic Chowning/Bessel tubular church bell (ratios 1.0 : 3.52 : 5.84).
+  23. **`23` Solid Bass TX81Z:** The legendary TX81Z / DX100 4-Op Lately Bass with punchy feedback slap.
+  24. **`24` Slap Bass Percussion:** Wire string slap and pop with ultra-fast 25ms transient decay.
+  25. **`25` Blues Harmonica Reed:** Dual reed simulation with asymmetrical saturation and acoustic breath vibrato.
+  26. **`26` Marimba & Wood Balafon:** Wooden bar model with 4th harmonic attack and acoustic gourd resonance.
+  27. **`27` Log Drum & Schlitz:** African slit drum with pitch-drop envelope and hollow chamber tone.
+  28. **`28` CS-80 Synth Brass 80s:** Monumental detuned dual-carrier analog FM brass with dynamic filter sweep.
+  29. **`29` Digi Clavinet D6 FM:** Crisp funky plectrum string bite with single-coil pickup phase cancellation.
+  30. **`30` Cembalo & Harpsichord:** Baroque dual-register (8' + 4') quill-plucked harpsichord.
+- **Bank D (YM2612 & Arcade Legends — Bank `D`):**
+  31. **`31` Sonic 16-Bit Lead:** Iconic Sega Genesis 4-Op FM lead with crunchy ladder saturation.
+  32. **`32` Mega Drive FM Drums:** Punchy 16-bit FM kick with fast pitch dive + metallic gated snare.
+  33. **`33` Castlevania Cathedral Organ:** Gothic arcade pipe organ with 8' + 4' + 2 2/3' mixture ranks.
+  34. **`34` AdLib Chiptune Lead:** Sound Blaster OPL2 retro DOS gaming lead with half-sine / rectified wave harmonics.
+  35. **`35` DOOM Cyberpunk Saw FM:** Heavy industrial distorted saw FM with wavefolder drive.
+  36. **`36` Thunder Laser FX FM:** Sci-fi laser blast with exponential pitch sweep and extreme modulation.
+  37. **`37` Marble Zone Steel Drum:** Caribbean pan drum with ring-modulation harmonics and arcade flavor.
+  38. **`38` OutRun Synthwave Bass:** Rolling 16th-note electro arcade bass with razor-sharp punch.
+  39. **`39` NeoGeo Arcade Pluck:** Japanese arcade pluck with stereo chorus and shimmering decay.
+  40. **`40` Power Metal FM Poly:** High-energy anime game poly-synth with soaring brassy bite.
+- **Bank E (Cinematic & Cyberpunk Drones — Bank `E`):**
+  41. **`41` Blade Runner CS-FM Pad:** Vangelis cinematic brass pad with slow pitch-swell and infinite space.
+  42. **`42` Dark Nebula Sub-Drone:** Subterranean 30Hz atmospheric rumble with slow sweeping index.
+  43. **`43` Hyperborea Shimmer Crystal:** High-octave crystalline bells shimmering in glacial space.
+  44. **`44` Cryogenic Ice Whispers:** Sub-zero airy breathing textures with stochastic FM modulators.
+  45. **`45` Dark Matter Pulsar Drone:** Periodic rhythmic gravitational pulse with feedback harmonics.
+  46. **`46` Solar Flare Granular Drone:** Roaring warm plasma sweeps with multi-phase carrier collisions.
+  47. **`47` Abyss Submarine Resonator:** Deep metal hull water pressure resonance with sonar harmonics.
+  48. **`48` Starlight Ethereal Voice:** Haunting vocal drone resembling celestial Gregorian choir in deep space.
+  49. **`49` Void Walker Ambient Swell:** Slowly evolving cosmic soundscape with infinite sustain.
+  50. **`50` Antimatter Reactor Drone:** Sci-fi containment field with pulsating magnetic frequency modulation.
+- **Bank F (Acoustic Physical & World Models — Bank `F`):**
+  51. **`51` Tibetan Singing Bowl FM:** Hand-hammered bronze singing bowl with pure fundamental and beating overtones.
+  52. **`52` Javanese Gamelan Gong:** Sacred metallophone gong with microtonal inharmonic spectra.
+  53. **`53` Shakuhachi Bamboo Air:** Japanese bamboo flute with authentic breath turbulence and expressive bend.
+  54. **`54` Celtic Harp Pluck FM:** Acoustic nylon/wire harp with delicate transient attack and wooden soundboard.
+  55. **`55` Koto Silk String FM:** Traditional Japanese silk string with authentic plectrum snap and resonant bridges.
+  56. **`56` Glass Armonica Resonance:** Benjamin Franklin rotating glass bowls with singing crystalline ring.
+  57. **`57` Cathedral Pipe Organ 32ft:** Monumental acoustic church organ with massive 32' sub-bass pipes.
+  58. **`58` Cello Bowed FM Model:** Expressive bowed cello with friction stick-slip modulations.
+  59. **`59` Kalimba Thumb Piano:** African lamellophone with warm metal tine buzz and hollow resonator.
+  60. **`60` Ceramic Ocarina Flute:** Gentle ceramic vessel flute with warm breath tremolo.
+- **Bank G (Modular Experimental & Quantum Noise FX — Bank `G`):**
+  61. **`61` Quantum Particle Collider:** Chaotic subatomic particle collision with stochastic frequency bursts.
+  62. **`62` Radio Telescope Alien Glitch:** SETI interstellar digital telemetry with frequency-shifted data pulses.
+  63. **`63` Feedback Loop Screamer:** Self-oscillating modular analog feedback patch screaming at the edge of stability.
+  64. **`64` Chaotic Bifurcation Drone:** Feigenbaum period-doubling cascade collapsing into deterministic chaos.
+  65. **`65` Geiger Counter Radiance:** Ionizing radiation clicks modulating a low sub-oscillator.
+  66. **`66` Subatomic Bass Reactor:** Hyper-saturated modular sub-bass with wavefolding and tanh compression.
+  67. **`67` Neural Network Synapse:** Biological neuron spike train with membrane potential FM modulation.
+  68. **`68` Ringmod Laser Swarm:** Quad-ringmodulator sci-fi laser swarm with swirling sidebands.
+  69. **`69` Black Hole Event Horizon:** Gravitational redshift drone dragging frequencies into deep sub-bass void.
+  70. **`70` Warp Engine Plasma Drive:** Starship warp drive spooling up with roaring harmonic plasma resonance.
 
 ---
 
