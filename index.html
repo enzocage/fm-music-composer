@@ -706,6 +706,133 @@
     color: var(--fg);
   }
 
+  
+  /* Modul 3.7: Ambient Percussive Structure Generator (Subtil Smaragd / Gold) */
+  .grp-perc {
+    background: linear-gradient(180deg, #04100c 0%, #020806 100%);
+    border-color: rgba(46, 213, 115, 0.35);
+    border-left: 2px solid #2ed573;
+  }
+  .grp-perc > h2 { color: #2ed573; }
+
+  .perc-grid-params {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 8px;
+    margin-top: 5px;
+  }
+  @media (max-width: 580px) {
+    .perc-grid-params { grid-template-columns: 1fr; }
+  }
+  .perc-param-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .perc-param-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5px;
+  }
+  .perc-param-hdr .p-lbl {
+    color: var(--dim);
+    font-weight: 600;
+  }
+  .perc-param-hdr .p-num {
+    font-family: var(--mono);
+    color: #7ad7ff;
+    font-weight: 700;
+    font-size: 7.5px;
+  }
+  .perc-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #101a2a;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  .perc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2ed573;
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 4px #2ed573;
+    cursor: pointer;
+  }
+  .perc-slider::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2ed573;
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 4px #2ed573;
+    cursor: pointer;
+  }
+
+  /* 16-Step Percussion Visualizer Bar */
+  .perc-matrix-bar {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 2px;
+    background: rgba(4, 9, 14, 0.9);
+    padding: 4px 3px;
+    border: 1px solid rgba(46, 213, 115, 0.25);
+    border-radius: 3px;
+    margin-top: 4px;
+  }
+  .perc-step-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .perc-step-cell:nth-child(4n) {
+    border-right: 1px solid rgba(255,255,255,0.08);
+    padding-right: 2px;
+  }
+  .perc-step-cell:last-child {
+    border-right: none;
+  }
+  .perc-step-led {
+    width: 3.5px;
+    height: 3.5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    transition: background 0.04s, box-shadow 0.04s;
+  }
+  .perc-step-cell.active-step .perc-step-led {
+    background: #2ed573;
+    box-shadow: 0 0 6px #2ed573, 0 0 10px #2ed573;
+  }
+  .perc-step-bar {
+    width: 100%;
+    height: 14px;
+    background: #081016;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .perc-step-fill {
+    width: 100%;
+    background: linear-gradient(180deg, #2ed573 0%, #10ac84 100%);
+    height: 0%;
+    transition: height 0.1s;
+  }
+  .perc-step-cell.active-step .perc-step-fill {
+    background: #ffffff;
+    box-shadow: 0 0 6px #2ed573;
+  }
+
   /* Subtile Gruppen-Module (Exakt so groß wie der innere Inhalt, skalierbar & responsiv) */
   .grp {
     padding: 6px 8px;
@@ -2022,6 +2149,21 @@
       <div class="formula-inline" id="formulaInline"></div>
     </div>
 
+    <!-- CLUSTER 2.5: MASTER CLOCK (BPM & 4/4 TAKTART) -->
+    <div class="header-cluster header-cluster-tempo" style="display:flex; align-items:center; gap:5px; background:rgba(6,10,18,0.85); border:1px solid var(--rule); border-radius:3px; padding:2px 7px;" title="Globales Master-Tempo & Taktart (synchronisiert Looper, Arpeggiator & Perkussion)">
+      <span style="font-size:7.5px; font-weight:800; color:var(--dim); letter-spacing:.08em;">TEMPO</span>
+      <input type="number" id="globalBpmInput" min="30" max="300" value="120" style="width:42px; background:#080d1a; border:1px solid rgba(255,196,107,0.4); color:#ffc46b; font-family:var(--mono); font-size:10px; font-weight:800; padding:1px 3px; border-radius:2px; text-align:center;" title="Globales Tempo (30–300 BPM)">
+      <span style="font-size:8px; font-family:var(--mono); color:var(--dim);">BPM</span>
+      <div style="width:1px; height:12px; background:var(--rule);"></div>
+      <select id="globalMeterSelect" style="background:#080d1a; border:1px solid rgba(56,199,255,0.4); color:#7ad7ff; font-family:var(--mono); font-size:9.5px; font-weight:800; padding:1px 4px; border-radius:2px; cursor:pointer;" title="Taktart (Time Signature) für 1-Loop Taktsynchronisation">
+        <option value="4/4" selected>4/4</option>
+        <option value="3/4">3/4</option>
+        <option value="5/4">5/4</option>
+        <option value="6/8">6/8</option>
+        <option value="7/8">7/8</option>
+      </select>
+    </div>
+
     <!-- CLUSTER 3: MASTER-DECK, PRESETS, TRANSPORT & EXPAND -->
     <div class="header-cluster header-cluster-actions">
       <div class="song-btn-group">
@@ -2477,6 +2619,132 @@
           <button type="button" class="arp-pre-btn" data-pattern="sync">Synkope</button>
           <button type="button" class="arp-pre-btn" data-pattern="dance">Oct Dance</button>
           <button type="button" class="arp-pre-btn" data-pattern="rand">Random</button>
+        </div>
+      </div>
+
+      <!-- RACK SECTION 3.7: AMBIENT PERCUSSIVE STRUCTURE GENERATOR (15 Parameter & 4/4 Sync) -->
+      <div class="grp grp-perc" id="percModuleCard">
+        <h2>
+          <span>Stochastische Ambient-Perkussion</span>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span id="percBeatBadge" style="font-family:var(--mono);font-size:7.5px;color:#2ed573;background:rgba(46,213,115,0.15);padding:1px 4px;border-radius:2px;border:1px solid rgba(46,213,115,0.3);">1.1 (4/4)</span>
+            <label class="osc-toggle-label" title="Ambient Perkussion An/Aus">
+              <input type="checkbox" id="perc_enabled" class="osc-chk">
+              <span class="osc-badge" id="perc_badge" style="border-color:#2ed573;">AN / AUS</span>
+            </label>
+          </div>
+        </h2>
+
+        <!-- Preset Quick-Selector & Re-Seed Button -->
+        <div style="display:flex;gap:3px;flex-wrap:wrap;margin-bottom:4px;">
+          <button type="button" class="arp-pre-btn perc-pre-btn active" data-pre="zen">Zen Wasser</button>
+          <button type="button" class="arp-pre-btn perc-pre-btn" data-pre="buchla">Buchla Wald</button>
+          <button type="button" class="arp-pre-btn perc-pre-btn" data-pre="dust">Granularstaub</button>
+          <button type="button" class="arp-pre-btn perc-pre-btn" data-pre="glitch">Mikro-Glitch</button>
+          <button type="button" class="arp-pre-btn" id="btnPercReseed" style="color:#ffc46b;border-color:rgba(255,196,107,0.4);" title="Muster neu würfeln / Re-Seed">⚄ Re-Seed</button>
+        </div>
+
+        <!-- 16-Step Percussion Visualizer Bar -->
+        <div class="perc-matrix-bar" id="percMatrixBar"></div>
+
+        <!-- 15 KREATIVE EDITIER-PARAMETER -->
+        <div class="perc-grid-params">
+          <!-- 1. Density (Ereignis-Dichte) -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">1 · Dichte (Poisson)</span><span class="p-num" id="v_perc_density">3.5 Hz</span></div>
+            <input type="range" class="perc-slider" id="p_perc_density" min="0.2" max="10.0" step="0.1" value="3.5">
+          </div>
+
+          <!-- 2. Swing / Groove -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">2 · Swing / Shuffle</span><span class="p-num" id="v_perc_swing">15 %</span></div>
+            <input type="range" class="perc-slider" id="p_perc_swing" min="0" max="75" step="1" value="15">
+          </div>
+
+          <!-- 3. Euclid Steps (Hits pro 16 Steps) -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">3 · Euclid Hits (k/16)</span><span class="p-num" id="v_perc_euclid">5 / 16</span></div>
+            <input type="range" class="perc-slider" id="p_perc_euclid" min="1" max="16" step="1" value="5">
+          </div>
+
+          <!-- 4. Chaos / Jitter (Micro-Timing) -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">4 · Chaos / Jitter</span><span class="p-num" id="v_perc_jitter">12 ms</span></div>
+            <input type="range" class="perc-slider" id="p_perc_jitter" min="0" max="40" step="1" value="12">
+          </div>
+
+          <!-- 5. FM Ratio r_p -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">5 · FM Ratio r<sub>p</sub></span><span class="p-num" id="v_perc_ratio">2.76</span></div>
+            <input type="range" class="perc-slider" id="p_perc_ratio" min="0.25" max="8.0" step="0.01" value="2.76">
+          </div>
+
+          <!-- 6. FM Strike Index I_p -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">6 · FM Strike Index I<sub>p</sub></span><span class="p-num" id="v_perc_index">3.20</span></div>
+            <input type="range" class="perc-slider" id="p_perc_index" min="0.0" max="12.0" step="0.05" value="3.20">
+          </div>
+
+          <!-- 7. Vactrol LPG Decay -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">7 · Vactrol LPG Decay</span><span class="p-num" id="v_perc_decay">0.18 s</span></div>
+            <input type="range" class="perc-slider" id="p_perc_decay" min="0.01" max="1.20" step="0.01" value="0.18">
+          </div>
+
+          <!-- 8. Modal Pitch Spread -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">8 · Modaler Spread</span><span class="p-num" id="v_perc_spread">1.80 st</span></div>
+            <input type="range" class="perc-slider" id="p_perc_spread" min="0.0" max="4.0" step="0.05" value="1.80">
+          </div>
+
+          <!-- 9. Tone / Filter Cutoff -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">9 · Dämpfung / Tone</span><span class="p-num" id="v_perc_tone">3800 Hz</span></div>
+            <input type="range" class="perc-slider" id="p_perc_tone" min="200" max="12000" step="50" value="3800">
+          </div>
+
+          <!-- 10. Granular Scatter Burst -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">10 · Granular Scatter</span><span class="p-num" id="v_perc_scatter">35 %</span></div>
+            <input type="range" class="perc-slider" id="p_perc_scatter" min="0" max="100" step="1" value="35">
+          </div>
+
+          <!-- 11. Stereo Pan Drift -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">11 · Stereo Pan Drift</span><span class="p-num" id="v_perc_pan">60 %</span></div>
+            <input type="range" class="perc-slider" id="p_perc_pan" min="0" max="100" step="1" value="60">
+          </div>
+
+          <!-- 12. Probability Mask -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">12 · Zufall Wahrsch.</span><span class="p-num" id="v_perc_prob">80 %</span></div>
+            <input type="range" class="perc-slider" id="p_perc_prob" min="10" max="100" step="1" value="80">
+          </div>
+
+          <!-- 13. Reverb Space Send -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">13 · Hall-Anteil (Space)</span><span class="p-num" id="v_perc_space">45 %</span></div>
+            <input type="range" class="perc-slider" id="p_perc_space" min="0" max="100" step="1" value="45">
+          </div>
+
+          <!-- 14. Downbeat Accent Weight -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">14 · Downbeat Akzent</span><span class="p-num" id="v_perc_accent">1.6 x</span></div>
+            <input type="range" class="perc-slider" id="p_perc_accent" min="1.0" max="3.0" step="0.1" value="1.6">
+          </div>
+
+          <!-- 15. Loop Length (Bars) -->
+          <div class="perc-param-item">
+            <div class="perc-param-hdr"><span class="p-lbl">15 · Loop-Länge (Takte)</span><span class="p-num" id="v_perc_bars">1 Takt (4/4)</span></div>
+            <input type="range" class="perc-slider" id="p_perc_bars" min="1" max="4" step="1" value="1">
+          </div>
+        </div>
+
+        <!-- Master Perkussion Pegel -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;gap:6px;">
+          <span style="font-size:7.5px;color:var(--dim);font-weight:700;">PEGEL</span>
+          <input type="range" class="perc-slider" id="p_perc_vol" min="0" max="100" step="1" value="75" style="flex:1;">
+          <span style="font-family:var(--mono);font-size:7.5px;color:#2ed573;font-weight:700;" id="v_perc_vol">75 %</span>
         </div>
       </div>
 
@@ -11930,6 +12198,365 @@ function renderArpMatrix() {
   });
 }
 
+
+/* ============================================================
+   Global Master Clock (BPM & 4/4 Meter) & Ambient Percussion
+   ============================================================ */
+const masterClock = {
+  bpm: 120,
+  timeSignature: "4/4",
+  beatsPerBar: 4,
+  beatUnit: 4
+};
+
+const percState = {
+  enabled: false,
+  volume: 0.75,
+  density: 3.5,
+  swing: 15,
+  euclid: 5,
+  jitter: 12,
+  ratio: 2.76,
+  index: 3.20,
+  decay: 0.18,
+  spread: 1.80,
+  tone: 3800,
+  scatter: 35,
+  pan: 60,
+  prob: 80,
+  space: 45,
+  accent: 1.6,
+  bars: 1,
+  currentStep: 0,
+  timerId: null,
+  pattern: new Float32Array(16),
+  bus: null,
+  dryGain: null,
+  wetGain: null,
+  filterNode: null
+};
+
+// Euclidean Algorithm generator
+function generateEuclideanPattern(k, n = 16) {
+  const pattern = new Float32Array(n);
+  if (k <= 0) return pattern;
+  if (k >= n) { pattern.fill(0.8); return pattern; }
+  for (let i = 0; i < n; i++) {
+    if ((i * k) % n < k) {
+      // Downbeat accents on 0, 4, 8, 12 in 4/4
+      const isDownbeat = (i % 4 === 0);
+      pattern[i] = isDownbeat ? 1.0 : 0.7;
+    }
+  }
+  return pattern;
+}
+
+function initPercAudio() {
+  if (!ctx || percState.bus) return;
+  percState.bus = ctx.createGain();
+  percState.bus.gain.value = percState.volume;
+
+  percState.filterNode = ctx.createBiquadFilter();
+  percState.filterNode.type = "lowpass";
+  percState.filterNode.frequency.value = percState.tone;
+  percState.filterNode.Q.value = 1.2;
+
+  percState.dryGain = ctx.createGain();
+  percState.dryGain.gain.value = 1.0 - (percState.space / 100) * 0.4;
+
+  percState.wetGain = ctx.createGain();
+  percState.wetGain.gain.value = (percState.space / 100);
+
+  percState.bus.connect(percState.filterNode);
+  percState.filterNode.connect(percState.dryGain).connect(masterGain);
+  if (conv) percState.filterNode.connect(percState.wetGain).connect(conv);
+}
+
+function triggerPercVoice(stepIdx, velocity) {
+  if (!ctx || !percState.bus) initPercAudio();
+  if (!ctx) return;
+
+  const now = ctx.currentTime;
+  const isDownbeat = (stepIdx % 4 === 0);
+  const velWeight = isDownbeat ? (velocity * percState.accent) : velocity;
+
+  // Base fundamental frequency: tuned micro-percussion around 120-240 Hz
+  const baseFreq = 140 * Math.pow(2, ((stepIdx % 4) * 2 - 2) / 12);
+
+  // Micro-timing jitter
+  const jitterSec = (Math.random() - 0.5) * (percState.jitter / 1000);
+  const triggerT = Math.max(now, now + jitterSec);
+
+  // 1. FM Carrier & Modulator
+  const car = ctx.createOscillator();
+  car.frequency.setValueAtTime(baseFreq * (1 + (percState.spread / 12)), triggerT);
+
+  const mod = ctx.createOscillator();
+  mod.frequency.setValueAtTime(baseFreq * percState.ratio, triggerT);
+
+  const modG = ctx.createGain();
+  modG.gain.setValueAtTime(percState.index * baseFreq * percState.ratio * velWeight, triggerT);
+  modG.gain.exponentialRampToValueAtTime(0.01 * baseFreq, triggerT + percState.decay);
+
+  mod.connect(modG).connect(car.frequency);
+
+  // 2. Vactrol Low-Pass Gate Envelope
+  const lpgEnv = ctx.createGain();
+  lpgEnv.gain.setValueAtTime(0.001, triggerT);
+  lpgEnv.gain.linearRampToValueAtTime(Math.min(1.0, velWeight * 0.9), triggerT + 0.002);
+  lpgEnv.gain.exponentialRampToValueAtTime(0.0001, triggerT + percState.decay);
+
+  // 3. Stereo Panning Drift
+  let panVal = 0;
+  if (ctx.createStereoPanner) {
+    const panner = ctx.createStereoPanner();
+    const panExtent = percState.pan / 100;
+    panVal = (Math.random() * 2 - 1) * panExtent;
+    panner.pan.setValueAtTime(panVal, triggerT);
+    car.connect(lpgEnv).connect(panner).connect(percState.bus);
+  } else {
+    car.connect(lpgEnv).connect(percState.bus);
+  }
+
+  // 4. Granular Micro-Burst Scatter
+  if (Math.random() * 100 < percState.scatter) {
+    const burstCount = Math.floor(Math.random() * 3) + 1;
+    for (let g = 0; g < burstCount; g++) {
+      const gCar = ctx.createOscillator();
+      gCar.frequency.value = baseFreq * (2.5 + Math.random() * 3.5);
+      const gEnv = ctx.createGain();
+      const gT = triggerT + 0.01 + g * 0.012;
+      gEnv.gain.setValueAtTime(0.001, gT);
+      gEnv.gain.linearRampToValueAtTime(0.2 * velWeight, gT + 0.001);
+      gEnv.gain.exponentialRampToValueAtTime(0.0001, gT + 0.025);
+      gCar.connect(gEnv).connect(percState.bus);
+      gCar.start(gT);
+      gCar.stop(gT + 0.03);
+    }
+  }
+
+  car.start(triggerT);
+  mod.start(triggerT);
+  car.stop(triggerT + percState.decay + 0.05);
+  mod.stop(triggerT + percState.decay + 0.05);
+}
+
+function renderPercMatrixUI() {
+  const container = document.getElementById("percMatrixBar");
+  if (!container) return;
+  container.innerHTML = "";
+
+  percState.pattern = generateEuclideanPattern(percState.euclid, 16);
+
+  for (let i = 0; i < 16; i++) {
+    const cell = document.createElement("div");
+    cell.className = "perc-step-cell";
+    cell.id = "perc_step_" + i;
+
+    const led = document.createElement("div");
+    led.className = "perc-step-led";
+
+    const bar = document.createElement("div");
+    bar.className = "perc-step-bar";
+
+    const fill = document.createElement("div");
+    fill.className = "perc-step-fill";
+    fill.style.height = (percState.pattern[i] * 100) + "%";
+
+    bar.appendChild(fill);
+    cell.appendChild(led);
+    cell.appendChild(bar);
+    container.appendChild(cell);
+  }
+}
+
+function startPercEngineClock() {
+  stopPercEngineClock();
+  if (!percState.enabled) return;
+
+  initPercAudio();
+  percState.currentStep = 0;
+
+  function stepClock() {
+    if (!percState.enabled) return;
+
+    // Calculate 16th note interval from Master BPM
+    const beatSec = 60 / masterClock.bpm;
+    const stepSec = beatSec / 4; // 16th note
+    const isEvenStep = (percState.currentStep % 2 === 1);
+    const swingSec = isEvenStep ? (stepSec * (percState.swing / 100) * 0.5) : 0;
+    const currentInterval = (stepSec + swingSec) * 1000;
+
+    // Update Step UI
+    document.querySelectorAll(".perc-step-cell").forEach((c, idx) => {
+      c.classList.toggle("active-step", idx === percState.currentStep);
+    });
+
+    const beatNum = Math.floor(percState.currentStep / 4) + 1;
+    const subNum = (percState.currentStep % 4) + 1;
+    const badge = document.getElementById("percBeatBadge");
+    if (badge) badge.textContent = beatNum + "." + subNum + " (" + masterClock.timeSignature + ")";
+
+    // Probability gate check
+    const probCheck = (Math.random() * 100) <= percState.prob;
+    const vel = percState.pattern[percState.currentStep];
+
+    if (probCheck && vel > 0) {
+      triggerPercVoice(percState.currentStep, vel);
+    }
+
+    percState.currentStep = (percState.currentStep + 1) % 16;
+    percState.timerId = setTimeout(stepClock, Math.max(15, currentInterval));
+  }
+
+  stepClock();
+}
+
+function stopPercEngineClock() {
+  if (percState.timerId) {
+    clearTimeout(percState.timerId);
+    percState.timerId = null;
+  }
+  document.querySelectorAll(".perc-step-cell").forEach(c => c.classList.remove("active-step"));
+}
+
+function setupPercControls() {
+  const chk = document.getElementById("perc_enabled");
+  const badge = document.getElementById("perc_badge");
+
+  if (chk) {
+    chk.addEventListener("change", () => {
+      percState.enabled = chk.checked;
+      if (badge) {
+        badge.style.background = percState.enabled ? "#2ed573" : "transparent";
+        badge.style.color = percState.enabled ? "#05070d" : "var(--dim)";
+      }
+      if (percState.enabled) {
+        ensureAudioActive();
+        startPercEngineClock();
+      } else {
+        stopPercEngineClock();
+      }
+    });
+  }
+
+  // Master Clock controls in Top Row
+  const bpmInp = document.getElementById("globalBpmInput");
+  const meterSel = document.getElementById("globalMeterSelect");
+
+  if (bpmInp) {
+    bpmInp.addEventListener("input", () => {
+      const val = parseInt(bpmInp.value, 10);
+      if (!isNaN(val) && val >= 30 && val <= 300) {
+        masterClock.bpm = val;
+        // Sync Arpeggiator BPM as well
+        const arpBpm = document.getElementById("arpBpm");
+        const vArpBpm = document.getElementById("v_arpBpm");
+        if (arpBpm) arpBpm.value = val;
+        if (vArpBpm) vArpBpm.textContent = val;
+        if (arpState) arpState.bpm = val;
+      }
+    });
+  }
+
+  if (meterSel) {
+    meterSel.addEventListener("change", () => {
+      masterClock.timeSignature = meterSel.value;
+      const parts = meterSel.value.split("/");
+      masterClock.beatsPerBar = parseInt(parts[0], 10) || 4;
+      masterClock.beatUnit = parseInt(parts[1], 10) || 4;
+    });
+  }
+
+  // Bind 15 sliders
+  const sliderMap = [
+    { id: "p_perc_density", vId: "v_perc_density", key: "density", unit: " Hz" },
+    { id: "p_perc_swing", vId: "v_perc_swing", key: "swing", unit: " %" },
+    { id: "p_perc_euclid", vId: "v_perc_euclid", key: "euclid", unit: " / 16", onChange: renderPercMatrixUI },
+    { id: "p_perc_jitter", vId: "v_perc_jitter", key: "jitter", unit: " ms" },
+    { id: "p_perc_ratio", vId: "v_perc_ratio", key: "ratio", unit: "" },
+    { id: "p_perc_index", vId: "v_perc_index", key: "index", unit: "" },
+    { id: "p_perc_decay", vId: "v_perc_decay", key: "decay", unit: " s" },
+    { id: "p_perc_spread", vId: "v_perc_spread", key: "spread", unit: " st" },
+    { id: "p_perc_tone", vId: "v_perc_tone", key: "tone", unit: " Hz", onChange: () => { if (percState.filterNode) percState.filterNode.frequency.value = percState.tone; } },
+    { id: "p_perc_scatter", vId: "v_perc_scatter", key: "scatter", unit: " %" },
+    { id: "p_perc_pan", vId: "v_perc_pan", key: "pan", unit: " %" },
+    { id: "p_perc_prob", vId: "v_perc_prob", key: "prob", unit: " %" },
+    { id: "p_perc_space", vId: "v_perc_space", key: "space", unit: " %", onChange: () => { if (percState.wetGain) percState.wetGain.gain.value = percState.space / 100; } },
+    { id: "p_perc_accent", vId: "v_perc_accent", key: "accent", unit: " x" },
+    { id: "p_perc_bars", vId: "v_perc_bars", key: "bars", unit: " Takt(e)" }
+  ];
+
+  sliderMap.forEach(item => {
+    const sEl = document.getElementById(item.id);
+    const vEl = document.getElementById(item.vId);
+    if (sEl) {
+      sEl.addEventListener("input", () => {
+        const val = parseFloat(sEl.value);
+        percState[item.key] = val;
+        if (vEl) vEl.textContent = val + item.unit;
+        if (item.onChange) item.onChange();
+      });
+    }
+  });
+
+  const volSlider = document.getElementById("p_perc_vol");
+  const volVal = document.getElementById("v_perc_vol");
+  if (volSlider) {
+    volSlider.addEventListener("input", () => {
+      percState.volume = parseInt(volSlider.value, 10) / 100;
+      if (volVal) volVal.textContent = volSlider.value + " %";
+      if (percState.bus) percState.bus.gain.value = percState.volume;
+    });
+  }
+
+  // Preset Buttons
+  const presets = {
+    zen: { density: 2.0, euclid: 3, swing: 10, jitter: 15, ratio: 2.76, index: 2.2, decay: 0.25, spread: 1.2, tone: 4200, scatter: 20 },
+    buchla: { density: 4.5, euclid: 5, swing: 20, jitter: 10, ratio: 1.414, index: 4.5, decay: 0.14, spread: 2.4, tone: 5500, scatter: 40 },
+    dust: { density: 6.0, euclid: 7, swing: 5, jitter: 25, ratio: 3.85, index: 3.0, decay: 0.08, spread: 3.2, tone: 6800, scatter: 80 },
+    glitch: { density: 5.0, euclid: 6, swing: 30, jitter: 5, ratio: 5.25, index: 6.0, decay: 0.04, spread: 0.8, tone: 8500, scatter: 60 }
+  };
+
+  document.querySelectorAll(".perc-pre-btn[data-pre]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const p = presets[btn.dataset.pre];
+      if (!p) return;
+      document.querySelectorAll(".perc-pre-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      Object.keys(p).forEach(k => {
+        percState[k] = p[k];
+        const sEl = document.getElementById("p_perc_" + k);
+        const vEl = document.getElementById("v_perc_" + k);
+        if (sEl) sEl.value = p[k];
+        if (vEl) {
+          const item = sliderMap.find(m => m.key === k);
+          vEl.textContent = p[k] + (item ? item.unit : "");
+        }
+      });
+      renderPercMatrixUI();
+    });
+  });
+
+  const reseedBtn = document.getElementById("btnPercReseed");
+  if (reseedBtn) {
+    reseedBtn.addEventListener("click", () => {
+      percState.euclid = Math.floor(Math.random() * 8) + 3;
+      percState.jitter = Math.floor(Math.random() * 25) + 5;
+      percState.ratio = +(Math.random() * 4 + 0.5).toFixed(2);
+      const eSlider = document.getElementById("p_perc_euclid");
+      const eVal = document.getElementById("v_perc_euclid");
+      if (eSlider) eSlider.value = percState.euclid;
+      if (eVal) eVal.textContent = percState.euclid + " / 16";
+      renderPercMatrixUI();
+    });
+  }
+
+  renderPercMatrixUI();
+}
+
+
 function setupArpControls() {
   const arpChk = document.getElementById("arp_enabled");
   const arpBadge = document.getElementById("arp_badge");
@@ -12617,6 +13244,7 @@ window.addEventListener("keydown", () => { if (document.body.contains(veil)) sta
 // Initialisierung
 setupUnifiedParamControls();
 setupArpControls();
+  setupPercControls();
 applyInitialLayout();
 selectSynth(0);
 readColors();

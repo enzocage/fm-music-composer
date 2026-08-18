@@ -158,66 +158,71 @@
 ---
 
 ### 4. Complex Programmable & Keyboard-Playable Arpeggiator
-A high-precision Web Audio lookahead arpeggiator and step sequencer usable across all 20 synthesizers:
+A high-precision Web Audio lookahead arpeggiator and step sequencer usable across all 100 synthesizers:
 - **`[ ~ ARP ]` Master Toggle:** Activates/deactivates live arpeggio mode.
 - **Keyboard Playable / Held-Chord Input:** Press any chord on your physical computer keyboard or screen keys; the arpeggiator sequences through the chord in real time!
 - **`[ Hold ]` (Latch Mode):** Keeps the arpeggio repeating continuously after you release the keys until a new chord is pressed.
-- **6 Directional Modes:**
-  - `▲ Up`: Ascending note sequence.
-  - `▼ Down`: Descending note sequence.
-  - `▲▼ Up/Dn`: Bouncing ascending and descending pattern.
-  - `⚄ Rand`: Random note selection from held chord notes.
-  - `▶◀ Conv`: Converging pattern (alternating outer and inner notes).
-  - `■ Chord`: Staccato-gated simultaneous chord rhythm.
+- **6 Directional Modes:** `▲ Up`, `▼ Down`, `▲▼ Up/Dn`, `⚄ Rand`, `▶◀ Conv`, `■ Chord`.
 - **Subdivision Clock:** `1/4`, `1/8`, `1/16`, `1/16T` (Triplets), and `1/32` notes.
 - **Octave Span (1 to 4 Octaves):** Cascades arpeggiated patterns across 1, 2, 3, or 4 octaves.
 - **Interactive 16-Step Matrix Sequencer:**
   - 16 clickable step gate toggles with real-time running LED playhead tracker.
   - Per-step octave transposition badges (`-1`, `0`, `+1`, `+2`).
-- **Groove & Articulation Controls:**
-  - **Tempo:** 40 to 280 BPM.
-  - **Gate-Length:** 10% (ultra-short staccato pluck) to 100% (legato sustain).
-  - **Swing / Shuffle:** 0% to 65% groove shuffle.
 - **Pattern Presets:** `[ 16th Straight ]`, `[ Euklid 5/16 ]`, `[ Euklid 7/16 ]`, `[ Synkope ]`, `[ Oct Dance ]`, `[ Random ]`.
-- **Lossless `.json` Save/Load:** Patterns and arpeggio settings are saved and restored with your song project.
 
 ---
 
-### 5. Complete Complex-Vibrato & Humanizer Engine (All 20 Instruments)
+### 5. Ambient Percussive Structure Generator (15 Parameters & 4/4 Clock Sync)
+A dedicated West-Coast organic FM, modal resonator, and granular microsound percussive generator designed strictly for ambient textures:
+- **Global Master Clock Sync:** Locks to the top row **Numeric BPM (30–300 BPM)** and **4/4 (or 3/4, 5/4, 6/8, 7/8)** time signature.
+- **16-Step Visual Playhead & Velocity Fill Bar:** Displays running 16th-note sequence and live dynamic strike energy.
+- **15 Sound Sculpting & Stochastic Parameters:**
+  1. **`Dichte (Density)` (0.2–10.0 Hz):** Poisson stochastic event trigger frequency.
+  2. **`Swing / Groove` (0–75%):** 16th-note shuffle groove timing.
+  3. **`Euclid Hits` (1–16 / 16):** Euclidean rhythmic algorithm distribution.
+  4. **`Chaos / Jitter` (0–40 ms):** Organic micro-timing displacement for natural human/fluid scatter.
+  5. **`FM Ratio r_p` (0.25–8.0):** Harmonic / inharmonic spectral ratio.
+  6. **`FM Strike Index I_p` (0.0–12.0):** Attack transient modulation depth.
+  7. **`Vactrol LPG Decay` (0.01–1.20 s):** Non-linear Low Pass Gate slew decay.
+  8. **`Modal Pitch Spread` (0.0–4.0 st):** Microtonal secondary modal dispersion.
+  9. **`Dämpfung / Tone` (200–12000 Hz):** Dynamic low-pass damping filter.
+  10. **`Granular Scatter` (0–100%):** Micro-grain particle burst probability.
+  11. **`Stereo Pan Drift` (0–100%):** Asymmetric binaural spatialization across stereo field.
+  12. **`Zufall Wahrscheinlichkeit` (10–100%):** Stochastic gate drop chance.
+  13. **`Hall-Anteil (Space)` (0–100%):** Wet send into 5.5s convolution impulse reverb.
+  14. **`Downbeat Akzent` (1.0–3.0x):** Dynamic velocity weighting on primary downbeats ($1, 2, 3, 4$).
+  15. **`Loop-Länge (Takte)` (1–4 Takte):** Loop bar cycle synchronizer.
+- **Instant Ambient Presets:** `[ Zen Wasser ]`, `[ Buchla Wald ]`, `[ Granularstaub ]`, `[ Mikro-Glitch ]`, `[ ⚄ Re-Seed ]`.
+
+---
+
+### 6. Complete Complex-Vibrato & Humanizer Engine (All 100 Instruments)
 Every instrument includes an acoustic/electronic vibrato modulation module:
 - **`[ ~ VIB ]` Master Toggle:** Activates/deactivates pitch vibrato for the selected instrument.
-- **Waveform Selector:**
-  - `∿ Sin`: Smooth, classic natural vibrato.
-  - `⋀ Tri`: Linear acoustic violin/cello-style modulation.
-  - `◈ Human`: Organic humanizer jitter and frequency micro-drift.
-  - `⩘ Saw`: Aggressive synthetic pitch ramp.
+- **Waveform Selector:** `∿ Sin`, `⋀ Tri`, `◈ Human`, `⩘ Saw`.
 - **Vibrato-Tiefe $\Delta f_{vib}$ (0–24 Hz):** Single-row parameter with tactile handles $[A, B]$, live value needle, and autonomous sine-wave oscillation.
 - **Vibrato-Rate (0.1–14 Hz):** Dedicated rotary speed knob for ultra-slow cosmic pitch drifts up to fast fluttering vibrato.
-- **Einsatz-Verzögerung (Delay 0.0–2.5 s):** Controls the natural bloom and onset time before vibrato kicks in after key strike.
-- **Humanizer Drift & Jitter (0–100%):** Adds randomized micro-deviations to simulate real human acoustic performances.
-- **Universal Carrier Audio Routing:** Directly modulates all carrier oscillators across all 20 complex synthesis algorithms.
+- **Einsatz-Verzögerung (Delay 0.0–2.5 s):** Controls natural bloom onset time.
+- **Humanizer Drift & Jitter (0–100%):** Adds randomized micro-deviations.
 
 ---
 
-### 6. Per-Parameter Visible UI Handles & Automation (`~ OSC`)
-Every sound shaping parameter ($r, I_0, \Delta I, f_L, \Delta f_{vib}$, custom parameters like $\rho, \gamma, m, \alpha$) features an autonomous modulation engine:
+### 7. Per-Parameter Visible UI Handles & Automation (`~ OSC`)
+Every sound shaping parameter ($r, I_0, \Delta I, f_L, \Delta f_{vib}$, custom parameters) features an autonomous modulation engine:
 - **`[ ~ OSC ]` Toggle Badge:** Instantly enables automated continuous sine-wave oscillation.
-- **Visible Draggable Handles `[ A ]` & `[ B ]`:** Tactile handles setting the exact oscillation boundaries without numeric drawers.
-- **Echtzeit-Wertnadel (White Needle):** Displays live parameter value and oscillates at 60 FPS between $A$ and $B$.
-- **Integrated Single-Row Rotary Speed Knob (0 to 100):**
-  - Smooth interactive rotary dial with circular SVG needle and pointer embedded in the same control row.
-  - Drag vertically or use mouse wheel.
-  - Rate ranges from ultra-slow organic drifts ($0.01\text{ Hz}$ / $100\text{ s}$) up to $4.5\text{ Hz}$ vibrato/wobble.
+- **Visible Draggable Handles `[ A ]` & `[ B ]`:** Tactile handles setting the exact oscillation boundaries.
+- **Echtzeit-Wertnadel (White Needle):** Oscillates at 60 FPS between $A$ and $B$.
+- **Integrated Single-Row Rotary Speed Knob (0 to 100):** Continuous rate control.
 
 ---
 
-### 6. Master Song Recording & Audio Export (Lossless WAV & 320 kbps MP3)
+### 8. Master Song Recording & Audio Export (Lossless WAV & 320 kbps MP3)
 Directly capture your entire live studio performance into pristine standalone audio files:
-- **One-Click Master Recording (`[ REC SONG ]` / Key `M`):** Taps directly off the master dynamics processor, capturing live synthesizer play, the 16-step arpeggiator, all active multi-layer loop tracks, and convolution reverb in real time.
-- **Live Elapsed Timer Badge:** Dynamic pulsing indicator (`[ 🔴 REC 01:24 ]`) tracking recording progress.
+- **One-Click Master Recording (`[ REC SONG ]` / Key `M`):** Taps directly off the master dynamics processor, capturing live synthesizer play, the 16-step arpeggiator, ambient percussion generator, loop tracks, and convolution reverb in real time.
+- **Live Elapsed Timer Badge:** Dynamic pulsing indicator (`[ 🔴 REC 01:24 ]`).
 - **Master Audio Export Modal:**
-  - **Lossless WAV Export:** 16-bit / 48kHz Stereo PCM `.wav` with uncompressed studio fidelity.
-  - **320 kbps MP3 Export:** High-bitrate 320 kbps CBR MP3 powered by client-side pure JS encoding for universal compatibility.
+  - **Lossless WAV Export:** 16-bit / 48kHz Stereo PCM `.wav`.
+  - **320 kbps MP3 Export:** High-bitrate 320 kbps CBR MP3 powered by client-side pure JS encoding.
   - **Interactive Waveform Display:** Visualizes the full amplitude envelope of the recorded song.
   - **In-Browser Audio Player:** Preview and listen to your song before downloading.
 
