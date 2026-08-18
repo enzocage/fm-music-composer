@@ -117,6 +117,28 @@
     padding: 1.5px;
     gap: 2px;
   }
+  .bank-nav-arrow-btn {
+    font-family: var(--mono);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .02em;
+    padding: 2.5px 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--dim);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all .1s;
+    user-select: none;
+  }
+  .bank-nav-arrow-btn:hover {
+    background: var(--accent);
+    color: #05070d;
+    box-shadow: 0 0 6px var(--accent);
+  }
+  .bank-nav-arrow-btn:active {
+    transform: scale(0.95);
+  }
   .bank-seg-btn {
     font-family: var(--mono);
     font-size: 8.5px;
@@ -1641,13 +1663,15 @@
       <span class="logo-tag">FM COMPOSER</span>
       
       <div class="bank-segmented">
-        <button class="bank-seg-btn active" id="btnBankA" title="Bank A: Exotik & Chaos (1–10)">A</button>
-        <button class="bank-seg-btn" id="btnBankB" title="Bank B: Klassik & Labor (11–20)">B</button>
-        <button class="bank-seg-btn" id="btnBankC" title="Bank C: DX7 & 80s Icons (21–30)">C</button>
-        <button class="bank-seg-btn" id="btnBankD" title="Bank D: YM2612 & Arcade (31–40)">D</button>
-        <button class="bank-seg-btn" id="btnBankE" title="Bank E: Cinematic Drones (41–50)">E</button>
-        <button class="bank-seg-btn" id="btnBankF" title="Bank F: World Acoustic (51–60)">F</button>
-        <button class="bank-seg-btn" id="btnBankG" title="Bank G: Modular & FX (61–70)">G</button>
+        <button type="button" class="bank-nav-arrow-btn" id="btnBankPrev" title="Vorherige Bank (Taste ß)">◀ ß</button>
+        <button type="button" class="bank-seg-btn active" id="btnBankA" title="Bank A: Exotik & Chaos (Tasten: 1–0)">A</button>
+        <button type="button" class="bank-seg-btn" id="btnBankB" title="Bank B: Klassik & Labor (Tasten: 1–0)">B</button>
+        <button type="button" class="bank-seg-btn" id="btnBankC" title="Bank C: DX7 & 80s Icons (Tasten: 1–0)">C</button>
+        <button type="button" class="bank-seg-btn" id="btnBankD" title="Bank D: YM2612 & Arcade (Tasten: 1–0)">D</button>
+        <button type="button" class="bank-seg-btn" id="btnBankE" title="Bank E: Cinematic Drones (Tasten: 1–0)">E</button>
+        <button type="button" class="bank-seg-btn" id="btnBankF" title="Bank F: World Acoustic (Tasten: 1–0)">F</button>
+        <button type="button" class="bank-seg-btn" id="btnBankG" title="Bank G: Modular & FX (Tasten: 1–0)">G</button>
+        <button type="button" class="bank-nav-arrow-btn" id="btnBankNext" title="Nächste Bank (Taste ´)">´ ▶</button>
       </div>
 
       <!-- 10 dynamische Micro-Pills -->
@@ -2153,7 +2177,7 @@
   <div class="kb-top">
     <div class="kb-meta-left">
       <span class="active-synth-tag" id="activeSynthTag">Synth 1: Lorenz Chaos FM</span>
-      <span class="kb-shortcut-hint">Tasten: A W S E D F T G Z H U J K</span>
+      <span class="kb-shortcut-hint">Tasten: A W S E D F T G Z H U J K · Bank: ß / ´ · Synths: 1–0</span>
     </div>
 
     <!-- PROMINENTE OKTAVEN-STEUERUNG IM UNTEREN ELEMENT -->
@@ -8507,6 +8531,17 @@ Object.keys(bankButtons).forEach(bId => {
   }
 });
 
+const btnBankPrev = document.getElementById("btnBankPrev");
+const btnBankNext = document.getElementById("btnBankNext");
+if (btnBankPrev) btnBankPrev.addEventListener("click", () => cycleBank(-1));
+if (btnBankNext) btnBankNext.addEventListener("click", () => cycleBank(+1));
+
+function cycleBank(direction = +1) {
+  const curIdx = BANKS.findIndex(b => b.id === currentBankId);
+  const nextIdx = (curIdx + direction + BANKS.length) % BANKS.length;
+  setBank(BANKS[nextIdx].id);
+}
+
 function setBank(bId) {
   currentBankId = bId;
   const bObj = BANKS.find(b => b.id === bId) || BANKS[0];
@@ -9468,19 +9503,38 @@ window.addEventListener("keydown", e => {
     return;
   }
 
+  // Bank Umschalten mit ß (Zurück) und ´ (Vorwärts)
+  const isBankPrev = (
+    e.key === "ß" || e.key === "SS" || e.key === "?" ||
+    e.code === "Minus" || e.code === "NumpadSubtract"
+  );
+  if (isBankPrev && !e.repeat) {
+    e.preventDefault();
+    ensureAudioActive();
+    cycleBank(-1);
+    return;
+  }
+
+  const isBankNext = (
+    e.key === "´" || e.key === "`" || e.key === "^" || e.key === "Dead" ||
+    e.code === "Equal" || e.code === "Backquote" || e.code === "NumpadAdd"
+  );
+  if (isBankNext && !e.repeat) {
+    e.preventDefault();
+    ensureAudioActive();
+    cycleBank(+1);
+    return;
+  }
+
+  // Instrument-Auswahl mit Tasten 1 bis 0 (ohne Shift) für die aktuell aktive Bank
   const digitMatch = e.code && e.code.match(/^Digit([0-9])$/);
   if (digitMatch && !e.repeat) {
     const num = parseInt(digitMatch[1], 10);
     const digitIdx = (num === 0 ? 9 : num - 1);
     e.preventDefault();
-    if (e.shiftKey) {
-      if (digitIdx >= 0 && digitIdx < BANKS.length) {
-        setBank(BANKS[digitIdx].id);
-      }
-    } else {
-      const bObj = BANKS.find(b => b.id === currentBankId) || BANKS[0];
-      selectSynth(bObj.offset + digitIdx);
-    }
+    ensureAudioActive();
+    const bObj = BANKS.find(b => b.id === currentBankId) || BANKS[0];
+    selectSynth(bObj.offset + digitIdx);
     return;
   }
 

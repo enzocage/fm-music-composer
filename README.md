@@ -15,7 +15,10 @@
 ## 🌟 Key Features
 
 ### 1. 70 Distinct FM Synthesizer Engines (7 Soundbanks)
-- **Bank A (Exotik & Chaos — Keys `1` to `0` / Bank `A`):**
+> **Bank Navigation:** Switch active soundbanks with keys **`ß`** *(Previous Bank)* and **`´`** *(Next Bank)* or click `A, B, C, D, E, F, G`.  
+> **Direct Instrument Selection:** Keys **`1` to `0`** instantly select instruments 1 through 10 of the currently active soundbank without needing `Shift`!
+
+- **Bank A (Exotik & Chaos — Instruments 1 to 10):**
   1. **`1` Lorenz Chaos FM:** Runge-Kutta 4th-order ($\text{RK4}$) chaotic attractor $\dot{x}=\sigma(y-x), \dot{y}=x(\rho-z)-y, \dot{z}=xy-\beta z$.
   2. **`2` Chebyshev Wavefolder:** Orthogonal Chebyshev polynomials $T_3(x), T_5(x)$ and hyperbolic tangent saturation in feedback loop.
   3. **`3` Jacobi Soliton FM:** Jacobian elliptic functions $\text{sn}(u, m)$ and $\text{cn}(u, m)$ with continuous modulus morphing.
