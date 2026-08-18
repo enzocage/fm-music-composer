@@ -248,12 +248,11 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
       break;
   }
 
-  // LFO Breathing to Carrier 1 & 2
-  if (inst.lfoOsc) {
+  // LFO Breathing to Modulator Gain (Timbre modulation without pitch warble)
+  if (inst.lfoOsc && di > 0) {
     try {
       inst.lfoOsc.connect(lfoG);
-      lfoG.connect(car1.frequency);
-      if (car2) lfoG.connect(car2.frequency);
+      lfoG.connect(mod2G.gain);
     } catch(err){}
   }
 

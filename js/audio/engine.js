@@ -288,8 +288,8 @@ function createSynthInstance(def) {
     params: defParams,
     customVal: def.customParam ? def.customParam.val : 1.0,
     vibrato: {
-      enabled: true,
-      depth: 4.5,
+      enabled: false,
+      depth: 3.5,
       rate: 5.2,
       delay: 0.25,
       shape: "sine",

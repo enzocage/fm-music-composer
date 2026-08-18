@@ -772,11 +772,13 @@ function selectSynth(idx) {
       btn.addEventListener("click", () => {
         if (p.params) {
           Object.assign(inst.params, p.params);
-        } else {
-          if (p.r !== undefined) { inst.params.r2_ratio = p.r; inst.params.ratio = p.r; }
-          if (p.i !== undefined) { inst.params.mod_I0 = p.i; inst.params.I0 = p.i; }
-          if (p.d !== undefined) { inst.params.mod_dI = p.d; inst.params.dI = p.d; }
         }
+        Object.keys(p).forEach(pk => {
+          if (pk !== "name" && pk !== "params") inst.params[pk] = p[pk];
+        });
+        if (p.r !== undefined) { inst.params.r2_ratio = p.r; inst.params.ratio = p.r; }
+        if (p.i !== undefined) { inst.params.mod_I0 = p.i; inst.params.I0 = p.i; }
+        if (p.d !== undefined) { inst.params.mod_dI = p.d; inst.params.dI = p.d; }
         syncSliderValues();
         OSC_PARAM_KEYS.forEach(k => applyParamChange(k));
       });
