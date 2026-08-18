@@ -204,7 +204,7 @@ Every instrument includes an acoustic/electronic vibrato modulation module:
 - **`[ ~ VIB ]` Master Toggle:** Activates/deactivates pitch vibrato for the selected instrument.
 - **Waveform Selector:** `∿ Sin`, `⋀ Tri`, `◈ Human`, `⩘ Saw`.
 - **Vibrato-Tiefe $\Delta f_{vib}$ (0–24 Hz):** Single-row parameter with tactile handles $[A, B]$, live value needle, and autonomous sine-wave oscillation.
-- **Vibrato-Rate (0.1–14 Hz):** Dedicated rotary speed knob for ultra-slow cosmic pitch drifts up to fast fluttering vibrato.
+- **Vibrato-Frequenz Slider ($f_{vib}$ 0.10–20.00 Hz):** Dedicated slider with real-time numerical display (`5.20 Hz`) for smooth, immediate modulation rate control across all sustaining and new voices.
 - **Einsatz-Verzögerung (Delay 0.0–2.5 s):** Controls natural bloom onset time.
 - **Humanizer Drift & Jitter (0–100%):** Adds randomized micro-deviations.
 

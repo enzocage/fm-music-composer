@@ -454,8 +454,10 @@
           </div>
         </div>
 
-        <!-- Delay & Humanizer Jitter Sliders -->
+        <!-- Delay, Rate & Humanizer Jitter Sliders -->
         <div style="margin-top:5px; border-top:1px solid rgba(162, 155, 254, 0.2); padding-top:4px;">
+          <label class="ctl"><span class="row"><span class="nm">Vibrato-Frequenz (Rate f_vib)</span><span class="vl" id="v_vibRate">5.20 Hz</span></span>
+            <input type="range" id="vibRate" min="0.1" max="20.0" step="0.05" value="5.20"></label>
           <label class="ctl"><span class="row"><span class="nm">Einsatz-Verzögerung (Delay)</span><span class="vl" id="v_vibDelay">0.25 s</span></span>
             <input type="range" id="vibDelay" min="0" max="2.5" step="0.05" value="0.25"></label>
           <label class="ctl"><span class="row"><span class="nm">Humanizer Drift & Jitter</span><span class="vl" id="v_vibHuman">25 %</span></span>
