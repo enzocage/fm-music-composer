@@ -36,28 +36,28 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1,
-    "env_atk": 0.05,
-    "env_dec": 0.8,
-    "env_sus": 85,
+    "env_atk": 0.02,
+    "env_dec": 1.2,
+    "env_sus": 95,
     "env_rel": 1.5,
-    "mod_env_dec": 0.4,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 34,
-    "mod_env_rel": 0.48,
+    "mod_env_sus": 90,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 16000,
     "flt_reso": 1,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.075,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 0,
     "dI": 0,
-    "atk": 0.05,
+    "atk": 0.02,
     "rel": 1.5,
     "customParam": 0.075,
     "latch": false
@@ -68,7 +68,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 0,
         "shape_drive": 1,
-        "env_dec": 0.8
+        "env_dec": 1.2
       }
     },
     {
@@ -82,8 +82,8 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.1,
-        "env_dec": 1.4400000000000002,
+        "env_atk": 0.04,
+        "env_dec": 2.16,
         "env_rel": 2.7,
         "flt_cutoff": 12000
       }
@@ -92,9 +92,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 26
+        "env_dec": 0.6,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 48
       }
     },
     {
@@ -112,7 +112,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 0,
         "shape_drive": 1,
-        "env_dec": 0.8
+        "env_dec": 1.2
       }
     },
     {
@@ -126,8 +126,8 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.1,
-        "env_dec": 1.4400000000000002,
+        "env_atk": 0.04,
+        "env_dec": 2.16,
         "env_rel": 2.7,
         "flt_cutoff": 12000
       }
@@ -136,9 +136,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 26
+        "env_dec": 0.6,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 48
       }
     },
     {
@@ -181,28 +181,28 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1,
-    "env_atk": 0.08,
-    "env_dec": 1.2,
-    "env_sus": 80,
+    "env_atk": 0.05,
+    "env_dec": 1.8,
+    "env_sus": 92,
     "env_rel": 2,
-    "mod_env_dec": 0.5,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 32,
-    "mod_env_rel": 0.6,
+    "mod_env_sus": 85,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 14000,
     "flt_reso": 1,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.15,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 1.2,
     "dI": 0.4,
-    "atk": 0.08,
+    "atk": 0.05,
     "rel": 2,
     "customParam": 0.15,
     "latch": false
@@ -213,7 +213,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.2,
         "shape_drive": 1,
-        "env_dec": 1.2
+        "env_dec": 1.8
       }
     },
     {
@@ -227,8 +227,8 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.16,
-        "env_dec": 2.16,
+        "env_atk": 0.1,
+        "env_dec": 3.24,
         "env_rel": 3.6,
         "flt_cutoff": 10500
       }
@@ -237,9 +237,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.2,
-        "env_sus": 24
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 46
       }
     },
     {
@@ -257,7 +257,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.2,
         "shape_drive": 1,
-        "env_dec": 1.2
+        "env_dec": 1.8
       }
     },
     {
@@ -271,8 +271,8 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.16,
-        "env_dec": 2.16,
+        "env_atk": 0.1,
+        "env_dec": 3.24,
         "env_rel": 3.6,
         "flt_cutoff": 10500
       }
@@ -281,9 +281,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.2,
-        "env_sus": 24
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 46
       }
     },
     {
@@ -327,22 +327,22 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1,
     "env_atk": 0.005,
-    "env_dec": 1.5,
-    "env_sus": 30,
+    "env_dec": 2.5,
+    "env_sus": 60,
     "env_rel": 2.5,
-    "mod_env_dec": 0.35,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 12,
-    "mod_env_rel": 0.42,
+    "mod_env_sus": 45,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 12000,
     "flt_reso": 1.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.22499999999999998,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.414,
     "I0": 2.4,
@@ -358,7 +358,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.4,
         "shape_drive": 1,
-        "env_dec": 1.5
+        "env_dec": 2.5
       }
     },
     {
@@ -373,7 +373,7 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.01,
-        "env_dec": 2.7,
+        "env_dec": 4.5,
         "env_rel": 4.5,
         "flt_cutoff": 9000
       }
@@ -382,9 +382,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.75,
-        "mod_env_dec": 0.13999999999999999,
-        "env_sus": 9
+        "env_dec": 1.25,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 30
       }
     },
     {
@@ -402,7 +402,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.4,
         "shape_drive": 1,
-        "env_dec": 1.5
+        "env_dec": 2.5
       }
     },
     {
@@ -417,7 +417,7 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.01,
-        "env_dec": 2.7,
+        "env_dec": 4.5,
         "env_rel": 4.5,
         "flt_cutoff": 9000
       }
@@ -426,9 +426,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.75,
-        "mod_env_dec": 0.13999999999999999,
-        "env_sus": 9
+        "env_dec": 1.25,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 30
       }
     },
     {
@@ -471,29 +471,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1,
-    "env_atk": 0.04,
-    "env_dec": 0.9,
-    "env_sus": 75,
-    "env_rel": 1.2,
-    "mod_env_dec": 0.3,
+    "env_atk": 0.03,
+    "env_dec": 1.5,
+    "env_sus": 88,
+    "env_rel": 1.5,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 30,
-    "mod_env_rel": 0.36,
+    "mod_env_sus": 80,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 10000,
     "flt_reso": 1.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.3,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 1.6,
     "dI": 0.5,
-    "atk": 0.04,
-    "rel": 1.2,
+    "atk": 0.03,
+    "rel": 1.5,
     "customParam": 0.3,
     "latch": false
   },
@@ -503,7 +503,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.6,
         "shape_drive": 1,
-        "env_dec": 0.9
+        "env_dec": 1.5
       }
     },
     {
@@ -517,9 +517,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.08,
-        "env_dec": 1.62,
-        "env_rel": 2.16,
+        "env_atk": 0.06,
+        "env_dec": 2.7,
+        "env_rel": 2.7,
         "flt_cutoff": 7500
       }
     },
@@ -527,9 +527,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "mod_env_dec": 0.12,
-        "env_sus": 23
+        "env_dec": 0.75,
+        "mod_env_dec": 0.4,
+        "env_sus": 44
       }
     },
     {
@@ -547,7 +547,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.6,
         "shape_drive": 1,
-        "env_dec": 0.9
+        "env_dec": 1.5
       }
     },
     {
@@ -561,9 +561,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.08,
-        "env_dec": 1.62,
-        "env_rel": 2.16,
+        "env_atk": 0.06,
+        "env_dec": 2.7,
+        "env_rel": 2.7,
         "flt_cutoff": 7500
       }
     },
@@ -571,9 +571,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "mod_env_dec": 0.12,
-        "env_sus": 23
+        "env_dec": 0.75,
+        "mod_env_dec": 0.4,
+        "env_sus": 44
       }
     },
     {
@@ -617,28 +617,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.1,
     "env_atk": 0.02,
-    "env_dec": 0.6,
-    "env_sus": 70,
-    "env_rel": 0.8,
-    "mod_env_dec": 0.18,
+    "env_dec": 1.2,
+    "env_sus": 85,
+    "env_rel": 1.2,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 28,
-    "mod_env_rel": 0.216,
+    "mod_env_sus": 75,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 11000,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 0.375,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 3.2,
     "dI": 1.2,
     "atk": 0.02,
-    "rel": 0.8,
+    "rel": 1.2,
     "customParam": 0.375,
     "latch": false
   },
@@ -648,7 +648,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.2,
         "shape_drive": 1.1,
-        "env_dec": 0.6
+        "env_dec": 1.2
       }
     },
     {
@@ -663,8 +663,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.04,
-        "env_dec": 1.08,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 2.16,
+        "env_rel": 2.16,
         "flt_cutoff": 8250
       }
     },
@@ -672,9 +672,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.072,
-        "env_sus": 21
+        "env_dec": 0.6,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 43
       }
     },
     {
@@ -692,7 +692,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.2,
         "shape_drive": 1.1,
-        "env_dec": 0.6
+        "env_dec": 1.2
       }
     },
     {
@@ -707,8 +707,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.04,
-        "env_dec": 1.08,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 2.16,
+        "env_rel": 2.16,
         "flt_cutoff": 8250
       }
     },
@@ -716,9 +716,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.072,
-        "env_sus": 21
+        "env_dec": 0.6,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 43
       }
     },
     {
@@ -762,28 +762,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.2,
     "env_atk": 0.01,
-    "env_dec": 0.5,
-    "env_sus": 80,
-    "env_rel": 0.6,
-    "mod_env_dec": 0.25,
+    "env_dec": 1.5,
+    "env_sus": 90,
+    "env_rel": 1,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 32,
-    "mod_env_rel": 0.3,
+    "mod_env_sus": 80,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 6000,
     "flt_reso": 1.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.44999999999999996,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.5,
     "I0": 2,
     "dI": 0.5,
     "atk": 0.01,
-    "rel": 0.6,
+    "rel": 1,
     "customParam": 0.44999999999999996,
     "latch": false
   },
@@ -793,7 +793,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2,
         "shape_drive": 1.2,
-        "env_dec": 0.5
+        "env_dec": 1.5
       }
     },
     {
@@ -808,8 +808,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.02,
-        "env_dec": 0.9,
-        "env_rel": 1.08,
+        "env_dec": 2.7,
+        "env_rel": 1.8,
         "flt_cutoff": 4500
       }
     },
@@ -817,9 +817,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.1,
-        "env_sus": 24
+        "env_dec": 0.75,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 45
       }
     },
     {
@@ -837,7 +837,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2,
         "shape_drive": 1.2,
-        "env_dec": 0.5
+        "env_dec": 1.5
       }
     },
     {
@@ -852,8 +852,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.02,
-        "env_dec": 0.9,
-        "env_rel": 1.08,
+        "env_dec": 2.7,
+        "env_rel": 1.8,
         "flt_cutoff": 4500
       }
     },
@@ -861,9 +861,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.1,
-        "env_sus": 24
+        "env_dec": 0.75,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 45
       }
     },
     {
@@ -906,29 +906,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1,
-    "env_atk": 0.12,
-    "env_dec": 1,
-    "env_sus": 85,
-    "env_rel": 1.8,
-    "mod_env_dec": 0.6,
+    "env_atk": 0.08,
+    "env_dec": 2,
+    "env_sus": 92,
+    "env_rel": 2.2,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 34,
-    "mod_env_rel": 0.72,
+    "mod_env_sus": 85,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 9000,
     "flt_reso": 1.1,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.525,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 0.8,
     "dI": 0.3,
-    "atk": 0.12,
-    "rel": 1.8,
+    "atk": 0.08,
+    "rel": 2.2,
     "customParam": 0.525,
     "latch": false
   },
@@ -938,7 +938,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 0.8,
         "shape_drive": 1,
-        "env_dec": 1
+        "env_dec": 2
       }
     },
     {
@@ -952,9 +952,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.24,
-        "env_dec": 1.8,
-        "env_rel": 3.24,
+        "env_atk": 0.16,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 6750
       }
     },
@@ -962,9 +962,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.5,
-        "mod_env_dec": 0.24,
-        "env_sus": 26
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -982,7 +982,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 0.8,
         "shape_drive": 1,
-        "env_dec": 1
+        "env_dec": 2
       }
     },
     {
@@ -996,9 +996,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.24,
-        "env_dec": 1.8,
-        "env_rel": 3.24,
+        "env_atk": 0.16,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 6750
       }
     },
@@ -1006,9 +1006,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.5,
-        "mod_env_dec": 0.24,
-        "env_sus": 26
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -1052,28 +1052,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1,
     "env_atk": 0.003,
-    "env_dec": 0.8,
-    "env_sus": 20,
-    "env_rel": 1.6,
-    "mod_env_dec": 0.2,
+    "env_dec": 2,
+    "env_sus": 55,
+    "env_rel": 2,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 8,
-    "mod_env_rel": 0.24,
+    "mod_env_sus": 45,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 13000,
     "flt_reso": 1.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.6,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3.5,
     "I0": 2.8,
     "dI": 0.9,
     "atk": 0.003,
-    "rel": 1.6,
+    "rel": 2,
     "customParam": 0.6,
     "latch": false
   },
@@ -1083,7 +1083,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1,
-        "env_dec": 0.8
+        "env_dec": 2
       }
     },
     {
@@ -1098,8 +1098,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 2.8800000000000003,
+        "env_dec": 3.6,
+        "env_rel": 3.6,
         "flt_cutoff": 9750
       }
     },
@@ -1107,9 +1107,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 6
+        "env_dec": 1,
+        "mod_env_dec": 0.48,
+        "env_sus": 28
       }
     },
     {
@@ -1127,7 +1127,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1,
-        "env_dec": 0.8
+        "env_dec": 2
       }
     },
     {
@@ -1142,8 +1142,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 2.8800000000000003,
+        "env_dec": 3.6,
+        "env_rel": 3.6,
         "flt_cutoff": 9750
       }
     },
@@ -1151,9 +1151,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 6
+        "env_dec": 1,
+        "mod_env_dec": 0.48,
+        "env_sus": 28
       }
     },
     {
@@ -1196,28 +1196,28 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1,
-    "env_atk": 0.25,
-    "env_dec": 2,
-    "env_sus": 90,
+    "env_atk": 0.18,
+    "env_dec": 2.5,
+    "env_sus": 94,
     "env_rel": 3,
-    "mod_env_dec": 1.5,
+    "mod_env_dec": 2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 36,
-    "mod_env_rel": 1.7999999999999998,
+    "mod_env_sus": 90,
+    "mod_env_rel": 3,
     "flt_cutoff": 8500,
     "flt_reso": 1.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.6749999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.002,
     "I0": 1.4,
     "dI": 0.6,
-    "atk": 0.25,
+    "atk": 0.18,
     "rel": 3,
     "customParam": 0.6749999999999999,
     "latch": false
@@ -1228,7 +1228,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.4,
         "shape_drive": 1,
-        "env_dec": 2
+        "env_dec": 2.5
       }
     },
     {
@@ -1242,8 +1242,8 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.5,
-        "env_dec": 3.6,
+        "env_atk": 0.36,
+        "env_dec": 4.5,
         "env_rel": 5.4,
         "flt_cutoff": 6375
       }
@@ -1252,9 +1252,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1,
-        "mod_env_dec": 0.6000000000000001,
-        "env_sus": 27
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 47
       }
     },
     {
@@ -1272,7 +1272,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.4,
         "shape_drive": 1,
-        "env_dec": 2
+        "env_dec": 2.5
       }
     },
     {
@@ -1286,8 +1286,8 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.5,
-        "env_dec": 3.6,
+        "env_atk": 0.36,
+        "env_dec": 4.5,
         "env_rel": 5.4,
         "flt_cutoff": 6375
       }
@@ -1296,9 +1296,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1,
-        "mod_env_dec": 0.6000000000000001,
-        "env_sus": 27
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 47
       }
     },
     {
@@ -1342,28 +1342,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1,
     "env_atk": 0.01,
-    "env_dec": 0.4,
-    "env_sus": 10,
-    "env_rel": 1.2,
-    "mod_env_dec": 0.15,
+    "env_dec": 1.8,
+    "env_sus": 60,
+    "env_rel": 2,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 4,
-    "mod_env_rel": 0.18,
+    "mod_env_sus": 50,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 10000,
     "flt_reso": 1,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.75,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.5,
     "I0": 1.5,
     "dI": 0.4,
     "atk": 0.01,
-    "rel": 1.2,
+    "rel": 2,
     "customParam": 0.75,
     "latch": false
   },
@@ -1373,7 +1373,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.5,
         "shape_drive": 1,
-        "env_dec": 0.4
+        "env_dec": 1.8
       }
     },
     {
@@ -1388,8 +1388,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.02,
-        "env_dec": 0.7200000000000001,
-        "env_rel": 2.16,
+        "env_dec": 3.24,
+        "env_rel": 3.6,
         "flt_cutoff": 7500
       }
     },
@@ -1397,9 +1397,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.2,
-        "mod_env_dec": 0.06,
-        "env_sus": 3
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 30
       }
     },
     {
@@ -1417,7 +1417,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.5,
         "shape_drive": 1,
-        "env_dec": 0.4
+        "env_dec": 1.8
       }
     },
     {
@@ -1432,8 +1432,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.02,
-        "env_dec": 0.7200000000000001,
-        "env_rel": 2.16,
+        "env_dec": 3.24,
+        "env_rel": 3.6,
         "flt_cutoff": 7500
       }
     },
@@ -1441,9 +1441,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.2,
-        "mod_env_dec": 0.06,
-        "env_sus": 3
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 30
       }
     },
     {
@@ -1487,28 +1487,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.1,
     "env_atk": 0.015,
-    "env_dec": 0.5,
-    "env_sus": 75,
-    "env_rel": 0.7,
-    "mod_env_dec": 0.15,
+    "env_dec": 1.4,
+    "env_sus": 85,
+    "env_rel": 1.2,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 30,
-    "mod_env_rel": 0.18,
+    "mod_env_sus": 75,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 12000,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 0.825,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 3.8,
     "dI": 1.5,
     "atk": 0.015,
-    "rel": 0.7,
+    "rel": 1.2,
     "customParam": 0.825,
     "latch": false
   },
@@ -1518,7 +1518,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.1,
-        "env_dec": 0.5
+        "env_dec": 1.4
       }
     },
     {
@@ -1533,8 +1533,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.03,
-        "env_dec": 0.9,
-        "env_rel": 1.26,
+        "env_dec": 2.52,
+        "env_rel": 2.16,
         "flt_cutoff": 9000
       }
     },
@@ -1542,9 +1542,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.06,
-        "env_sus": 23
+        "env_dec": 0.7,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 43
       }
     },
     {
@@ -1562,7 +1562,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.1,
-        "env_dec": 0.5
+        "env_dec": 1.4
       }
     },
     {
@@ -1577,8 +1577,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.03,
-        "env_dec": 0.9,
-        "env_rel": 1.26,
+        "env_dec": 2.52,
+        "env_rel": 2.16,
         "flt_cutoff": 9000
       }
     },
@@ -1586,9 +1586,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.06,
-        "env_sus": 23
+        "env_dec": 0.7,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 43
       }
     },
     {
@@ -1632,28 +1632,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1,
     "env_atk": 0.002,
-    "env_dec": 2.5,
-    "env_sus": 15,
-    "env_rel": 4,
-    "mod_env_dec": 0.3,
+    "env_dec": 3.5,
+    "env_sus": 55,
+    "env_rel": 4.5,
+    "mod_env_dec": 2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 6,
-    "mod_env_rel": 0.36,
+    "mod_env_sus": 45,
+    "mod_env_rel": 3,
     "flt_cutoff": 14000,
     "flt_reso": 1.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.8999999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.414,
     "I0": 4.5,
     "dI": 1.8,
     "atk": 0.002,
-    "rel": 4,
+    "rel": 4.5,
     "customParam": 0.8999999999999999,
     "latch": false
   },
@@ -1663,7 +1663,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 1,
-        "env_dec": 2.5
+        "env_dec": 3.5
       }
     },
     {
@@ -1678,8 +1678,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 4.5,
-        "env_rel": 7.2,
+        "env_dec": 6.3,
+        "env_rel": 8.1,
         "flt_cutoff": 10500
       }
     },
@@ -1687,9 +1687,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.25,
-        "mod_env_dec": 0.12,
-        "env_sus": 5
+        "env_dec": 1.75,
+        "mod_env_dec": 0.8,
+        "env_sus": 28
       }
     },
     {
@@ -1707,7 +1707,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 1,
-        "env_dec": 2.5
+        "env_dec": 3.5
       }
     },
     {
@@ -1722,8 +1722,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 4.5,
-        "env_rel": 7.2,
+        "env_dec": 6.3,
+        "env_rel": 8.1,
         "flt_cutoff": 10500
       }
     },
@@ -1731,9 +1731,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.25,
-        "mod_env_dec": 0.12,
-        "env_sus": 5
+        "env_dec": 1.75,
+        "mod_env_dec": 0.8,
+        "env_sus": 28
       }
     },
     {
@@ -1777,28 +1777,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.05,
     "env_atk": 0.03,
-    "env_dec": 0.8,
-    "env_sus": 80,
-    "env_rel": 1,
-    "mod_env_dec": 0.25,
+    "env_dec": 1.6,
+    "env_sus": 88,
+    "env_rel": 1.5,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 32,
-    "mod_env_rel": 0.3,
+    "mod_env_sus": 80,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 9500,
     "flt_reso": 2.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 0.975,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3,
     "I0": 2.6,
     "dI": 0.8,
     "atk": 0.03,
-    "rel": 1,
+    "rel": 1.5,
     "customParam": 0.975,
     "latch": false
   },
@@ -1808,7 +1808,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.6,
         "shape_drive": 1.05,
-        "env_dec": 0.8
+        "env_dec": 1.6
       }
     },
     {
@@ -1823,8 +1823,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.06,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 1.8,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.7,
         "flt_cutoff": 7125
       }
     },
@@ -1832,9 +1832,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.1,
-        "env_sus": 24
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 44
       }
     },
     {
@@ -1852,7 +1852,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.6,
         "shape_drive": 1.05,
-        "env_dec": 0.8
+        "env_dec": 1.6
       }
     },
     {
@@ -1867,8 +1867,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.06,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 1.8,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.7,
         "flt_cutoff": 7125
       }
     },
@@ -1876,9 +1876,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.1,
-        "env_sus": 24
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 44
       }
     },
     {
@@ -1922,28 +1922,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.1,
     "env_atk": 0.04,
-    "env_dec": 0.9,
-    "env_sus": 78,
-    "env_rel": 1.1,
-    "mod_env_dec": 0.3,
+    "env_dec": 1.8,
+    "env_sus": 86,
+    "env_rel": 1.6,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 31,
-    "mod_env_rel": 0.36,
+    "mod_env_sus": 78,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 7500,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.05,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 2.2,
     "dI": 0.7,
     "atk": 0.04,
-    "rel": 1.1,
+    "rel": 1.6,
     "customParam": 1.05,
     "latch": false
   },
@@ -1953,7 +1953,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.2,
         "shape_drive": 1.1,
-        "env_dec": 0.9
+        "env_dec": 1.8
       }
     },
     {
@@ -1968,8 +1968,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.08,
-        "env_dec": 1.62,
-        "env_rel": 1.9800000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 5625
       }
     },
@@ -1977,9 +1977,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "mod_env_dec": 0.12,
-        "env_sus": 23
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 43
       }
     },
     {
@@ -1997,7 +1997,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.2,
         "shape_drive": 1.1,
-        "env_dec": 0.9
+        "env_dec": 1.8
       }
     },
     {
@@ -2012,8 +2012,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.08,
-        "env_dec": 1.62,
-        "env_rel": 1.9800000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 5625
       }
     },
@@ -2021,9 +2021,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "mod_env_dec": 0.12,
-        "env_sus": 23
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 43
       }
     },
     {
@@ -2067,28 +2067,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1,
     "env_atk": 0.003,
-    "env_dec": 0.7,
-    "env_sus": 10,
-    "env_rel": 1.2,
-    "mod_env_dec": 0.18,
+    "env_dec": 1.8,
+    "env_sus": 50,
+    "env_rel": 2,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 4,
-    "mod_env_rel": 0.216,
+    "mod_env_sus": 40,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 11000,
     "flt_reso": 1.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.125,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3.98,
     "I0": 3.2,
     "dI": 1,
     "atk": 0.003,
-    "rel": 1.2,
+    "rel": 2,
     "customParam": 1.125,
     "latch": false
   },
@@ -2098,7 +2098,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.2,
         "shape_drive": 1,
-        "env_dec": 0.7
+        "env_dec": 1.8
       }
     },
     {
@@ -2113,8 +2113,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.26,
-        "env_rel": 2.16,
+        "env_dec": 3.24,
+        "env_rel": 3.6,
         "flt_cutoff": 8250
       }
     },
@@ -2122,9 +2122,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.072,
-        "env_sus": 3
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 25
       }
     },
     {
@@ -2142,7 +2142,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.2,
         "shape_drive": 1,
-        "env_dec": 0.7
+        "env_dec": 1.8
       }
     },
     {
@@ -2157,8 +2157,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.26,
-        "env_rel": 2.16,
+        "env_dec": 3.24,
+        "env_rel": 3.6,
         "flt_cutoff": 8250
       }
     },
@@ -2166,9 +2166,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.072,
-        "env_sus": 3
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 25
       }
     },
     {
@@ -2211,29 +2211,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1,
-    "env_atk": 0.08,
-    "env_dec": 1.4,
-    "env_sus": 85,
-    "env_rel": 1.8,
-    "mod_env_dec": 0.5,
+    "env_atk": 0.06,
+    "env_dec": 2,
+    "env_sus": 92,
+    "env_rel": 2.2,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 34,
-    "mod_env_rel": 0.6,
+    "mod_env_sus": 85,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 8000,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.2,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.85,
     "I0": 2.9,
     "dI": 0.9,
-    "atk": 0.08,
-    "rel": 1.8,
+    "atk": 0.06,
+    "rel": 2.2,
     "customParam": 1.2,
     "latch": false
   },
@@ -2243,7 +2243,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.9,
         "shape_drive": 1,
-        "env_dec": 1.4
+        "env_dec": 2
       }
     },
     {
@@ -2257,9 +2257,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.16,
-        "env_dec": 2.52,
-        "env_rel": 3.24,
+        "env_atk": 0.12,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 6000
       }
     },
@@ -2267,9 +2267,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.7,
-        "mod_env_dec": 0.2,
-        "env_sus": 26
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -2287,7 +2287,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.9,
         "shape_drive": 1,
-        "env_dec": 1.4
+        "env_dec": 2
       }
     },
     {
@@ -2301,9 +2301,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.16,
-        "env_dec": 2.52,
-        "env_rel": 3.24,
+        "env_atk": 0.12,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 6000
       }
     },
@@ -2311,9 +2311,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.7,
-        "mod_env_dec": 0.2,
-        "env_sus": 26
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -2356,29 +2356,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1,
-    "env_atk": 0.1,
-    "env_dec": 1.5,
-    "env_sus": 88,
-    "env_rel": 2,
-    "mod_env_dec": 0.6,
+    "env_atk": 0.08,
+    "env_dec": 2.2,
+    "env_sus": 94,
+    "env_rel": 2.5,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 35,
-    "mod_env_rel": 0.72,
+    "mod_env_sus": 88,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 5000,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.275,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.35,
     "I0": 2,
     "dI": 0.6,
-    "atk": 0.1,
-    "rel": 2,
+    "atk": 0.08,
+    "rel": 2.5,
     "customParam": 1.275,
     "latch": false
   },
@@ -2388,7 +2388,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2,
         "shape_drive": 1,
-        "env_dec": 1.5
+        "env_dec": 2.2
       }
     },
     {
@@ -2402,9 +2402,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.2,
-        "env_dec": 2.7,
-        "env_rel": 3.6,
+        "env_atk": 0.16,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 3750
       }
     },
@@ -2412,9 +2412,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.75,
-        "mod_env_dec": 0.24,
-        "env_sus": 26
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 47
       }
     },
     {
@@ -2432,7 +2432,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2,
         "shape_drive": 1,
-        "env_dec": 1.5
+        "env_dec": 2.2
       }
     },
     {
@@ -2446,9 +2446,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.2,
-        "env_dec": 2.7,
-        "env_rel": 3.6,
+        "env_atk": 0.16,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 3750
       }
     },
@@ -2456,9 +2456,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.75,
-        "mod_env_dec": 0.24,
-        "env_sus": 26
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 47
       }
     },
     {
@@ -2502,28 +2502,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.2,
     "env_atk": 0.002,
-    "env_dec": 0.25,
-    "env_sus": 5,
-    "env_rel": 0.5,
-    "mod_env_dec": 0.08,
+    "env_dec": 1.5,
+    "env_sus": 45,
+    "env_rel": 1.5,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 2,
-    "mod_env_rel": 0.096,
+    "mod_env_sus": 35,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 9000,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.3499999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.4,
     "I0": 4,
     "dI": 1.2,
     "atk": 0.002,
-    "rel": 0.5,
+    "rel": 1.5,
     "customParam": 1.3499999999999999,
     "latch": false
   },
@@ -2533,7 +2533,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 1.2,
-        "env_dec": 0.25
+        "env_dec": 1.5
       }
     },
     {
@@ -2548,8 +2548,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.45,
-        "env_rel": 0.9,
+        "env_dec": 2.7,
+        "env_rel": 2.7,
         "flt_cutoff": 6750
       }
     },
@@ -2557,9 +2557,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.125,
-        "mod_env_dec": 0.032,
-        "env_sus": 2
+        "env_dec": 0.75,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 23
       }
     },
     {
@@ -2577,7 +2577,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 1.2,
-        "env_dec": 0.25
+        "env_dec": 1.5
       }
     },
     {
@@ -2592,8 +2592,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.45,
-        "env_rel": 0.9,
+        "env_dec": 2.7,
+        "env_rel": 2.7,
         "flt_cutoff": 6750
       }
     },
@@ -2601,9 +2601,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.125,
-        "mod_env_dec": 0.032,
-        "env_sus": 2
+        "env_dec": 0.75,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 23
       }
     },
     {
@@ -2647,28 +2647,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.15,
     "env_atk": 0.005,
-    "env_dec": 3.5,
-    "env_sus": 25,
-    "env_rel": 5,
-    "mod_env_dec": 0.45,
+    "env_dec": 4,
+    "env_sus": 60,
+    "env_rel": 5.5,
+    "mod_env_dec": 2.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 10,
-    "mod_env_rel": 0.54,
+    "mod_env_sus": 50,
+    "mod_env_rel": 3.75,
     "flt_cutoff": 13000,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.425,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.414,
     "I0": 5,
     "dI": 2,
     "atk": 0.005,
-    "rel": 5,
+    "rel": 5.5,
     "customParam": 1.425,
     "latch": false
   },
@@ -2678,7 +2678,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5,
         "shape_drive": 1.15,
-        "env_dec": 3.5
+        "env_dec": 4
       }
     },
     {
@@ -2693,8 +2693,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.01,
-        "env_dec": 6.3,
-        "env_rel": 9,
+        "env_dec": 7.2,
+        "env_rel": 9.9,
         "flt_cutoff": 9750
       }
     },
@@ -2702,9 +2702,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.75,
-        "mod_env_dec": 0.18000000000000002,
-        "env_sus": 8
+        "env_dec": 2,
+        "mod_env_dec": 1,
+        "env_sus": 30
       }
     },
     {
@@ -2722,7 +2722,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5,
         "shape_drive": 1.15,
-        "env_dec": 3.5
+        "env_dec": 4
       }
     },
     {
@@ -2737,8 +2737,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.01,
-        "env_dec": 6.3,
-        "env_rel": 9,
+        "env_dec": 7.2,
+        "env_rel": 9.9,
         "flt_cutoff": 9750
       }
     },
@@ -2746,9 +2746,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.75,
-        "mod_env_dec": 0.18000000000000002,
-        "env_sus": 8
+        "env_dec": 2,
+        "mod_env_dec": 1,
+        "env_sus": 30
       }
     },
     {
@@ -2791,29 +2791,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.1,
-    "env_atk": 0.18,
-    "env_dec": 2.2,
-    "env_sus": 90,
-    "env_rel": 2.8,
-    "mod_env_dec": 1.2,
+    "env_atk": 0.12,
+    "env_dec": 2.5,
+    "env_sus": 94,
+    "env_rel": 3,
+    "mod_env_dec": 2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 36,
-    "mod_env_rel": 1.44,
+    "mod_env_sus": 90,
+    "mod_env_rel": 3,
     "flt_cutoff": 10000,
     "flt_reso": 1.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.5,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 2.4,
     "dI": 0.8,
-    "atk": 0.18,
-    "rel": 2.8,
+    "atk": 0.12,
+    "rel": 3,
     "customParam": 1.5,
     "latch": false
   },
@@ -2823,7 +2823,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.4,
         "shape_drive": 1.1,
-        "env_dec": 2.2
+        "env_dec": 2.5
       }
     },
     {
@@ -2837,9 +2837,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.36,
-        "env_dec": 3.9600000000000004,
-        "env_rel": 5.04,
+        "env_atk": 0.24,
+        "env_dec": 4.5,
+        "env_rel": 5.4,
         "flt_cutoff": 7500
       }
     },
@@ -2847,9 +2847,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.1,
-        "mod_env_dec": 0.48,
-        "env_sus": 27
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 47
       }
     },
     {
@@ -2867,7 +2867,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.4,
         "shape_drive": 1.1,
-        "env_dec": 2.2
+        "env_dec": 2.5
       }
     },
     {
@@ -2881,9 +2881,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.36,
-        "env_dec": 3.9600000000000004,
-        "env_rel": 5.04,
+        "env_atk": 0.24,
+        "env_dec": 4.5,
+        "env_rel": 5.4,
         "flt_cutoff": 7500
       }
     },
@@ -2891,9 +2891,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.1,
-        "mod_env_dec": 0.48,
-        "env_sus": 27
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 47
       }
     },
     {
@@ -2937,28 +2937,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.05,
     "env_atk": 0.003,
-    "env_dec": 1.8,
-    "env_sus": 45,
-    "env_rel": 2.2,
-    "mod_env_dec": 0.18,
+    "env_dec": 2.5,
+    "env_sus": 65,
+    "env_rel": 2.5,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 18,
-    "mod_env_rel": 0.216,
+    "mod_env_sus": 40,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 12000,
     "flt_reso": 1.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.575,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 14,
     "I0": 3.5,
     "dI": 1.4,
     "atk": 0.003,
-    "rel": 2.2,
+    "rel": 2.5,
     "customParam": 1.575,
     "latch": false
   },
@@ -2968,7 +2968,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.5,
         "shape_drive": 1.05,
-        "env_dec": 1.8
+        "env_dec": 2.5
       }
     },
     {
@@ -2983,8 +2983,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 3.24,
-        "env_rel": 3.9600000000000004,
+        "env_dec": 4.5,
+        "env_rel": 4.5,
         "flt_cutoff": 9000
       }
     },
@@ -2992,9 +2992,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.072,
-        "env_sus": 14
+        "env_dec": 1.25,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 33
       }
     },
     {
@@ -3012,7 +3012,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.5,
         "shape_drive": 1.05,
-        "env_dec": 1.8
+        "env_dec": 2.5
       }
     },
     {
@@ -3027,8 +3027,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 3.24,
-        "env_rel": 3.9600000000000004,
+        "env_dec": 4.5,
+        "env_rel": 4.5,
         "flt_cutoff": 9000
       }
     },
@@ -3036,9 +3036,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.072,
-        "env_sus": 14
+        "env_dec": 1.25,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 33
       }
     },
     {
@@ -3082,28 +3082,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.1,
     "env_atk": 0.002,
-    "env_dec": 1.6,
-    "env_sus": 40,
-    "env_rel": 2,
-    "mod_env_dec": 0.15,
+    "env_dec": 2.2,
+    "env_sus": 60,
+    "env_rel": 2.2,
+    "mod_env_dec": 0.7,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 16,
-    "mod_env_rel": 0.18,
+    "mod_env_sus": 38,
+    "mod_env_rel": 1.0499999999999998,
     "flt_cutoff": 13500,
     "flt_reso": 1.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.65,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 7,
     "I0": 4.2,
     "dI": 1.6,
     "atk": 0.002,
-    "rel": 2,
+    "rel": 2.2,
     "customParam": 1.65,
     "latch": false
   },
@@ -3113,7 +3113,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.1,
-        "env_dec": 1.6
+        "env_dec": 2.2
       }
     },
     {
@@ -3128,8 +3128,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 2.8800000000000003,
-        "env_rel": 3.6,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 10125
       }
     },
@@ -3137,9 +3137,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.8,
-        "mod_env_dec": 0.06,
-        "env_sus": 12
+        "env_dec": 1.1,
+        "mod_env_dec": 0.27999999999999997,
+        "env_sus": 30
       }
     },
     {
@@ -3157,7 +3157,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.1,
-        "env_dec": 1.6
+        "env_dec": 2.2
       }
     },
     {
@@ -3172,8 +3172,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 2.8800000000000003,
-        "env_rel": 3.6,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 10125
       }
     },
@@ -3181,9 +3181,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.8,
-        "mod_env_dec": 0.06,
-        "env_sus": 12
+        "env_dec": 1.1,
+        "mod_env_dec": 0.27999999999999997,
+        "env_sus": 30
       }
     },
     {
@@ -3227,28 +3227,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.3,
     "env_atk": 0.004,
-    "env_dec": 0.45,
-    "env_sus": 50,
-    "env_rel": 0.5,
-    "mod_env_dec": 0.12,
+    "env_dec": 1.5,
+    "env_sus": 75,
+    "env_rel": 1,
+    "mod_env_dec": 0.6,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 20,
-    "mod_env_rel": 0.144,
+    "mod_env_sus": 65,
+    "mod_env_rel": 0.8999999999999999,
     "flt_cutoff": 7500,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.7249999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 3.8,
     "dI": 1.8,
     "atk": 0.004,
-    "rel": 0.5,
+    "rel": 1,
     "customParam": 1.7249999999999999,
     "latch": false
   },
@@ -3258,7 +3258,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.3,
-        "env_dec": 0.45
+        "env_dec": 1.5
       }
     },
     {
@@ -3273,8 +3273,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.008,
-        "env_dec": 0.81,
-        "env_rel": 0.9,
+        "env_dec": 2.7,
+        "env_rel": 1.8,
         "flt_cutoff": 5625
       }
     },
@@ -3282,9 +3282,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.225,
-        "mod_env_dec": 0.048,
-        "env_sus": 15
+        "env_dec": 0.75,
+        "mod_env_dec": 0.24,
+        "env_sus": 38
       }
     },
     {
@@ -3302,7 +3302,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.3,
-        "env_dec": 0.45
+        "env_dec": 1.5
       }
     },
     {
@@ -3317,8 +3317,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.008,
-        "env_dec": 0.81,
-        "env_rel": 0.9,
+        "env_dec": 2.7,
+        "env_rel": 1.8,
         "flt_cutoff": 5625
       }
     },
@@ -3326,9 +3326,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.225,
-        "mod_env_dec": 0.048,
-        "env_sus": 15
+        "env_dec": 0.75,
+        "mod_env_dec": 0.24,
+        "env_sus": 38
       }
     },
     {
@@ -3372,28 +3372,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1,
     "env_atk": 0.002,
-    "env_dec": 3,
-    "env_sus": 20,
-    "env_rel": 4.5,
-    "mod_env_dec": 0.28,
+    "env_dec": 3.5,
+    "env_sus": 55,
+    "env_rel": 4.8,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 8,
-    "mod_env_rel": 0.336,
+    "mod_env_sus": 40,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 14000,
     "flt_reso": 1.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.7999999999999998,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3.5,
     "I0": 4.6,
     "dI": 1.8,
     "atk": 0.002,
-    "rel": 4.5,
+    "rel": 4.8,
     "customParam": 1.7999999999999998,
     "latch": false
   },
@@ -3403,7 +3403,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.6,
         "shape_drive": 1,
-        "env_dec": 3
+        "env_dec": 3.5
       }
     },
     {
@@ -3418,8 +3418,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 5.4,
-        "env_rel": 8.1,
+        "env_dec": 6.3,
+        "env_rel": 8.64,
         "flt_cutoff": 10500
       }
     },
@@ -3427,9 +3427,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.11200000000000002,
-        "env_sus": 6
+        "env_dec": 1.75,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 28
       }
     },
     {
@@ -3447,7 +3447,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.6,
         "shape_drive": 1,
-        "env_dec": 3
+        "env_dec": 3.5
       }
     },
     {
@@ -3462,8 +3462,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 5.4,
-        "env_rel": 8.1,
+        "env_dec": 6.3,
+        "env_rel": 8.64,
         "flt_cutoff": 10500
       }
     },
@@ -3471,9 +3471,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.11200000000000002,
-        "env_sus": 6
+        "env_dec": 1.75,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 28
       }
     },
     {
@@ -3516,29 +3516,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.15,
-    "env_atk": 0.04,
-    "env_dec": 0.8,
-    "env_sus": 78,
-    "env_rel": 1.2,
-    "mod_env_dec": 0.22,
+    "env_atk": 0.03,
+    "env_dec": 1.8,
+    "env_sus": 88,
+    "env_rel": 1.6,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 31,
-    "mod_env_rel": 0.264,
+    "mod_env_sus": 80,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 10500,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 1.875,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 3.6,
     "dI": 1.4,
-    "atk": 0.04,
-    "rel": 1.2,
+    "atk": 0.03,
+    "rel": 1.6,
     "customParam": 1.875,
     "latch": false
   },
@@ -3548,7 +3548,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.15,
-        "env_dec": 0.8
+        "env_dec": 1.8
       }
     },
     {
@@ -3562,9 +3562,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.08,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 2.16,
+        "env_atk": 0.06,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 7875
       }
     },
@@ -3572,9 +3572,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.08800000000000001,
-        "env_sus": 23
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 44
       }
     },
     {
@@ -3592,7 +3592,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.15,
-        "env_dec": 0.8
+        "env_dec": 1.8
       }
     },
     {
@@ -3606,9 +3606,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.08,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 2.16,
+        "env_atk": 0.06,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 7875
       }
     },
@@ -3616,9 +3616,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.08800000000000001,
-        "env_sus": 23
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 44
       }
     },
     {
@@ -3662,28 +3662,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.2,
     "env_atk": 0.003,
-    "env_dec": 0.6,
-    "env_sus": 35,
-    "env_rel": 0.8,
-    "mod_env_dec": 0.14,
+    "env_dec": 1.5,
+    "env_sus": 60,
+    "env_rel": 1.2,
+    "mod_env_dec": 0.7,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 14,
-    "mod_env_rel": 0.168,
+    "mod_env_sus": 50,
+    "mod_env_rel": 1.0499999999999998,
     "flt_cutoff": 11500,
     "flt_reso": 2.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 1.95,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 4,
     "I0": 3.2,
     "dI": 1.2,
     "atk": 0.003,
-    "rel": 0.8,
+    "rel": 1.2,
     "customParam": 1.95,
     "latch": false
   },
@@ -3693,7 +3693,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.2,
         "shape_drive": 1.2,
-        "env_dec": 0.6
+        "env_dec": 1.5
       }
     },
     {
@@ -3708,8 +3708,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.08,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 2.7,
+        "env_rel": 2.16,
         "flt_cutoff": 8625
       }
     },
@@ -3717,9 +3717,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 11
+        "env_dec": 0.75,
+        "mod_env_dec": 0.27999999999999997,
+        "env_sus": 30
       }
     },
     {
@@ -3737,7 +3737,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.2,
         "shape_drive": 1.2,
-        "env_dec": 0.6
+        "env_dec": 1.5
       }
     },
     {
@@ -3752,8 +3752,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.08,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 2.7,
+        "env_rel": 2.16,
         "flt_cutoff": 8625
       }
     },
@@ -3761,9 +3761,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 11
+        "env_dec": 0.75,
+        "mod_env_dec": 0.27999999999999997,
+        "env_sus": 30
       }
     },
     {
@@ -3807,28 +3807,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1,
     "env_atk": 0.002,
-    "env_dec": 0.5,
-    "env_sus": 5,
-    "env_rel": 0.9,
-    "mod_env_dec": 0.1,
+    "env_dec": 1.6,
+    "env_sus": 45,
+    "env_rel": 1.6,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 2,
-    "mod_env_rel": 0.12,
+    "mod_env_sus": 35,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 12000,
     "flt_reso": 1.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.025,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 4,
     "I0": 3.8,
     "dI": 1.2,
     "atk": 0.002,
-    "rel": 0.9,
+    "rel": 1.6,
     "customParam": 2.025,
     "latch": false
   },
@@ -3838,7 +3838,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1,
-        "env_dec": 0.5
+        "env_dec": 1.6
       }
     },
     {
@@ -3853,8 +3853,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.9,
-        "env_rel": 1.62,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 9000
       }
     },
@@ -3862,9 +3862,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 2
+        "env_dec": 0.8,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 23
       }
     },
     {
@@ -3882,7 +3882,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1,
-        "env_dec": 0.5
+        "env_dec": 1.6
       }
     },
     {
@@ -3897,8 +3897,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.9,
-        "env_rel": 1.62,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 9000
       }
     },
@@ -3906,9 +3906,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 2
+        "env_dec": 0.8,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 23
       }
     },
     {
@@ -3951,29 +3951,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1,
-    "env_atk": 0.06,
-    "env_dec": 1.8,
-    "env_sus": 80,
-    "env_rel": 2.8,
-    "mod_env_dec": 0.4,
+    "env_atk": 0.05,
+    "env_dec": 2.5,
+    "env_sus": 90,
+    "env_rel": 3,
+    "mod_env_dec": 2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 32,
-    "mod_env_rel": 0.48,
+    "mod_env_sus": 85,
+    "mod_env_rel": 3,
     "flt_cutoff": 13000,
     "flt_reso": 1.3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.1,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 2.4,
     "dI": 0.8,
-    "atk": 0.06,
-    "rel": 2.8,
+    "atk": 0.05,
+    "rel": 3,
     "customParam": 2.1,
     "latch": false
   },
@@ -3983,7 +3983,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.4,
         "shape_drive": 1,
-        "env_dec": 1.8
+        "env_dec": 2.5
       }
     },
     {
@@ -3997,9 +3997,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.12,
-        "env_dec": 3.24,
-        "env_rel": 5.04,
+        "env_atk": 0.1,
+        "env_dec": 4.5,
+        "env_rel": 5.4,
         "flt_cutoff": 9750
       }
     },
@@ -4007,9 +4007,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 24
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 45
       }
     },
     {
@@ -4027,7 +4027,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.4,
         "shape_drive": 1,
-        "env_dec": 1.8
+        "env_dec": 2.5
       }
     },
     {
@@ -4041,9 +4041,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.12,
-        "env_dec": 3.24,
-        "env_rel": 5.04,
+        "env_atk": 0.1,
+        "env_dec": 4.5,
+        "env_rel": 5.4,
         "flt_cutoff": 9750
       }
     },
@@ -4051,9 +4051,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 24
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 45
       }
     },
     {
@@ -4097,28 +4097,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.35,
     "env_atk": 0.002,
-    "env_dec": 0.35,
-    "env_sus": 10,
-    "env_rel": 0.7,
-    "mod_env_dec": 0.09,
+    "env_dec": 1.4,
+    "env_sus": 45,
+    "env_rel": 1.5,
+    "mod_env_dec": 0.6,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 4,
-    "mod_env_rel": 0.108,
+    "mod_env_sus": 35,
+    "mod_env_rel": 0.8999999999999999,
     "flt_cutoff": 8000,
     "flt_reso": 2.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.175,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1.5,
     "I0": 4.5,
     "dI": 1.5,
     "atk": 0.002,
-    "rel": 0.7,
+    "rel": 1.5,
     "customParam": 2.175,
     "latch": false
   },
@@ -4128,7 +4128,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 1.35,
-        "env_dec": 0.35
+        "env_dec": 1.4
       }
     },
     {
@@ -4143,8 +4143,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.63,
-        "env_rel": 1.26,
+        "env_dec": 2.52,
+        "env_rel": 2.7,
         "flt_cutoff": 6000
       }
     },
@@ -4152,9 +4152,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.175,
-        "mod_env_dec": 0.036,
-        "env_sus": 3
+        "env_dec": 0.7,
+        "mod_env_dec": 0.24,
+        "env_sus": 23
       }
     },
     {
@@ -4172,7 +4172,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 1.35,
-        "env_dec": 0.35
+        "env_dec": 1.4
       }
     },
     {
@@ -4187,8 +4187,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.63,
-        "env_rel": 1.26,
+        "env_dec": 2.52,
+        "env_rel": 2.7,
         "flt_cutoff": 6000
       }
     },
@@ -4196,9 +4196,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.175,
-        "mod_env_dec": 0.036,
-        "env_sus": 3
+        "env_dec": 0.7,
+        "mod_env_dec": 0.24,
+        "env_sus": 23
       }
     },
     {
@@ -4241,29 +4241,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1,
-    "env_atk": 0.35,
-    "env_dec": 2.5,
-    "env_sus": 92,
-    "env_rel": 4,
-    "mod_env_dec": 1.8,
+    "env_atk": 0.25,
+    "env_dec": 3,
+    "env_sus": 96,
+    "env_rel": 4.5,
+    "mod_env_dec": 2.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 37,
-    "mod_env_rel": 2.16,
+    "mod_env_sus": 92,
+    "mod_env_rel": 3.75,
     "flt_cutoff": 9000,
     "flt_reso": 1.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.25,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.002,
     "I0": 1.8,
     "dI": 0.6,
-    "atk": 0.35,
-    "rel": 4,
+    "atk": 0.25,
+    "rel": 4.5,
     "customParam": 2.25,
     "latch": false
   },
@@ -4273,7 +4273,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.8,
         "shape_drive": 1,
-        "env_dec": 2.5
+        "env_dec": 3
       }
     },
     {
@@ -4287,9 +4287,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.7,
-        "env_dec": 4.5,
-        "env_rel": 7.2,
+        "env_atk": 0.5,
+        "env_dec": 5.4,
+        "env_rel": 8.1,
         "flt_cutoff": 6750
       }
     },
@@ -4297,9 +4297,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.25,
-        "mod_env_dec": 0.7200000000000001,
-        "env_sus": 28
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 48
       }
     },
     {
@@ -4317,7 +4317,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.8,
         "shape_drive": 1,
-        "env_dec": 2.5
+        "env_dec": 3
       }
     },
     {
@@ -4331,9 +4331,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.7,
-        "env_dec": 4.5,
-        "env_rel": 7.2,
+        "env_atk": 0.5,
+        "env_dec": 5.4,
+        "env_rel": 8.1,
         "flt_cutoff": 6750
       }
     },
@@ -4341,9 +4341,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.25,
-        "mod_env_dec": 0.7200000000000001,
-        "env_sus": 28
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 48
       }
     },
     {
@@ -4387,28 +4387,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.4,
     "env_atk": 0.002,
-    "env_dec": 0.38,
-    "env_sus": 45,
-    "env_rel": 0.4,
-    "mod_env_dec": 0.09,
+    "env_dec": 1.2,
+    "env_sus": 72,
+    "env_rel": 0.8,
+    "mod_env_dec": 0.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 18,
-    "mod_env_rel": 0.108,
+    "mod_env_sus": 60,
+    "mod_env_rel": 0.75,
     "flt_cutoff": 8500,
     "flt_reso": 2.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.3249999999999997,
     "op_wave": 2,
     "vol": 0.85,
-    "oct": 3,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 4.8,
     "dI": 2,
     "atk": 0.002,
-    "rel": 0.4,
+    "rel": 0.8,
     "customParam": 2.3249999999999997,
     "latch": false
   },
@@ -4418,7 +4418,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.8,
         "shape_drive": 1.4,
-        "env_dec": 0.38
+        "env_dec": 1.2
       }
     },
     {
@@ -4433,8 +4433,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.684,
-        "env_rel": 0.7200000000000001,
+        "env_dec": 2.16,
+        "env_rel": 1.4400000000000002,
         "flt_cutoff": 6375
       }
     },
@@ -4442,9 +4442,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.19,
-        "mod_env_dec": 0.036,
-        "env_sus": 14
+        "env_dec": 0.6,
+        "mod_env_dec": 0.2,
+        "env_sus": 36
       }
     },
     {
@@ -4462,7 +4462,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.8,
         "shape_drive": 1.4,
-        "env_dec": 0.38
+        "env_dec": 1.2
       }
     },
     {
@@ -4477,8 +4477,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.684,
-        "env_rel": 0.7200000000000001,
+        "env_dec": 2.16,
+        "env_rel": 1.4400000000000002,
         "flt_cutoff": 6375
       }
     },
@@ -4486,9 +4486,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.19,
-        "mod_env_dec": 0.036,
-        "env_sus": 14
+        "env_dec": 0.6,
+        "mod_env_dec": 0.2,
+        "env_sus": 36
       }
     },
     {
@@ -4532,28 +4532,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.2,
     "env_atk": 0.005,
-    "env_dec": 0.8,
-    "env_sus": 80,
-    "env_rel": 0.7,
-    "mod_env_dec": 0.18,
+    "env_dec": 1.8,
+    "env_sus": 88,
+    "env_rel": 1.2,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 32,
-    "mod_env_rel": 0.216,
+    "mod_env_sus": 80,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 11000,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 2.4,
     "op_wave": 2,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 3.6,
     "dI": 1.4,
     "atk": 0.005,
-    "rel": 0.7,
+    "rel": 1.2,
     "customParam": 2.4,
     "latch": false
   },
@@ -4563,7 +4563,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.2,
-        "env_dec": 0.8
+        "env_dec": 1.8
       }
     },
     {
@@ -4578,8 +4578,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.01,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 1.26,
+        "env_dec": 3.24,
+        "env_rel": 2.16,
         "flt_cutoff": 8250
       }
     },
@@ -4587,9 +4587,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.072,
-        "env_sus": 24
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 44
       }
     },
     {
@@ -4607,7 +4607,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.2,
-        "env_dec": 0.8
+        "env_dec": 1.8
       }
     },
     {
@@ -4622,8 +4622,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.01,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 1.26,
+        "env_dec": 3.24,
+        "env_rel": 2.16,
         "flt_cutoff": 8250
       }
     },
@@ -4631,9 +4631,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.072,
-        "env_sus": 24
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 44
       }
     },
     {
@@ -4677,28 +4677,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.5,
     "env_atk": 0.001,
-    "env_dec": 0.6,
-    "env_sus": 20,
-    "env_rel": 1,
-    "mod_env_dec": 0.12,
+    "env_dec": 2,
+    "env_sus": 55,
+    "env_rel": 2,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 8,
-    "mod_env_rel": 0.144,
+    "mod_env_sus": 45,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 12500,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.475,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3.14,
     "I0": 5.2,
     "dI": 2.2,
     "atk": 0.001,
-    "rel": 1,
+    "rel": 2,
     "customParam": 2.475,
     "latch": false
   },
@@ -4708,7 +4708,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 1.5,
-        "env_dec": 0.6
+        "env_dec": 2
       }
     },
     {
@@ -4723,8 +4723,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.08,
-        "env_rel": 1.8,
+        "env_dec": 3.6,
+        "env_rel": 3.6,
         "flt_cutoff": 9375
       }
     },
@@ -4732,9 +4732,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.048,
-        "env_sus": 6
+        "env_dec": 1,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 28
       }
     },
     {
@@ -4752,7 +4752,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 1.5,
-        "env_dec": 0.6
+        "env_dec": 2
       }
     },
     {
@@ -4767,8 +4767,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.08,
-        "env_rel": 1.8,
+        "env_dec": 3.6,
+        "env_rel": 3.6,
         "flt_cutoff": 9375
       }
     },
@@ -4776,9 +4776,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.048,
-        "env_sus": 6
+        "env_dec": 1,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 28
       }
     },
     {
@@ -4821,29 +4821,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.15,
-    "env_atk": 0.15,
-    "env_dec": 1.8,
-    "env_sus": 88,
-    "env_rel": 2.2,
-    "mod_env_dec": 1,
+    "env_atk": 0.12,
+    "env_dec": 2.5,
+    "env_sus": 94,
+    "env_rel": 2.8,
+    "mod_env_dec": 2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 35,
-    "mod_env_rel": 1.2,
+    "mod_env_sus": 90,
+    "mod_env_rel": 3,
     "flt_cutoff": 9500,
     "flt_reso": 1.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.55,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.005,
     "I0": 2.6,
     "dI": 0.9,
-    "atk": 0.15,
-    "rel": 2.2,
+    "atk": 0.12,
+    "rel": 2.8,
     "customParam": 2.55,
     "latch": false
   },
@@ -4853,7 +4853,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.6,
         "shape_drive": 1.15,
-        "env_dec": 1.8
+        "env_dec": 2.5
       }
     },
     {
@@ -4867,9 +4867,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.3,
-        "env_dec": 3.24,
-        "env_rel": 3.9600000000000004,
+        "env_atk": 0.24,
+        "env_dec": 4.5,
+        "env_rel": 5.04,
         "flt_cutoff": 7125
       }
     },
@@ -4877,9 +4877,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.4,
-        "env_sus": 26
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 47
       }
     },
     {
@@ -4897,7 +4897,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.6,
         "shape_drive": 1.15,
-        "env_dec": 1.8
+        "env_dec": 2.5
       }
     },
     {
@@ -4911,9 +4911,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.3,
-        "env_dec": 3.24,
-        "env_rel": 3.9600000000000004,
+        "env_atk": 0.24,
+        "env_dec": 4.5,
+        "env_rel": 5.04,
         "flt_cutoff": 7125
       }
     },
@@ -4921,9 +4921,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.4,
-        "env_sus": 26
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 47
       }
     },
     {
@@ -4967,28 +4967,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.3,
     "env_atk": 0.003,
-    "env_dec": 0.55,
-    "env_sus": 70,
-    "env_rel": 0.6,
-    "mod_env_dec": 0.14,
+    "env_dec": 1.6,
+    "env_sus": 85,
+    "env_rel": 1.2,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 28,
-    "mod_env_rel": 0.168,
+    "mod_env_sus": 75,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 13000,
     "flt_reso": 2.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 2.625,
     "op_wave": 2,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 4.2,
     "dI": 1.8,
     "atk": 0.003,
-    "rel": 0.6,
+    "rel": 1.2,
     "customParam": 2.625,
     "latch": false
   },
@@ -4998,7 +4998,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.3,
-        "env_dec": 0.55
+        "env_dec": 1.6
       }
     },
     {
@@ -5013,8 +5013,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.9900000000000001,
-        "env_rel": 1.08,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.16,
         "flt_cutoff": 9750
       }
     },
@@ -5022,9 +5022,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.275,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 21
+        "env_dec": 0.8,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 43
       }
     },
     {
@@ -5042,7 +5042,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.3,
-        "env_dec": 0.55
+        "env_dec": 1.6
       }
     },
     {
@@ -5057,8 +5057,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.9900000000000001,
-        "env_rel": 1.08,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.16,
         "flt_cutoff": 9750
       }
     },
@@ -5066,9 +5066,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.275,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 21
+        "env_dec": 0.8,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 43
       }
     },
     {
@@ -5111,29 +5111,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.05,
-    "env_atk": 0.08,
-    "env_dec": 1,
-    "env_sus": 82,
-    "env_rel": 1.4,
-    "mod_env_dec": 0.4,
+    "env_atk": 0.06,
+    "env_dec": 1.8,
+    "env_sus": 90,
+    "env_rel": 1.8,
+    "mod_env_dec": 1.4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 33,
-    "mod_env_rel": 0.48,
+    "mod_env_sus": 84,
+    "mod_env_rel": 2.0999999999999996,
     "flt_cutoff": 8000,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.6999999999999997,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 2.2,
     "dI": 0.7,
-    "atk": 0.08,
-    "rel": 1.4,
+    "atk": 0.06,
+    "rel": 1.8,
     "customParam": 2.6999999999999997,
     "latch": false
   },
@@ -5143,7 +5143,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.2,
         "shape_drive": 1.05,
-        "env_dec": 1
+        "env_dec": 1.8
       }
     },
     {
@@ -5157,9 +5157,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.16,
-        "env_dec": 1.8,
-        "env_rel": 2.52,
+        "env_atk": 0.12,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 6000
       }
     },
@@ -5167,9 +5167,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.5,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 25
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 45
       }
     },
     {
@@ -5187,7 +5187,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.2,
         "shape_drive": 1.05,
-        "env_dec": 1
+        "env_dec": 1.8
       }
     },
     {
@@ -5201,9 +5201,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.16,
-        "env_dec": 1.8,
-        "env_rel": 2.52,
+        "env_atk": 0.12,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 6000
       }
     },
@@ -5211,9 +5211,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.5,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 25
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 45
       }
     },
     {
@@ -5257,28 +5257,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.7,
     "env_atk": 0.001,
-    "env_dec": 0.18,
-    "env_sus": 0,
-    "env_rel": 0.25,
-    "mod_env_dec": 0.05,
+    "env_dec": 1,
+    "env_sus": 35,
+    "env_rel": 1,
+    "mod_env_dec": 0.4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 0,
-    "mod_env_rel": 0.06,
+    "mod_env_sus": 25,
+    "mod_env_rel": 0.6000000000000001,
     "flt_cutoff": 10000,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.775,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.7,
     "I0": 6,
     "dI": 2.5,
     "atk": 0.001,
-    "rel": 0.25,
+    "rel": 1,
     "customParam": 2.775,
     "latch": false
   },
@@ -5288,7 +5288,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 6,
         "shape_drive": 1.7,
-        "env_dec": 0.18
+        "env_dec": 1
       }
     },
     {
@@ -5303,8 +5303,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.324,
-        "env_rel": 0.45,
+        "env_dec": 1.8,
+        "env_rel": 1.8,
         "flt_cutoff": 7500
       }
     },
@@ -5312,9 +5312,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.09,
-        "mod_env_dec": 0.020000000000000004,
-        "env_sus": 0
+        "env_dec": 0.5,
+        "mod_env_dec": 0.16000000000000003,
+        "env_sus": 18
       }
     },
     {
@@ -5332,7 +5332,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 6,
         "shape_drive": 1.7,
-        "env_dec": 0.18
+        "env_dec": 1
       }
     },
     {
@@ -5347,8 +5347,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.324,
-        "env_rel": 0.45,
+        "env_dec": 1.8,
+        "env_rel": 1.8,
         "flt_cutoff": 7500
       }
     },
@@ -5356,9 +5356,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.09,
-        "mod_env_dec": 0.020000000000000004,
-        "env_sus": 0
+        "env_dec": 0.5,
+        "mod_env_dec": 0.16000000000000003,
+        "env_sus": 18
       }
     },
     {
@@ -5402,28 +5402,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.4,
     "env_atk": 0.001,
-    "env_dec": 0.08,
-    "env_sus": 0,
-    "env_rel": 0.12,
-    "mod_env_dec": 0.03,
+    "env_dec": 0.8,
+    "env_sus": 30,
+    "env_rel": 0.8,
+    "mod_env_dec": 0.3,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 0,
-    "mod_env_rel": 0.036,
+    "mod_env_sus": 20,
+    "mod_env_rel": 0.44999999999999996,
     "flt_cutoff": 15000,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.85,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 5.4,
     "I0": 5.5,
     "dI": 2,
     "atk": 0.001,
-    "rel": 0.12,
+    "rel": 0.8,
     "customParam": 2.85,
     "latch": false
   },
@@ -5433,7 +5433,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.5,
         "shape_drive": 1.4,
-        "env_dec": 0.08
+        "env_dec": 0.8
       }
     },
     {
@@ -5448,8 +5448,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.14400000000000002,
-        "env_rel": 0.216,
+        "env_dec": 1.4400000000000002,
+        "env_rel": 1.4400000000000002,
         "flt_cutoff": 11250
       }
     },
@@ -5457,9 +5457,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.04,
-        "mod_env_dec": 0.012,
-        "env_sus": 0
+        "env_dec": 0.4,
+        "mod_env_dec": 0.12,
+        "env_sus": 15
       }
     },
     {
@@ -5477,7 +5477,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.5,
         "shape_drive": 1.4,
-        "env_dec": 0.08
+        "env_dec": 0.8
       }
     },
     {
@@ -5492,8 +5492,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.14400000000000002,
-        "env_rel": 0.216,
+        "env_dec": 1.4400000000000002,
+        "env_rel": 1.4400000000000002,
         "flt_cutoff": 11250
       }
     },
@@ -5501,9 +5501,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.04,
-        "mod_env_dec": 0.012,
-        "env_sus": 0
+        "env_dec": 0.4,
+        "mod_env_dec": 0.12,
+        "env_sus": 15
       }
     },
     {
@@ -5546,29 +5546,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.45,
-    "env_atk": 0.2,
-    "env_dec": 2.5,
-    "env_sus": 90,
-    "env_rel": 3,
-    "mod_env_dec": 1.5,
+    "env_atk": 0.15,
+    "env_dec": 3,
+    "env_sus": 95,
+    "env_rel": 3.5,
+    "mod_env_dec": 2.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 36,
-    "mod_env_rel": 1.7999999999999998,
+    "mod_env_sus": 92,
+    "mod_env_rel": 3.75,
     "flt_cutoff": 6500,
     "flt_reso": 2.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 2.925,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 3,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.5,
     "I0": 3.4,
     "dI": 1.2,
-    "atk": 0.2,
-    "rel": 3,
+    "atk": 0.15,
+    "rel": 3.5,
     "customParam": 2.925,
     "latch": false
   },
@@ -5578,7 +5578,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.4,
         "shape_drive": 1.45,
-        "env_dec": 2.5
+        "env_dec": 3
       }
     },
     {
@@ -5592,9 +5592,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.4,
-        "env_dec": 4.5,
-        "env_rel": 5.4,
+        "env_atk": 0.3,
+        "env_dec": 5.4,
+        "env_rel": 6.3,
         "flt_cutoff": 4875
       }
     },
@@ -5602,9 +5602,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.25,
-        "mod_env_dec": 0.6000000000000001,
-        "env_sus": 27
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 48
       }
     },
     {
@@ -5622,7 +5622,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.4,
         "shape_drive": 1.45,
-        "env_dec": 2.5
+        "env_dec": 3
       }
     },
     {
@@ -5636,9 +5636,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.4,
-        "env_dec": 4.5,
-        "env_rel": 5.4,
+        "env_atk": 0.3,
+        "env_dec": 5.4,
+        "env_rel": 6.3,
         "flt_cutoff": 4875
       }
     },
@@ -5646,9 +5646,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.25,
-        "mod_env_dec": 0.6000000000000001,
-        "env_sus": 27
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 48
       }
     },
     {
@@ -5692,28 +5692,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1,
     "env_atk": 0.001,
-    "env_dec": 0.25,
-    "env_sus": 5,
-    "env_rel": 0.4,
-    "mod_env_dec": 0.06,
+    "env_dec": 1.2,
+    "env_sus": 50,
+    "env_rel": 1.2,
+    "mod_env_dec": 0.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 2,
-    "mod_env_rel": 0.072,
+    "mod_env_sus": 40,
+    "mod_env_rel": 0.75,
     "flt_cutoff": 14000,
     "flt_reso": 1.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3,
     "op_wave": 2,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 3,
     "dI": 1,
     "atk": 0.001,
-    "rel": 0.4,
+    "rel": 1.2,
     "customParam": 3,
     "latch": false
   },
@@ -5723,7 +5723,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3,
         "shape_drive": 1,
-        "env_dec": 0.25
+        "env_dec": 1.2
       }
     },
     {
@@ -5738,8 +5738,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "env_rel": 0.7200000000000001,
+        "env_dec": 2.16,
+        "env_rel": 2.16,
         "flt_cutoff": 10500
       }
     },
@@ -5747,9 +5747,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.125,
-        "mod_env_dec": 0.024,
-        "env_sus": 2
+        "env_dec": 0.6,
+        "mod_env_dec": 0.2,
+        "env_sus": 25
       }
     },
     {
@@ -5767,7 +5767,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3,
         "shape_drive": 1,
-        "env_dec": 0.25
+        "env_dec": 1.2
       }
     },
     {
@@ -5782,8 +5782,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "env_rel": 0.7200000000000001,
+        "env_dec": 2.16,
+        "env_rel": 2.16,
         "flt_cutoff": 10500
       }
     },
@@ -5791,9 +5791,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.125,
-        "mod_env_dec": 0.024,
-        "env_sus": 2
+        "env_dec": 0.6,
+        "mod_env_dec": 0.2,
+        "env_sus": 25
       }
     },
     {
@@ -5837,28 +5837,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.1,
     "env_atk": 0.003,
-    "env_dec": 1.2,
-    "env_sus": 25,
-    "env_rel": 1.8,
-    "mod_env_dec": 0.16,
+    "env_dec": 2.2,
+    "env_sus": 60,
+    "env_rel": 2.5,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 10,
-    "mod_env_rel": 0.192,
+    "mod_env_sus": 45,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 11000,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.0749999999999997,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 3.4,
     "dI": 1.2,
     "atk": 0.003,
-    "rel": 1.8,
+    "rel": 2.5,
     "customParam": 3.0749999999999997,
     "latch": false
   },
@@ -5868,7 +5868,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.4,
         "shape_drive": 1.1,
-        "env_dec": 1.2
+        "env_dec": 2.2
       }
     },
     {
@@ -5883,8 +5883,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 2.16,
-        "env_rel": 3.24,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 8250
       }
     },
@@ -5892,9 +5892,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.064,
-        "env_sus": 8
+        "env_dec": 1.1,
+        "mod_env_dec": 0.48,
+        "env_sus": 30
       }
     },
     {
@@ -5912,7 +5912,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.4,
         "shape_drive": 1.1,
-        "env_dec": 1.2
+        "env_dec": 2.2
       }
     },
     {
@@ -5927,8 +5927,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 2.16,
-        "env_rel": 3.24,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 8250
       }
     },
@@ -5936,9 +5936,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.064,
-        "env_sus": 8
+        "env_dec": 1.1,
+        "mod_env_dec": 0.48,
+        "env_sus": 30
       }
     },
     {
@@ -5982,28 +5982,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.2,
     "env_atk": 0.004,
-    "env_dec": 1.5,
-    "env_sus": 35,
-    "env_rel": 2.2,
-    "mod_env_dec": 0.22,
+    "env_dec": 2.5,
+    "env_sus": 65,
+    "env_rel": 2.8,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 14,
-    "mod_env_rel": 0.264,
+    "mod_env_sus": 50,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 12500,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.15,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3,
     "I0": 4.2,
     "dI": 1.6,
     "atk": 0.004,
-    "rel": 2.2,
+    "rel": 2.8,
     "customParam": 3.15,
     "latch": false
   },
@@ -6013,7 +6013,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.2,
-        "env_dec": 1.5
+        "env_dec": 2.5
       }
     },
     {
@@ -6028,8 +6028,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.008,
-        "env_dec": 2.7,
-        "env_rel": 3.9600000000000004,
+        "env_dec": 4.5,
+        "env_rel": 5.04,
         "flt_cutoff": 9375
       }
     },
@@ -6037,9 +6037,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.75,
-        "mod_env_dec": 0.08800000000000001,
-        "env_sus": 11
+        "env_dec": 1.25,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 33
       }
     },
     {
@@ -6057,7 +6057,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.2,
-        "env_dec": 1.5
+        "env_dec": 2.5
       }
     },
     {
@@ -6072,8 +6072,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.008,
-        "env_dec": 2.7,
-        "env_rel": 3.9600000000000004,
+        "env_dec": 4.5,
+        "env_rel": 5.04,
         "flt_cutoff": 9375
       }
     },
@@ -6081,9 +6081,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.75,
-        "mod_env_dec": 0.08800000000000001,
-        "env_sus": 11
+        "env_dec": 1.25,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 33
       }
     },
     {
@@ -6127,28 +6127,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1,
     "env_atk": 0.002,
-    "env_dec": 2,
-    "env_sus": 30,
-    "env_rel": 3,
-    "mod_env_dec": 0.2,
+    "env_dec": 2.8,
+    "env_sus": 65,
+    "env_rel": 3.5,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 12,
-    "mod_env_rel": 0.24,
+    "mod_env_sus": 50,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 12000,
     "flt_reso": 1.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.225,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 2.8,
     "dI": 0.9,
     "atk": 0.002,
-    "rel": 3,
+    "rel": 3.5,
     "customParam": 3.225,
     "latch": false
   },
@@ -6158,7 +6158,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1,
-        "env_dec": 2
+        "env_dec": 2.8
       }
     },
     {
@@ -6173,8 +6173,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 3.6,
-        "env_rel": 5.4,
+        "env_dec": 5.04,
+        "env_rel": 6.3,
         "flt_cutoff": 9000
       }
     },
@@ -6182,9 +6182,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 9
+        "env_dec": 1.4,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 33
       }
     },
     {
@@ -6202,7 +6202,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1,
-        "env_dec": 2
+        "env_dec": 2.8
       }
     },
     {
@@ -6217,8 +6217,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 3.6,
-        "env_rel": 5.4,
+        "env_dec": 5.04,
+        "env_rel": 6.3,
         "flt_cutoff": 9000
       }
     },
@@ -6226,9 +6226,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 9
+        "env_dec": 1.4,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 33
       }
     },
     {
@@ -6271,29 +6271,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.05,
-    "env_atk": 0.12,
-    "env_dec": 1.2,
-    "env_sus": 85,
-    "env_rel": 1.6,
-    "mod_env_dec": 0.5,
+    "env_atk": 0.08,
+    "env_dec": 2,
+    "env_sus": 92,
+    "env_rel": 2.2,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 34,
-    "mod_env_rel": 0.6,
+    "mod_env_sus": 88,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 8500,
     "flt_reso": 2.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.3,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 2.2,
     "dI": 0.8,
-    "atk": 0.12,
-    "rel": 1.6,
+    "atk": 0.08,
+    "rel": 2.2,
     "customParam": 3.3,
     "latch": false
   },
@@ -6303,7 +6303,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.2,
         "shape_drive": 1.05,
-        "env_dec": 1.2
+        "env_dec": 2
       }
     },
     {
@@ -6317,9 +6317,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.24,
-        "env_dec": 2.16,
-        "env_rel": 2.8800000000000003,
+        "env_atk": 0.16,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 6375
       }
     },
@@ -6327,9 +6327,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.2,
-        "env_sus": 26
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -6347,7 +6347,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.2,
         "shape_drive": 1.05,
-        "env_dec": 1.2
+        "env_dec": 2
       }
     },
     {
@@ -6361,9 +6361,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.24,
-        "env_dec": 2.16,
-        "env_rel": 2.8800000000000003,
+        "env_atk": 0.16,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 6375
       }
     },
@@ -6371,9 +6371,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.2,
-        "env_sus": 26
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -6417,28 +6417,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.05,
     "env_atk": 0.002,
-    "env_dec": 0.9,
-    "env_sus": 15,
-    "env_rel": 1.5,
-    "mod_env_dec": 0.12,
+    "env_dec": 2,
+    "env_sus": 55,
+    "env_rel": 2.2,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 6,
-    "mod_env_rel": 0.144,
+    "mod_env_sus": 40,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 13000,
     "flt_reso": 1.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.375,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 5.4,
     "I0": 3.8,
     "dI": 1.4,
     "atk": 0.002,
-    "rel": 1.5,
+    "rel": 2.2,
     "customParam": 3.375,
     "latch": false
   },
@@ -6448,7 +6448,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.05,
-        "env_dec": 0.9
+        "env_dec": 2
       }
     },
     {
@@ -6463,8 +6463,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 1.62,
-        "env_rel": 2.7,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 9750
       }
     },
@@ -6472,9 +6472,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "mod_env_dec": 0.048,
-        "env_sus": 5
+        "env_dec": 1,
+        "mod_env_dec": 0.4,
+        "env_sus": 28
       }
     },
     {
@@ -6492,7 +6492,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.05,
-        "env_dec": 0.9
+        "env_dec": 2
       }
     },
     {
@@ -6507,8 +6507,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 1.62,
-        "env_rel": 2.7,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 9750
       }
     },
@@ -6516,9 +6516,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "mod_env_dec": 0.048,
-        "env_sus": 5
+        "env_dec": 1,
+        "mod_env_dec": 0.4,
+        "env_sus": 28
       }
     },
     {
@@ -6561,29 +6561,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.1,
-    "env_atk": 0.09,
-    "env_dec": 1.6,
-    "env_sus": 88,
-    "env_rel": 2,
-    "mod_env_dec": 0.6,
+    "env_atk": 0.07,
+    "env_dec": 2.2,
+    "env_sus": 94,
+    "env_rel": 2.5,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 35,
-    "mod_env_rel": 0.72,
+    "mod_env_sus": 90,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 7000,
     "flt_reso": 2.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.4499999999999997,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 2.5,
     "dI": 0.9,
-    "atk": 0.09,
-    "rel": 2,
+    "atk": 0.07,
+    "rel": 2.5,
     "customParam": 3.4499999999999997,
     "latch": false
   },
@@ -6593,7 +6593,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.5,
         "shape_drive": 1.1,
-        "env_dec": 1.6
+        "env_dec": 2.2
       }
     },
     {
@@ -6607,9 +6607,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.18,
-        "env_dec": 2.8800000000000003,
-        "env_rel": 3.6,
+        "env_atk": 0.14,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 5250
       }
     },
@@ -6617,9 +6617,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.8,
-        "mod_env_dec": 0.24,
-        "env_sus": 26
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 47
       }
     },
     {
@@ -6637,7 +6637,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.5,
         "shape_drive": 1.1,
-        "env_dec": 1.6
+        "env_dec": 2.2
       }
     },
     {
@@ -6651,9 +6651,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.18,
-        "env_dec": 2.8800000000000003,
-        "env_rel": 3.6,
+        "env_atk": 0.14,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 5250
       }
     },
@@ -6661,9 +6661,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.8,
-        "mod_env_dec": 0.24,
-        "env_sus": 26
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 47
       }
     },
     {
@@ -6707,28 +6707,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.15,
     "env_atk": 0.002,
-    "env_dec": 2.2,
-    "env_sus": 20,
-    "env_rel": 3.5,
-    "mod_env_dec": 0.25,
+    "env_dec": 3,
+    "env_sus": 58,
+    "env_rel": 4,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 8,
-    "mod_env_rel": 0.3,
+    "mod_env_sus": 45,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 13500,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.525,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.76,
     "I0": 4.8,
     "dI": 1.8,
     "atk": 0.002,
-    "rel": 3.5,
+    "rel": 4,
     "customParam": 3.525,
     "latch": false
   },
@@ -6738,7 +6738,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.8,
         "shape_drive": 1.15,
-        "env_dec": 2.2
+        "env_dec": 3
       }
     },
     {
@@ -6753,8 +6753,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 3.9600000000000004,
-        "env_rel": 6.3,
+        "env_dec": 5.4,
+        "env_rel": 7.2,
         "flt_cutoff": 10125
       }
     },
@@ -6762,9 +6762,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.1,
-        "mod_env_dec": 0.1,
-        "env_sus": 6
+        "env_dec": 1.5,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 29
       }
     },
     {
@@ -6782,7 +6782,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.8,
         "shape_drive": 1.15,
-        "env_dec": 2.2
+        "env_dec": 3
       }
     },
     {
@@ -6797,8 +6797,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 3.9600000000000004,
-        "env_rel": 6.3,
+        "env_dec": 5.4,
+        "env_rel": 7.2,
         "flt_cutoff": 10125
       }
     },
@@ -6806,9 +6806,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.1,
-        "mod_env_dec": 0.1,
-        "env_sus": 6
+        "env_dec": 1.5,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 29
       }
     },
     {
@@ -6851,29 +6851,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.15,
-    "env_atk": 0.15,
-    "env_dec": 2,
-    "env_sus": 90,
-    "env_rel": 2.5,
-    "mod_env_dec": 1.2,
+    "env_atk": 0.12,
+    "env_dec": 2.5,
+    "env_sus": 95,
+    "env_rel": 3,
+    "mod_env_dec": 2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 36,
-    "mod_env_rel": 1.44,
+    "mod_env_sus": 92,
+    "mod_env_rel": 3,
     "flt_cutoff": 7500,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.5999999999999996,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1.002,
     "I0": 2.6,
     "dI": 0.9,
-    "atk": 0.15,
-    "rel": 2.5,
+    "atk": 0.12,
+    "rel": 3,
     "customParam": 3.5999999999999996,
     "latch": false
   },
@@ -6883,7 +6883,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.6,
         "shape_drive": 1.15,
-        "env_dec": 2
+        "env_dec": 2.5
       }
     },
     {
@@ -6897,9 +6897,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.3,
-        "env_dec": 3.6,
-        "env_rel": 4.5,
+        "env_atk": 0.24,
+        "env_dec": 4.5,
+        "env_rel": 5.4,
         "flt_cutoff": 5625
       }
     },
@@ -6907,9 +6907,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1,
-        "mod_env_dec": 0.48,
-        "env_sus": 27
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 48
       }
     },
     {
@@ -6927,7 +6927,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.6,
         "shape_drive": 1.15,
-        "env_dec": 2
+        "env_dec": 2.5
       }
     },
     {
@@ -6941,9 +6941,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.3,
-        "env_dec": 3.6,
-        "env_rel": 4.5,
+        "env_atk": 0.24,
+        "env_dec": 4.5,
+        "env_rel": 5.4,
         "flt_cutoff": 5625
       }
     },
@@ -6951,9 +6951,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1,
-        "mod_env_dec": 0.48,
-        "env_sus": 27
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 48
       }
     },
     {
@@ -6996,29 +6996,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1,
-    "env_atk": 0.05,
-    "env_dec": 0.8,
-    "env_sus": 80,
-    "env_rel": 1.2,
-    "mod_env_dec": 0.35,
+    "env_atk": 0.04,
+    "env_dec": 1.8,
+    "env_sus": 90,
+    "env_rel": 1.8,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 32,
-    "mod_env_rel": 0.42,
+    "mod_env_sus": 85,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 9000,
     "flt_reso": 1.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.675,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 1.8,
     "dI": 0.6,
-    "atk": 0.05,
-    "rel": 1.2,
+    "atk": 0.04,
+    "rel": 1.8,
     "customParam": 3.675,
     "latch": false
   },
@@ -7028,7 +7028,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.8,
         "shape_drive": 1,
-        "env_dec": 0.8
+        "env_dec": 1.8
       }
     },
     {
@@ -7042,9 +7042,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.1,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 2.16,
+        "env_atk": 0.08,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 6750
       }
     },
@@ -7052,9 +7052,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.13999999999999999,
-        "env_sus": 24
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 45
       }
     },
     {
@@ -7072,7 +7072,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 1.8,
         "shape_drive": 1,
-        "env_dec": 0.8
+        "env_dec": 1.8
       }
     },
     {
@@ -7086,9 +7086,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.1,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 2.16,
+        "env_atk": 0.08,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 6750
       }
     },
@@ -7096,9 +7096,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.13999999999999999,
-        "env_sus": 24
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 45
       }
     },
     {
@@ -7142,28 +7142,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.1,
     "env_atk": 0.003,
-    "env_dec": 1.4,
-    "env_sus": 25,
-    "env_rel": 2.4,
-    "mod_env_dec": 0.2,
+    "env_dec": 2.2,
+    "env_sus": 60,
+    "env_rel": 3,
+    "mod_env_dec": 1.4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 10,
-    "mod_env_rel": 0.24,
+    "mod_env_sus": 48,
+    "mod_env_rel": 2.0999999999999996,
     "flt_cutoff": 10500,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.75,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 3.6,
     "dI": 1.2,
     "atk": 0.003,
-    "rel": 2.4,
+    "rel": 3,
     "customParam": 3.75,
     "latch": false
   },
@@ -7173,7 +7173,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.1,
-        "env_dec": 1.4
+        "env_dec": 2.2
       }
     },
     {
@@ -7188,8 +7188,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 2.52,
-        "env_rel": 4.32,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 5.4,
         "flt_cutoff": 7875
       }
     },
@@ -7197,9 +7197,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.7,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 8
+        "env_dec": 1.1,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 30
       }
     },
     {
@@ -7217,7 +7217,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.1,
-        "env_dec": 1.4
+        "env_dec": 2.2
       }
     },
     {
@@ -7232,8 +7232,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 2.52,
-        "env_rel": 4.32,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 5.4,
         "flt_cutoff": 7875
       }
     },
@@ -7241,9 +7241,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.7,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 8
+        "env_dec": 1.1,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 30
       }
     },
     {
@@ -7287,28 +7287,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.2,
     "env_atk": 0.04,
-    "env_dec": 2.5,
-    "env_sus": 95,
-    "env_rel": 3,
-    "mod_env_dec": 1.5,
+    "env_dec": 3,
+    "env_sus": 98,
+    "env_rel": 3.5,
+    "mod_env_dec": 2.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 1.7999999999999998,
+    "mod_env_sus": 96,
+    "mod_env_rel": 3.75,
     "flt_cutoff": 14000,
     "flt_reso": 1.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.8249999999999997,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 2.4,
     "dI": 0.8,
     "atk": 0.04,
-    "rel": 3,
+    "rel": 3.5,
     "customParam": 3.8249999999999997,
     "latch": false
   },
@@ -7318,7 +7318,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.4,
         "shape_drive": 1.2,
-        "env_dec": 2.5
+        "env_dec": 3
       }
     },
     {
@@ -7333,8 +7333,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.08,
-        "env_dec": 4.5,
-        "env_rel": 5.4,
+        "env_dec": 5.4,
+        "env_rel": 6.3,
         "flt_cutoff": 10500
       }
     },
@@ -7342,9 +7342,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.25,
-        "mod_env_dec": 0.6000000000000001,
-        "env_sus": 29
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 49
       }
     },
     {
@@ -7362,7 +7362,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.4,
         "shape_drive": 1.2,
-        "env_dec": 2.5
+        "env_dec": 3
       }
     },
     {
@@ -7377,8 +7377,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.08,
-        "env_dec": 4.5,
-        "env_rel": 5.4,
+        "env_dec": 5.4,
+        "env_rel": 6.3,
         "flt_cutoff": 10500
       }
     },
@@ -7386,9 +7386,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.25,
-        "mod_env_dec": 0.6000000000000001,
-        "env_sus": 29
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 49
       }
     },
     {
@@ -7432,28 +7432,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.25,
     "env_atk": 0.008,
-    "env_dec": 1.8,
-    "env_sus": 90,
-    "env_rel": 1.5,
-    "mod_env_dec": 0.8,
+    "env_dec": 2.5,
+    "env_sus": 96,
+    "env_rel": 2,
+    "mod_env_dec": 2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 36,
-    "mod_env_rel": 0.96,
+    "mod_env_sus": 94,
+    "mod_env_rel": 3,
     "flt_cutoff": 12000,
     "flt_reso": 1.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.9,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3,
     "I0": 2.8,
     "dI": 1,
     "atk": 0.008,
-    "rel": 1.5,
+    "rel": 2,
     "customParam": 3.9,
     "latch": false
   },
@@ -7463,7 +7463,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1.25,
-        "env_dec": 1.8
+        "env_dec": 2.5
       }
     },
     {
@@ -7478,8 +7478,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.016,
-        "env_dec": 3.24,
-        "env_rel": 2.7,
+        "env_dec": 4.5,
+        "env_rel": 3.6,
         "flt_cutoff": 9000
       }
     },
@@ -7487,9 +7487,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.32000000000000006,
-        "env_sus": 27
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 48
       }
     },
     {
@@ -7507,7 +7507,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1.25,
-        "env_dec": 1.8
+        "env_dec": 2.5
       }
     },
     {
@@ -7522,8 +7522,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.016,
-        "env_dec": 3.24,
-        "env_rel": 2.7,
+        "env_dec": 4.5,
+        "env_rel": 3.6,
         "flt_cutoff": 9000
       }
     },
@@ -7531,9 +7531,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.32000000000000006,
-        "env_sus": 27
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 48
       }
     },
     {
@@ -7576,29 +7576,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.05,
-    "env_atk": 0.4,
+    "env_atk": 0.3,
     "env_dec": 3.5,
-    "env_sus": 95,
-    "env_rel": 5,
-    "mod_env_dec": 2.2,
+    "env_sus": 98,
+    "env_rel": 5.5,
+    "mod_env_dec": 3,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 2.64,
+    "mod_env_sus": 96,
+    "mod_env_rel": 4.5,
     "flt_cutoff": 9500,
     "flt_reso": 1.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 3.9749999999999996,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.004,
     "I0": 2,
     "dI": 0.7,
-    "atk": 0.4,
-    "rel": 5,
+    "atk": 0.3,
+    "rel": 5.5,
     "customParam": 3.9749999999999996,
     "latch": false
   },
@@ -7622,9 +7622,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.8,
+        "env_atk": 0.6,
         "env_dec": 6.3,
-        "env_rel": 9,
+        "env_rel": 9.9,
         "flt_cutoff": 7125
       }
     },
@@ -7633,8 +7633,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 1.75,
-        "mod_env_dec": 0.8800000000000001,
-        "env_sus": 29
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 49
       }
     },
     {
@@ -7666,9 +7666,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.8,
+        "env_atk": 0.6,
         "env_dec": 6.3,
-        "env_rel": 9,
+        "env_rel": 9.9,
         "flt_cutoff": 7125
       }
     },
@@ -7677,8 +7677,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 1.75,
-        "mod_env_dec": 0.8800000000000001,
-        "env_sus": 29
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 49
       }
     },
     {
@@ -7721,29 +7721,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.2,
-    "env_atk": 0.25,
-    "env_dec": 2.8,
-    "env_sus": 88,
-    "env_rel": 3.5,
-    "mod_env_dec": 1.8,
+    "env_atk": 0.18,
+    "env_dec": 3,
+    "env_sus": 94,
+    "env_rel": 4,
+    "mod_env_dec": 2.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 35,
-    "mod_env_rel": 2.16,
+    "mod_env_sus": 90,
+    "mod_env_rel": 3.75,
     "flt_cutoff": 9000,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.05,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.002,
     "I0": 3.5,
     "dI": 1.4,
-    "atk": 0.25,
-    "rel": 3.5,
+    "atk": 0.18,
+    "rel": 4,
     "customParam": 4.05,
     "latch": false
   },
@@ -7753,7 +7753,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.5,
         "shape_drive": 1.2,
-        "env_dec": 2.8
+        "env_dec": 3
       }
     },
     {
@@ -7767,9 +7767,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.5,
-        "env_dec": 5.04,
-        "env_rel": 6.3,
+        "env_atk": 0.36,
+        "env_dec": 5.4,
+        "env_rel": 7.2,
         "flt_cutoff": 6750
       }
     },
@@ -7777,9 +7777,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.4,
-        "mod_env_dec": 0.7200000000000001,
-        "env_sus": 26
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 47
       }
     },
     {
@@ -7797,7 +7797,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.5,
         "shape_drive": 1.2,
-        "env_dec": 2.8
+        "env_dec": 3
       }
     },
     {
@@ -7811,9 +7811,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.5,
-        "env_dec": 5.04,
-        "env_rel": 6.3,
+        "env_atk": 0.36,
+        "env_dec": 5.4,
+        "env_rel": 7.2,
         "flt_cutoff": 6750
       }
     },
@@ -7821,9 +7821,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.4,
-        "mod_env_dec": 0.7200000000000001,
-        "env_sus": 26
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 47
       }
     },
     {
@@ -7866,29 +7866,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.35,
-    "env_atk": 0.6,
+    "env_atk": 0.4,
     "env_dec": 4,
-    "env_sus": 96,
-    "env_rel": 6,
-    "mod_env_dec": 3,
+    "env_sus": 98,
+    "env_rel": 6.5,
+    "mod_env_dec": 3.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 3.5999999999999996,
+    "mod_env_sus": 96,
+    "mod_env_rel": 5.25,
     "flt_cutoff": 4500,
     "flt_reso": 2.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.125,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 3,
+    "oct": -2,
     "lfo": 0.25,
     "ratio": 0.501,
     "I0": 3.2,
     "dI": 1.2,
-    "atk": 0.6,
-    "rel": 6,
+    "atk": 0.4,
+    "rel": 6.5,
     "customParam": 4.125,
     "latch": false
   },
@@ -7912,9 +7912,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.2,
+        "env_atk": 0.8,
         "env_dec": 7.2,
-        "env_rel": 10.8,
+        "env_rel": 11.700000000000001,
         "flt_cutoff": 3375
       }
     },
@@ -7923,8 +7923,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2,
-        "mod_env_dec": 1.2000000000000002,
-        "env_sus": 29
+        "mod_env_dec": 1.4000000000000001,
+        "env_sus": 49
       }
     },
     {
@@ -7956,9 +7956,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.2,
+        "env_atk": 0.8,
         "env_dec": 7.2,
-        "env_rel": 10.8,
+        "env_rel": 11.700000000000001,
         "flt_cutoff": 3375
       }
     },
@@ -7967,8 +7967,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2,
-        "mod_env_dec": 1.2000000000000002,
-        "env_sus": 29
+        "mod_env_dec": 1.4000000000000001,
+        "env_sus": 49
       }
     },
     {
@@ -8011,29 +8011,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.15,
-    "env_atk": 0.3,
-    "env_dec": 3,
-    "env_sus": 90,
-    "env_rel": 4.5,
-    "mod_env_dec": 2,
+    "env_atk": 0.2,
+    "env_dec": 3.2,
+    "env_sus": 95,
+    "env_rel": 4.8,
+    "mod_env_dec": 2.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 36,
-    "mod_env_rel": 2.4,
+    "mod_env_sus": 92,
+    "mod_env_rel": 4.199999999999999,
     "flt_cutoff": 11000,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.2,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 2.8,
     "dI": 1,
-    "atk": 0.3,
-    "rel": 4.5,
+    "atk": 0.2,
+    "rel": 4.8,
     "customParam": 4.2,
     "latch": false
   },
@@ -8043,7 +8043,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1.15,
-        "env_dec": 3
+        "env_dec": 3.2
       }
     },
     {
@@ -8057,9 +8057,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.6,
-        "env_dec": 5.4,
-        "env_rel": 8.1,
+        "env_atk": 0.4,
+        "env_dec": 5.760000000000001,
+        "env_rel": 8.64,
         "flt_cutoff": 8250
       }
     },
@@ -8067,9 +8067,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.8,
-        "env_sus": 27
+        "env_dec": 1.6,
+        "mod_env_dec": 1.1199999999999999,
+        "env_sus": 48
       }
     },
     {
@@ -8087,7 +8087,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1.15,
-        "env_dec": 3
+        "env_dec": 3.2
       }
     },
     {
@@ -8101,9 +8101,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.6,
-        "env_dec": 5.4,
-        "env_rel": 8.1,
+        "env_atk": 0.4,
+        "env_dec": 5.760000000000001,
+        "env_rel": 8.64,
         "flt_cutoff": 8250
       }
     },
@@ -8111,9 +8111,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.8,
-        "env_sus": 27
+        "env_dec": 1.6,
+        "mod_env_dec": 1.1199999999999999,
+        "env_sus": 48
       }
     },
     {
@@ -8157,28 +8157,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.1,
     "env_atk": 0.002,
-    "env_dec": 4,
-    "env_sus": 15,
-    "env_rel": 6,
-    "mod_env_dec": 0.4,
+    "env_dec": 4.5,
+    "env_sus": 55,
+    "env_rel": 6.5,
+    "mod_env_dec": 2.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 6,
-    "mod_env_rel": 0.48,
+    "mod_env_sus": 45,
+    "mod_env_rel": 3.75,
     "flt_cutoff": 12500,
     "flt_reso": 1.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.2749999999999995,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.414,
     "I0": 5,
     "dI": 2,
     "atk": 0.002,
-    "rel": 6,
+    "rel": 6.5,
     "customParam": 4.2749999999999995,
     "latch": false
   },
@@ -8188,7 +8188,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5,
         "shape_drive": 1.1,
-        "env_dec": 4
+        "env_dec": 4.5
       }
     },
     {
@@ -8203,8 +8203,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 7.2,
-        "env_rel": 10.8,
+        "env_dec": 8.1,
+        "env_rel": 11.700000000000001,
         "flt_cutoff": 9375
       }
     },
@@ -8212,9 +8212,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 2,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 5
+        "env_dec": 2.25,
+        "mod_env_dec": 1,
+        "env_sus": 28
       }
     },
     {
@@ -8232,7 +8232,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5,
         "shape_drive": 1.1,
-        "env_dec": 4
+        "env_dec": 4.5
       }
     },
     {
@@ -8247,8 +8247,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 7.2,
-        "env_rel": 10.8,
+        "env_dec": 8.1,
+        "env_rel": 11.700000000000001,
         "flt_cutoff": 9375
       }
     },
@@ -8256,9 +8256,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 2,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 5
+        "env_dec": 2.25,
+        "mod_env_dec": 1,
+        "env_sus": 28
       }
     },
     {
@@ -8301,29 +8301,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.2,
-    "env_atk": 0.1,
-    "env_dec": 1.8,
-    "env_sus": 85,
-    "env_rel": 2.2,
-    "mod_env_dec": 1,
+    "env_atk": 0.08,
+    "env_dec": 2.2,
+    "env_sus": 92,
+    "env_rel": 2.6,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 34,
-    "mod_env_rel": 1.2,
+    "mod_env_sus": 88,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 10000,
     "flt_reso": 2.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 4.35,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 3.8,
     "dI": 1.5,
-    "atk": 0.1,
-    "rel": 2.2,
+    "atk": 0.08,
+    "rel": 2.6,
     "customParam": 4.35,
     "latch": false
   },
@@ -8333,7 +8333,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.2,
-        "env_dec": 1.8
+        "env_dec": 2.2
       }
     },
     {
@@ -8347,9 +8347,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.2,
-        "env_dec": 3.24,
-        "env_rel": 3.9600000000000004,
+        "env_atk": 0.16,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.680000000000001,
         "flt_cutoff": 7500
       }
     },
@@ -8357,9 +8357,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.4,
-        "env_sus": 26
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -8377,7 +8377,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.2,
-        "env_dec": 1.8
+        "env_dec": 2.2
       }
     },
     {
@@ -8391,9 +8391,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.2,
-        "env_dec": 3.24,
-        "env_rel": 3.9600000000000004,
+        "env_atk": 0.16,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.680000000000001,
         "flt_cutoff": 7500
       }
     },
@@ -8401,9 +8401,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.4,
-        "env_sus": 26
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -8446,29 +8446,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.05,
-    "env_atk": 0.5,
-    "env_dec": 3.2,
-    "env_sus": 94,
-    "env_rel": 5.5,
-    "mod_env_dec": 2.5,
+    "env_atk": 0.35,
+    "env_dec": 3.5,
+    "env_sus": 96,
+    "env_rel": 6,
+    "mod_env_dec": 3,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 3,
+    "mod_env_sus": 94,
+    "mod_env_rel": 4.5,
     "flt_cutoff": 11500,
     "flt_reso": 1.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.425,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.001,
     "I0": 2.2,
     "dI": 0.8,
-    "atk": 0.5,
-    "rel": 5.5,
+    "atk": 0.35,
+    "rel": 6,
     "customParam": 4.425,
     "latch": false
   },
@@ -8478,7 +8478,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.2,
         "shape_drive": 1.05,
-        "env_dec": 3.2
+        "env_dec": 3.5
       }
     },
     {
@@ -8492,9 +8492,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1,
-        "env_dec": 5.760000000000001,
-        "env_rel": 9.9,
+        "env_atk": 0.7,
+        "env_dec": 6.3,
+        "env_rel": 10.8,
         "flt_cutoff": 8625
       }
     },
@@ -8502,9 +8502,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.6,
-        "mod_env_dec": 1,
-        "env_sus": 28
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 48
       }
     },
     {
@@ -8522,7 +8522,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.2,
         "shape_drive": 1.05,
-        "env_dec": 3.2
+        "env_dec": 3.5
       }
     },
     {
@@ -8536,9 +8536,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1,
-        "env_dec": 5.760000000000001,
-        "env_rel": 9.9,
+        "env_atk": 0.7,
+        "env_dec": 6.3,
+        "env_rel": 10.8,
         "flt_cutoff": 8625
       }
     },
@@ -8546,9 +8546,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.6,
-        "mod_env_dec": 1,
-        "env_sus": 28
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 48
       }
     },
     {
@@ -8591,29 +8591,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.5,
-    "env_atk": 0.8,
+    "env_atk": 0.5,
     "env_dec": 5,
     "env_sus": 98,
-    "env_rel": 8,
-    "mod_env_dec": 4,
+    "env_rel": 8.5,
+    "mod_env_dec": 4.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 39,
-    "mod_env_rel": 4.8,
+    "mod_env_sus": 98,
+    "mod_env_rel": 6.75,
     "flt_cutoff": 3500,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.5,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 3,
+    "oct": -2,
     "lfo": 0.25,
     "ratio": 0.25,
     "I0": 4,
     "dI": 1.6,
-    "atk": 0.8,
-    "rel": 8,
+    "atk": 0.5,
+    "rel": 8.5,
     "customParam": 4.5,
     "latch": false
   },
@@ -8637,9 +8637,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.6,
+        "env_atk": 1,
         "env_dec": 9,
-        "env_rel": 14.4,
+        "env_rel": 15.3,
         "flt_cutoff": 2625
       }
     },
@@ -8648,8 +8648,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2.5,
-        "mod_env_dec": 1.6,
-        "env_sus": 29
+        "mod_env_dec": 1.8,
+        "env_sus": 49
       }
     },
     {
@@ -8681,9 +8681,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.6,
+        "env_atk": 1,
         "env_dec": 9,
-        "env_rel": 14.4,
+        "env_rel": 15.3,
         "flt_cutoff": 2625
       }
     },
@@ -8692,8 +8692,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2.5,
-        "mod_env_dec": 1.6,
-        "env_sus": 29
+        "mod_env_dec": 1.8,
+        "env_sus": 49
       }
     },
     {
@@ -8737,28 +8737,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.2,
     "env_atk": 0.002,
-    "env_dec": 0.45,
-    "env_sus": 20,
-    "env_rel": 0.8,
-    "mod_env_dec": 0.12,
+    "env_dec": 1.8,
+    "env_sus": 60,
+    "env_rel": 1.8,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 8,
-    "mod_env_rel": 0.144,
+    "mod_env_sus": 50,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 13000,
     "flt_reso": 2.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.575,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 3.8,
     "dI": 1.6,
     "atk": 0.002,
-    "rel": 0.8,
+    "rel": 1.8,
     "customParam": 4.575,
     "latch": false
   },
@@ -8768,7 +8768,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 2.2,
-        "env_dec": 0.45
+        "env_dec": 1.8
       }
     },
     {
@@ -8783,8 +8783,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.81,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 9750
       }
     },
@@ -8792,9 +8792,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.225,
-        "mod_env_dec": 0.048,
-        "env_sus": 6
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 30
       }
     },
     {
@@ -8812,7 +8812,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 2.2,
-        "env_dec": 0.45
+        "env_dec": 1.8
       }
     },
     {
@@ -8827,8 +8827,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.81,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 9750
       }
     },
@@ -8836,9 +8836,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.225,
-        "mod_env_dec": 0.048,
-        "env_sus": 6
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 30
       }
     },
     {
@@ -8882,28 +8882,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.4,
     "env_atk": 0.001,
-    "env_dec": 0.28,
-    "env_sus": 5,
-    "env_rel": 0.5,
-    "mod_env_dec": 0.08,
+    "env_dec": 1.4,
+    "env_sus": 45,
+    "env_rel": 1.2,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 2,
-    "mod_env_rel": 0.096,
+    "mod_env_sus": 35,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 11500,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.6499999999999995,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.5,
     "I0": 4.5,
     "dI": 1.8,
     "atk": 0.001,
-    "rel": 0.5,
+    "rel": 1.2,
     "customParam": 4.6499999999999995,
     "latch": false
   },
@@ -8913,7 +8913,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 2.4,
-        "env_dec": 0.28
+        "env_dec": 1.4
       }
     },
     {
@@ -8928,8 +8928,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.5040000000000001,
-        "env_rel": 0.9,
+        "env_dec": 2.52,
+        "env_rel": 2.16,
         "flt_cutoff": 8625
       }
     },
@@ -8937,9 +8937,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.14,
-        "mod_env_dec": 0.032,
-        "env_sus": 2
+        "env_dec": 0.7,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 23
       }
     },
     {
@@ -8957,7 +8957,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 2.4,
-        "env_dec": 0.28
+        "env_dec": 1.4
       }
     },
     {
@@ -8972,8 +8972,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.5040000000000001,
-        "env_rel": 0.9,
+        "env_dec": 2.52,
+        "env_rel": 2.16,
         "flt_cutoff": 8625
       }
     },
@@ -8981,9 +8981,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.14,
-        "mod_env_dec": 0.032,
-        "env_sus": 2
+        "env_dec": 0.7,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 23
       }
     },
     {
@@ -9027,28 +9027,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2,
     "env_atk": 0.004,
-    "env_dec": 0.6,
-    "env_sus": 25,
-    "env_rel": 1.2,
-    "mod_env_dec": 0.15,
+    "env_dec": 1.8,
+    "env_sus": 60,
+    "env_rel": 1.8,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 10,
-    "mod_env_rel": 0.18,
+    "mod_env_sus": 50,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 12000,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.725,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.38,
     "I0": 4,
     "dI": 1.5,
     "atk": 0.004,
-    "rel": 1.2,
+    "rel": 1.8,
     "customParam": 4.725,
     "latch": false
   },
@@ -9058,7 +9058,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 2,
-        "env_dec": 0.6
+        "env_dec": 1.8
       }
     },
     {
@@ -9073,8 +9073,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.008,
-        "env_dec": 1.08,
-        "env_rel": 2.16,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 9000
       }
     },
@@ -9082,9 +9082,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.06,
-        "env_sus": 8
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 30
       }
     },
     {
@@ -9102,7 +9102,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 2,
-        "env_dec": 0.6
+        "env_dec": 1.8
       }
     },
     {
@@ -9117,8 +9117,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.008,
-        "env_dec": 1.08,
-        "env_rel": 2.16,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 9000
       }
     },
@@ -9126,9 +9126,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.06,
-        "env_sus": 8
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 30
       }
     },
     {
@@ -9172,28 +9172,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.1,
     "env_atk": 0.002,
-    "env_dec": 0.75,
-    "env_sus": 15,
-    "env_rel": 1.4,
-    "mod_env_dec": 0.14,
+    "env_dec": 2,
+    "env_sus": 55,
+    "env_rel": 2.2,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 6,
-    "mod_env_rel": 0.168,
+    "mod_env_sus": 45,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 13500,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.8,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3.85,
     "I0": 4.2,
     "dI": 1.6,
     "atk": 0.002,
-    "rel": 1.4,
+    "rel": 2.2,
     "customParam": 4.8,
     "latch": false
   },
@@ -9203,7 +9203,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 2.1,
-        "env_dec": 0.75
+        "env_dec": 2
       }
     },
     {
@@ -9218,8 +9218,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 1.35,
-        "env_rel": 2.52,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 10125
       }
     },
@@ -9227,9 +9227,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.375,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 5
+        "env_dec": 1,
+        "mod_env_dec": 0.48,
+        "env_sus": 28
       }
     },
     {
@@ -9247,7 +9247,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 2.1,
-        "env_dec": 0.75
+        "env_dec": 2
       }
     },
     {
@@ -9262,8 +9262,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 1.35,
-        "env_rel": 2.52,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 10125
       }
     },
@@ -9271,9 +9271,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.375,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 5
+        "env_dec": 1,
+        "mod_env_dec": 0.48,
+        "env_sus": 28
       }
     },
     {
@@ -9317,28 +9317,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.5,
     "env_atk": 0.003,
-    "env_dec": 0.4,
-    "env_sus": 45,
-    "env_rel": 0.6,
-    "mod_env_dec": 0.1,
+    "env_dec": 1.6,
+    "env_sus": 78,
+    "env_rel": 1.2,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 18,
-    "mod_env_rel": 0.12,
+    "mod_env_sus": 70,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 7500,
     "flt_reso": 3.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.875,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.5,
     "I0": 4.6,
     "dI": 2,
     "atk": 0.003,
-    "rel": 0.6,
+    "rel": 1.2,
     "customParam": 4.875,
     "latch": false
   },
@@ -9348,7 +9348,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.6,
         "shape_drive": 2.5,
-        "env_dec": 0.4
+        "env_dec": 1.6
       }
     },
     {
@@ -9363,8 +9363,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.7200000000000001,
-        "env_rel": 1.08,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.16,
         "flt_cutoff": 5625
       }
     },
@@ -9372,9 +9372,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.2,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 14
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 39
       }
     },
     {
@@ -9392,7 +9392,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.6,
         "shape_drive": 2.5,
-        "env_dec": 0.4
+        "env_dec": 1.6
       }
     },
     {
@@ -9407,8 +9407,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.7200000000000001,
-        "env_rel": 1.08,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.16,
         "flt_cutoff": 5625
       }
     },
@@ -9416,9 +9416,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.2,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 14
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 39
       }
     },
     {
@@ -9461,29 +9461,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.9,
-    "env_atk": 0.08,
-    "env_dec": 1.4,
-    "env_sus": 75,
-    "env_rel": 2,
-    "mod_env_dec": 0.6,
+    "env_atk": 0.06,
+    "env_dec": 2.2,
+    "env_sus": 88,
+    "env_rel": 2.5,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 30,
-    "mod_env_rel": 0.72,
+    "mod_env_sus": 84,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 10500,
     "flt_reso": 2.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 4.95,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 3.5,
     "dI": 1.4,
-    "atk": 0.08,
-    "rel": 2,
+    "atk": 0.06,
+    "rel": 2.5,
     "customParam": 4.95,
     "latch": false
   },
@@ -9493,7 +9493,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.5,
         "shape_drive": 1.9,
-        "env_dec": 1.4
+        "env_dec": 2.2
       }
     },
     {
@@ -9507,9 +9507,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.16,
-        "env_dec": 2.52,
-        "env_rel": 3.6,
+        "env_atk": 0.12,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 7875
       }
     },
@@ -9517,9 +9517,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.7,
-        "mod_env_dec": 0.24,
-        "env_sus": 23
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 44
       }
     },
     {
@@ -9537,7 +9537,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.5,
         "shape_drive": 1.9,
-        "env_dec": 1.4
+        "env_dec": 2.2
       }
     },
     {
@@ -9551,9 +9551,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.16,
-        "env_dec": 2.52,
-        "env_rel": 3.6,
+        "env_atk": 0.12,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 7875
       }
     },
@@ -9561,9 +9561,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.7,
-        "mod_env_dec": 0.24,
-        "env_sus": 23
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 44
       }
     },
     {
@@ -9607,28 +9607,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.8,
     "env_atk": 0.001,
-    "env_dec": 0.15,
-    "env_sus": 0,
-    "env_rel": 0.3,
-    "mod_env_dec": 0.04,
+    "env_dec": 1.2,
+    "env_sus": 40,
+    "env_rel": 1,
+    "mod_env_dec": 0.6,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 0,
-    "mod_env_rel": 0.048,
+    "mod_env_sus": 30,
+    "mod_env_rel": 0.8999999999999999,
     "flt_cutoff": 12500,
     "flt_reso": 3.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 5.0249999999999995,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.8,
     "I0": 5.2,
     "dI": 2.2,
     "atk": 0.001,
-    "rel": 0.3,
+    "rel": 1,
     "customParam": 5.0249999999999995,
     "latch": false
   },
@@ -9638,7 +9638,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 2.8,
-        "env_dec": 0.15
+        "env_dec": 1.2
       }
     },
     {
@@ -9653,8 +9653,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.27,
-        "env_rel": 0.54,
+        "env_dec": 2.16,
+        "env_rel": 1.8,
         "flt_cutoff": 9375
       }
     },
@@ -9662,9 +9662,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.075,
-        "mod_env_dec": 0.016,
-        "env_sus": 0
+        "env_dec": 0.6,
+        "mod_env_dec": 0.24,
+        "env_sus": 20
       }
     },
     {
@@ -9682,7 +9682,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 2.8,
-        "env_dec": 0.15
+        "env_dec": 1.2
       }
     },
     {
@@ -9697,8 +9697,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.27,
-        "env_rel": 0.54,
+        "env_dec": 2.16,
+        "env_rel": 1.8,
         "flt_cutoff": 9375
       }
     },
@@ -9706,9 +9706,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.075,
-        "mod_env_dec": 0.016,
-        "env_sus": 0
+        "env_dec": 0.6,
+        "mod_env_dec": 0.24,
+        "env_sus": 20
       }
     },
     {
@@ -9751,29 +9751,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.8,
-    "env_atk": 0.05,
-    "env_dec": 1.2,
-    "env_sus": 70,
-    "env_rel": 1.8,
-    "mod_env_dec": 0.4,
+    "env_atk": 0.04,
+    "env_dec": 2,
+    "env_sus": 88,
+    "env_rel": 2.4,
+    "mod_env_dec": 1.6,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 28,
-    "mod_env_rel": 0.48,
+    "mod_env_sus": 82,
+    "mod_env_rel": 2.4000000000000004,
     "flt_cutoff": 11000,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 5.1,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.618,
     "I0": 3.6,
     "dI": 1.4,
-    "atk": 0.05,
-    "rel": 1.8,
+    "atk": 0.04,
+    "rel": 2.4,
     "customParam": 5.1,
     "latch": false
   },
@@ -9783,7 +9783,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.8,
-        "env_dec": 1.2
+        "env_dec": 2
       }
     },
     {
@@ -9797,9 +9797,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.1,
-        "env_dec": 2.16,
-        "env_rel": 3.24,
+        "env_atk": 0.08,
+        "env_dec": 3.6,
+        "env_rel": 4.32,
         "flt_cutoff": 8250
       }
     },
@@ -9807,9 +9807,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 21
+        "env_dec": 1,
+        "mod_env_dec": 0.6400000000000001,
+        "env_sus": 44
       }
     },
     {
@@ -9827,7 +9827,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.8,
-        "env_dec": 1.2
+        "env_dec": 2
       }
     },
     {
@@ -9841,9 +9841,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.1,
-        "env_dec": 2.16,
-        "env_rel": 3.24,
+        "env_atk": 0.08,
+        "env_dec": 3.6,
+        "env_rel": 4.32,
         "flt_cutoff": 8250
       }
     },
@@ -9851,9 +9851,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 21
+        "env_dec": 1,
+        "mod_env_dec": 0.6400000000000001,
+        "env_sus": 44
       }
     },
     {
@@ -9897,28 +9897,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.2,
     "env_atk": 0.01,
-    "env_dec": 0.7,
-    "env_sus": 78,
-    "env_rel": 1,
-    "mod_env_dec": 0.2,
+    "env_dec": 1.8,
+    "env_sus": 90,
+    "env_rel": 1.8,
+    "mod_env_dec": 1.4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 31,
-    "mod_env_rel": 0.24,
+    "mod_env_sus": 85,
+    "mod_env_rel": 2.0999999999999996,
     "flt_cutoff": 13000,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 5.175,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 4,
     "dI": 1.7,
     "atk": 0.01,
-    "rel": 1,
+    "rel": 1.8,
     "customParam": 5.175,
     "latch": false
   },
@@ -9928,7 +9928,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 2.2,
-        "env_dec": 0.7
+        "env_dec": 1.8
       }
     },
     {
@@ -9943,8 +9943,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.02,
-        "env_dec": 1.26,
-        "env_rel": 1.8,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 9750
       }
     },
@@ -9952,9 +9952,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 23
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 45
       }
     },
     {
@@ -9972,7 +9972,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 2.2,
-        "env_dec": 0.7
+        "env_dec": 1.8
       }
     },
     {
@@ -9987,8 +9987,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.02,
-        "env_dec": 1.26,
-        "env_rel": 1.8,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 9750
       }
     },
@@ -9996,9 +9996,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 23
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 45
       }
     },
     {
@@ -10042,28 +10042,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.7,
     "env_atk": 0.002,
-    "env_dec": 0.35,
-    "env_sus": 10,
-    "env_rel": 0.6,
-    "mod_env_dec": 0.09,
+    "env_dec": 1.6,
+    "env_sus": 50,
+    "env_rel": 1.6,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 4,
-    "mod_env_rel": 0.108,
+    "mod_env_sus": 40,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 12000,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 5.25,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3.14,
     "I0": 3.5,
     "dI": 1.3,
     "atk": 0.002,
-    "rel": 0.6,
+    "rel": 1.6,
     "customParam": 5.25,
     "latch": false
   },
@@ -10073,7 +10073,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.5,
         "shape_drive": 1.7,
-        "env_dec": 0.35
+        "env_dec": 1.6
       }
     },
     {
@@ -10088,8 +10088,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.63,
-        "env_rel": 1.08,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 9000
       }
     },
@@ -10097,9 +10097,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.175,
-        "mod_env_dec": 0.036,
-        "env_sus": 3
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 25
       }
     },
     {
@@ -10117,7 +10117,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.5,
         "shape_drive": 1.7,
-        "env_dec": 0.35
+        "env_dec": 1.6
       }
     },
     {
@@ -10132,8 +10132,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.63,
-        "env_rel": 1.08,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 9000
       }
     },
@@ -10141,9 +10141,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.175,
-        "mod_env_dec": 0.036,
-        "env_sus": 3
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 25
       }
     },
     {
@@ -10187,28 +10187,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2,
     "env_atk": 0.002,
-    "env_dec": 0.32,
-    "env_sus": 40,
-    "env_rel": 0.45,
-    "mod_env_dec": 0.1,
+    "env_dec": 1.4,
+    "env_sus": 78,
+    "env_rel": 1,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 16,
-    "mod_env_rel": 0.12,
+    "mod_env_sus": 70,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 4500,
     "flt_reso": 4.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 5.325,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 4.5,
     "dI": 2.2,
     "atk": 0.002,
-    "rel": 0.45,
+    "rel": 1,
     "customParam": 5.325,
     "latch": false
   },
@@ -10218,7 +10218,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 2,
-        "env_dec": 0.32
+        "env_dec": 1.4
       }
     },
     {
@@ -10233,8 +10233,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.5760000000000001,
-        "env_rel": 0.81,
+        "env_dec": 2.52,
+        "env_rel": 1.8,
         "flt_cutoff": 3375
       }
     },
@@ -10242,9 +10242,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.16,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 12
+        "env_dec": 0.7,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 39
       }
     },
     {
@@ -10262,7 +10262,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 2,
-        "env_dec": 0.32
+        "env_dec": 1.4
       }
     },
     {
@@ -10277,8 +10277,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.5760000000000001,
-        "env_rel": 0.81,
+        "env_dec": 2.52,
+        "env_rel": 1.8,
         "flt_cutoff": 3375
       }
     },
@@ -10286,9 +10286,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.16,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 12
+        "env_dec": 0.7,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 39
       }
     },
     {
@@ -10332,28 +10332,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.8,
     "env_atk": 0.004,
-    "env_dec": 0.6,
-    "env_sus": 75,
-    "env_rel": 0.8,
-    "mod_env_dec": 0.18,
+    "env_dec": 1.8,
+    "env_sus": 88,
+    "env_rel": 1.5,
+    "mod_env_dec": 1.4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 30,
-    "mod_env_rel": 0.216,
+    "mod_env_sus": 82,
+    "mod_env_rel": 2.0999999999999996,
     "flt_cutoff": 11000,
     "flt_reso": 3.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 5.3999999999999995,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.5,
     "I0": 4.8,
     "dI": 2,
     "atk": 0.004,
-    "rel": 0.8,
+    "rel": 1.5,
     "customParam": 5.3999999999999995,
     "latch": false
   },
@@ -10363,7 +10363,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.8,
         "shape_drive": 1.8,
-        "env_dec": 0.6
+        "env_dec": 1.8
       }
     },
     {
@@ -10378,8 +10378,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.008,
-        "env_dec": 1.08,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.7,
         "flt_cutoff": 8250
       }
     },
@@ -10387,9 +10387,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.072,
-        "env_sus": 23
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 44
       }
     },
     {
@@ -10407,7 +10407,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.8,
         "shape_drive": 1.8,
-        "env_dec": 0.6
+        "env_dec": 1.8
       }
     },
     {
@@ -10422,8 +10422,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.008,
-        "env_dec": 1.08,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.7,
         "flt_cutoff": 8250
       }
     },
@@ -10431,9 +10431,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.072,
-        "env_sus": 23
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 44
       }
     },
     {
@@ -10477,28 +10477,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.4,
     "env_atk": 0.003,
-    "env_dec": 0.7,
-    "env_sus": 82,
-    "env_rel": 0.9,
-    "mod_env_dec": 0.2,
+    "env_dec": 1.8,
+    "env_sus": 90,
+    "env_rel": 1.6,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 33,
-    "mod_env_rel": 0.24,
+    "mod_env_sus": 85,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 13500,
     "flt_reso": 3.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 5.475,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.4,
     "I0": 5.5,
     "dI": 2.5,
     "atk": 0.003,
-    "rel": 0.9,
+    "rel": 1.6,
     "customParam": 5.475,
     "latch": false
   },
@@ -10508,7 +10508,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.5,
         "shape_drive": 2.4,
-        "env_dec": 0.7
+        "env_dec": 1.8
       }
     },
     {
@@ -10523,8 +10523,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.26,
-        "env_rel": 1.62,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 10125
       }
     },
@@ -10532,9 +10532,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 25
+        "env_dec": 0.9,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 45
       }
     },
     {
@@ -10552,7 +10552,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.5,
         "shape_drive": 2.4,
-        "env_dec": 0.7
+        "env_dec": 1.8
       }
     },
     {
@@ -10567,8 +10567,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.26,
-        "env_rel": 1.62,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 10125
       }
     },
@@ -10576,9 +10576,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 25
+        "env_dec": 0.9,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 45
       }
     },
     {
@@ -10622,28 +10622,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.6,
     "env_atk": 0.002,
-    "env_dec": 0.35,
-    "env_sus": 50,
-    "env_rel": 0.5,
-    "mod_env_dec": 0.11,
+    "env_dec": 1.4,
+    "env_sus": 80,
+    "env_rel": 1,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 20,
-    "mod_env_rel": 0.132,
+    "mod_env_sus": 72,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 5500,
     "flt_reso": 4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 5.55,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.5,
     "I0": 5,
     "dI": 2.4,
     "atk": 0.002,
-    "rel": 0.5,
+    "rel": 1,
     "customParam": 5.55,
     "latch": false
   },
@@ -10653,7 +10653,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5,
         "shape_drive": 2.6,
-        "env_dec": 0.35
+        "env_dec": 1.4
       }
     },
     {
@@ -10668,8 +10668,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.63,
-        "env_rel": 0.9,
+        "env_dec": 2.52,
+        "env_rel": 1.8,
         "flt_cutoff": 4125
       }
     },
@@ -10677,9 +10677,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.175,
-        "mod_env_dec": 0.044000000000000004,
-        "env_sus": 15
+        "env_dec": 0.7,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 40
       }
     },
     {
@@ -10697,7 +10697,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5,
         "shape_drive": 2.6,
-        "env_dec": 0.35
+        "env_dec": 1.4
       }
     },
     {
@@ -10712,8 +10712,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.63,
-        "env_rel": 0.9,
+        "env_dec": 2.52,
+        "env_rel": 1.8,
         "flt_cutoff": 4125
       }
     },
@@ -10721,9 +10721,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.175,
-        "mod_env_dec": 0.044000000000000004,
-        "env_sus": 15
+        "env_dec": 0.7,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 40
       }
     },
     {
@@ -10767,28 +10767,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 3,
     "env_atk": 0.005,
-    "env_dec": 1,
-    "env_sus": 85,
-    "env_rel": 1.4,
-    "mod_env_dec": 0.3,
+    "env_dec": 2.2,
+    "env_sus": 92,
+    "env_rel": 2.2,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 34,
-    "mod_env_rel": 0.36,
+    "mod_env_sus": 88,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 12000,
     "flt_reso": 3.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 5.625,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.414,
     "I0": 6,
     "dI": 3,
     "atk": 0.005,
-    "rel": 1.4,
+    "rel": 2.2,
     "customParam": 5.625,
     "latch": false
   },
@@ -10798,7 +10798,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 6,
         "shape_drive": 3,
-        "env_dec": 1
+        "env_dec": 2.2
       }
     },
     {
@@ -10813,8 +10813,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.01,
-        "env_dec": 1.8,
-        "env_rel": 2.52,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 9000
       }
     },
@@ -10822,9 +10822,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.5,
-        "mod_env_dec": 0.12,
-        "env_sus": 26
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -10842,7 +10842,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 6,
         "shape_drive": 3,
-        "env_dec": 1
+        "env_dec": 2.2
       }
     },
     {
@@ -10857,8 +10857,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.01,
-        "env_dec": 1.8,
-        "env_rel": 2.52,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 9000
       }
     },
@@ -10866,9 +10866,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.5,
-        "mod_env_dec": 0.12,
-        "env_sus": 26
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -10912,28 +10912,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.9,
     "env_atk": 0.003,
-    "env_dec": 0.5,
-    "env_sus": 65,
-    "env_rel": 0.7,
-    "mod_env_dec": 0.15,
+    "env_dec": 1.6,
+    "env_sus": 84,
+    "env_rel": 1.4,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 26,
-    "mod_env_rel": 0.18,
+    "mod_env_sus": 78,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 9500,
     "flt_reso": 3.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 5.7,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3,
     "I0": 4.2,
     "dI": 1.8,
     "atk": 0.003,
-    "rel": 0.7,
+    "rel": 1.4,
     "customParam": 5.7,
     "latch": false
   },
@@ -10943,7 +10943,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.9,
-        "env_dec": 0.5
+        "env_dec": 1.6
       }
     },
     {
@@ -10958,8 +10958,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.9,
-        "env_rel": 1.26,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.52,
         "flt_cutoff": 7125
       }
     },
@@ -10967,9 +10967,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.06,
-        "env_sus": 20
+        "env_dec": 0.8,
+        "mod_env_dec": 0.48,
+        "env_sus": 42
       }
     },
     {
@@ -10987,7 +10987,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.9,
-        "env_dec": 0.5
+        "env_dec": 1.6
       }
     },
     {
@@ -11002,8 +11002,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.9,
-        "env_rel": 1.26,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.52,
         "flt_cutoff": 7125
       }
     },
@@ -11011,9 +11011,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.06,
-        "env_sus": 20
+        "env_dec": 0.8,
+        "mod_env_dec": 0.48,
+        "env_sus": 42
       }
     },
     {
@@ -11056,29 +11056,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 2.2,
-    "env_atk": 0.4,
-    "env_dec": 3,
-    "env_sus": 94,
-    "env_rel": 4,
-    "mod_env_dec": 2,
+    "env_atk": 0.2,
+    "env_dec": 3.5,
+    "env_sus": 96,
+    "env_rel": 4.5,
+    "mod_env_dec": 3,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 2.4,
+    "mod_env_sus": 94,
+    "mod_env_rel": 4.5,
     "flt_cutoff": 7000,
     "flt_reso": 4.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 5.7749999999999995,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 3,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.5,
     "I0": 3.8,
     "dI": 1.5,
-    "atk": 0.4,
-    "rel": 4,
+    "atk": 0.2,
+    "rel": 4.5,
     "customParam": 5.7749999999999995,
     "latch": false
   },
@@ -11088,7 +11088,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 2.2,
-        "env_dec": 3
+        "env_dec": 3.5
       }
     },
     {
@@ -11102,9 +11102,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.8,
-        "env_dec": 5.4,
-        "env_rel": 7.2,
+        "env_atk": 0.4,
+        "env_dec": 6.3,
+        "env_rel": 8.1,
         "flt_cutoff": 5250
       }
     },
@@ -11112,9 +11112,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.8,
-        "env_sus": 28
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 48
       }
     },
     {
@@ -11132,7 +11132,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 2.2,
-        "env_dec": 3
+        "env_dec": 3.5
       }
     },
     {
@@ -11146,9 +11146,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.8,
-        "env_dec": 5.4,
-        "env_rel": 7.2,
+        "env_atk": 0.4,
+        "env_dec": 6.3,
+        "env_rel": 8.1,
         "flt_cutoff": 5250
       }
     },
@@ -11156,9 +11156,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.8,
-        "env_sus": 28
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 48
       }
     },
     {
@@ -11202,28 +11202,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.8,
     "env_atk": 0.002,
-    "env_dec": 0.4,
-    "env_sus": 48,
-    "env_rel": 0.55,
-    "mod_env_dec": 0.12,
+    "env_dec": 1.4,
+    "env_sus": 80,
+    "env_rel": 1.1,
+    "mod_env_dec": 0.9,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 19,
-    "mod_env_rel": 0.144,
+    "mod_env_sus": 75,
+    "mod_env_rel": 1.35,
     "flt_cutoff": 8000,
     "flt_reso": 3.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 5.85,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 5.2,
     "dI": 2.2,
     "atk": 0.002,
-    "rel": 0.55,
+    "rel": 1.1,
     "customParam": 5.85,
     "latch": false
   },
@@ -11233,7 +11233,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 2.8,
-        "env_dec": 0.4
+        "env_dec": 1.4
       }
     },
     {
@@ -11248,8 +11248,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.7200000000000001,
-        "env_rel": 0.9900000000000001,
+        "env_dec": 2.52,
+        "env_rel": 1.9800000000000002,
         "flt_cutoff": 6000
       }
     },
@@ -11257,9 +11257,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.2,
-        "mod_env_dec": 0.048,
-        "env_sus": 14
+        "env_dec": 0.7,
+        "mod_env_dec": 0.36000000000000004,
+        "env_sus": 40
       }
     },
     {
@@ -11277,7 +11277,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 2.8,
-        "env_dec": 0.4
+        "env_dec": 1.4
       }
     },
     {
@@ -11292,8 +11292,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.7200000000000001,
-        "env_rel": 0.9900000000000001,
+        "env_dec": 2.52,
+        "env_rel": 1.9800000000000002,
         "flt_cutoff": 6000
       }
     },
@@ -11301,9 +11301,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.2,
-        "mod_env_dec": 0.048,
-        "env_sus": 14
+        "env_dec": 0.7,
+        "mod_env_dec": 0.36000000000000004,
+        "env_sus": 40
       }
     },
     {
@@ -11347,28 +11347,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.1,
     "env_atk": 0.002,
-    "env_dec": 0.45,
-    "env_sus": 30,
-    "env_rel": 0.7,
-    "mod_env_dec": 0.14,
+    "env_dec": 1.6,
+    "env_sus": 65,
+    "env_rel": 1.4,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 12,
-    "mod_env_rel": 0.168,
+    "mod_env_sus": 55,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 10500,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 5.925,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.5,
     "I0": 4,
     "dI": 1.7,
     "atk": 0.002,
-    "rel": 0.7,
+    "rel": 1.4,
     "customParam": 5.925,
     "latch": false
   },
@@ -11378,7 +11378,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 2.1,
-        "env_dec": 0.45
+        "env_dec": 1.6
       }
     },
     {
@@ -11393,8 +11393,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.81,
-        "env_rel": 1.26,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.52,
         "flt_cutoff": 7875
       }
     },
@@ -11402,9 +11402,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.225,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 9
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 33
       }
     },
     {
@@ -11422,7 +11422,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 2.1,
-        "env_dec": 0.45
+        "env_dec": 1.6
       }
     },
     {
@@ -11437,8 +11437,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.81,
-        "env_rel": 1.26,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.52,
         "flt_cutoff": 7875
       }
     },
@@ -11446,9 +11446,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.225,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 9
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 33
       }
     },
     {
@@ -11492,28 +11492,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2,
     "env_atk": 0.015,
-    "env_dec": 0.8,
-    "env_sus": 80,
-    "env_rel": 1.2,
-    "mod_env_dec": 0.25,
+    "env_dec": 2,
+    "env_sus": 90,
+    "env_rel": 1.8,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 32,
-    "mod_env_rel": 0.3,
+    "mod_env_sus": 85,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 12500,
     "flt_reso": 3.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 6,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 4.6,
     "dI": 2,
     "atk": 0.015,
-    "rel": 1.2,
+    "rel": 1.8,
     "customParam": 6,
     "latch": false
   },
@@ -11523,7 +11523,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.6,
         "shape_drive": 2,
-        "env_dec": 0.8
+        "env_dec": 2
       }
     },
     {
@@ -11538,8 +11538,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.03,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 2.16,
+        "env_dec": 3.6,
+        "env_rel": 3.24,
         "flt_cutoff": 9375
       }
     },
@@ -11547,9 +11547,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.1,
-        "env_sus": 24
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 45
       }
     },
     {
@@ -11567,7 +11567,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.6,
         "shape_drive": 2,
-        "env_dec": 0.8
+        "env_dec": 2
       }
     },
     {
@@ -11582,8 +11582,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.03,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 2.16,
+        "env_dec": 3.6,
+        "env_rel": 3.24,
         "flt_cutoff": 9375
       }
     },
@@ -11591,9 +11591,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.1,
-        "env_sus": 24
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 45
       }
     },
     {
@@ -11636,29 +11636,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.4,
-    "env_atk": 0.5,
-    "env_dec": 3.5,
-    "env_sus": 95,
-    "env_rel": 5,
-    "mod_env_dec": 2.5,
+    "env_atk": 0.3,
+    "env_dec": 4,
+    "env_sus": 96,
+    "env_rel": 5.5,
+    "mod_env_dec": 3.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 3,
+    "mod_env_sus": 94,
+    "mod_env_rel": 5.25,
     "flt_cutoff": 8500,
     "flt_reso": 2.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.075,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 3.6,
     "dI": 1.6,
-    "atk": 0.5,
-    "rel": 5,
+    "atk": 0.3,
+    "rel": 5.5,
     "customParam": 6.075,
     "latch": false
   },
@@ -11668,7 +11668,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.4,
-        "env_dec": 3.5
+        "env_dec": 4
       }
     },
     {
@@ -11682,9 +11682,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1,
-        "env_dec": 6.3,
-        "env_rel": 9,
+        "env_atk": 0.6,
+        "env_dec": 7.2,
+        "env_rel": 9.9,
         "flt_cutoff": 6375
       }
     },
@@ -11692,9 +11692,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.75,
-        "mod_env_dec": 1,
-        "env_sus": 29
+        "env_dec": 2,
+        "mod_env_dec": 1.4000000000000001,
+        "env_sus": 48
       }
     },
     {
@@ -11712,7 +11712,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.4,
-        "env_dec": 3.5
+        "env_dec": 4
       }
     },
     {
@@ -11726,9 +11726,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1,
-        "env_dec": 6.3,
-        "env_rel": 9,
+        "env_atk": 0.6,
+        "env_dec": 7.2,
+        "env_rel": 9.9,
         "flt_cutoff": 6375
       }
     },
@@ -11736,9 +11736,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.75,
-        "mod_env_dec": 1,
-        "env_sus": 29
+        "env_dec": 2,
+        "mod_env_dec": 1.4000000000000001,
+        "env_sus": 48
       }
     },
     {
@@ -11781,29 +11781,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.5,
-    "env_atk": 0.4,
-    "env_dec": 3,
-    "env_sus": 92,
-    "env_rel": 4.5,
-    "mod_env_dec": 2.2,
+    "env_atk": 0.25,
+    "env_dec": 3.5,
+    "env_sus": 95,
+    "env_rel": 5,
+    "mod_env_dec": 3,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 37,
-    "mod_env_rel": 2.64,
+    "mod_env_sus": 92,
+    "mod_env_rel": 4.5,
     "flt_cutoff": 9500,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.1499999999999995,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.618,
     "I0": 4,
     "dI": 1.8,
-    "atk": 0.4,
-    "rel": 4.5,
+    "atk": 0.25,
+    "rel": 5,
     "customParam": 6.1499999999999995,
     "latch": false
   },
@@ -11813,7 +11813,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 1.5,
-        "env_dec": 3
+        "env_dec": 3.5
       }
     },
     {
@@ -11827,9 +11827,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.8,
-        "env_dec": 5.4,
-        "env_rel": 8.1,
+        "env_atk": 0.5,
+        "env_dec": 6.3,
+        "env_rel": 9,
         "flt_cutoff": 7125
       }
     },
@@ -11837,9 +11837,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.8800000000000001,
-        "env_sus": 28
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 48
       }
     },
     {
@@ -11857,7 +11857,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 1.5,
-        "env_dec": 3
+        "env_dec": 3.5
       }
     },
     {
@@ -11871,9 +11871,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.8,
-        "env_dec": 5.4,
-        "env_rel": 8.1,
+        "env_atk": 0.5,
+        "env_dec": 6.3,
+        "env_rel": 9,
         "flt_cutoff": 7125
       }
     },
@@ -11881,9 +11881,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.8800000000000001,
-        "env_sus": 28
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 48
       }
     },
     {
@@ -11927,28 +11927,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.8,
     "env_atk": 0.003,
-    "env_dec": 0.7,
-    "env_sus": 30,
-    "env_rel": 1.5,
-    "mod_env_dec": 0.18,
+    "env_dec": 2,
+    "env_sus": 60,
+    "env_rel": 2,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 12,
-    "mod_env_rel": 0.216,
+    "mod_env_sus": 50,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 11000,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.225,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.72,
     "I0": 4.5,
     "dI": 2,
     "atk": 0.003,
-    "rel": 1.5,
+    "rel": 2,
     "customParam": 6.225,
     "latch": false
   },
@@ -11958,7 +11958,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 1.8,
-        "env_dec": 0.7
+        "env_dec": 2
       }
     },
     {
@@ -11973,8 +11973,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.26,
-        "env_rel": 2.7,
+        "env_dec": 3.6,
+        "env_rel": 3.6,
         "flt_cutoff": 8250
       }
     },
@@ -11982,9 +11982,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.072,
-        "env_sus": 9
+        "env_dec": 1,
+        "mod_env_dec": 0.48,
+        "env_sus": 30
       }
     },
     {
@@ -12002,7 +12002,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 1.8,
-        "env_dec": 0.7
+        "env_dec": 2
       }
     },
     {
@@ -12017,8 +12017,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.26,
-        "env_rel": 2.7,
+        "env_dec": 3.6,
+        "env_rel": 3.6,
         "flt_cutoff": 8250
       }
     },
@@ -12026,9 +12026,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.072,
-        "env_sus": 9
+        "env_dec": 1,
+        "mod_env_dec": 0.48,
+        "env_sus": 30
       }
     },
     {
@@ -12071,29 +12071,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.6,
-    "env_atk": 0.6,
-    "env_dec": 4,
-    "env_sus": 96,
-    "env_rel": 6,
-    "mod_env_dec": 3,
+    "env_atk": 0.4,
+    "env_dec": 4.5,
+    "env_sus": 98,
+    "env_rel": 6.5,
+    "mod_env_dec": 4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 3.5999999999999996,
+    "mod_env_sus": 96,
+    "mod_env_rel": 6,
     "flt_cutoff": 6000,
     "flt_reso": 3.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.3,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 3,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.5,
     "I0": 3.8,
     "dI": 1.5,
-    "atk": 0.6,
-    "rel": 6,
+    "atk": 0.4,
+    "rel": 6.5,
     "customParam": 6.3,
     "latch": false
   },
@@ -12103,7 +12103,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.6,
-        "env_dec": 4
+        "env_dec": 4.5
       }
     },
     {
@@ -12117,9 +12117,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.2,
-        "env_dec": 7.2,
-        "env_rel": 10.8,
+        "env_atk": 0.8,
+        "env_dec": 8.1,
+        "env_rel": 11.700000000000001,
         "flt_cutoff": 4500
       }
     },
@@ -12127,9 +12127,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 2,
-        "mod_env_dec": 1.2000000000000002,
-        "env_sus": 29
+        "env_dec": 2.25,
+        "mod_env_dec": 1.6,
+        "env_sus": 49
       }
     },
     {
@@ -12147,7 +12147,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.6,
-        "env_dec": 4
+        "env_dec": 4.5
       }
     },
     {
@@ -12161,9 +12161,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.2,
-        "env_dec": 7.2,
-        "env_rel": 10.8,
+        "env_atk": 0.8,
+        "env_dec": 8.1,
+        "env_rel": 11.700000000000001,
         "flt_cutoff": 4500
       }
     },
@@ -12171,9 +12171,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 2,
-        "mod_env_dec": 1.2000000000000002,
-        "env_sus": 29
+        "env_dec": 2.25,
+        "mod_env_dec": 1.6,
+        "env_sus": 49
       }
     },
     {
@@ -12216,29 +12216,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.3,
-    "env_atk": 0.1,
-    "env_dec": 2,
-    "env_sus": 88,
-    "env_rel": 3,
-    "mod_env_dec": 1.5,
+    "env_atk": 0.08,
+    "env_dec": 2.5,
+    "env_sus": 92,
+    "env_rel": 3.5,
+    "mod_env_dec": 2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 35,
-    "mod_env_rel": 1.7999999999999998,
+    "mod_env_sus": 88,
+    "mod_env_rel": 3,
     "flt_cutoff": 10000,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.375,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.25,
     "I0": 3.2,
     "dI": 1.3,
-    "atk": 0.1,
-    "rel": 3,
+    "atk": 0.08,
+    "rel": 3.5,
     "customParam": 6.375,
     "latch": false
   },
@@ -12248,7 +12248,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.2,
         "shape_drive": 1.3,
-        "env_dec": 2
+        "env_dec": 2.5
       }
     },
     {
@@ -12262,9 +12262,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.2,
-        "env_dec": 3.6,
-        "env_rel": 5.4,
+        "env_atk": 0.16,
+        "env_dec": 4.5,
+        "env_rel": 6.3,
         "flt_cutoff": 7500
       }
     },
@@ -12272,9 +12272,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1,
-        "mod_env_dec": 0.6000000000000001,
-        "env_sus": 26
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 46
       }
     },
     {
@@ -12292,7 +12292,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.2,
         "shape_drive": 1.3,
-        "env_dec": 2
+        "env_dec": 2.5
       }
     },
     {
@@ -12306,9 +12306,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.2,
-        "env_dec": 3.6,
-        "env_rel": 5.4,
+        "env_atk": 0.16,
+        "env_dec": 4.5,
+        "env_rel": 6.3,
         "flt_cutoff": 7500
       }
     },
@@ -12316,9 +12316,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1,
-        "mod_env_dec": 0.6000000000000001,
-        "env_sus": 26
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 46
       }
     },
     {
@@ -12362,28 +12362,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.6,
     "env_atk": 0.01,
-    "env_dec": 0.9,
-    "env_sus": 78,
-    "env_rel": 1.4,
-    "mod_env_dec": 0.25,
+    "env_dec": 2,
+    "env_sus": 88,
+    "env_rel": 1.8,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 31,
-    "mod_env_rel": 0.3,
+    "mod_env_sus": 82,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 12000,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.45,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3,
     "I0": 4.2,
     "dI": 1.9,
     "atk": 0.01,
-    "rel": 1.4,
+    "rel": 1.8,
     "customParam": 6.45,
     "latch": false
   },
@@ -12393,7 +12393,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.6,
-        "env_dec": 0.9
+        "env_dec": 2
       }
     },
     {
@@ -12408,8 +12408,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.02,
-        "env_dec": 1.62,
-        "env_rel": 2.52,
+        "env_dec": 3.6,
+        "env_rel": 3.24,
         "flt_cutoff": 9000
       }
     },
@@ -12417,9 +12417,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "mod_env_dec": 0.1,
-        "env_sus": 23
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 44
       }
     },
     {
@@ -12437,7 +12437,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.6,
-        "env_dec": 0.9
+        "env_dec": 2
       }
     },
     {
@@ -12452,8 +12452,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.02,
-        "env_dec": 1.62,
-        "env_rel": 2.52,
+        "env_dec": 3.6,
+        "env_rel": 3.24,
         "flt_cutoff": 9000
       }
     },
@@ -12461,9 +12461,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "mod_env_dec": 0.1,
-        "env_sus": 23
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 44
       }
     },
     {
@@ -12506,29 +12506,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.7,
-    "env_atk": 0.3,
-    "env_dec": 2.8,
-    "env_sus": 90,
-    "env_rel": 4,
-    "mod_env_dec": 2,
+    "env_atk": 0.2,
+    "env_dec": 3.2,
+    "env_sus": 94,
+    "env_rel": 4.5,
+    "mod_env_dec": 2.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 36,
-    "mod_env_rel": 2.4,
+    "mod_env_sus": 90,
+    "mod_env_rel": 4.199999999999999,
     "flt_cutoff": 7500,
     "flt_reso": 3.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.5249999999999995,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 3,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.75,
     "I0": 4,
     "dI": 1.7,
-    "atk": 0.3,
-    "rel": 4,
+    "atk": 0.2,
+    "rel": 4.5,
     "customParam": 6.5249999999999995,
     "latch": false
   },
@@ -12538,7 +12538,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 1.7,
-        "env_dec": 2.8
+        "env_dec": 3.2
       }
     },
     {
@@ -12552,9 +12552,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.6,
-        "env_dec": 5.04,
-        "env_rel": 7.2,
+        "env_atk": 0.4,
+        "env_dec": 5.760000000000001,
+        "env_rel": 8.1,
         "flt_cutoff": 5625
       }
     },
@@ -12562,9 +12562,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.4,
-        "mod_env_dec": 0.8,
-        "env_sus": 27
+        "env_dec": 1.6,
+        "mod_env_dec": 1.1199999999999999,
+        "env_sus": 47
       }
     },
     {
@@ -12582,7 +12582,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 1.7,
-        "env_dec": 2.8
+        "env_dec": 3.2
       }
     },
     {
@@ -12596,9 +12596,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.6,
-        "env_dec": 5.04,
-        "env_rel": 7.2,
+        "env_atk": 0.4,
+        "env_dec": 5.760000000000001,
+        "env_rel": 8.1,
         "flt_cutoff": 5625
       }
     },
@@ -12606,9 +12606,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.4,
-        "mod_env_dec": 0.8,
-        "env_sus": 27
+        "env_dec": 1.6,
+        "mod_env_dec": 1.1199999999999999,
+        "env_sus": 47
       }
     },
     {
@@ -12652,28 +12652,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.2,
     "env_atk": 0.002,
-    "env_dec": 0.5,
-    "env_sus": 40,
-    "env_rel": 0.9,
-    "mod_env_dec": 0.12,
+    "env_dec": 1.8,
+    "env_sus": 70,
+    "env_rel": 1.8,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 16,
-    "mod_env_rel": 0.144,
+    "mod_env_sus": 60,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 13000,
     "flt_reso": 3.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.6,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 4.5,
     "I0": 5.2,
     "dI": 2.4,
     "atk": 0.002,
-    "rel": 0.9,
+    "rel": 1.8,
     "customParam": 6.6,
     "latch": false
   },
@@ -12683,7 +12683,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 2.2,
-        "env_dec": 0.5
+        "env_dec": 1.8
       }
     },
     {
@@ -12698,8 +12698,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.9,
-        "env_rel": 1.62,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 9750
       }
     },
@@ -12707,9 +12707,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.048,
-        "env_sus": 12
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 35
       }
     },
     {
@@ -12727,7 +12727,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 2.2,
-        "env_dec": 0.5
+        "env_dec": 1.8
       }
     },
     {
@@ -12742,8 +12742,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.9,
-        "env_rel": 1.62,
+        "env_dec": 3.24,
+        "env_rel": 3.24,
         "flt_cutoff": 9750
       }
     },
@@ -12751,9 +12751,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.048,
-        "env_sus": 12
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 35
       }
     },
     {
@@ -12796,29 +12796,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.1,
-    "env_atk": 0.5,
-    "env_dec": 3.2,
-    "env_sus": 94,
-    "env_rel": 5.5,
-    "mod_env_dec": 2.5,
+    "env_atk": 0.3,
+    "env_dec": 3.5,
+    "env_sus": 96,
+    "env_rel": 5.8,
+    "mod_env_dec": 3,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 3,
+    "mod_env_sus": 94,
+    "mod_env_rel": 4.5,
     "flt_cutoff": 9000,
     "flt_reso": 1.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.675,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.003,
     "I0": 2.2,
     "dI": 0.9,
-    "atk": 0.5,
-    "rel": 5.5,
+    "atk": 0.3,
+    "rel": 5.8,
     "customParam": 6.675,
     "latch": false
   },
@@ -12828,7 +12828,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.2,
         "shape_drive": 1.1,
-        "env_dec": 3.2
+        "env_dec": 3.5
       }
     },
     {
@@ -12842,9 +12842,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1,
-        "env_dec": 5.760000000000001,
-        "env_rel": 9.9,
+        "env_atk": 0.6,
+        "env_dec": 6.3,
+        "env_rel": 10.44,
         "flt_cutoff": 6750
       }
     },
@@ -12852,9 +12852,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.6,
-        "mod_env_dec": 1,
-        "env_sus": 28
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 48
       }
     },
     {
@@ -12872,7 +12872,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.2,
         "shape_drive": 1.1,
-        "env_dec": 3.2
+        "env_dec": 3.5
       }
     },
     {
@@ -12886,9 +12886,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1,
-        "env_dec": 5.760000000000001,
-        "env_rel": 9.9,
+        "env_atk": 0.6,
+        "env_dec": 6.3,
+        "env_rel": 10.44,
         "flt_cutoff": 6750
       }
     },
@@ -12896,9 +12896,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.6,
-        "mod_env_dec": 1,
-        "env_sus": 28
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 48
       }
     },
     {
@@ -12942,28 +12942,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.9,
     "env_atk": 0.02,
-    "env_dec": 1.2,
-    "env_sus": 82,
-    "env_rel": 1.8,
-    "mod_env_dec": 0.35,
+    "env_dec": 2.2,
+    "env_sus": 90,
+    "env_rel": 2.2,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 33,
-    "mod_env_rel": 0.42,
+    "mod_env_sus": 85,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 11500,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.75,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 4.8,
     "dI": 2.2,
     "atk": 0.02,
-    "rel": 1.8,
+    "rel": 2.2,
     "customParam": 6.75,
     "latch": false
   },
@@ -12973,7 +12973,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.8,
         "shape_drive": 1.9,
-        "env_dec": 1.2
+        "env_dec": 2.2
       }
     },
     {
@@ -12988,8 +12988,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.04,
-        "env_dec": 2.16,
-        "env_rel": 3.24,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 8625
       }
     },
@@ -12997,9 +12997,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.13999999999999999,
-        "env_sus": 25
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 45
       }
     },
     {
@@ -13017,7 +13017,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.8,
         "shape_drive": 1.9,
-        "env_dec": 1.2
+        "env_dec": 2.2
       }
     },
     {
@@ -13032,8 +13032,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.04,
-        "env_dec": 2.16,
-        "env_rel": 3.24,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 8625
       }
     },
@@ -13041,9 +13041,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.13999999999999999,
-        "env_sus": 25
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 45
       }
     },
     {
@@ -13087,28 +13087,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.8,
     "env_atk": 0.004,
-    "env_dec": 0.7,
-    "env_sus": 84,
-    "env_rel": 1.1,
-    "mod_env_dec": 0.18,
+    "env_dec": 1.8,
+    "env_sus": 90,
+    "env_rel": 1.6,
+    "mod_env_dec": 1.4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 34,
-    "mod_env_rel": 0.216,
+    "mod_env_sus": 85,
+    "mod_env_rel": 2.0999999999999996,
     "flt_cutoff": 13000,
     "flt_reso": 3.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.825,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 5,
     "dI": 2.4,
     "atk": 0.004,
-    "rel": 1.1,
+    "rel": 1.6,
     "customParam": 6.825,
     "latch": false
   },
@@ -13118,7 +13118,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5,
         "shape_drive": 2.8,
-        "env_dec": 0.7
+        "env_dec": 1.8
       }
     },
     {
@@ -13133,8 +13133,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.008,
-        "env_dec": 1.26,
-        "env_rel": 1.9800000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 9750
       }
     },
@@ -13142,9 +13142,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.072,
-        "env_sus": 25
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 45
       }
     },
     {
@@ -13162,7 +13162,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5,
         "shape_drive": 2.8,
-        "env_dec": 0.7
+        "env_dec": 1.8
       }
     },
     {
@@ -13177,8 +13177,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.008,
-        "env_dec": 1.26,
-        "env_rel": 1.9800000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 9750
       }
     },
@@ -13186,9 +13186,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.072,
-        "env_sus": 25
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 45
       }
     },
     {
@@ -13232,28 +13232,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 3.2,
     "env_atk": 0.003,
-    "env_dec": 0.45,
-    "env_sus": 60,
-    "env_rel": 0.6,
-    "mod_env_dec": 0.12,
+    "env_dec": 1.8,
+    "env_sus": 85,
+    "env_rel": 1.2,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 24,
-    "mod_env_rel": 0.144,
+    "mod_env_sus": 80,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 6500,
     "flt_reso": 4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.8999999999999995,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.5,
     "I0": 5.4,
     "dI": 2.6,
     "atk": 0.003,
-    "rel": 0.6,
+    "rel": 1.2,
     "customParam": 6.8999999999999995,
     "latch": false
   },
@@ -13263,7 +13263,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.4,
         "shape_drive": 3.2,
-        "env_dec": 0.45
+        "env_dec": 1.8
       }
     },
     {
@@ -13278,8 +13278,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.81,
-        "env_rel": 1.08,
+        "env_dec": 3.24,
+        "env_rel": 2.16,
         "flt_cutoff": 4875
       }
     },
@@ -13287,9 +13287,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.225,
-        "mod_env_dec": 0.048,
-        "env_sus": 18
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 43
       }
     },
     {
@@ -13307,7 +13307,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.4,
         "shape_drive": 3.2,
-        "env_dec": 0.45
+        "env_dec": 1.8
       }
     },
     {
@@ -13322,8 +13322,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.81,
-        "env_rel": 1.08,
+        "env_dec": 3.24,
+        "env_rel": 2.16,
         "flt_cutoff": 4875
       }
     },
@@ -13331,9 +13331,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.225,
-        "mod_env_dec": 0.048,
-        "env_sus": 18
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 43
       }
     },
     {
@@ -13377,28 +13377,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 3.5,
     "env_atk": 0.001,
-    "env_dec": 0.35,
-    "env_sus": 10,
-    "env_rel": 0.5,
-    "mod_env_dec": 0.06,
+    "env_dec": 1.8,
+    "env_sus": 50,
+    "env_rel": 1.5,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 4,
-    "mod_env_rel": 0.072,
+    "mod_env_sus": 40,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 12000,
     "flt_reso": 3.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 6.975,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3.14,
     "I0": 6.2,
     "dI": 3,
     "atk": 0.001,
-    "rel": 0.5,
+    "rel": 1.5,
     "customParam": 6.975,
     "latch": false
   },
@@ -13408,7 +13408,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 6.2,
         "shape_drive": 3.5,
-        "env_dec": 0.35
+        "env_dec": 1.8
       }
     },
     {
@@ -13423,8 +13423,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.63,
-        "env_rel": 0.9,
+        "env_dec": 3.24,
+        "env_rel": 2.7,
         "flt_cutoff": 9000
       }
     },
@@ -13432,9 +13432,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.175,
-        "mod_env_dec": 0.024,
-        "env_sus": 3
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 25
       }
     },
     {
@@ -13452,7 +13452,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 6.2,
         "shape_drive": 3.5,
-        "env_dec": 0.35
+        "env_dec": 1.8
       }
     },
     {
@@ -13467,8 +13467,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.63,
-        "env_rel": 0.9,
+        "env_dec": 3.24,
+        "env_rel": 2.7,
         "flt_cutoff": 9000
       }
     },
@@ -13476,9 +13476,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.175,
-        "mod_env_dec": 0.024,
-        "env_sus": 3
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 25
       }
     },
     {
@@ -13522,28 +13522,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.4,
     "env_atk": 0.002,
-    "env_dec": 0.4,
-    "env_sus": 25,
-    "env_rel": 0.7,
-    "mod_env_dec": 0.1,
+    "env_dec": 1.6,
+    "env_sus": 60,
+    "env_rel": 1.5,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 10,
-    "mod_env_rel": 0.12,
+    "mod_env_sus": 50,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 13500,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.05,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.5,
     "I0": 4.6,
     "dI": 2,
     "atk": 0.002,
-    "rel": 0.7,
+    "rel": 1.5,
     "customParam": 7.05,
     "latch": false
   },
@@ -13553,7 +13553,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.6,
         "shape_drive": 2.4,
-        "env_dec": 0.4
+        "env_dec": 1.6
       }
     },
     {
@@ -13568,8 +13568,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.7200000000000001,
-        "env_rel": 1.26,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.7,
         "flt_cutoff": 10125
       }
     },
@@ -13577,9 +13577,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.2,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 8
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 30
       }
     },
     {
@@ -13597,7 +13597,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.6,
         "shape_drive": 2.4,
-        "env_dec": 0.4
+        "env_dec": 1.6
       }
     },
     {
@@ -13612,8 +13612,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.7200000000000001,
-        "env_rel": 1.26,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.7,
         "flt_cutoff": 10125
       }
     },
@@ -13621,9 +13621,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.2,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 8
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 30
       }
     },
     {
@@ -13666,29 +13666,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.8,
-    "env_atk": 0.25,
-    "env_dec": 2.5,
-    "env_sus": 88,
-    "env_rel": 3.5,
-    "mod_env_dec": 1.5,
+    "env_atk": 0.18,
+    "env_dec": 3,
+    "env_sus": 94,
+    "env_rel": 4,
+    "mod_env_dec": 2.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 35,
-    "mod_env_rel": 1.7999999999999998,
+    "mod_env_sus": 90,
+    "mod_env_rel": 3.75,
     "flt_cutoff": 9500,
     "flt_reso": 2.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.125,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.003,
     "I0": 4.2,
     "dI": 1.8,
-    "atk": 0.25,
-    "rel": 3.5,
+    "atk": 0.18,
+    "rel": 4,
     "customParam": 7.125,
     "latch": false
   },
@@ -13698,7 +13698,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.8,
-        "env_dec": 2.5
+        "env_dec": 3
       }
     },
     {
@@ -13712,9 +13712,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.5,
-        "env_dec": 4.5,
-        "env_rel": 6.3,
+        "env_atk": 0.36,
+        "env_dec": 5.4,
+        "env_rel": 7.2,
         "flt_cutoff": 7125
       }
     },
@@ -13722,9 +13722,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.25,
-        "mod_env_dec": 0.6000000000000001,
-        "env_sus": 26
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 47
       }
     },
     {
@@ -13742,7 +13742,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.8,
-        "env_dec": 2.5
+        "env_dec": 3
       }
     },
     {
@@ -13756,9 +13756,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.5,
-        "env_dec": 4.5,
-        "env_rel": 6.3,
+        "env_atk": 0.36,
+        "env_dec": 5.4,
+        "env_rel": 7.2,
         "flt_cutoff": 7125
       }
     },
@@ -13766,9 +13766,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.25,
-        "mod_env_dec": 0.6000000000000001,
-        "env_sus": 26
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 47
       }
     },
     {
@@ -13812,28 +13812,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.2,
     "env_atk": 0.001,
-    "env_dec": 0.12,
-    "env_sus": 0,
-    "env_rel": 0.2,
-    "mod_env_dec": 0.03,
+    "env_dec": 1.2,
+    "env_sus": 45,
+    "env_rel": 1,
+    "mod_env_dec": 0.6,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 0,
-    "mod_env_rel": 0.036,
+    "mod_env_sus": 35,
+    "mod_env_rel": 0.8999999999999999,
     "flt_cutoff": 15000,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.199999999999999,
     "op_wave": 2,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 4,
     "I0": 3.5,
     "dI": 1.2,
     "atk": 0.001,
-    "rel": 0.2,
+    "rel": 1,
     "customParam": 7.199999999999999,
     "latch": false
   },
@@ -13843,7 +13843,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.5,
         "shape_drive": 1.2,
-        "env_dec": 0.12
+        "env_dec": 1.2
       }
     },
     {
@@ -13858,8 +13858,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.216,
-        "env_rel": 0.36000000000000004,
+        "env_dec": 2.16,
+        "env_rel": 1.8,
         "flt_cutoff": 11250
       }
     },
@@ -13867,9 +13867,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.06,
-        "mod_env_dec": 0.012,
-        "env_sus": 0
+        "env_dec": 0.6,
+        "mod_env_dec": 0.24,
+        "env_sus": 23
       }
     },
     {
@@ -13887,7 +13887,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.5,
         "shape_drive": 1.2,
-        "env_dec": 0.12
+        "env_dec": 1.2
       }
     },
     {
@@ -13902,8 +13902,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.216,
-        "env_rel": 0.36000000000000004,
+        "env_dec": 2.16,
+        "env_rel": 1.8,
         "flt_cutoff": 11250
       }
     },
@@ -13911,9 +13911,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.06,
-        "mod_env_dec": 0.012,
-        "env_sus": 0
+        "env_dec": 0.6,
+        "mod_env_dec": 0.24,
+        "env_sus": 23
       }
     },
     {
@@ -13957,28 +13957,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.2,
     "env_atk": 0.002,
-    "env_dec": 0.38,
-    "env_sus": 50,
-    "env_rel": 0.48,
-    "mod_env_dec": 0.11,
+    "env_dec": 1.5,
+    "env_sus": 80,
+    "env_rel": 1.1,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 20,
-    "mod_env_rel": 0.132,
+    "mod_env_sus": 75,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 7500,
     "flt_reso": 3.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.2749999999999995,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 4.5,
     "dI": 2,
     "atk": 0.002,
-    "rel": 0.48,
+    "rel": 1.1,
     "customParam": 7.2749999999999995,
     "latch": false
   },
@@ -13988,7 +13988,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 2.2,
-        "env_dec": 0.38
+        "env_dec": 1.5
       }
     },
     {
@@ -14003,8 +14003,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.684,
-        "env_rel": 0.864,
+        "env_dec": 2.7,
+        "env_rel": 1.9800000000000002,
         "flt_cutoff": 5625
       }
     },
@@ -14012,9 +14012,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.19,
-        "mod_env_dec": 0.044000000000000004,
-        "env_sus": 15
+        "env_dec": 0.75,
+        "mod_env_dec": 0.4,
+        "env_sus": 40
       }
     },
     {
@@ -14032,7 +14032,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 2.2,
-        "env_dec": 0.38
+        "env_dec": 1.5
       }
     },
     {
@@ -14047,8 +14047,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.684,
-        "env_rel": 0.864,
+        "env_dec": 2.7,
+        "env_rel": 1.9800000000000002,
         "flt_cutoff": 5625
       }
     },
@@ -14056,9 +14056,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.19,
-        "mod_env_dec": 0.044000000000000004,
-        "env_sus": 15
+        "env_dec": 0.75,
+        "mod_env_dec": 0.4,
+        "env_sus": 40
       }
     },
     {
@@ -14102,28 +14102,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 3.8,
     "env_atk": 0.001,
-    "env_dec": 0.3,
-    "env_sus": 5,
-    "env_rel": 0.45,
-    "mod_env_dec": 0.07,
+    "env_dec": 1.5,
+    "env_sus": 50,
+    "env_rel": 1.2,
+    "mod_env_dec": 0.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 2,
-    "mod_env_rel": 0.084,
+    "mod_env_sus": 40,
+    "mod_env_rel": 1.2000000000000002,
     "flt_cutoff": 5000,
     "flt_reso": 4.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.35,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -2,
     "lfo": 0.25,
     "ratio": 1.5,
     "I0": 6,
     "dI": 2.8,
     "atk": 0.001,
-    "rel": 0.45,
+    "rel": 1.2,
     "customParam": 7.35,
     "latch": false
   },
@@ -14133,7 +14133,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 6,
         "shape_drive": 3.8,
-        "env_dec": 0.3
+        "env_dec": 1.5
       }
     },
     {
@@ -14148,8 +14148,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.54,
-        "env_rel": 0.81,
+        "env_dec": 2.7,
+        "env_rel": 2.16,
         "flt_cutoff": 3750
       }
     },
@@ -14157,9 +14157,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.15,
-        "mod_env_dec": 0.028000000000000004,
-        "env_sus": 2
+        "env_dec": 0.75,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 25
       }
     },
     {
@@ -14177,7 +14177,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 6,
         "shape_drive": 3.8,
-        "env_dec": 0.3
+        "env_dec": 1.5
       }
     },
     {
@@ -14192,8 +14192,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.54,
-        "env_rel": 0.81,
+        "env_dec": 2.7,
+        "env_rel": 2.16,
         "flt_cutoff": 3750
       }
     },
@@ -14201,9 +14201,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.15,
-        "mod_env_dec": 0.028000000000000004,
-        "env_sus": 2
+        "env_dec": 0.75,
+        "mod_env_dec": 0.32000000000000006,
+        "env_sus": 25
       }
     },
     {
@@ -14246,29 +14246,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.3,
-    "env_atk": 0.35,
-    "env_dec": 3,
-    "env_sus": 92,
-    "env_rel": 4.5,
-    "mod_env_dec": 2,
+    "env_atk": 0.25,
+    "env_dec": 3.5,
+    "env_sus": 96,
+    "env_rel": 5,
+    "mod_env_dec": 3,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 37,
-    "mod_env_rel": 2.4,
+    "mod_env_sus": 94,
+    "mod_env_rel": 4.5,
     "flt_cutoff": 11000,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.425,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.002,
     "I0": 2.8,
     "dI": 1.1,
-    "atk": 0.35,
-    "rel": 4.5,
+    "atk": 0.25,
+    "rel": 5,
     "customParam": 7.425,
     "latch": false
   },
@@ -14278,7 +14278,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1.3,
-        "env_dec": 3
+        "env_dec": 3.5
       }
     },
     {
@@ -14292,9 +14292,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.7,
-        "env_dec": 5.4,
-        "env_rel": 8.1,
+        "env_atk": 0.5,
+        "env_dec": 6.3,
+        "env_rel": 9,
         "flt_cutoff": 8250
       }
     },
@@ -14302,9 +14302,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.8,
-        "env_sus": 28
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 48
       }
     },
     {
@@ -14322,7 +14322,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1.3,
-        "env_dec": 3
+        "env_dec": 3.5
       }
     },
     {
@@ -14336,9 +14336,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.7,
-        "env_dec": 5.4,
-        "env_rel": 8.1,
+        "env_atk": 0.5,
+        "env_dec": 6.3,
+        "env_rel": 9,
         "flt_cutoff": 8250
       }
     },
@@ -14346,9 +14346,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.8,
-        "env_sus": 28
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 48
       }
     },
     {
@@ -14392,28 +14392,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 3.6,
     "env_atk": 0.005,
-    "env_dec": 0.6,
-    "env_sus": 70,
-    "env_rel": 0.8,
-    "mod_env_dec": 0.16,
+    "env_dec": 1.8,
+    "env_sus": 88,
+    "env_rel": 1.5,
+    "mod_env_dec": 1.4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 28,
-    "mod_env_rel": 0.192,
+    "mod_env_sus": 82,
+    "mod_env_rel": 2.0999999999999996,
     "flt_cutoff": 7000,
     "flt_reso": 4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 7.5,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.5,
     "I0": 5.6,
     "dI": 2.7,
     "atk": 0.005,
-    "rel": 0.8,
+    "rel": 1.5,
     "customParam": 7.5,
     "latch": false
   },
@@ -14423,7 +14423,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.6,
         "shape_drive": 3.6,
-        "env_dec": 0.6
+        "env_dec": 1.8
       }
     },
     {
@@ -14438,8 +14438,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.01,
-        "env_dec": 1.08,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.7,
         "flt_cutoff": 5250
       }
     },
@@ -14447,9 +14447,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.064,
-        "env_sus": 21
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 44
       }
     },
     {
@@ -14467,7 +14467,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.6,
         "shape_drive": 3.6,
-        "env_dec": 0.6
+        "env_dec": 1.8
       }
     },
     {
@@ -14482,8 +14482,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.01,
-        "env_dec": 1.08,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.7,
         "flt_cutoff": 5250
       }
     },
@@ -14491,9 +14491,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.064,
-        "env_sus": 21
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 44
       }
     },
     {
@@ -14536,29 +14536,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.7,
-    "env_atk": 0.8,
+    "env_atk": 0.5,
     "env_dec": 5,
-    "env_sus": 96,
-    "env_rel": 8,
-    "mod_env_dec": 3.5,
+    "env_sus": 98,
+    "env_rel": 8.5,
+    "mod_env_dec": 4.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 4.2,
+    "mod_env_sus": 96,
+    "mod_env_rel": 6.75,
     "flt_cutoff": 5000,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.574999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -2,
     "lfo": 0.25,
     "ratio": 0.501,
     "I0": 4,
     "dI": 1.8,
-    "atk": 0.8,
-    "rel": 8,
+    "atk": 0.5,
+    "rel": 8.5,
     "customParam": 7.574999999999999,
     "latch": false
   },
@@ -14582,9 +14582,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.6,
+        "env_atk": 1,
         "env_dec": 9,
-        "env_rel": 14.4,
+        "env_rel": 15.3,
         "flt_cutoff": 3750
       }
     },
@@ -14593,8 +14593,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2.5,
-        "mod_env_dec": 1.4000000000000001,
-        "env_sus": 29
+        "mod_env_dec": 1.8,
+        "env_sus": 49
       }
     },
     {
@@ -14626,9 +14626,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.6,
+        "env_atk": 1,
         "env_dec": 9,
-        "env_rel": 14.4,
+        "env_rel": 15.3,
         "flt_cutoff": 3750
       }
     },
@@ -14637,8 +14637,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2.5,
-        "mod_env_dec": 1.4000000000000001,
-        "env_sus": 29
+        "mod_env_dec": 1.8,
+        "env_sus": 49
       }
     },
     {
@@ -14682,28 +14682,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.5,
     "env_atk": 0.002,
-    "env_dec": 0.25,
-    "env_sus": 10,
-    "env_rel": 0.4,
-    "mod_env_dec": 0.08,
+    "env_dec": 1.8,
+    "env_sus": 55,
+    "env_rel": 1.5,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 4,
-    "mod_env_rel": 0.096,
+    "mod_env_sus": 45,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 13000,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.6499999999999995,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 6.28,
     "I0": 4.5,
     "dI": 2,
     "atk": 0.002,
-    "rel": 0.4,
+    "rel": 1.5,
     "customParam": 7.6499999999999995,
     "latch": false
   },
@@ -14713,7 +14713,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 1.5,
-        "env_dec": 0.25
+        "env_dec": 1.8
       }
     },
     {
@@ -14728,8 +14728,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.45,
-        "env_rel": 0.7200000000000001,
+        "env_dec": 3.24,
+        "env_rel": 2.7,
         "flt_cutoff": 9750
       }
     },
@@ -14737,9 +14737,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.125,
-        "mod_env_dec": 0.032,
-        "env_sus": 3
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 28
       }
     },
     {
@@ -14757,7 +14757,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 1.5,
-        "env_dec": 0.25
+        "env_dec": 1.8
       }
     },
     {
@@ -14772,8 +14772,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.45,
-        "env_rel": 0.7200000000000001,
+        "env_dec": 3.24,
+        "env_rel": 2.7,
         "flt_cutoff": 9750
       }
     },
@@ -14781,9 +14781,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.125,
-        "mod_env_dec": 0.032,
-        "env_sus": 3
+        "env_dec": 0.9,
+        "mod_env_dec": 0.4,
+        "env_sus": 28
       }
     },
     {
@@ -14826,29 +14826,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.2,
-    "env_atk": 0.6,
+    "env_atk": 0.4,
     "env_dec": 4,
-    "env_sus": 95,
-    "env_rel": 6.5,
-    "mod_env_dec": 2.8,
+    "env_sus": 96,
+    "env_rel": 7,
+    "mod_env_dec": 3.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 3.36,
+    "mod_env_sus": 94,
+    "mod_env_rel": 5.25,
     "flt_cutoff": 12000,
     "flt_reso": 1.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.725,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.001,
     "I0": 2.4,
     "dI": 0.9,
-    "atk": 0.6,
-    "rel": 6.5,
+    "atk": 0.4,
+    "rel": 7,
     "customParam": 7.725,
     "latch": false
   },
@@ -14872,9 +14872,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.2,
+        "env_atk": 0.8,
         "env_dec": 7.2,
-        "env_rel": 11.700000000000001,
+        "env_rel": 12.6,
         "flt_cutoff": 9000
       }
     },
@@ -14883,8 +14883,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2,
-        "mod_env_dec": 1.1199999999999999,
-        "env_sus": 29
+        "mod_env_dec": 1.4000000000000001,
+        "env_sus": 48
       }
     },
     {
@@ -14916,9 +14916,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.2,
+        "env_atk": 0.8,
         "env_dec": 7.2,
-        "env_rel": 11.700000000000001,
+        "env_rel": 12.6,
         "flt_cutoff": 9000
       }
     },
@@ -14927,8 +14927,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2,
-        "mod_env_dec": 1.1199999999999999,
-        "env_sus": 29
+        "mod_env_dec": 1.4000000000000001,
+        "env_sus": 48
       }
     },
     {
@@ -14971,29 +14971,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 2.6,
-    "env_atk": 0.1,
-    "env_dec": 2.2,
-    "env_sus": 88,
-    "env_rel": 3.5,
-    "mod_env_dec": 1.4,
+    "env_atk": 0.08,
+    "env_dec": 3,
+    "env_sus": 92,
+    "env_rel": 4,
+    "mod_env_dec": 2.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 35,
-    "mod_env_rel": 1.68,
+    "mod_env_sus": 88,
+    "mod_env_rel": 3.75,
     "flt_cutoff": 8500,
     "flt_reso": 3.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.8,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.414,
     "I0": 5.2,
     "dI": 2.4,
-    "atk": 0.1,
-    "rel": 3.5,
+    "atk": 0.08,
+    "rel": 4,
     "customParam": 7.8,
     "latch": false
   },
@@ -15003,7 +15003,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 2.6,
-        "env_dec": 2.2
+        "env_dec": 3
       }
     },
     {
@@ -15017,9 +15017,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.2,
-        "env_dec": 3.9600000000000004,
-        "env_rel": 6.3,
+        "env_atk": 0.16,
+        "env_dec": 5.4,
+        "env_rel": 7.2,
         "flt_cutoff": 6375
       }
     },
@@ -15027,9 +15027,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.1,
-        "mod_env_dec": 0.5599999999999999,
-        "env_sus": 26
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 46
       }
     },
     {
@@ -15047,7 +15047,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 2.6,
-        "env_dec": 2.2
+        "env_dec": 3
       }
     },
     {
@@ -15061,9 +15061,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.2,
-        "env_dec": 3.9600000000000004,
-        "env_rel": 6.3,
+        "env_atk": 0.16,
+        "env_dec": 5.4,
+        "env_rel": 7.2,
         "flt_cutoff": 6375
       }
     },
@@ -15071,9 +15071,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.1,
-        "mod_env_dec": 0.5599999999999999,
-        "env_sus": 26
+        "env_dec": 1.5,
+        "mod_env_dec": 1,
+        "env_sus": 46
       }
     },
     {
@@ -15116,29 +15116,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.8,
-    "env_atk": 0.05,
-    "env_dec": 1.5,
-    "env_sus": 75,
-    "env_rel": 2.2,
-    "mod_env_dec": 0.8,
+    "env_atk": 0.04,
+    "env_dec": 2.5,
+    "env_sus": 88,
+    "env_rel": 3,
+    "mod_env_dec": 2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 30,
-    "mod_env_rel": 0.96,
+    "mod_env_sus": 82,
+    "mod_env_rel": 3,
     "flt_cutoff": 11500,
     "flt_reso": 3.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.875,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3.33,
     "I0": 4.8,
     "dI": 2.1,
-    "atk": 0.05,
-    "rel": 2.2,
+    "atk": 0.04,
+    "rel": 3,
     "customParam": 7.875,
     "latch": false
   },
@@ -15148,7 +15148,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.8,
         "shape_drive": 1.8,
-        "env_dec": 1.5
+        "env_dec": 2.5
       }
     },
     {
@@ -15162,9 +15162,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.1,
-        "env_dec": 2.7,
-        "env_rel": 3.9600000000000004,
+        "env_atk": 0.08,
+        "env_dec": 4.5,
+        "env_rel": 5.4,
         "flt_cutoff": 8625
       }
     },
@@ -15172,9 +15172,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.75,
-        "mod_env_dec": 0.32000000000000006,
-        "env_sus": 23
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 44
       }
     },
     {
@@ -15192,7 +15192,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.8,
         "shape_drive": 1.8,
-        "env_dec": 1.5
+        "env_dec": 2.5
       }
     },
     {
@@ -15206,9 +15206,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.1,
-        "env_dec": 2.7,
-        "env_rel": 3.9600000000000004,
+        "env_atk": 0.08,
+        "env_dec": 4.5,
+        "env_rel": 5.4,
         "flt_cutoff": 8625
       }
     },
@@ -15216,9 +15216,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.75,
-        "mod_env_dec": 0.32000000000000006,
-        "env_sus": 23
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 44
       }
     },
     {
@@ -15261,29 +15261,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.3,
-    "env_atk": 0.7,
+    "env_atk": 0.4,
     "env_dec": 4.5,
-    "env_sus": 96,
-    "env_rel": 7,
-    "mod_env_dec": 3.2,
+    "env_sus": 98,
+    "env_rel": 7.5,
+    "mod_env_dec": 4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 3.84,
+    "mod_env_sus": 96,
+    "mod_env_rel": 6,
     "flt_cutoff": 6500,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 7.949999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 3,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1.001,
     "I0": 3,
     "dI": 1.2,
-    "atk": 0.7,
-    "rel": 7,
+    "atk": 0.4,
+    "rel": 7.5,
     "customParam": 7.949999999999999,
     "latch": false
   },
@@ -15307,9 +15307,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.4,
+        "env_atk": 0.8,
         "env_dec": 8.1,
-        "env_rel": 12.6,
+        "env_rel": 13.5,
         "flt_cutoff": 4875
       }
     },
@@ -15318,8 +15318,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2.25,
-        "mod_env_dec": 1.2800000000000002,
-        "env_sus": 29
+        "mod_env_dec": 1.6,
+        "env_sus": 49
       }
     },
     {
@@ -15351,9 +15351,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.4,
+        "env_atk": 0.8,
         "env_dec": 8.1,
-        "env_rel": 12.6,
+        "env_rel": 13.5,
         "flt_cutoff": 4875
       }
     },
@@ -15362,8 +15362,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2.25,
-        "mod_env_dec": 1.2800000000000002,
-        "env_sus": 29
+        "mod_env_dec": 1.6,
+        "env_sus": 49
       }
     },
     {
@@ -15407,28 +15407,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.4,
     "env_atk": 0.01,
-    "env_dec": 1.2,
-    "env_sus": 80,
-    "env_rel": 1.8,
-    "mod_env_dec": 0.3,
+    "env_dec": 2,
+    "env_sus": 90,
+    "env_rel": 2.2,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 32,
-    "mod_env_rel": 0.36,
+    "mod_env_sus": 84,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 14000,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 8.025,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 7,
     "I0": 3.8,
     "dI": 1.5,
     "atk": 0.01,
-    "rel": 1.8,
+    "rel": 2.2,
     "customParam": 8.025,
     "latch": false
   },
@@ -15438,7 +15438,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.4,
-        "env_dec": 1.2
+        "env_dec": 2
       }
     },
     {
@@ -15453,8 +15453,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.02,
-        "env_dec": 2.16,
-        "env_rel": 3.24,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 10500
       }
     },
@@ -15462,9 +15462,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.12,
-        "env_sus": 24
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 45
       }
     },
     {
@@ -15482,7 +15482,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.4,
-        "env_dec": 1.2
+        "env_dec": 2
       }
     },
     {
@@ -15497,8 +15497,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.02,
-        "env_dec": 2.16,
-        "env_rel": 3.24,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 10500
       }
     },
@@ -15506,9 +15506,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.12,
-        "env_sus": 24
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 45
       }
     },
     {
@@ -15552,28 +15552,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 3.5,
     "env_atk": 0.003,
-    "env_dec": 0.8,
-    "env_sus": 50,
-    "env_rel": 1.5,
-    "mod_env_dec": 0.2,
+    "env_dec": 2,
+    "env_sus": 75,
+    "env_rel": 2.5,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 20,
-    "mod_env_rel": 0.24,
+    "mod_env_sus": 65,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 12500,
     "flt_reso": 4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.1,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 6,
     "dI": 3,
     "atk": 0.003,
-    "rel": 1.5,
+    "rel": 2.5,
     "customParam": 8.1,
     "latch": false
   },
@@ -15583,7 +15583,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 6,
         "shape_drive": 3.5,
-        "env_dec": 0.8
+        "env_dec": 2
       }
     },
     {
@@ -15598,8 +15598,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 2.7,
+        "env_dec": 3.6,
+        "env_rel": 4.5,
         "flt_cutoff": 9375
       }
     },
@@ -15607,9 +15607,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 15
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 38
       }
     },
     {
@@ -15627,7 +15627,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 6,
         "shape_drive": 3.5,
-        "env_dec": 0.8
+        "env_dec": 2
       }
     },
     {
@@ -15642,8 +15642,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.4400000000000002,
-        "env_rel": 2.7,
+        "env_dec": 3.6,
+        "env_rel": 4.5,
         "flt_cutoff": 9375
       }
     },
@@ -15651,9 +15651,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.4,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 15
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 38
       }
     },
     {
@@ -15696,28 +15696,28 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 2.2,
-    "env_atk": 1,
+    "env_atk": 0.6,
     "env_dec": 6,
     "env_sus": 98,
     "env_rel": 10,
-    "mod_env_dec": 4.5,
+    "mod_env_dec": 5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 39,
-    "mod_env_rel": 5.3999999999999995,
+    "mod_env_sus": 98,
+    "mod_env_rel": 7.5,
     "flt_cutoff": 4000,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.174999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -2,
     "lfo": 0.25,
     "ratio": 0.25,
     "I0": 4.6,
     "dI": 2,
-    "atk": 1,
+    "atk": 0.6,
     "rel": 10,
     "customParam": 8.174999999999999,
     "latch": false
@@ -15742,7 +15742,7 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 2,
+        "env_atk": 1.2,
         "env_dec": 10.8,
         "env_rel": 18,
         "flt_cutoff": 3000
@@ -15753,8 +15753,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 3,
-        "mod_env_dec": 1.8,
-        "env_sus": 29
+        "mod_env_dec": 2,
+        "env_sus": 49
       }
     },
     {
@@ -15786,7 +15786,7 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 2,
+        "env_atk": 1.2,
         "env_dec": 10.8,
         "env_rel": 18,
         "flt_cutoff": 3000
@@ -15797,8 +15797,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 3,
-        "mod_env_dec": 1.8,
-        "env_sus": 29
+        "mod_env_dec": 2,
+        "env_sus": 49
       }
     },
     {
@@ -15841,29 +15841,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.1,
-    "env_atk": 0.8,
+    "env_atk": 0.5,
     "env_dec": 5,
     "env_sus": 98,
-    "env_rel": 8,
-    "mod_env_dec": 4,
+    "env_rel": 8.5,
+    "mod_env_dec": 4.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 39,
-    "mod_env_rel": 4.8,
+    "mod_env_sus": 98,
+    "mod_env_rel": 6.75,
     "flt_cutoff": 7000,
     "flt_reso": 1.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.25,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 3,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.0005,
     "I0": 1.8,
     "dI": 0.6,
-    "atk": 0.8,
-    "rel": 8,
+    "atk": 0.5,
+    "rel": 8.5,
     "customParam": 8.25,
     "latch": false
   },
@@ -15887,9 +15887,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.6,
+        "env_atk": 1,
         "env_dec": 9,
-        "env_rel": 14.4,
+        "env_rel": 15.3,
         "flt_cutoff": 5250
       }
     },
@@ -15898,8 +15898,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2.5,
-        "mod_env_dec": 1.6,
-        "env_sus": 29
+        "mod_env_dec": 1.8,
+        "env_sus": 49
       }
     },
     {
@@ -15931,9 +15931,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.6,
+        "env_atk": 1,
         "env_dec": 9,
-        "env_rel": 14.4,
+        "env_rel": 15.3,
         "flt_cutoff": 5250
       }
     },
@@ -15942,8 +15942,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2.5,
-        "mod_env_dec": 1.6,
-        "env_sus": 29
+        "mod_env_dec": 1.8,
+        "env_sus": 49
       }
     },
     {
@@ -15987,28 +15987,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.5,
     "env_atk": 0.002,
-    "env_dec": 0.5,
-    "env_sus": 80,
-    "env_rel": 0.7,
-    "mod_env_dec": 0.12,
+    "env_dec": 1.8,
+    "env_sus": 90,
+    "env_rel": 1.5,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 32,
-    "mod_env_rel": 0.144,
+    "mod_env_sus": 84,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 14500,
     "flt_reso": 3.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.325,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3,
     "I0": 5.2,
     "dI": 2.5,
     "atk": 0.002,
-    "rel": 0.7,
+    "rel": 1.5,
     "customParam": 8.325,
     "latch": false
   },
@@ -16018,7 +16018,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 2.5,
-        "env_dec": 0.5
+        "env_dec": 1.8
       }
     },
     {
@@ -16033,8 +16033,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.9,
-        "env_rel": 1.26,
+        "env_dec": 3.24,
+        "env_rel": 2.7,
         "flt_cutoff": 10875
       }
     },
@@ -16042,9 +16042,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.048,
-        "env_sus": 24
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 45
       }
     },
     {
@@ -16062,7 +16062,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.2,
         "shape_drive": 2.5,
-        "env_dec": 0.5
+        "env_dec": 1.8
       }
     },
     {
@@ -16077,8 +16077,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.9,
-        "env_rel": 1.26,
+        "env_dec": 3.24,
+        "env_rel": 2.7,
         "flt_cutoff": 10875
       }
     },
@@ -16086,9 +16086,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.048,
-        "env_sus": 24
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 45
       }
     },
     {
@@ -16132,28 +16132,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 3,
     "env_atk": 0.001,
-    "env_dec": 0.4,
-    "env_sus": 70,
-    "env_rel": 0.6,
-    "mod_env_dec": 0.08,
+    "env_dec": 1.6,
+    "env_sus": 85,
+    "env_rel": 1.2,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 28,
-    "mod_env_rel": 0.096,
+    "mod_env_sus": 78,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 13000,
     "flt_reso": 3.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.4,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 4,
     "I0": 5.8,
     "dI": 2.8,
     "atk": 0.001,
-    "rel": 0.6,
+    "rel": 1.2,
     "customParam": 8.4,
     "latch": false
   },
@@ -16163,7 +16163,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.8,
         "shape_drive": 3,
-        "env_dec": 0.4
+        "env_dec": 1.6
       }
     },
     {
@@ -16178,8 +16178,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.7200000000000001,
-        "env_rel": 1.08,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.16,
         "flt_cutoff": 9750
       }
     },
@@ -16187,9 +16187,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.2,
-        "mod_env_dec": 0.032,
-        "env_sus": 21
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 43
       }
     },
     {
@@ -16207,7 +16207,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.8,
         "shape_drive": 3,
-        "env_dec": 0.4
+        "env_dec": 1.6
       }
     },
     {
@@ -16222,8 +16222,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.7200000000000001,
-        "env_rel": 1.08,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.16,
         "flt_cutoff": 9750
       }
     },
@@ -16231,9 +16231,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.2,
-        "mod_env_dec": 0.032,
-        "env_sus": 21
+        "env_dec": 0.8,
+        "mod_env_dec": 0.4,
+        "env_sus": 43
       }
     },
     {
@@ -16276,29 +16276,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.5,
-    "env_atk": 0.05,
-    "env_dec": 1.2,
-    "env_sus": 82,
-    "env_rel": 1.6,
-    "mod_env_dec": 0.4,
+    "env_atk": 0.04,
+    "env_dec": 2.2,
+    "env_sus": 92,
+    "env_rel": 2.5,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 33,
-    "mod_env_rel": 0.48,
+    "mod_env_sus": 88,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 9000,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.475,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.85,
     "I0": 3.8,
     "dI": 1.6,
-    "atk": 0.05,
-    "rel": 1.6,
+    "atk": 0.04,
+    "rel": 2.5,
     "customParam": 8.475,
     "latch": false
   },
@@ -16308,7 +16308,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.5,
-        "env_dec": 1.2
+        "env_dec": 2.2
       }
     },
     {
@@ -16322,9 +16322,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.1,
-        "env_dec": 2.16,
-        "env_rel": 2.8800000000000003,
+        "env_atk": 0.08,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 6750
       }
     },
@@ -16332,9 +16332,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 25
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -16352,7 +16352,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.8,
         "shape_drive": 1.5,
-        "env_dec": 1.2
+        "env_dec": 2.2
       }
     },
     {
@@ -16366,9 +16366,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.1,
-        "env_dec": 2.16,
-        "env_rel": 2.8800000000000003,
+        "env_atk": 0.08,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 6750
       }
     },
@@ -16376,9 +16376,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.6,
-        "mod_env_dec": 0.16000000000000003,
-        "env_sus": 25
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -16422,28 +16422,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2,
     "env_atk": 0.003,
-    "env_dec": 0.55,
-    "env_sus": 35,
-    "env_rel": 0.8,
-    "mod_env_dec": 0.15,
+    "env_dec": 1.8,
+    "env_sus": 70,
+    "env_rel": 1.6,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 14,
-    "mod_env_rel": 0.18,
+    "mod_env_sus": 60,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 12000,
     "flt_reso": 2.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.549999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.004,
     "I0": 4,
     "dI": 1.8,
     "atk": 0.003,
-    "rel": 0.8,
+    "rel": 1.6,
     "customParam": 8.549999999999999,
     "latch": false
   },
@@ -16453,7 +16453,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 2,
-        "env_dec": 0.55
+        "env_dec": 1.8
       }
     },
     {
@@ -16468,8 +16468,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.9900000000000001,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 9000
       }
     },
@@ -16477,9 +16477,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.275,
-        "mod_env_dec": 0.06,
-        "env_sus": 11
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 35
       }
     },
     {
@@ -16497,7 +16497,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 2,
-        "env_dec": 0.55
+        "env_dec": 1.8
       }
     },
     {
@@ -16512,8 +16512,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.9900000000000001,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 9000
       }
     },
@@ -16521,9 +16521,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.275,
-        "mod_env_dec": 0.06,
-        "env_sus": 11
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 35
       }
     },
     {
@@ -16567,28 +16567,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.8,
     "env_atk": 0.002,
-    "env_dec": 0.65,
-    "env_sus": 60,
-    "env_rel": 0.7,
-    "mod_env_dec": 0.16,
+    "env_dec": 1.8,
+    "env_sus": 85,
+    "env_rel": 1.2,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 24,
-    "mod_env_rel": 0.192,
+    "mod_env_sus": 80,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 5500,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.625,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.5,
     "I0": 4.2,
     "dI": 1.8,
     "atk": 0.002,
-    "rel": 0.7,
+    "rel": 1.2,
     "customParam": 8.625,
     "latch": false
   },
@@ -16598,7 +16598,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 2.8,
-        "env_dec": 0.65
+        "env_dec": 1.8
       }
     },
     {
@@ -16613,8 +16613,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 1.1700000000000002,
-        "env_rel": 1.26,
+        "env_dec": 3.24,
+        "env_rel": 2.16,
         "flt_cutoff": 4125
       }
     },
@@ -16622,9 +16622,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.325,
-        "mod_env_dec": 0.064,
-        "env_sus": 18
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 43
       }
     },
     {
@@ -16642,7 +16642,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 2.8,
-        "env_dec": 0.65
+        "env_dec": 1.8
       }
     },
     {
@@ -16657,8 +16657,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 1.1700000000000002,
-        "env_rel": 1.26,
+        "env_dec": 3.24,
+        "env_rel": 2.16,
         "flt_cutoff": 4125
       }
     },
@@ -16666,9 +16666,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.325,
-        "mod_env_dec": 0.064,
-        "env_sus": 18
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 43
       }
     },
     {
@@ -16712,28 +16712,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.3,
     "env_atk": 0.002,
-    "env_dec": 0.9,
-    "env_sus": 40,
-    "env_rel": 1.5,
-    "mod_env_dec": 0.2,
+    "env_dec": 2,
+    "env_sus": 75,
+    "env_rel": 2.2,
+    "mod_env_dec": 1.4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 16,
-    "mod_env_rel": 0.24,
+    "mod_env_sus": 65,
+    "mod_env_rel": 2.0999999999999996,
     "flt_cutoff": 13500,
     "flt_reso": 2.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.7,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 3.6,
     "dI": 1.4,
     "atk": 0.002,
-    "rel": 1.5,
+    "rel": 2.2,
     "customParam": 8.7,
     "latch": false
   },
@@ -16743,7 +16743,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.3,
-        "env_dec": 0.9
+        "env_dec": 2
       }
     },
     {
@@ -16758,8 +16758,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 1.62,
-        "env_rel": 2.7,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 10125
       }
     },
@@ -16767,9 +16767,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 12
+        "env_dec": 1,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 38
       }
     },
     {
@@ -16787,7 +16787,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.3,
-        "env_dec": 0.9
+        "env_dec": 2
       }
     },
     {
@@ -16802,8 +16802,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 1.62,
-        "env_rel": 2.7,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 10125
       }
     },
@@ -16811,9 +16811,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.45,
-        "mod_env_dec": 0.08000000000000002,
-        "env_sus": 12
+        "env_dec": 1,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 38
       }
     },
     {
@@ -16857,28 +16857,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.4,
     "env_atk": 0.002,
-    "env_dec": 0.45,
-    "env_sus": 20,
-    "env_rel": 0.7,
-    "mod_env_dec": 0.11,
+    "env_dec": 1.8,
+    "env_sus": 60,
+    "env_rel": 1.6,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 8,
-    "mod_env_rel": 0.132,
+    "mod_env_sus": 48,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 14000,
     "flt_reso": 2.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.775,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3.5,
     "I0": 4.5,
     "dI": 1.8,
     "atk": 0.002,
-    "rel": 0.7,
+    "rel": 1.6,
     "customParam": 8.775,
     "latch": false
   },
@@ -16888,7 +16888,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 1.4,
-        "env_dec": 0.45
+        "env_dec": 1.8
       }
     },
     {
@@ -16903,8 +16903,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.81,
-        "env_rel": 1.26,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 10500
       }
     },
@@ -16912,9 +16912,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.225,
-        "mod_env_dec": 0.044000000000000004,
-        "env_sus": 6
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 30
       }
     },
     {
@@ -16932,7 +16932,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.5,
         "shape_drive": 1.4,
-        "env_dec": 0.45
+        "env_dec": 1.8
       }
     },
     {
@@ -16947,8 +16947,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.81,
-        "env_rel": 1.26,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 10500
       }
     },
@@ -16956,9 +16956,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.225,
-        "mod_env_dec": 0.044000000000000004,
-        "env_sus": 6
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 30
       }
     },
     {
@@ -17002,28 +17002,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 3.2,
     "env_atk": 0.002,
-    "env_dec": 0.35,
-    "env_sus": 45,
-    "env_rel": 0.5,
-    "mod_env_dec": 0.1,
+    "env_dec": 1.5,
+    "env_sus": 80,
+    "env_rel": 1.1,
+    "mod_env_dec": 1,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 18,
-    "mod_env_rel": 0.12,
+    "mod_env_sus": 75,
+    "mod_env_rel": 1.5,
     "flt_cutoff": 5000,
     "flt_reso": 4.5,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.85,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 5.5,
     "dI": 2.6,
     "atk": 0.002,
-    "rel": 0.5,
+    "rel": 1.1,
     "customParam": 8.85,
     "latch": false
   },
@@ -17033,7 +17033,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.5,
         "shape_drive": 3.2,
-        "env_dec": 0.35
+        "env_dec": 1.5
       }
     },
     {
@@ -17048,8 +17048,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.63,
-        "env_rel": 0.9,
+        "env_dec": 2.7,
+        "env_rel": 1.9800000000000002,
         "flt_cutoff": 3750
       }
     },
@@ -17057,9 +17057,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.175,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 14
+        "env_dec": 0.75,
+        "mod_env_dec": 0.4,
+        "env_sus": 40
       }
     },
     {
@@ -17077,7 +17077,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.5,
         "shape_drive": 3.2,
-        "env_dec": 0.35
+        "env_dec": 1.5
       }
     },
     {
@@ -17092,8 +17092,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.63,
-        "env_rel": 0.9,
+        "env_dec": 2.7,
+        "env_rel": 1.9800000000000002,
         "flt_cutoff": 3750
       }
     },
@@ -17101,9 +17101,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.175,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 14
+        "env_dec": 0.75,
+        "mod_env_dec": 0.4,
+        "env_sus": 40
       }
     },
     {
@@ -17147,28 +17147,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.8,
     "env_atk": 0.02,
-    "env_dec": 1,
-    "env_sus": 80,
-    "env_rel": 1.5,
-    "mod_env_dec": 0.35,
+    "env_dec": 2.2,
+    "env_sus": 92,
+    "env_rel": 2.5,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 32,
-    "mod_env_rel": 0.42,
+    "mod_env_sus": 88,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 11000,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 8.924999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 3,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.003,
     "I0": 4.2,
     "dI": 1.9,
     "atk": 0.02,
-    "rel": 1.5,
+    "rel": 2.5,
     "customParam": 8.924999999999999,
     "latch": false
   },
@@ -17178,7 +17178,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.8,
-        "env_dec": 1
+        "env_dec": 2.2
       }
     },
     {
@@ -17193,8 +17193,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.04,
-        "env_dec": 1.8,
-        "env_rel": 2.7,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 8250
       }
     },
@@ -17202,9 +17202,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.5,
-        "mod_env_dec": 0.13999999999999999,
-        "env_sus": 24
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -17222,7 +17222,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.2,
         "shape_drive": 1.8,
-        "env_dec": 1
+        "env_dec": 2.2
       }
     },
     {
@@ -17237,8 +17237,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.04,
-        "env_dec": 1.8,
-        "env_rel": 2.7,
+        "env_dec": 3.9600000000000004,
+        "env_rel": 4.5,
         "flt_cutoff": 8250
       }
     },
@@ -17246,9 +17246,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.5,
-        "mod_env_dec": 0.13999999999999999,
-        "env_sus": 24
+        "env_dec": 1.1,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 46
       }
     },
     {
@@ -17292,28 +17292,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 3.8,
     "env_atk": 0.003,
-    "env_dec": 0.5,
-    "env_sus": 70,
-    "env_rel": 0.7,
-    "mod_env_dec": 0.14,
+    "env_dec": 1.8,
+    "env_sus": 88,
+    "env_rel": 1.4,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 28,
-    "mod_env_rel": 0.168,
+    "mod_env_sus": 84,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 6000,
     "flt_reso": 3.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 9,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -2,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 5.8,
     "dI": 2.8,
     "atk": 0.003,
-    "rel": 0.7,
+    "rel": 1.4,
     "customParam": 9,
     "latch": false
   },
@@ -17323,7 +17323,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.8,
         "shape_drive": 3.8,
-        "env_dec": 0.5
+        "env_dec": 1.8
       }
     },
     {
@@ -17338,8 +17338,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.9,
-        "env_rel": 1.26,
+        "env_dec": 3.24,
+        "env_rel": 2.52,
         "flt_cutoff": 4500
       }
     },
@@ -17347,9 +17347,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 21
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 44
       }
     },
     {
@@ -17367,7 +17367,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.8,
         "shape_drive": 3.8,
-        "env_dec": 0.5
+        "env_dec": 1.8
       }
     },
     {
@@ -17382,8 +17382,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 0.9,
-        "env_rel": 1.26,
+        "env_dec": 3.24,
+        "env_rel": 2.52,
         "flt_cutoff": 4500
       }
     },
@@ -17391,9 +17391,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.25,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 21
+        "env_dec": 0.9,
+        "mod_env_dec": 0.48,
+        "env_sus": 44
       }
     },
     {
@@ -17436,29 +17436,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.5,
-    "env_atk": 0.8,
+    "env_atk": 0.5,
     "env_dec": 5,
-    "env_sus": 96,
-    "env_rel": 8,
-    "mod_env_dec": 3.5,
+    "env_sus": 98,
+    "env_rel": 8.5,
+    "mod_env_dec": 4.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 38,
-    "mod_env_rel": 4.2,
+    "mod_env_sus": 96,
+    "mod_env_rel": 6.75,
     "flt_cutoff": 10500,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 9.075,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 1.002,
     "I0": 3.2,
     "dI": 1.4,
-    "atk": 0.8,
-    "rel": 8,
+    "atk": 0.5,
+    "rel": 8.5,
     "customParam": 9.075,
     "latch": false
   },
@@ -17482,9 +17482,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.6,
+        "env_atk": 1,
         "env_dec": 9,
-        "env_rel": 14.4,
+        "env_rel": 15.3,
         "flt_cutoff": 7875
       }
     },
@@ -17493,8 +17493,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2.5,
-        "mod_env_dec": 1.4000000000000001,
-        "env_sus": 29
+        "mod_env_dec": 1.8,
+        "env_sus": 49
       }
     },
     {
@@ -17526,9 +17526,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 1.6,
+        "env_atk": 1,
         "env_dec": 9,
-        "env_rel": 14.4,
+        "env_rel": 15.3,
         "flt_cutoff": 7875
       }
     },
@@ -17537,8 +17537,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 2.5,
-        "mod_env_dec": 1.4000000000000001,
-        "env_sus": 29
+        "mod_env_dec": 1.8,
+        "env_sus": 49
       }
     },
     {
@@ -17582,28 +17582,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.25,
     "env_atk": 0.002,
-    "env_dec": 2.2,
-    "env_sus": 48,
-    "env_rel": 2.8,
-    "mod_env_dec": 0.18,
+    "env_dec": 3,
+    "env_sus": 70,
+    "env_rel": 3.5,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 19,
-    "mod_env_rel": 0.216,
+    "mod_env_sus": 55,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 13000,
     "flt_reso": 1.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 9.15,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 14,
     "I0": 4,
     "dI": 1.8,
     "atk": 0.002,
-    "rel": 2.8,
+    "rel": 3.5,
     "customParam": 9.15,
     "latch": false
   },
@@ -17613,7 +17613,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 1.25,
-        "env_dec": 2.2
+        "env_dec": 3
       }
     },
     {
@@ -17628,8 +17628,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 3.9600000000000004,
-        "env_rel": 5.04,
+        "env_dec": 5.4,
+        "env_rel": 6.3,
         "flt_cutoff": 9750
       }
     },
@@ -17637,9 +17637,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.1,
-        "mod_env_dec": 0.072,
-        "env_sus": 14
+        "env_dec": 1.5,
+        "mod_env_dec": 0.48,
+        "env_sus": 35
       }
     },
     {
@@ -17657,7 +17657,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4,
         "shape_drive": 1.25,
-        "env_dec": 2.2
+        "env_dec": 3
       }
     },
     {
@@ -17672,8 +17672,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 3.9600000000000004,
-        "env_rel": 5.04,
+        "env_dec": 5.4,
+        "env_rel": 6.3,
         "flt_cutoff": 9750
       }
     },
@@ -17681,9 +17681,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.1,
-        "mod_env_dec": 0.072,
-        "env_sus": 14
+        "env_dec": 1.5,
+        "mod_env_dec": 0.48,
+        "env_sus": 35
       }
     },
     {
@@ -17727,28 +17727,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.6,
     "env_atk": 0.002,
-    "env_dec": 0.6,
-    "env_sus": 20,
-    "env_rel": 1.2,
-    "mod_env_dec": 0.12,
+    "env_dec": 2,
+    "env_sus": 60,
+    "env_rel": 2.2,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 8,
-    "mod_env_rel": 0.144,
+    "mod_env_sus": 48,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 12500,
     "flt_reso": 2.8,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 9.225,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2.4,
     "I0": 4.6,
     "dI": 2,
     "atk": 0.002,
-    "rel": 1.2,
+    "rel": 2.2,
     "customParam": 9.225,
     "latch": false
   },
@@ -17758,7 +17758,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.6,
         "shape_drive": 2.6,
-        "env_dec": 0.6
+        "env_dec": 2
       }
     },
     {
@@ -17773,8 +17773,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 1.08,
-        "env_rel": 2.16,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 9375
       }
     },
@@ -17782,9 +17782,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.048,
-        "env_sus": 6
+        "env_dec": 1,
+        "mod_env_dec": 0.48,
+        "env_sus": 30
       }
     },
     {
@@ -17802,7 +17802,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.6,
         "shape_drive": 2.6,
-        "env_dec": 0.6
+        "env_dec": 2
       }
     },
     {
@@ -17817,8 +17817,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 1.08,
-        "env_rel": 2.16,
+        "env_dec": 3.6,
+        "env_rel": 3.9600000000000004,
         "flt_cutoff": 9375
       }
     },
@@ -17826,9 +17826,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.3,
-        "mod_env_dec": 0.048,
-        "env_sus": 6
+        "env_dec": 1,
+        "mod_env_dec": 0.48,
+        "env_sus": 30
       }
     },
     {
@@ -17872,28 +17872,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.3,
     "env_atk": 0.05,
-    "env_dec": 3,
+    "env_dec": 3.5,
     "env_sus": 98,
-    "env_rel": 4.5,
-    "mod_env_dec": 2,
+    "env_rel": 5,
+    "mod_env_dec": 3,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 39,
-    "mod_env_rel": 2.4,
+    "mod_env_sus": 96,
+    "mod_env_rel": 4.5,
     "flt_cutoff": 13500,
     "flt_reso": 1.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 9.299999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 2.8,
     "dI": 1,
     "atk": 0.05,
-    "rel": 4.5,
+    "rel": 5,
     "customParam": 9.299999999999999,
     "latch": false
   },
@@ -17903,7 +17903,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1.3,
-        "env_dec": 3
+        "env_dec": 3.5
       }
     },
     {
@@ -17918,8 +17918,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.1,
-        "env_dec": 5.4,
-        "env_rel": 8.1,
+        "env_dec": 6.3,
+        "env_rel": 9,
         "flt_cutoff": 10125
       }
     },
@@ -17927,9 +17927,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.8,
-        "env_sus": 29
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 49
       }
     },
     {
@@ -17947,7 +17947,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 2.8,
         "shape_drive": 1.3,
-        "env_dec": 3
+        "env_dec": 3.5
       }
     },
     {
@@ -17962,8 +17962,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.1,
-        "env_dec": 5.4,
-        "env_rel": 8.1,
+        "env_dec": 6.3,
+        "env_rel": 9,
         "flt_cutoff": 10125
       }
     },
@@ -17971,9 +17971,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 1.5,
-        "mod_env_dec": 0.8,
-        "env_sus": 29
+        "env_dec": 1.75,
+        "mod_env_dec": 1.2000000000000002,
+        "env_sus": 49
       }
     },
     {
@@ -18017,28 +18017,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 3.4,
     "env_atk": 0.002,
-    "env_dec": 0.36,
-    "env_sus": 45,
-    "env_rel": 0.5,
-    "mod_env_dec": 0.1,
+    "env_dec": 1.6,
+    "env_sus": 82,
+    "env_rel": 1.2,
+    "mod_env_dec": 1.2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 18,
-    "mod_env_rel": 0.12,
+    "mod_env_sus": 76,
+    "mod_env_rel": 1.7999999999999998,
     "flt_cutoff": 4800,
     "flt_reso": 4.6,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 9.375,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 1,
     "I0": 5.6,
     "dI": 2.7,
     "atk": 0.002,
-    "rel": 0.5,
+    "rel": 1.2,
     "customParam": 9.375,
     "latch": false
   },
@@ -18048,7 +18048,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.6,
         "shape_drive": 3.4,
-        "env_dec": 0.36
+        "env_dec": 1.6
       }
     },
     {
@@ -18063,8 +18063,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.648,
-        "env_rel": 0.9,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.16,
         "flt_cutoff": 3600
       }
     },
@@ -18072,9 +18072,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.18,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 14
+        "env_dec": 0.8,
+        "mod_env_dec": 0.48,
+        "env_sus": 41
       }
     },
     {
@@ -18092,7 +18092,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.6,
         "shape_drive": 3.4,
-        "env_dec": 0.36
+        "env_dec": 1.6
       }
     },
     {
@@ -18107,8 +18107,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.648,
-        "env_rel": 0.9,
+        "env_dec": 2.8800000000000003,
+        "env_rel": 2.16,
         "flt_cutoff": 3600
       }
     },
@@ -18116,9 +18116,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.18,
-        "mod_env_dec": 0.04000000000000001,
-        "env_sus": 14
+        "env_dec": 0.8,
+        "mod_env_dec": 0.48,
+        "env_sus": 41
       }
     },
     {
@@ -18162,28 +18162,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 1.3,
     "env_atk": 0.003,
-    "env_dec": 1.8,
-    "env_sus": 35,
-    "env_rel": 2.6,
-    "mod_env_dec": 0.24,
+    "env_dec": 2.8,
+    "env_sus": 70,
+    "env_rel": 3.2,
+    "mod_env_dec": 1.8,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 14,
-    "mod_env_rel": 0.288,
+    "mod_env_sus": 60,
+    "mod_env_rel": 2.7,
     "flt_cutoff": 12000,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 9.45,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3,
     "I0": 4.4,
     "dI": 1.8,
     "atk": 0.003,
-    "rel": 2.6,
+    "rel": 3.2,
     "customParam": 9.45,
     "latch": false
   },
@@ -18193,7 +18193,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.4,
         "shape_drive": 1.3,
-        "env_dec": 1.8
+        "env_dec": 2.8
       }
     },
     {
@@ -18208,8 +18208,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 3.24,
-        "env_rel": 4.680000000000001,
+        "env_dec": 5.04,
+        "env_rel": 5.760000000000001,
         "flt_cutoff": 9000
       }
     },
@@ -18217,9 +18217,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.096,
-        "env_sus": 11
+        "env_dec": 1.4,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 35
       }
     },
     {
@@ -18237,7 +18237,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 4.4,
         "shape_drive": 1.3,
-        "env_dec": 1.8
+        "env_dec": 2.8
       }
     },
     {
@@ -18252,8 +18252,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 3.24,
-        "env_rel": 4.680000000000001,
+        "env_dec": 5.04,
+        "env_rel": 5.760000000000001,
         "flt_cutoff": 9000
       }
     },
@@ -18261,9 +18261,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.096,
-        "env_sus": 11
+        "env_dec": 1.4,
+        "mod_env_dec": 0.7200000000000001,
+        "env_sus": 35
       }
     },
     {
@@ -18306,29 +18306,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.8,
-    "env_atk": 1,
+    "env_atk": 0.6,
     "env_dec": 6,
     "env_sus": 98,
-    "env_rel": 9,
-    "mod_env_dec": 4.5,
+    "env_rel": 9.5,
+    "mod_env_dec": 5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 39,
-    "mod_env_rel": 5.3999999999999995,
+    "mod_env_sus": 96,
+    "mod_env_rel": 7.5,
     "flt_cutoff": 5500,
     "flt_reso": 3,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 9.525,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": -1,
     "lfo": 0.25,
     "ratio": 0.501,
     "I0": 4.2,
     "dI": 1.9,
-    "atk": 1,
-    "rel": 9,
+    "atk": 0.6,
+    "rel": 9.5,
     "customParam": 9.525,
     "latch": false
   },
@@ -18352,9 +18352,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 2,
+        "env_atk": 1.2,
         "env_dec": 10.8,
-        "env_rel": 16.2,
+        "env_rel": 17.1,
         "flt_cutoff": 4125
       }
     },
@@ -18363,8 +18363,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 3,
-        "mod_env_dec": 1.8,
-        "env_sus": 29
+        "mod_env_dec": 2,
+        "env_sus": 49
       }
     },
     {
@@ -18396,9 +18396,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 2,
+        "env_atk": 1.2,
         "env_dec": 10.8,
-        "env_rel": 16.2,
+        "env_rel": 17.1,
         "flt_cutoff": 4125
       }
     },
@@ -18407,8 +18407,8 @@ const SYNTH_DEFS = [
       "params": {
         "env_atk": 0.002,
         "env_dec": 3,
-        "mod_env_dec": 1.8,
-        "env_sus": 29
+        "mod_env_dec": 2,
+        "env_sus": 49
       }
     },
     {
@@ -18452,28 +18452,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.2,
     "env_atk": 0.003,
-    "env_dec": 0.7,
-    "env_sus": 78,
-    "env_rel": 0.9,
-    "mod_env_dec": 0.16,
+    "env_dec": 2,
+    "env_sus": 90,
+    "env_rel": 1.8,
+    "mod_env_dec": 1.5,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 31,
-    "mod_env_rel": 0.192,
+    "mod_env_sus": 85,
+    "mod_env_rel": 2.25,
     "flt_cutoff": 12500,
     "flt_reso": 3.2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
-    "flt_envAmt": 3000,
+    "flt_envAmt": 2500,
     "custom_math": 9.6,
     "op_wave": 2,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 5,
     "dI": 2.2,
     "atk": 0.003,
-    "rel": 0.9,
+    "rel": 1.8,
     "customParam": 9.6,
     "latch": false
   },
@@ -18483,7 +18483,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5,
         "shape_drive": 2.2,
-        "env_dec": 0.7
+        "env_dec": 2
       }
     },
     {
@@ -18498,8 +18498,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.26,
-        "env_rel": 1.62,
+        "env_dec": 3.6,
+        "env_rel": 3.24,
         "flt_cutoff": 9375
       }
     },
@@ -18507,9 +18507,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.064,
-        "env_sus": 23
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 45
       }
     },
     {
@@ -18527,7 +18527,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5,
         "shape_drive": 2.2,
-        "env_dec": 0.7
+        "env_dec": 2
       }
     },
     {
@@ -18542,8 +18542,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.006,
-        "env_dec": 1.26,
-        "env_rel": 1.62,
+        "env_dec": 3.6,
+        "env_rel": 3.24,
         "flt_cutoff": 9375
       }
     },
@@ -18551,9 +18551,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.35,
-        "mod_env_dec": 0.064,
-        "env_sus": 23
+        "env_dec": 1,
+        "mod_env_dec": 0.6000000000000001,
+        "env_sus": 45
       }
     },
     {
@@ -18597,28 +18597,28 @@ const SYNTH_DEFS = [
     "shape_bias": 0,
     "shape_drive": 2.6,
     "env_atk": 0.002,
-    "env_dec": 0.55,
-    "env_sus": 82,
-    "env_rel": 0.8,
-    "mod_env_dec": 0.14,
+    "env_dec": 1.8,
+    "env_sus": 92,
+    "env_rel": 1.6,
+    "mod_env_dec": 1.4,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 33,
-    "mod_env_rel": 0.168,
+    "mod_env_sus": 88,
+    "mod_env_rel": 2.0999999999999996,
     "flt_cutoff": 14000,
     "flt_reso": 3.4,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 9.674999999999999,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 3,
     "I0": 5.4,
     "dI": 2.6,
     "atk": 0.002,
-    "rel": 0.8,
+    "rel": 1.6,
     "customParam": 9.674999999999999,
     "latch": false
   },
@@ -18628,7 +18628,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.4,
         "shape_drive": 2.6,
-        "env_dec": 0.55
+        "env_dec": 1.8
       }
     },
     {
@@ -18643,8 +18643,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.9900000000000001,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 10500
       }
     },
@@ -18652,9 +18652,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.275,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 25
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 46
       }
     },
     {
@@ -18672,7 +18672,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 5.4,
         "shape_drive": 2.6,
-        "env_dec": 0.55
+        "env_dec": 1.8
       }
     },
     {
@@ -18687,8 +18687,8 @@ const SYNTH_DEFS = [
       "name": "Warm Ambient Tail",
       "params": {
         "env_atk": 0.004,
-        "env_dec": 0.9900000000000001,
-        "env_rel": 1.4400000000000002,
+        "env_dec": 3.24,
+        "env_rel": 2.8800000000000003,
         "flt_cutoff": 10500
       }
     },
@@ -18696,9 +18696,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.275,
-        "mod_env_dec": 0.05600000000000001,
-        "env_sus": 25
+        "env_dec": 0.9,
+        "mod_env_dec": 0.5599999999999999,
+        "env_sus": 46
       }
     },
     {
@@ -18741,29 +18741,29 @@ const SYNTH_DEFS = [
     "shape_morph": 0,
     "shape_bias": 0,
     "shape_drive": 1.4,
-    "env_atk": 0.04,
-    "env_dec": 1.8,
-    "env_sus": 75,
-    "env_rel": 2.5,
-    "mod_env_dec": 0.5,
+    "env_atk": 0.03,
+    "env_dec": 2.5,
+    "env_sus": 88,
+    "env_rel": 3,
+    "mod_env_dec": 2,
     "mod_env_atk": 0.003,
-    "mod_env_sus": 30,
-    "mod_env_rel": 0.6,
+    "mod_env_sus": 80,
+    "mod_env_rel": 3,
     "flt_cutoff": 13000,
     "flt_reso": 2,
-    "key_scaling": 30,
+    "key_scaling": 25,
     "space_pan": 50,
     "flt_envAmt": 0,
     "custom_math": 9.75,
     "op_wave": 0,
     "vol": 0.85,
-    "oct": 4,
+    "oct": 0,
     "lfo": 0.25,
     "ratio": 2,
     "I0": 3.6,
     "dI": 1.5,
-    "atk": 0.04,
-    "rel": 2.5,
+    "atk": 0.03,
+    "rel": 3,
     "customParam": 9.75,
     "latch": false
   },
@@ -18773,7 +18773,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.4,
-        "env_dec": 1.8
+        "env_dec": 2.5
       }
     },
     {
@@ -18787,9 +18787,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.08,
-        "env_dec": 3.24,
-        "env_rel": 4.5,
+        "env_atk": 0.06,
+        "env_dec": 4.5,
+        "env_rel": 5.4,
         "flt_cutoff": 9750
       }
     },
@@ -18797,9 +18797,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.2,
-        "env_sus": 23
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 44
       }
     },
     {
@@ -18817,7 +18817,7 @@ const SYNTH_DEFS = [
       "params": {
         "mod_I0": 3.6,
         "shape_drive": 1.4,
-        "env_dec": 1.8
+        "env_dec": 2.5
       }
     },
     {
@@ -18831,9 +18831,9 @@ const SYNTH_DEFS = [
     {
       "name": "Warm Ambient Tail",
       "params": {
-        "env_atk": 0.08,
-        "env_dec": 3.24,
-        "env_rel": 4.5,
+        "env_atk": 0.06,
+        "env_dec": 4.5,
+        "env_rel": 5.4,
         "flt_cutoff": 9750
       }
     },
@@ -18841,9 +18841,9 @@ const SYNTH_DEFS = [
       "name": "Punchy Attack Staccato",
       "params": {
         "env_atk": 0.002,
-        "env_dec": 0.9,
-        "mod_env_dec": 0.2,
-        "env_sus": 23
+        "env_dec": 1.25,
+        "mod_env_dec": 0.8,
+        "env_sus": 44
       }
     },
     {
