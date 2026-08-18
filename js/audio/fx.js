@@ -197,8 +197,9 @@ function initFxEngine() {
   // 1. Shimmer Diffuser Nodes
   // ------------------------------------------------------------
   const shimIn = ctx.createGain();
-  const shimDry = ctx.createGain();
-  const shimWet = ctx.createGain();
+  const shimSend = ctx.createGain(); shimSend.gain.value = 0.0;
+  const shimDry = ctx.createGain(); shimDry.gain.value = 1.0;
+  const shimWet = ctx.createGain(); shimWet.gain.value = 0.0;
   const shimOut = ctx.createGain();
   const shimDelay = ctx.createDelay(1.5);
   shimDelay.delayTime.value = 0.085;
@@ -206,58 +207,62 @@ function initFxEngine() {
   shimFilter.type = "lowpass";
   shimFilter.frequency.value = 8000;
   const shimFeedback = ctx.createGain();
-  shimFeedback.gain.value = 0.75;
+  shimFeedback.gain.value = 0.65;
 
   shimIn.connect(shimDry).connect(shimOut);
-  shimIn.connect(shimDelay).connect(shimFilter).connect(shimFeedback).connect(shimDelay);
+  shimIn.connect(shimSend).connect(shimDelay).connect(shimFilter).connect(shimFeedback).connect(shimDelay);
   shimFilter.connect(shimWet).connect(shimOut);
 
-  fxNodes.shimmer = { in: shimIn, out: shimOut, dry: shimDry, wet: shimWet, delay: shimDelay, filter: shimFilter, fb: shimFeedback };
+  fxNodes.shimmer = { in: shimIn, send: shimSend, out: shimOut, dry: shimDry, wet: shimWet, delay: shimDelay, filter: shimFilter, fb: shimFeedback };
 
   // ------------------------------------------------------------
   // 2. Resonator Bank (4-Band Modal Body)
   // ------------------------------------------------------------
   const resIn = ctx.createGain();
-  const resDry = ctx.createGain();
-  const resWet = ctx.createGain();
+  const resSend = ctx.createGain(); resSend.gain.value = 0.0;
+  const resDry = ctx.createGain(); resDry.gain.value = 1.0;
+  const resWet = ctx.createGain(); resWet.gain.value = 0.0;
   const resOut = ctx.createGain();
   const resFilters = [];
 
   resIn.connect(resDry).connect(resOut);
+  resIn.connect(resSend);
 
   for (let k = 1; k <= 4; k++) {
     const f = ctx.createBiquadFilter();
     f.type = "bandpass";
     f.frequency.value = 260 * k;
-    f.Q.value = 18;
+    f.Q.value = 14;
     const g = ctx.createGain();
-    g.gain.value = 0.6 / Math.sqrt(k);
-    resIn.connect(f).connect(g).connect(resWet);
+    g.gain.value = 0.5 / Math.sqrt(k);
+    resSend.connect(f).connect(g).connect(resWet);
     resFilters.push({ filter: f, gain: g });
   }
   resWet.connect(resOut);
 
-  fxNodes.resonator = { in: resIn, out: resOut, dry: resDry, wet: resWet, filters: resFilters };
+  fxNodes.resonator = { in: resIn, send: resSend, out: resOut, dry: resDry, wet: resWet, filters: resFilters };
 
   // ------------------------------------------------------------
   // 3. Barberpole Shepard Phaser
   // ------------------------------------------------------------
   const barbIn = ctx.createGain();
-  const barbDry = ctx.createGain();
-  const barbWet = ctx.createGain();
+  const barbSend = ctx.createGain(); barbSend.gain.value = 0.0;
+  const barbDry = ctx.createGain(); barbDry.gain.value = 1.0;
+  const barbWet = ctx.createGain(); barbWet.gain.value = 0.0;
   const barbOut = ctx.createGain();
   const barbFeedback = ctx.createGain();
-  barbFeedback.gain.value = 0.65;
+  barbFeedback.gain.value = 0.55;
   const barbAllpass = [];
 
   barbIn.connect(barbDry).connect(barbOut);
+  barbIn.connect(barbSend);
 
-  let prevNode = barbIn;
+  let prevNode = barbSend;
   for (let i = 0; i < 4; i++) {
     const ap = ctx.createBiquadFilter();
     ap.type = "allpass";
     ap.frequency.value = 600 + i * 450;
-    ap.Q.value = 3.5;
+    ap.Q.value = 2.5;
     prevNode.connect(ap);
     prevNode = ap;
     barbAllpass.push(ap);
@@ -265,17 +270,18 @@ function initFxEngine() {
   prevNode.connect(barbFeedback).connect(barbAllpass[0]);
   prevNode.connect(barbWet).connect(barbOut);
 
-  fxNodes.barberpole = { in: barbIn, out: barbOut, dry: barbDry, wet: barbWet, allpass: barbAllpass, fb: barbFeedback };
+  fxNodes.barberpole = { in: barbIn, send: barbSend, out: barbOut, dry: barbDry, wet: barbWet, allpass: barbAllpass, fb: barbFeedback };
 
   // ------------------------------------------------------------
   // 4. Magnetic Tape Hysteresis & Flutter
   // ------------------------------------------------------------
   const tapeIn = ctx.createGain();
-  const tapeDry = ctx.createGain();
-  const tapeWet = ctx.createGain();
+  const tapeSend = ctx.createGain(); tapeSend.gain.value = 0.0;
+  const tapeDry = ctx.createGain(); tapeDry.gain.value = 1.0;
+  const tapeWet = ctx.createGain(); tapeWet.gain.value = 0.0;
   const tapeOut = ctx.createGain();
   const tapeDrive = ctx.createGain();
-  tapeDrive.gain.value = 2.8;
+  tapeDrive.gain.value = 2.5;
   const tapeShaper = ctx.createWaveShaper();
   const tapeDelay = ctx.createDelay(0.1);
   tapeDelay.delayTime.value = 0.015;
@@ -286,22 +292,23 @@ function initFxEngine() {
   const tapeCurve = new Float32Array(n_samples);
   for (let i = 0; i < n_samples; ++i) {
     const x = (i * 2) / n_samples - 1;
-    tapeCurve[i] = Math.tanh(1.9 * x + 0.12 * x * x);
+    tapeCurve[i] = Math.tanh(1.8 * x + 0.1 * x * x);
   }
   tapeShaper.curve = tapeCurve;
   tapeShaper.oversample = "4x";
 
   tapeIn.connect(tapeDry).connect(tapeOut);
-  tapeIn.connect(tapeDrive).connect(tapeShaper).connect(tapeDelay).connect(tapeFilter).connect(tapeWet).connect(tapeOut);
+  tapeIn.connect(tapeSend).connect(tapeDrive).connect(tapeShaper).connect(tapeDelay).connect(tapeFilter).connect(tapeWet).connect(tapeOut);
 
-  fxNodes.tape = { in: tapeIn, out: tapeOut, dry: tapeDry, wet: tapeWet, drive: tapeDrive, shaper: tapeShaper, delay: tapeDelay, filter: tapeFilter };
+  fxNodes.tape = { in: tapeIn, send: tapeSend, out: tapeOut, dry: tapeDry, wet: tapeWet, drive: tapeDrive, shaper: tapeShaper, delay: tapeDelay, filter: tapeFilter };
 
   // ------------------------------------------------------------
   // 5. Karplus-Strong Waveguide
   // ------------------------------------------------------------
   const wgIn = ctx.createGain();
-  const wgDry = ctx.createGain();
-  const wgWet = ctx.createGain();
+  const wgSend = ctx.createGain(); wgSend.gain.value = 0.0;
+  const wgDry = ctx.createGain(); wgDry.gain.value = 1.0;
+  const wgWet = ctx.createGain(); wgWet.gain.value = 0.0;
   const wgOut = ctx.createGain();
   const wgDelay = ctx.createDelay(0.5);
   wgDelay.delayTime.value = 1 / 220;
@@ -309,114 +316,119 @@ function initFxEngine() {
   wgFilter.type = "lowpass";
   wgFilter.frequency.value = 4500;
   const wgFeedback = ctx.createGain();
-  wgFeedback.gain.value = 0.92;
+  wgFeedback.gain.value = 0.78;
 
   wgIn.connect(wgDry).connect(wgOut);
-  wgIn.connect(wgDelay).connect(wgFilter).connect(wgFeedback).connect(wgDelay);
+  wgIn.connect(wgSend).connect(wgDelay).connect(wgFilter).connect(wgFeedback).connect(wgDelay);
   wgFilter.connect(wgWet).connect(wgOut);
 
-  fxNodes.waveguide = { in: wgIn, out: wgOut, dry: wgDry, wet: wgWet, delay: wgDelay, filter: wgFilter, fb: wgFeedback };
+  fxNodes.waveguide = { in: wgIn, send: wgSend, out: wgOut, dry: wgDry, wet: wgWet, delay: wgDelay, filter: wgFilter, fb: wgFeedback };
 
   // ------------------------------------------------------------
   // 6. Granular Cloud Delay & Scatter
   // ------------------------------------------------------------
   const granIn = ctx.createGain();
-  const granDry = ctx.createGain();
-  const granWet = ctx.createGain();
+  const granSend = ctx.createGain(); granSend.gain.value = 0.0;
+  const granDry = ctx.createGain(); granDry.gain.value = 1.0;
+  const granWet = ctx.createGain(); granWet.gain.value = 0.0;
   const granOut = ctx.createGain();
   const granDelay = ctx.createDelay(1.5);
   granDelay.delayTime.value = 0.065;
   const granFilter = ctx.createBiquadFilter();
   granFilter.type = "bandpass";
   granFilter.frequency.value = 2200;
-  granFilter.Q.value = 2.0;
+  granFilter.Q.value = 1.8;
   const granFeedback = ctx.createGain();
-  granFeedback.gain.value = 0.55;
+  granFeedback.gain.value = 0.45;
 
   granIn.connect(granDry).connect(granOut);
-  granIn.connect(granDelay).connect(granFilter).connect(granFeedback).connect(granDelay);
+  granIn.connect(granSend).connect(granDelay).connect(granFilter).connect(granFeedback).connect(granDelay);
   granFilter.connect(granWet).connect(granOut);
 
-  fxNodes.granular = { in: granIn, out: granOut, dry: granDry, wet: granWet, delay: granDelay, filter: granFilter, fb: granFeedback };
+  fxNodes.granular = { in: granIn, send: granSend, out: granOut, dry: granDry, wet: granWet, delay: granDelay, filter: granFilter, fb: granFeedback };
 
   // ------------------------------------------------------------
   // 7. Asymmetric Diode Wavefolder
   // ------------------------------------------------------------
   const wfIn = ctx.createGain();
-  const wfDry = ctx.createGain();
-  const wfWet = ctx.createGain();
+  const wfSend = ctx.createGain(); wfSend.gain.value = 0.0;
+  const wfDry = ctx.createGain(); wfDry.gain.value = 1.0;
+  const wfWet = ctx.createGain(); wfWet.gain.value = 0.0;
   const wfOut = ctx.createGain();
   const wfDrive = ctx.createGain();
-  wfDrive.gain.value = 2.2;
+  wfDrive.gain.value = 1.8;
   const wfShaper = ctx.createWaveShaper();
 
   const wfCurve = new Float32Array(n_samples);
   for (let i = 0; i < n_samples; ++i) {
     const x = (i * 2) / n_samples - 1;
-    wfCurve[i] = Math.sin(3.8 * x + 0.25) + 0.3 * Math.sin(11.4 * x);
+    wfCurve[i] = Math.sin(3.5 * x + 0.2) * 0.85;
   }
   wfShaper.curve = wfCurve;
   wfShaper.oversample = "4x";
 
   wfIn.connect(wfDry).connect(wfOut);
-  wfIn.connect(wfDrive).connect(wfShaper).connect(wfWet).connect(wfOut);
+  wfIn.connect(wfSend).connect(wfDrive).connect(wfShaper).connect(wfWet).connect(wfOut);
 
-  fxNodes.wavefolder = { in: wfIn, out: wfOut, dry: wfDry, wet: wfWet, drive: wfDrive, shaper: wfShaper };
+  fxNodes.wavefolder = { in: wfIn, send: wfSend, out: wfOut, dry: wfDry, wet: wfWet, drive: wfDrive, shaper: wfShaper };
 
   // ------------------------------------------------------------
   // 8. Dynamic Spectral Sculptor
   // ------------------------------------------------------------
   const scIn = ctx.createGain();
-  const scDry = ctx.createGain();
-  const scWet = ctx.createGain();
+  const scSend = ctx.createGain(); scSend.gain.value = 0.0;
+  const scDry = ctx.createGain(); scDry.gain.value = 1.0;
+  const scWet = ctx.createGain(); scWet.gain.value = 0.0;
   const scOut = ctx.createGain();
   const scDuck = ctx.createBiquadFilter();
   scDuck.type = "peaking";
   scDuck.frequency.value = 350;
-  scDuck.Q.value = 1.8;
-  scDuck.gain.value = -6.5;
+  scDuck.Q.value = 1.5;
+  scDuck.gain.value = -4.0;
 
   const scAir = ctx.createBiquadFilter();
   scAir.type = "highshelf";
   scAir.frequency.value = 7500;
-  scAir.gain.value = 3.5;
+  scAir.gain.value = 2.5;
 
   const scComp = ctx.createDynamicsCompressor();
-  scComp.threshold.value = -18;
+  scComp.threshold.value = -16;
   scComp.knee.value = 12;
-  scComp.ratio.value = 4.0;
-  scComp.attack.value = 0.005;
-  scComp.release.value = 0.15;
+  scComp.ratio.value = 3.5;
+  scComp.attack.value = 0.01;
+  scComp.release.value = 0.2;
 
   scIn.connect(scDry).connect(scOut);
-  scIn.connect(scDuck).connect(scAir).connect(scComp).connect(scWet).connect(scOut);
+  scIn.connect(scSend).connect(scDuck).connect(scAir).connect(scComp).connect(scWet).connect(scOut);
 
-  fxNodes.sculptor = { in: scIn, out: scOut, dry: scDry, wet: scWet, duck: scDuck, air: scAir, comp: scComp };
+  fxNodes.sculptor = { in: scIn, send: scSend, out: scOut, dry: scDry, wet: scWet, duck: scDuck, air: scAir, comp: scComp };
 
   // ------------------------------------------------------------
   // 9. Binaural 3D Spatial Orbit Panner
   // ------------------------------------------------------------
   const orbIn = ctx.createGain();
-  const orbDry = ctx.createGain();
-  const orbWet = ctx.createGain();
+  const orbSend = ctx.createGain(); orbSend.gain.value = 0.0;
+  const orbDry = ctx.createGain(); orbDry.gain.value = 1.0;
+  const orbWet = ctx.createGain(); orbWet.gain.value = 0.0;
   const orbOut = ctx.createGain();
   const orbPanner = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
 
   orbIn.connect(orbDry).connect(orbOut);
   if (orbPanner) {
-    orbIn.connect(orbPanner).connect(orbWet).connect(orbOut);
+    orbIn.connect(orbSend).connect(orbPanner).connect(orbWet).connect(orbOut);
   } else {
-    orbIn.connect(orbWet).connect(orbOut);
+    orbIn.connect(orbSend).connect(orbWet).connect(orbOut);
   }
 
-  fxNodes.orbit3d = { in: orbIn, out: orbOut, dry: orbDry, wet: orbWet, panner: orbPanner };
+  fxNodes.orbit3d = { in: orbIn, send: orbSend, out: orbOut, dry: orbDry, wet: orbWet, panner: orbPanner };
 
   // ------------------------------------------------------------
   // 10. Probabilistic Glitch Shuffler & Bitcrush
   // ------------------------------------------------------------
   const glIn = ctx.createGain();
-  const glDry = ctx.createGain();
-  const glWet = ctx.createGain();
+  const glSend = ctx.createGain(); glSend.gain.value = 0.0;
+  const glDry = ctx.createGain(); glDry.gain.value = 1.0;
+  const glWet = ctx.createGain(); glWet.gain.value = 0.0;
   const glOut = ctx.createGain();
   const glShaper = ctx.createWaveShaper();
   const glDelay = ctx.createDelay(1.0);
@@ -431,9 +443,9 @@ function initFxEngine() {
   glShaper.curve = glCurve;
 
   glIn.connect(glDry).connect(glOut);
-  glIn.connect(glShaper).connect(glDelay).connect(glWet).connect(glOut);
+  glIn.connect(glSend).connect(glShaper).connect(glDelay).connect(glWet).connect(glOut);
 
-  fxNodes.glitch = { in: glIn, out: glOut, dry: glDry, wet: glWet, shaper: glShaper, delay: glDelay };
+  fxNodes.glitch = { in: glIn, send: glSend, out: glOut, dry: glDry, wet: glWet, shaper: glShaper, delay: glDelay };
 
   // ------------------------------------------------------------
   // Wire the 10 FX Modules into a continuous serial master bus
@@ -442,8 +454,6 @@ function initFxEngine() {
   FX_CHAIN_ORDER.forEach(id => {
     const node = fxNodes[id];
     if (node) {
-      if (node.dry) node.dry.gain.value = 1.0;
-      if (node.wet) node.wet.gain.value = 0.0;
       chainCurr.connect(node.in);
       chainCurr = node.out;
     }
@@ -469,11 +479,13 @@ function updateFxModuleMix(fxId) {
 
   if (fx.enabled) {
     const mix = Math.max(0, Math.min(1, fx.mix));
-    nodes.dry.gain.setTargetAtTime(1.0 - mix * 0.75, now, 0.02);
-    nodes.wet.gain.setTargetAtTime(mix * 1.15, now, 0.02);
+    if (nodes.send) nodes.send.gain.setTargetAtTime(1.0, now, 0.02);
+    if (nodes.dry) nodes.dry.gain.setTargetAtTime(1.0 - mix * 0.7, now, 0.02);
+    if (nodes.wet) nodes.wet.gain.setTargetAtTime(mix, now, 0.02);
   } else {
-    nodes.dry.gain.setTargetAtTime(1.0, now, 0.02);
-    nodes.wet.gain.setTargetAtTime(0.0, now, 0.02);
+    if (nodes.send) nodes.send.gain.setTargetAtTime(0.0, now, 0.02);
+    if (nodes.dry) nodes.dry.gain.setTargetAtTime(1.0, now, 0.02);
+    if (nodes.wet) nodes.wet.gain.setTargetAtTime(0.0, now, 0.02);
   }
 }
 
@@ -505,7 +517,7 @@ function applyFxParamChange(fxId, paramKey) {
   if (!nodes) return;
 
   if (fxId === "shimmer") {
-    if (paramKey === "shim_decay") nodes.fb.gain.setTargetAtTime(Math.min(0.96, 0.4 + (val / 40) * 0.55), now, 0.05);
+    if (paramKey === "shim_decay") nodes.fb.gain.setTargetAtTime(Math.min(0.78, 0.3 + (val / 40) * 0.45), now, 0.05);
     if (paramKey === "shim_damp") nodes.filter.frequency.setTargetAtTime(val, now, 0.05);
     if (paramKey === "shim_size") nodes.delay.delayTime.setTargetAtTime(val / 1000, now, 0.05);
   }
@@ -519,12 +531,12 @@ function applyFxParamChange(fxId, paramKey) {
       });
     }
     if (paramKey === "res_q") {
-      nodes.filters.forEach(fObj => fObj.filter.Q.setTargetAtTime(val, now, 0.05));
+      nodes.filters.forEach(fObj => fObj.filter.Q.setTargetAtTime(Math.min(16, val), now, 0.05));
     }
   }
   else if (fxId === "barberpole") {
     if (paramKey === "barber_feedback") {
-      nodes.fb.gain.setTargetAtTime(Math.min(0.95, val / 100), now, 0.05);
+      nodes.fb.gain.setTargetAtTime(Math.min(0.70, (val / 100) * 0.70), now, 0.05);
     }
   }
   else if (fxId === "tape") {
@@ -533,11 +545,12 @@ function applyFxParamChange(fxId, paramKey) {
   }
   else if (fxId === "waveguide") {
     if (paramKey === "string_pitch") nodes.delay.delayTime.setTargetAtTime(1 / Math.max(20, val), now, 0.05);
-    if (paramKey === "string_decay") nodes.fb.gain.setTargetAtTime(Math.min(0.98, 0.5 + (val / 10) * 0.47), now, 0.05);
+    if (paramKey === "string_decay") nodes.fb.gain.setTargetAtTime(Math.min(0.82, 0.4 + (val / 10) * 0.40), now, 0.05);
     if (paramKey === "string_damp") nodes.filter.frequency.setTargetAtTime(16000 * (1 - val / 120), now, 0.05);
   }
   else if (fxId === "granular") {
     if (paramKey === "grain_size") nodes.delay.delayTime.setTargetAtTime(val / 1000, now, 0.05);
+    if (paramKey === "grain_scatter") nodes.fb.gain.setTargetAtTime(Math.min(0.55, (val / 100) * 0.55), now, 0.05);
   }
   else if (fxId === "wavefolder") {
     if (paramKey === "fold_drive") nodes.drive.gain.setTargetAtTime(val, now, 0.05);

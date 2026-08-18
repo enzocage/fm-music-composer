@@ -382,8 +382,8 @@ function initAudio() {
 }
 
 function createReverbIR(duration, decay) {
-  const sampleRate = 48000;
-  const length = sampleRate * duration;
+  const sampleRate = ctx ? ctx.sampleRate : 48000;
+  const length = Math.max(1, Math.floor(sampleRate * duration));
   const impulse = new AudioBuffer({ length, numberOfChannels: 2, sampleRate });
   const left = impulse.getChannelData(0);
   const right = impulse.getChannelData(1);
