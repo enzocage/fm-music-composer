@@ -50,56 +50,62 @@
     user-select: none;
   }
 
-  /* ---------- DYNAMISCH ERWEITERBARE INTELLIGENTE KOPFZEILE ---------- */
+  /* ---------- DYNAMISCH ERWEITERBARE INTELLIGENTE KOPFZEILE (RESPONSIVE) ---------- */
   header {
     border-bottom: 1px solid var(--rule);
-    background: linear-gradient(180deg, #090e1a 0%, #04060a 100%);
+    background: linear-gradient(180deg, #0b1120 0%, #050811 100%);
     position: relative;
     z-index: 20;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    transition: max-height 0.28s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.5);
+    max-height: 48px;
+    min-height: 44px;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-    max-height: 38px;
+    transition: max-height 0.28s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s, box-shadow 0.2s;
   }
 
   header.expanded {
-    max-height: 320px;
-    background: linear-gradient(180deg, #0e1528 0%, #050811 100%);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.7), 0 0 14px -2px var(--accent);
+    max-height: 380px;
+    background: linear-gradient(180deg, #0e172a 0%, #060914 100%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.8), 0 0 16px -2px var(--accent);
   }
 
   .top-row-bar {
-    padding: 3px 8px;
+    padding: 6px 12px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
-    height: 38px;
-    flex-shrink: 0;
+    gap: 8px 12px;
+    min-height: 44px;
     width: 100%;
   }
 
-  .header-left {
+  .header-cluster {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .header-cluster-nav {
     flex-shrink: 0;
   }
 
   .logo-tag {
-    font-size: 9.5px;
+    font-size: 10px;
     font-weight: 800;
     letter-spacing: .15em;
     text-transform: uppercase;
     color: #f1f5fd;
     white-space: nowrap;
-    padding: 2px 5px;
-    background: rgba(56, 199, 255, 0.1);
-    border: 1px solid rgba(56, 199, 255, 0.25);
-    border-radius: 2px;
+    padding: 3px 7px;
+    background: rgba(56, 199, 255, 0.12);
+    border: 1px solid rgba(56, 199, 255, 0.3);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(56, 199, 255, 0.1);
   }
 
   /* Bank Segmented Toggle */
@@ -107,51 +113,53 @@
     display: flex;
     background: #060912;
     border: 1px solid var(--rule);
-    border-radius: 2px;
-    padding: 1px;
-    gap: 1px;
+    border-radius: 3px;
+    padding: 1.5px;
+    gap: 2px;
   }
   .bank-seg-btn {
     font-family: var(--mono);
-    font-size: 8px;
+    font-size: 8.5px;
     font-weight: 700;
     letter-spacing: .05em;
-    padding: 2px 4.5px;
+    padding: 2.5px 6px;
     border: none;
     background: transparent;
     color: var(--dim);
     cursor: pointer;
-    border-radius: 1px;
+    border-radius: 2px;
     transition: all .1s;
   }
   .bank-seg-btn.active#btnBankA {
-    background: rgba(255, 71, 87, 0.25);
+    background: rgba(255, 71, 87, 0.28);
     color: #ff8591;
+    box-shadow: 0 0 6px rgba(255, 71, 87, 0.3);
   }
   .bank-seg-btn.active#btnBankB {
-    background: rgba(56, 199, 255, 0.25);
+    background: rgba(56, 199, 255, 0.28);
     color: #7ad7ff;
+    box-shadow: 0 0 6px rgba(56, 199, 255, 0.3);
   }
 
   /* 10 Micro Numeric Pills */
   .micro-pills-bar {
     display: flex;
-    gap: 1.5px;
+    gap: 2px;
     align-items: center;
   }
   .micro-pill {
-    width: 17px;
-    height: 18px;
+    width: 20px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--mono);
-    font-size: 8px;
+    font-size: 8.5px;
     font-weight: 700;
     background: #080c16;
     color: var(--dim);
     border: 1px solid rgba(34, 45, 68, 0.8);
-    border-radius: 2px;
+    border-radius: 3px;
     cursor: pointer;
     user-select: none;
     position: relative;
@@ -167,14 +175,14 @@
     color: #05070d;
     background: var(--pill-color, var(--accent));
     border-color: var(--pill-color, var(--accent));
-    box-shadow: 0 0 7px -1px var(--pill-color, var(--accent));
+    box-shadow: 0 0 8px -1px var(--pill-color, var(--accent));
   }
   .micro-pill .voice-dot {
     position: absolute;
     top: 1px;
     right: 1px;
-    width: 3px;
-    height: 3px;
+    width: 3.5px;
+    height: 3.5px;
     border-radius: 50%;
     background: transparent;
   }
@@ -185,48 +193,48 @@
 
   select#synthSelect {
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 9.5px;
     font-weight: 600;
     color: var(--fg);
     background: #060911;
     border: 1px solid var(--accent);
-    padding: 2px 4px;
-    border-radius: 2px;
+    padding: 3px 6px;
+    border-radius: 3px;
     cursor: pointer;
     outline: none;
-    max-width: 190px;
-    height: 20px;
-    box-shadow: 0 0 6px -2px var(--accent);
+    min-width: 170px;
+    height: 24px;
+    box-shadow: 0 0 8px -2px var(--accent);
   }
 
-  /* Center HUD: Compact Telemetry & Formula */
-  .header-center {
+  /* Center Cluster: Telemetry & Formula */
+  .header-cluster-telemetry {
     flex: 1;
-    min-width: 0;
+    min-width: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    overflow: hidden;
-    padding: 0 4px;
+    gap: 8px;
+    background: rgba(6, 10, 18, 0.8);
+    border: 1px solid rgba(34, 45, 68, 0.85);
+    border-radius: 4px;
+    padding: 3px 10px;
     cursor: pointer;
-    border-radius: 2px;
-    transition: background .12s;
+    transition: all .15s ease;
   }
-  .header-center:hover {
-    background: rgba(255, 255, 255, 0.03);
+  .header-cluster-telemetry:hover {
+    background: rgba(10, 16, 28, 0.95);
+    border-color: var(--dimmer);
+    box-shadow: 0 0 10px rgba(56, 199, 255, 0.12);
   }
+
   .telemetry-capsule {
     display: flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(6, 10, 18, 0.75);
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    padding: 2px 6px;
-    white-space: nowrap;
-    font-size: 8px;
+    gap: 7px;
+    font-size: 8.5px;
     color: var(--dim);
+    white-space: nowrap;
   }
   .telemetry-capsule b {
     color: var(--fg);
@@ -238,38 +246,39 @@
   .telemetry-capsule .live-d { color: #ffc46b; }
 
   .formula-inline {
-    font-size: 8.5px;
+    font-size: 9px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 260px;
     color: var(--dim);
+    border-left: 1px solid rgba(255,255,255,0.08);
+    padding-left: 8px;
   }
   .formula-inline em { font-style: italic; color: #fff; }
   .formula-inline .idx { color: var(--accent); }
 
-  /* Right Actions */
-  .header-right {
+  /* Right Cluster: Actions */
+  .header-cluster-actions {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
+    gap: 5px;
   }
 
   .expand-header-btn {
     font-family: var(--mono);
-    font-size: 8px;
+    font-size: 8.5px;
     font-weight: 700;
     letter-spacing: .06em;
-    padding: 2px 6px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     color: var(--fg);
-    border-radius: 2px;
+    border-radius: 3px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 4px;
     transition: all .15s ease;
     white-space: nowrap;
   }
@@ -277,12 +286,34 @@
     background: var(--accent);
     color: #05070d;
     border-color: var(--accent);
-    box-shadow: 0 0 8px var(--accent);
+    box-shadow: 0 0 10px var(--accent);
   }
   header.expanded .expand-header-btn {
-    background: rgba(255, 71, 87, 0.2);
+    background: rgba(255, 71, 87, 0.25);
     border-color: var(--accent);
     color: var(--accent);
+  }
+
+  .splitter-header {
+    height: 5px;
+    background: rgba(28, 38, 58, 0.6);
+    cursor: row-resize;
+    transition: background .12s, box-shadow .12s;
+    flex-shrink: 0;
+    z-index: 25;
+    position: relative;
+  }
+  .splitter-header:hover, .splitter-header.dragging {
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  @media (max-width: 1240px) {
+    .header-cluster-telemetry {
+      order: 3;
+      width: 100%;
+      min-width: 100%;
+    }
   }
 
   /* ---------- AUSKLAPPBARE DETAILS & 20-SYNTH COMMAND CENTER ---------- */
@@ -1410,12 +1441,12 @@
 </head>
 <body>
 
-<!-- DYNAMISCH ERWEITERBARE INTELLIGENTE KOPFZEILE -->
+<!-- DYNAMISCH ERWEITERBARE INTELLIGENTE KOPFZEILE (RESPONSIVE COMMAND BAR) -->
 <header id="topHeader">
-  <!-- PRIMÄRE HUD-ZEILE (Immer sichtbar, ultra-kompakt) -->
+  <!-- PRIMÄRE HUD-ZEILE (Intelligentes 3-Cluster Responsive Layout) -->
   <div class="top-row-bar">
-    <!-- Linker Block: Logo + Bank-Segment + 10 Micro-Pills + Dropdown -->
-    <div class="header-left">
+    <!-- CLUSTER 1: INSTRUMENTEN-NAVIGATION & BANK -->
+    <div class="header-cluster header-cluster-nav">
       <span class="logo-tag">FM COMPOSER</span>
       
       <div class="bank-segmented">
@@ -1429,8 +1460,8 @@
       <select id="synthSelect"></select>
     </div>
 
-    <!-- Mittlerer Block: Intelligente Formel- & Telemetrie-Kapsel (Klickbar zum Aufklappen) -->
-    <div class="header-center" id="hudCenterCapsule" title="Klicken für vollständige Formel- & Synth-Ansicht">
+    <!-- CLUSTER 2: ECHTZEIT-TELEMETRIE & PHYSIK-FORMEL (Intelligente Kapsel) -->
+    <div class="header-cluster header-cluster-telemetry" id="hudCenterCapsule" title="Klicken für vollständige Formel- & Synth-Ansicht">
       <div class="telemetry-capsule">
         <span><em>f</em><sub>c</sub>:<b class="live-fc" id="fclive">—</b></span>
         <span><em>f</em><sub>m</sub>:<b class="live-fm" id="fmlive">—</b></span>
@@ -1442,11 +1473,11 @@
       <div class="formula-inline" id="formulaInline"></div>
     </div>
 
-    <!-- Rechter Block: Speicher-/Lade-Aktionen, Layout-Presets, Record & Expand-Button -->
-    <div class="header-right">
+    <!-- CLUSTER 3: MASTER-DECK, PRESETS, TRANSPORT & EXPAND -->
+    <div class="header-cluster header-cluster-actions">
       <div class="song-btn-group">
-        <button id="saveSongBtn" style="border-color:rgba(46, 213, 115, 0.4);background:rgba(46, 213, 115, 0.08);color:#2ed573;font-weight:600;padding:2px 5px;font-size:8px;" title="Song speichern (.json)">💾 Save</button>
-        <button id="loadSongBtn" style="border-color:rgba(112, 161, 255, 0.4);background:rgba(112, 161, 255, 0.08);color:#70a1ff;font-weight:600;padding:2px 5px;font-size:8px;" title="Song laden (.json)">📂 Load</button>
+        <button id="saveSongBtn" style="border-color:rgba(46, 213, 115, 0.4);background:rgba(46, 213, 115, 0.12);color:#2ed573;font-weight:700;padding:3px 7px;font-size:9px;" title="Song speichern (.json)">💾 Save</button>
+        <button id="loadSongBtn" style="border-color:rgba(112, 161, 255, 0.4);background:rgba(112, 161, 255, 0.12);color:#70a1ff;font-weight:700;padding:3px 7px;font-size:9px;" title="Song laden (.json)">📂 Load</button>
         <input type="file" id="songFileInput" accept=".json" style="display:none">
       </div>
 
@@ -1457,8 +1488,8 @@
         <button class="layout-btn" id="layFullscreen" title="Vollbild">⛶</button>
       </div>
 
-      <button id="quickRecBtn" style="border-color:rgba(255, 71, 87, 0.5);background:rgba(255, 71, 87, 0.1);color:#ff4757;font-weight:700;padding:2px 6px;font-size:8px;">● REC (R)</button>
-      <button id="globalPanic" style="border-color:rgba(255, 107, 129, 0.4);background:rgba(255, 107, 129, 0.08);color:#ff6b81;padding:2px 5px;font-size:8px;">Stille</button>
+      <button id="quickRecBtn" style="border-color:rgba(255, 71, 87, 0.5);background:rgba(255, 71, 87, 0.15);color:#ff4757;font-weight:700;padding:3px 8px;font-size:9px;">● REC (R)</button>
+      <button id="globalPanic" style="border-color:rgba(255, 107, 129, 0.4);background:rgba(255, 107, 129, 0.12);color:#ff6b81;font-weight:600;padding:3px 7px;font-size:9px;">Stille</button>
 
       <!-- Dynamischer Expand / Collapse Umschalter -->
       <button class="expand-header-btn" id="expandHeaderBtn" title="Kopfbereich aufklappen / einklappen (Taste H)">
@@ -1489,6 +1520,9 @@
     </div>
   </div>
 </header>
+
+<!-- Horizontaler Splitter für Kopfzeile (Ziehbar nach unten/oben) -->
+<div class="splitter-header" id="splitHeader" title="Ziehen zum Vergrößern/Verkleinern des Kopfbereichs"></div>
 
 <!-- HAUPT-STUDIOBEREICH MIT RESIZABLE SPLITTERS -->
 <div id="studioLayout">
@@ -3594,15 +3628,26 @@ function syncOscillatorsUI() {
 }
 
 /* ============================================================
-   RESIZABLE SPLITTER LOGIK (SPLIT-H & SPLIT-V)
+   RESIZABLE SPLITTER LOGIK (SPLIT-H, SPLIT-V & SPLIT-HEADER)
    ============================================================ */
 const splitH = document.getElementById("splitH");
 const splitV = document.getElementById("splitV");
+const splitHeader = document.getElementById("splitHeader");
+const topHeader = document.getElementById("topHeader");
 const sidebarContainer = document.getElementById("sidebarContainer");
 const plotsContainer = document.getElementById("plotsContainer");
 const layMiniGfx = document.getElementById("layMiniGfx");
 
-let isResizingH = false, isResizingV = false;
+let isResizingH = false, isResizingV = false, isResizingHeader = false;
+
+if (splitHeader) {
+  splitHeader.addEventListener("pointerdown", e => {
+    e.preventDefault();
+    isResizingHeader = true;
+    splitHeader.classList.add("dragging");
+    splitHeader.setPointerCapture(e.pointerId);
+  });
+}
 
 splitH.addEventListener("pointerdown", e => {
   e.preventDefault();
@@ -3612,6 +3657,20 @@ splitH.addEventListener("pointerdown", e => {
 });
 
 window.addEventListener("pointermove", e => {
+  if (isResizingHeader) {
+    const newH = Math.max(44, Math.min(window.innerHeight * 0.65, e.clientY));
+    topHeader.style.maxHeight = newH + "px";
+    if (newH > 80) {
+      topHeader.classList.add("expanded");
+      const expandBtnTxt = document.getElementById("expandBtnTxt");
+      if (expandBtnTxt) expandBtnTxt.textContent = "▴ KOMPAKT";
+    } else {
+      topHeader.classList.remove("expanded");
+      const expandBtnTxt = document.getElementById("expandBtnTxt");
+      if (expandBtnTxt) expandBtnTxt.textContent = "▾ DETAILS";
+    }
+    resize();
+  }
   if (isResizingH) {
     const windowW = window.innerWidth;
     const newSidebarW = Math.max(240, Math.min(windowW * 0.92, windowW - e.clientX));
@@ -3630,6 +3689,10 @@ window.addEventListener("pointermove", e => {
 });
 
 window.addEventListener("pointerup", () => {
+  if (isResizingHeader) {
+    isResizingHeader = false;
+    if (splitHeader) splitHeader.classList.remove("dragging");
+  }
   if (isResizingH) {
     isResizingH = false;
     splitH.classList.remove("dragging");
@@ -4207,7 +4270,6 @@ function renderFrame() {
 /* ============================================================
    UI Steuerung & Dynamisch erweiterbare Kopfzeile
    ============================================================ */
-const topHeader = document.getElementById("topHeader");
 const expandHeaderBtn = document.getElementById("expandHeaderBtn");
 const expandBtnTxt = document.getElementById("expandBtnTxt");
 const hudCenterCapsule = document.getElementById("hudCenterCapsule");
@@ -4231,8 +4293,10 @@ const btnBankB = document.getElementById("btnBankB");
 function toggleHeaderExpand(forceState = null) {
   const isExpanded = forceState !== null ? forceState : !topHeader.classList.contains("expanded");
   topHeader.classList.toggle("expanded", isExpanded);
-  expandBtnTxt.textContent = isExpanded ? "▴ KOMPAKT" : "▾ DETAILS";
-  setTimeout(() => resize(), 120);
+  topHeader.style.maxHeight = isExpanded ? "380px" : "";
+  const expandBtnTxt = document.getElementById("expandBtnTxt");
+  if (expandBtnTxt) expandBtnTxt.textContent = isExpanded ? "▴ KOMPAKT" : "▾ DETAILS";
+  setTimeout(() => resize(), 100);
   setTimeout(() => resize(), 300);
 }
 
