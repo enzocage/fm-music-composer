@@ -1613,18 +1613,131 @@ function noteOff(sem, synthIdx = activeSynthIdx) {
 
 function panicSynth(synthIdx = activeSynthIdx) {
   const inst = synthInstances[synthIdx];
-  [...inst.voices.keys()].forEach(sem => noteOff(sem, synthIdx));
-  if (synthIdx === activeSynthIdx && typeof stopArpClock === "function") {
-    stopArpClock();
+  if (!inst) return;
+
+  const now = ctx ? ctx.currentTime : 0;
+  for (const [sem, v] of inst.voices) {
+    if (v.env && ctx) {
+      try {
+        v.env.gain.cancelScheduledValues(now);
+        v.env.gain.setValueAtTime(0, now);
+      } catch(e){}
+    }
+    const stopTime = now + 0.01;
+    [v.car, v.car1, v.car2, v.car3, v.carL, v.carR, v.carSub, v.carHigh, v.mod, v.mod1, v.mod2, v.modSin, v.modCos, v.vibOsc, v.vibLfo].forEach(node => {
+      if (node) { try { node.stop(stopTime); } catch(e){} }
+    });
+    if (v.clusterCars) v.clusterCars.forEach(c => { try { c.stop(stopTime); } catch(e){} });
+  }
+  inst.voices.clear();
+
+  inst.params.latch = false;
+  if (synthIdx === activeSynthIdx) {
+    const latchBtn = document.getElementById("latch");
+    if (latchBtn) latchBtn.setAttribute("aria-pressed", "false");
+    const kbLatch = document.getElementById("kbLatchToggle");
+    if (kbLatch) {
+      kbLatch.classList.remove("active");
+      kbLatch.textContent = "LATCH: AUS";
+    }
+    if (typeof stopArpClock === "function") stopArpClock();
     if (typeof arpState !== "undefined" && arpState) {
       arpState.heldKeys.clear();
       arpState.latchedKeys = [];
       if (typeof updateArpActiveNotesHint === "function") updateArpActiveNotesHint();
-      if (typeof syncKeys === "function") syncKeys();
     }
   }
+
+  updateUIBadges();
+  syncKeys();
 }
 
 function panicAll() {
+  // 1. All 100 Synths
   synthInstances.forEach((_, idx) => panicSynth(idx));
+
+  // 2. Stop Arpeggiator
+  if (typeof stopArpClock === "function") stopArpClock();
+  if (typeof arpState !== "undefined" && arpState) {
+    arpState.heldKeys.clear();
+    arpState.latchedKeys = [];
+    if (typeof updateArpActiveNotesHint === "function") updateArpActiveNotesHint();
+  }
+
+  // 3. Stop Percussion Engine
+  if (typeof stopPercClock === "function") stopPercClock();
+  if (typeof percState !== "undefined" && percState) {
+    percState.isPlaying = false;
+    const playBtn = document.getElementById("btnPercPlay");
+    if (playBtn) {
+      playBtn.classList.remove("playing");
+      playBtn.textContent = "▶ BEAT START";
+    }
+  }
+
+  // 4. Stop Speech Looper
+  if (typeof loopState !== "undefined" && loopState) {
+    if (loopState.activeSourceNode) {
+      try { loopState.activeSourceNode.stop(); } catch(e){}
+      loopState.activeSourceNode = null;
+    }
+    if (loopState.pauseTimerId) {
+      clearTimeout(loopState.pauseTimerId);
+      loopState.pauseTimerId = null;
+    }
+    loopState.isPlaying = false;
+    const loopBtn = document.getElementById("loopbtn");
+    if (loopBtn) {
+      loopBtn.setAttribute("aria-pressed", "false");
+      loopBtn.textContent = "Abspielen";
+    }
+    const statusText = document.getElementById("loopStatusText");
+    if (statusText) statusText.textContent = "Stille";
+  }
+
+  // 5. Stop Multi-Layer Looper Stack
+  if (typeof loopStack !== "undefined" && Array.isArray(loopStack)) {
+    loopStack.forEach(layer => {
+      layer.isOn = false;
+      if (layer.sourceNode) {
+        try { layer.sourceNode.stop(); } catch(e){}
+        layer.sourceNode = null;
+      }
+      if (layer.pauseTimerId) {
+        clearTimeout(layer.pauseTimerId);
+        layer.pauseTimerId = null;
+      }
+      if (layer.statusBadgeEl) {
+        layer.statusBadgeEl.textContent = "AUS";
+        layer.statusBadgeEl.style.color = "var(--dimmer)";
+      }
+    });
+  }
+
+  // 6. Reset any FX feedback delay lines to flush reverb/delay tails to absolute 0
+  if (typeof fxNodes !== "undefined" && ctx) {
+    const now = ctx.currentTime;
+    if (fxNodes.shimmer && fxNodes.shimmer.fb) {
+      fxNodes.shimmer.fb.gain.setValueAtTime(0, now);
+      setTimeout(() => {
+        if (typeof applyFxParamChange === "function") applyFxParamChange("shimmer", "shim_decay");
+      }, 80);
+    }
+    if (fxNodes.waveguide && fxNodes.waveguide.fb) {
+      fxNodes.waveguide.fb.gain.setValueAtTime(0, now);
+      setTimeout(() => {
+        if (typeof applyFxParamChange === "function") applyFxParamChange("waveguide", "string_decay");
+      }, 80);
+    }
+    if (fxNodes.granular && fxNodes.granular.fb) {
+      fxNodes.granular.fb.gain.setValueAtTime(0, now);
+    }
+  }
+
+  if (typeof activeHeldPhysicalNotes !== "undefined") {
+    activeHeldPhysicalNotes.clear();
+  }
+
+  updateUIBadges();
+  syncKeys();
 }

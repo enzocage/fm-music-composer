@@ -596,6 +596,24 @@ function selectSynth(idx) {
   syncKeys();
 }
 
+const synthPanicBtn = document.getElementById("synthPanic");
+if (synthPanicBtn) {
+  synthPanicBtn.addEventListener("click", () => {
+    panicAll();
+  });
+}
+
+const latchBtn = document.getElementById("latch");
+if (latchBtn) {
+  latchBtn.addEventListener("click", () => {
+    const inst = synthInstances[activeSynthIdx];
+    inst.params.latch = !inst.params.latch;
+    latchBtn.setAttribute("aria-pressed", inst.params.latch);
+    updateOctaveUI();
+    if (!inst.params.latch) panicSynth(activeSynthIdx);
+  });
+}
+
 function updateUIBadges() {
   const isBankB = (activeSynthIdx >= 10);
   microPills.forEach((p, k) => {
