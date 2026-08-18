@@ -50,73 +50,208 @@
     user-select: none;
   }
 
-  /* ---------- Kopfzeile ---------- */
+  /* ---------- INTEGRIERTE ULTRA-KOMPAKTE KOPFZEILE (1 ZEILE) ---------- */
   header {
     border-bottom: 1px solid var(--rule);
-    padding: 6px 12px 6px;
+    padding: 3px 8px;
     background: linear-gradient(180deg, #090e1a 0%, #04060a 100%);
     position: relative;
     z-index: 20;
     flex-shrink: 0;
-  }
-  .top-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 5px;
-  }
-  .title-group {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-  }
-  h1 {
-    font-size: 11px;
-    font-weight: 700;
-    margin: 0;
-    letter-spacing: .25em;
-    text-transform: uppercase;
-    color: #f1f5fd;
-    text-shadow: 0 0 10px rgba(56, 199, 255, 0.2);
-  }
-  .sub {
-    color: var(--dim);
-    font-size: 9px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
+    justify-content: space-between;
+    gap: 6px;
+    height: 38px;
   }
 
-  .header-actions {
+  .header-left {
     display: flex;
-    gap: 5px;
     align-items: center;
-    flex-wrap: wrap;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .logo-tag {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: #f1f5fd;
+    white-space: nowrap;
+    padding: 2px 5px;
+    background: rgba(56, 199, 255, 0.1);
+    border: 1px solid rgba(56, 199, 255, 0.25);
+    border-radius: 2px;
+  }
+
+  /* Bank Segmented Toggle */
+  .bank-segmented {
+    display: flex;
+    background: #060912;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1px;
+    gap: 1px;
+  }
+  .bank-seg-btn {
+    font-family: var(--mono);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    padding: 2px 4.5px;
+    border: none;
+    background: transparent;
+    color: var(--dim);
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all .1s;
+  }
+  .bank-seg-btn.active#btnBankA {
+    background: rgba(255, 71, 87, 0.25);
+    color: #ff8591;
+  }
+  .bank-seg-btn.active#btnBankB {
+    background: rgba(56, 199, 255, 0.25);
+    color: #7ad7ff;
+  }
+
+  /* 10 Micro Numeric Pills */
+  .micro-pills-bar {
+    display: flex;
+    gap: 1.5px;
+    align-items: center;
+  }
+  .micro-pill {
+    width: 17px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 8px;
+    font-weight: 700;
+    background: #080c16;
+    color: var(--dim);
+    border: 1px solid rgba(34, 45, 68, 0.8);
+    border-radius: 2px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: all .1s ease;
+    padding: 0;
+  }
+  .micro-pill:hover {
+    color: var(--fg);
+    border-color: var(--dimmer);
+    background: #0e1424;
+  }
+  .micro-pill.active {
+    color: #05070d;
+    background: var(--pill-color, var(--accent));
+    border-color: var(--pill-color, var(--accent));
+    box-shadow: 0 0 7px -1px var(--pill-color, var(--accent));
+  }
+  .micro-pill .voice-dot {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: transparent;
+  }
+  .micro-pill.has-voices .voice-dot {
+    background: var(--pill-color, var(--accent));
+    box-shadow: 0 0 4px var(--pill-color, var(--accent));
+  }
+
+  select#synthSelect {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--fg);
+    background: #060911;
+    border: 1px solid var(--accent);
+    padding: 2px 4px;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+    max-width: 190px;
+    height: 20px;
+    box-shadow: 0 0 6px -2px var(--accent);
+  }
+
+  /* Center HUD: Compact Telemetry & Formula */
+  .header-center {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    overflow: hidden;
+    padding: 0 4px;
+  }
+  .telemetry-capsule {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(6, 10, 18, 0.75);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 2px 6px;
+    white-space: nowrap;
+    font-size: 8px;
+    color: var(--dim);
+  }
+  .telemetry-capsule b {
+    color: var(--fg);
+    font-variant-numeric: tabular-nums;
+  }
+  .telemetry-capsule .live-fc { color: #7ad7ff; }
+  .telemetry-capsule .live-fm { color: #a29bfe; }
+  .telemetry-capsule .live-i { color: var(--accent); }
+  .telemetry-capsule .live-d { color: #ffc46b; }
+
+  .formula-inline {
+    font-size: 8.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+    color: var(--dim);
+  }
+  .formula-inline em { font-style: italic; color: #fff; }
+  .formula-inline .idx { color: var(--accent); }
+
+  /* Right Actions */
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
   }
   .song-btn-group {
     display: flex;
-    gap: 3px;
+    gap: 2px;
     background: rgba(14, 20, 34, 0.7);
-    padding: 2px 3px;
+    padding: 1px 2px;
     border: 1px solid var(--rule);
     border-radius: 3px;
   }
-  .song-btn-group button {
-    border-radius: 2px;
-  }
   .layout-btn-group {
     display: flex;
-    gap: 2px;
+    gap: 1px;
     background: rgba(14, 20, 34, 0.7);
-    padding: 2px 3px;
+    padding: 1px 2px;
     border: 1px solid var(--rule);
     border-radius: 3px;
   }
   .layout-btn {
     font-family: var(--mono);
-    font-size: 8.5px;
-    padding: 2px 6px;
+    font-size: 8px;
+    padding: 2px 5px;
     background: transparent;
     border: none;
     color: var(--dim);
@@ -126,196 +261,6 @@
   .layout-btn.active, .layout-btn:hover {
     background: rgba(255,255,255,0.08);
     color: var(--fg);
-  }
-
-  /* Synthesizer Selector Bar mit Bänken */
-  .synth-bar {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 5px;
-    padding: 4px 6px;
-    background: linear-gradient(180deg, #090e1c 0%, #060912 100%);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-  }
-  .synth-bar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .bank-toggle-group {
-    display: flex;
-    gap: 3px;
-    align-items: center;
-  }
-  .bank-btn {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: .08em;
-    padding: 2px 7px;
-    border-radius: 2px;
-    border: 1px solid var(--rule);
-    background: #080c16;
-    color: var(--dim);
-    cursor: pointer;
-    transition: all .12s;
-  }
-  .bank-btn#btnBankA { border-color: rgba(255, 71, 87, 0.35); color: #ff8591; }
-  .bank-btn#btnBankB { border-color: rgba(56, 199, 255, 0.35); color: #7ad7ff; }
-  .bank-btn.active {
-    font-weight: 700;
-  }
-  .bank-btn#btnBankA.active {
-    background: rgba(255, 71, 87, 0.2);
-    color: #fff;
-    border-color: #ff4757;
-    box-shadow: 0 0 8px -2px rgba(255, 71, 87, 0.5);
-  }
-  .bank-btn#btnBankB.active {
-    background: rgba(56, 199, 255, 0.2);
-    color: #fff;
-    border-color: #38c7ff;
-    box-shadow: 0 0 8px -2px rgba(56, 199, 255, 0.5);
-  }
-  select#synthSelect {
-    font-family: var(--mono);
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--fg);
-    background: #060911;
-    border: 1px solid var(--accent);
-    padding: 2px 6px;
-    border-radius: 2px;
-    cursor: pointer;
-    outline: none;
-    max-width: 260px;
-    box-shadow: 0 0 6px -2px var(--accent);
-  }
-
-  .synth-pills-row {
-    display: flex;
-    gap: 2.5px;
-    flex-wrap: wrap;
-  }
-  .bank-label-tag {
-    font-size: 8.5px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    align-self: center;
-    padding-right: 3px;
-  }
-  #pillsBankA .bank-label-tag { color: #ff6b81; }
-  #pillsBankB .bank-label-tag { color: #70a1ff; }
-
-  .synth-pill {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    font-family: var(--mono);
-    font-size: 9px;
-    background: #080c16;
-    color: var(--dim);
-    border: 1px solid rgba(34, 45, 68, 0.8);
-    padding: 1.5px 5px;
-    border-radius: 2px;
-    cursor: pointer;
-    user-select: none;
-    transition: all .1s ease;
-  }
-  .synth-pill .key-num {
-    display: inline-block;
-    padding: 0 2.5px;
-    height: 12px;
-    line-height: 12px;
-    text-align: center;
-    background: rgba(255,255,255,0.06);
-    border-radius: 2px;
-    font-size: 7.5px;
-    font-weight: bold;
-    color: var(--fg);
-  }
-  .synth-pill .voice-dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: transparent;
-  }
-  .synth-pill.has-voices .voice-dot {
-    background: var(--pill-color, var(--accent));
-    box-shadow: 0 0 5px var(--pill-color, var(--accent));
-    animation: pulse-dot 1.2s infinite ease-in-out;
-  }
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 0.7; transform: scale(0.9); }
-    50% { opacity: 1; transform: scale(1.3); }
-  }
-  .synth-pill:hover {
-    color: var(--fg);
-    border-color: var(--dimmer);
-    background: #0e1424;
-  }
-  .synth-pill.active {
-    color: #05070d;
-    background: var(--pill-color, var(--accent));
-    border-color: var(--pill-color, var(--accent));
-    font-weight: 700;
-    box-shadow: 0 0 9px -2px var(--pill-color, var(--accent));
-  }
-  .synth-pill.active .key-num {
-    background: rgba(0,0,0,0.25);
-    color: #05070d;
-  }
-
-  /* Formel-Darstellung */
-  .formula-box {
-    background: linear-gradient(180deg, #070b17 0%, #03050a 100%);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    padding: 4px 8px 3px;
-  }
-  .formula {
-    font-size: clamp(10.5px, 1.4vw, 13.5px);
-    letter-spacing: .02em;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 1px;
-    scrollbar-width: thin;
-    color: var(--fg);
-  }
-  .formula .sym { position: relative; display: inline-block; text-align: center; padding: 0 .1em; }
-  .formula .val {
-    display: block;
-    font-size: 7.5px;
-    color: var(--accent);
-    margin-top: 1px;
-    font-variant-numeric: tabular-nums;
-  }
-  .formula .op { color: #8fa0c0; }
-  .formula em { font-style: italic; color: #ffffff; }
-  .formula .idx { color: var(--accent); }
-  .formula .subtext { font-size: 8.5px; color: var(--dim); margin-left: 5px; }
-
-  .lfoline {
-    margin-top: 2px;
-    font-size: 9px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .lfoline span { white-space: nowrap; }
-  .lfoline span:nth-child(1) { color: #7ad7ff; }
-  .lfoline span:nth-child(2) { color: #a29bfe; }
-  .lfoline span:nth-child(3) { color: #ffc46b; }
-  .lfoline span:nth-child(4) { color: #fd79a8; }
-  .lfoline span:nth-child(5) { color: #6ee7c0; }
-  .lfoline span:nth-child(6) { color: #ff78ae; }
-  .lfoline b {
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
   }
 
   /* ---------- HAUPT-STUDIOBEREICH MIT SUBTILEN PANEL-FARBEN ---------- */
@@ -1082,60 +1027,52 @@
 </head>
 <body>
 
+<!-- INTEGRIERTE ULTRA-KOMPAKTE KOPFZEILE (1 EINZIGES DYNAMISCHES ELEMENT) -->
 <header>
-  <div class="top-row">
-    <div class="title-group">
-      <h1>FM Music Composer</h1>
-      <div class="sub">20 Synthesizer · Looper · Song Speichern/Laden</div>
+  <!-- Linker Block: Logo + Bank-Segment + 10 Micro-Pills + Dropdown -->
+  <div class="header-left">
+    <span class="logo-tag">FM COMPOSER</span>
+    
+    <div class="bank-segmented">
+      <button class="bank-seg-btn active" id="btnBankA" title="Bank A (1–0)">A</button>
+      <button class="bank-seg-btn" id="btnBankB" title="Bank B (Shift+1–0)">B</button>
     </div>
-    <div class="header-actions">
-      <!-- Song Speichern & Laden Buttons mit subtilem Farbakzent -->
-      <div class="song-btn-group">
-        <button id="saveSongBtn" style="border-color:rgba(46, 213, 115, 0.4);background:rgba(46, 213, 115, 0.08);color:#2ed573;font-weight:600;" title="Kompletten Song & alle Loops als JSON speichern">💾 Speichern</button>
-        <button id="loadSongBtn" style="border-color:rgba(112, 161, 255, 0.4);background:rgba(112, 161, 255, 0.08);color:#70a1ff;font-weight:600;" title="Song & Loops aus JSON-Datei laden">📂 Laden</button>
-        <input type="file" id="songFileInput" accept=".json" style="display:none">
-      </div>
 
-      <div class="layout-btn-group">
-        <button class="layout-btn active" id="layStandard" title="Standard-Layout">2x2 Grid</button>
-        <button class="layout-btn" id="layWideRack" title="Breites Multi-Spalten Rack">Doppel-Rack</button>
-        <button class="layout-btn" id="layFullscreen" title="Vollbild umschalten">⛶ Vollbild</button>
-      </div>
-      <button id="quickRecBtn" style="border-color:rgba(255, 71, 87, 0.5);background:rgba(255, 71, 87, 0.1);color:#ff4757;font-weight:600;">● REC (R)</button>
-      <button id="globalPanic" style="border-color:rgba(255, 107, 129, 0.4);background:rgba(255, 107, 129, 0.08);color:#ff6b81;">Stille (Esc)</button>
-    </div>
+    <!-- 10 dynamische Micro-Pills -->
+    <div class="micro-pills-bar" id="microPillsBar"></div>
+
+    <select id="synthSelect"></select>
   </div>
 
-  <!-- Synthesizer Selector Bar mit 2 Bänken (20 Synths) -->
-  <div class="synth-bar">
-    <div class="synth-bar-header">
-      <div class="bank-toggle-group">
-        <button class="bank-btn active" id="btnBankA">Bank A: Exotik (1–0)</button>
-        <button class="bank-btn" id="btnBankB">Bank B: Klassik (Shift+1–0)</button>
-      </div>
-      <select id="synthSelect"></select>
+  <!-- Mittlerer Block: Intelligente Formel- & Telemetrie-Kapsel -->
+  <div class="header-center">
+    <div class="telemetry-capsule">
+      <span><em>f</em><sub>c</sub>:<b class="live-fc" id="fclive">—</b></span>
+      <span><em>f</em><sub>m</sub>:<b class="live-fm" id="fmlive">—</b></span>
+      <span><em>I</em>:<b class="live-i" id="ilive">—</b></span>
+      <span><em>D</em>:<b class="live-d" id="dlive">—</b></span>
+      <span>Stimmen:<b id="totVoices">0</b></span>
+      <span>Loops:<b id="stackCount">0</b></span>
     </div>
-
-    <!-- Pill-Leisten für Bank A & Bank B -->
-    <div class="synth-pills-row" id="pillsBankA">
-      <span class="bank-label-tag">Bank A:</span>
-    </div>
-    <div class="synth-pills-row" id="pillsBankB">
-      <span class="bank-label-tag">Bank B:</span>
-    </div>
+    <div class="formula-inline" id="formulaInline"></div>
   </div>
 
-  <!-- Formel-Box -->
-  <div class="formula-box">
-    <div class="formula" id="formula"></div>
-    <div class="lfoline">
-      <span>Träger <em>f</em><sub>c</sub> = <b id="fclive">—</b></span>
-      <span>Modulator <em>f</em><sub>m</sub> = <b id="fmlive">—</b></span>
-      <span>Index <em>I</em>(<em>t</em>) = <b id="ilive">—</b></span>
-      <span>Hub <em>D</em> = <b id="dlive">—</b></span>
-      <span>Stimmen: <b id="totVoices">0</b></span>
-      <span>Loop-Layers: <b id="stackCount">0 aktiv</b></span>
+  <!-- Rechter Block: Speicher-/Lade-Aktionen, Layout-Presets & Record/Panic -->
+  <div class="header-right">
+    <div class="song-btn-group">
+      <button id="saveSongBtn" style="border-color:rgba(46, 213, 115, 0.4);background:rgba(46, 213, 115, 0.08);color:#2ed573;font-weight:600;padding:2px 5px;font-size:8px;" title="Song speichern (.json)">💾 Save</button>
+      <button id="loadSongBtn" style="border-color:rgba(112, 161, 255, 0.4);background:rgba(112, 161, 255, 0.08);color:#70a1ff;font-weight:600;padding:2px 5px;font-size:8px;" title="Song laden (.json)">📂 Load</button>
+      <input type="file" id="songFileInput" accept=".json" style="display:none">
     </div>
+
+    <div class="layout-btn-group">
+      <button class="layout-btn active" id="layStandard" title="2x2 Grid Layout">Grid</button>
+      <button class="layout-btn" id="layWideRack" title="Breites Doppel-Rack">Rack</button>
+      <button class="layout-btn" id="layFullscreen" title="Vollbild">⛶</button>
+    </div>
+
+    <button id="quickRecBtn" style="border-color:rgba(255, 71, 87, 0.5);background:rgba(255, 71, 87, 0.1);color:#ff4757;font-weight:700;padding:2px 6px;font-size:8px;">● REC (R)</button>
+    <button id="globalPanic" style="border-color:rgba(255, 107, 129, 0.4);background:rgba(255, 107, 129, 0.08);color:#ff6b81;padding:2px 5px;font-size:8px;">Stille</button>
   </div>
 </header>
 
@@ -1444,8 +1381,8 @@ const SYNTH_DEFS = [
   {
     id: 0, bank: "A", keyDisplay: "1", name: "Lorenz Chaos FM", color: "#ff4757",
     desc: "Gekoppelte nichtlineare DGL 3. Ordnung (RK4-Integration) im Phasenraum",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em><sub>x</sub>·x̂(t)<span class="val" id="f_I">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em> + ϕ<sub>y</sub>·ŷ(t)) + <span class="sym" style="color:#ff6b81"><em>I</em><sub>z</sub>·ẑ(t)<span class="val" id="f_I2">—</span></span>·sin(2π<em>f</em><sub>m2</sub><em>t</em>))',
-    formulaSub: 'Lorenz DGL: ẋ = σ(y-x), ẏ = x(ρ-z)-y, ż = xy-βz (Nicht-periodische Schmetterlingsbahn)',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em><sub>x</sub>·x̂</span>·sin(2π<em>f</em><sub>m</sub><em>t</em>) + <em>I</em><sub>z</sub>·ẑ·sin(2π<em>f</em><sub>m2</sub><em>t</em>))',
+    formulaSub: 'Lorenz DGL: ẋ = σ(y-x), ẏ = x(ρ-z)-y, ż = xy-βz',
     customParam: { name: "Rayleigh ρ (Chaos)", min: 10, max: 45, step: 0.1, val: 28.0 },
     defaults: { ratio: 1.5, I0: 2.5, dI: 1.5, lfo: 0.08, atk: 0.08, rel: 3.5, vol: 0.78, oct: 0, latch: false },
     presets: [{ name: "Chaos-Flügel", r: 1.5, i: 2.5, d: 1.5 }, { name: "Turbulenz", r: 2.75, i: 3.8, d: 2.0 }, { name: "Fixpunkt", r: 1.0, i: 1.2, d: 0.6 }]
@@ -1453,8 +1390,8 @@ const SYNTH_DEFS = [
   {
     id: 1, bank: "A", keyDisplay: "2", name: "Chebyshev Wavefolder", color: "#ffa502",
     desc: "Orthogonale Tschebyscheff-Polynome Tₖ(x) & tanh-Sättigung in Feedback-Schleife",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em>₀<span class="val" id="f_I">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>) + β·tanh(γ·<span class="sym" style="color:#ffa502">∑ α<sub>k</sub>T<sub>k</sub>(y)<span class="val" id="f_I2">—</span></span>))',
-    formulaSub: 'Chebyshev Faltung: T₃(x)=4x³-3x, T₅(x)=16x⁵-20x³+5x für industrielle Obertonkämme',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em>₀</span>·sin(2π<em>f</em><sub>m</sub><em>t</em>) + β·tanh(γ·∑ α<sub>k</sub>T<sub>k</sub>(y)))',
+    formulaSub: 'Chebyshev Faltung: T₃(x)=4x³-3x, T₅(x)=16x⁵-20x³+5x',
     customParam: { name: "Wavefolder γ", min: 0.5, max: 6, step: 0.05, val: 2.8 },
     defaults: { ratio: 2.0, I0: 2.2, dI: 1.8, lfo: 0.1, atk: 0.02, rel: 3.0, vol: 0.75, oct: 0, latch: false },
     presets: [{ name: "Rasierklinge", r: 2.0, i: 2.2, d: 1.8 }, { name: "Laser-Metall", r: 3.5, i: 3.2, d: 2.4 }, { name: "Warm Fold", r: 1.0, i: 1.5, d: 1.0 }]
@@ -1462,8 +1399,8 @@ const SYNTH_DEFS = [
   {
     id: 2, bank: "A", keyDisplay: "3", name: "Jacobi Soliton FM", color: "#2ed573",
     desc: "Jacobische elliptische Funktionen sn(u, m) & cn(u, m) mit variablem Modulus",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sn(4K(m)·<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em>(<em>t</em>)<span class="val" id="f_I">—</span></span>·cn(4K(m)·<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>, m), <span class="sym" style="color:#2ed573">m<span class="val" id="f_I2">—</span></span>)',
-    formulaSub: 'KdV-Solitonen & Jacobi-Theta Obertöne mit kontinuierlicher Wellenkrümmung',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sn(4K(m)·<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em>(<em>t</em>)</span>·cn(4K(m)·<em>f</em><sub>m</sub><em>t</em>, m), m)',
+    formulaSub: 'KdV-Solitonen & Jacobi-Theta Obertöne',
     customParam: { name: "Modulus m", min: 0.01, max: 0.99, step: 0.01, val: 0.82 },
     defaults: { ratio: 1.0, I0: 1.8, dI: 1.2, lfo: 0.06, atk: 0.15, rel: 4.2, vol: 0.8, oct: 0, latch: false },
     presets: [{ name: "Moog-Soliton", r: 1.0, i: 1.8, d: 1.2 }, { name: "Holz-Reed", r: 2.0, i: 2.4, d: 1.5 }, { name: "Kristall-Ellips", r: 4.0, i: 1.2, d: 0.8 }]
@@ -1471,8 +1408,8 @@ const SYNTH_DEFS = [
   {
     id: 3, bank: "A", keyDisplay: "4", name: "Fraktional Memory FM", color: "#1e90ff",
     desc: "Riemann-Liouville/Caputo fraktionale Integration D_t^-α mit Potenzgesetz-Gedächtnis",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em>₀<span class="val" id="f_I">—</span></span>·<span class="sym" style="color:#1e90ff">D<sub>t</sub><sup>-α</sup>[sin(2π<em>f</em><sub>m</sub>τ)]<span class="val" id="f_I2">—</span></span>(t))',
-    formulaSub: 'Fraktionale Ordnung α erzeugt 1/f-Phasendrift und unendliches Abklinggedächtnis',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em>₀</span>·D<sub>t</sub><sup>-α</sup>[sin(2π<em>f</em><sub>m</sub>τ)](t))',
+    formulaSub: 'Fraktionale Ordnung α erzeugt 1/f-Phasendrift',
     customParam: { name: "Ordnung α", min: 0.2, max: 1.8, step: 0.02, val: 0.75 },
     defaults: { ratio: 1.5, I0: 2.8, dI: 1.4, lfo: 0.04, atk: 1.8, rel: 5.5, vol: 0.8, oct: 0, latch: false },
     presets: [{ name: "Sub-Diffusion", r: 1.5, i: 2.8, d: 1.4 }, { name: "Phasen-Schimmer", r: 2.0, i: 2.0, d: 1.8 }, { name: "Hyper-Gedächtnis", r: 0.5, i: 3.5, d: 2.0 }]
@@ -1480,8 +1417,8 @@ const SYNTH_DEFS = [
   {
     id: 4, bank: "A", keyDisplay: "5", name: "4D-Quaternion Vektor FM", color: "#9b59b6",
     desc: "SO(4) Lie-Gruppen Rotation im 4D-Hyperraum mit stereografischer Projektion",
-    formulaLatex: '<em>y</em><sub>L,R</sub>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em>₁<span class="val" id="f_I">—</span></span>·w,x(t)·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>) + <span class="sym" style="color:#9b59b6"><em>I</em>₂<span class="val" id="f_I2">—</span></span>·y,z(t)·cos(2π<em>f</em><sub>m2</sub><em>t</em>))',
-    formulaSub: 'Quaternion q = w + xi + yj + zk rotiert stufenlos auf der 3-Sphäre S³',
+    formulaLatex: '<em>y</em><sub>L,R</sub>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em>₁</span>·w,x(t)·sin(2π<em>f</em><sub>m</sub><em>t</em>) + <em>I</em>₂·y,z(t)·cos(2π<em>f</em><sub>m2</sub><em>t</em>))',
+    formulaSub: 'Quaternion q = w + xi + yj + zk rotiert auf S³',
     customParam: { name: "4D-Speed Ω", min: 0.05, max: 3, step: 0.02, val: 0.6 },
     defaults: { ratio: 2.0, I0: 2.2, dI: 1.6, lfo: 0.07, atk: 1.5, rel: 5.0, vol: 0.76, oct: 0, latch: false },
     presets: [{ name: "Hopf-Torus", r: 2.0, i: 2.2, d: 1.6 }, { name: "Hyper-Drehung", r: 1.5, i: 3.0, d: 2.0 }, { name: "4D-Binaural", r: 3.0, i: 1.8, d: 1.2 }]
@@ -1489,8 +1426,8 @@ const SYNTH_DEFS = [
   {
     id: 5, bank: "A", keyDisplay: "6", name: "Quanten-Lévy FM", color: "#ff6348",
     desc: "Stochastische Pareto-Lévy Impulsverteilung & Poisson-Sprungprozesse",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em>(<em>t</em>)<span class="val" id="f_I">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>) + <span class="sym" style="color:#ff6348">∑ ΔI<sub>k</sub>·δ(t-t<sub>k</sub>)<span class="val" id="f_I2">—</span></span>)',
-    formulaSub: 'Lévy-Flug P(ΔI>x) ~ x^-α erzeugt spontane Quantensprünge im Obertongitter',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em>(<em>t</em>)</span>·sin(2π<em>f</em><sub>m</sub><em>t</em>) + ∑ ΔI<sub>k</sub>·δ(t-t<sub>k</sub>))',
+    formulaSub: 'Lévy-Flug P(ΔI>x) ~ x^-α mit Quantensprüngen',
     customParam: { name: "Lévy-Index α", min: 0.4, max: 1.9, step: 0.05, val: 1.1 },
     defaults: { ratio: 2.5, I0: 1.5, dI: 3.0, lfo: 1.5, atk: 0.01, rel: 3.2, vol: 0.82, oct: 0, latch: false },
     presets: [{ name: "Geiger-Funken", r: 2.5, i: 1.5, d: 3.0 }, { name: "Quanten-Glitch", r: 4.0, i: 2.5, d: 4.0 }, { name: "Mikro-Cluster", r: 1.0, i: 1.0, d: 2.0 }]
@@ -1498,8 +1435,8 @@ const SYNTH_DEFS = [
   {
     id: 6, bank: "A", keyDisplay: "7", name: "Kuramoto Schwarm FM", color: "#00d2d3",
     desc: "8 phasen-gekoppelte Ringoszillatoren mit Kuramoto-Ordnungsparameter r(t)",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <sup>1</sup>/₈ ∑<sub>i=1</sub>⁸ sin(<span class="sym">θ<sub>i</sub>(t)<span class="val" id="f_fc">—</span></span> + <span class="sym idx"><em>I</em>₀·(1-r(t))<span class="val" id="f_I">—</span></span>·sin(<span class="sym" style="color:#00d2d3">θ<sub>i+1</sub>(t)<span class="val" id="f_I2">—</span></span>))',
-    formulaSub: 'Kopplung K steuert Selbstorganisation: von inharmonischem Schwarm zu Unisono-Lead',
+    formulaLatex: '<em>y</em>(<em>t</em>) = <sup>1</sup>/₈ ∑<sub>i=1</sub>⁸ sin(θ<sub>i</sub>(t) + <span class="idx"><em>I</em>₀·(1-r(t))</span>·sin(θ<sub>i+1</sub>(t)))',
+    formulaSub: 'Kopplung K steuert Selbstorganisation',
     customParam: { name: "Kopplung K", min: 0, max: 25, step: 0.2, val: 8.5 },
     defaults: { ratio: 1.0, I0: 2.6, dI: 1.8, lfo: 0.12, atk: 0.8, rel: 4.0, vol: 0.74, oct: 0, latch: false },
     presets: [{ name: "Schwarm-Zirpen", r: 1.0, i: 2.6, d: 1.8 }, { name: "Phasen-Schloss", r: 2.0, i: 3.5, d: 1.5 }, { name: "Bio-Cluster", r: 0.5, i: 2.0, d: 1.2 }]
@@ -1507,8 +1444,8 @@ const SYNTH_DEFS = [
   {
     id: 7, bank: "A", keyDisplay: "8", name: "Waveguide Tension FM", color: "#eccc68",
     desc: "Dispersiver Allpass-Waveguide mit amplitude-abhängiger Saitenspannung",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub>(t)<span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em>(<em>t</em>)<span class="val" id="f_I">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>) + <span class="sym" style="color:#eccc68">β·w(t-D(y))<span class="val" id="f_I2">—</span></span>)',
-    formulaSub: 'Dynamische Spannung D(t)=D₀(1-κ|y|²) verbiegt Tonhöhe bei Anschlag wie Gong/Metallstab',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub>(t)<em>t</em> + <span class="idx"><em>I</em>(<em>t</em>)</span>·sin(2π<em>f</em><sub>m</sub><em>t</em>) + β·w(t-D(y)))',
+    formulaSub: 'Dynamische Spannung D(t)=D₀(1-κ|y|²)',
     customParam: { name: "Spannung κ", min: 0.05, max: 2.5, step: 0.02, val: 0.85 },
     defaults: { ratio: 3.1415, I0: 1.6, dI: 3.2, lfo: 0.15, atk: 0.005, rel: 4.5, vol: 0.8, oct: 0, latch: false },
     presets: [{ name: "Titan-Gong", r: 3.1415, i: 1.6, d: 3.2 }, { name: "Gestrichener Stab", r: 2.414, i: 2.2, d: 2.0 }, { name: "Feedback-Saite", r: 1.0, i: 0.8, d: 4.0 }]
@@ -1516,8 +1453,8 @@ const SYNTH_DEFS = [
   {
     id: 8, bank: "A", keyDisplay: "9", name: "Kybernetik Vokal FM", color: "#ff78ae",
     desc: "3-Formant Vokaltrakt-Interpolation (F1, F2, F3) & Rosenberg-Glottal-Puls",
-    formulaLatex: '<em>y</em>(<em>t</em>) = ∑<sub>p=1</sub>³ A<sub>p</sub>·sin(2π<span class="sym">F<sub>p</sub>(t)<span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em><sub>p</sub>(<em>t</em>)<span class="val" id="f_I">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>0</sub><span class="val" id="f_fm">—</span></span><em>t</em>)·[1 + <span class="sym" style="color:#ff78ae">μ·cos(4πf₀t)<span class="val" id="f_I2">—</span></span>])',
-    formulaSub: '2D-Vokaltrakt-Navigation durch den internationalen phonetischen Vokalraum',
+    formulaLatex: '<em>y</em>(<em>t</em>) = ∑<sub>p=1</sub>³ A<sub>p</sub>·sin(2πF<sub>p</sub><em>t</em> + <span class="idx"><em>I</em><sub>p</sub></span>·sin(2π<em>f</em><sub>0</sub><em>t</em>)·[1 + μ·cos(4πf₀t)])',
+    formulaSub: '2D-Vokaltrakt-Navigation durch Formantraum',
     customParam: { name: "Vokal Front/Open", min: -1, max: 1, step: 0.02, val: 0.2 },
     defaults: { ratio: 1.0, I0: 2.2, dI: 1.4, lfo: 0.2, atk: 0.05, rel: 3.0, vol: 0.78, oct: 0, latch: false },
     presets: [{ name: "Alien Kehle", r: 1.0, i: 2.2, d: 1.4 }, { name: "Roboter-Vokal", r: 2.0, i: 3.0, d: 1.8 }, { name: "Formant-Morph", r: 1.5, i: 1.8, d: 1.0 }]
@@ -1525,8 +1462,8 @@ const SYNTH_DEFS = [
   {
     id: 9, bank: "A", keyDisplay: "0", name: "Wavelet Fraktal FM", color: "#70a1ff",
     desc: "Dyadische Multiskalen-Granulation (2ʲ) nach modifizierten Morlet-Wavelets",
-    formulaLatex: '<em>y</em>(<em>t</em>) = ∑<sub>j=0</sub>³ 2<sup>-jH</sup> ∑<sub>k</sub> <span class="sym">ψ<sub>j,k</sub>(t)<span class="val" id="f_fc">—</span></span>·sin(2π·2<sup>-j</sup><span class="sym"><em>f</em><sub>0</sub><span class="val" id="f_fm">—</span></span><em>t</em> + <span class="sym idx"><em>I</em><sub>j</sub><span class="val" id="f_I">—</span></span>·sin(2π·2<sup>-j</sup>r<em>f</em><sub>0</sub><em>t</em>))',
-    formulaSub: 'Skaleninvariante Selbstähnlichkeit erzeugt unendliche Kristallkaskaden',
+    formulaLatex: '<em>y</em>(<em>t</em>) = ∑ 2<sup>-jH</sup> ψ<sub>j,k</sub>(t)·sin(2π·2<sup>-j</sup><em>f</em><sub>0</sub><em>t</em> + <span class="idx"><em>I</em><sub>j</sub></span>·sin(2π·2<sup>-j</sup>r<em>f</em><sub>0</sub><em>t</em>))',
+    formulaSub: 'Skaleninvariante Selbstähnlichkeit',
     customParam: { name: "Fraktal-Dim D", min: 1.1, max: 1.95, step: 0.02, val: 1.6 },
     defaults: { ratio: 2.0, I0: 2.0, dI: 2.2, lfo: 0.09, atk: 1.2, rel: 4.8, vol: 0.76, oct: 0, latch: false },
     presets: [{ name: "Kristall-Kaskade", r: 2.0, i: 2.0, d: 2.2 }, { name: "Fraktal-Spiegel", r: 3.0, i: 2.8, d: 2.5 }, { name: "Skalen-Wolke", r: 0.5, i: 1.5, d: 1.8 }]
@@ -1536,8 +1473,8 @@ const SYNTH_DEFS = [
   {
     id: 10, bank: "B", keyDisplay: "⇧1", name: "Tiefsee-Drohne", color: "#6ee7c0",
     desc: "Subharmonische 2-Op FM mit ultra-langsamem Index-Atem",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em>(<em>t</em>)<span class="val" id="f_I">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
-    formulaSub: 'Subharmonische Modulation: <em>f</em><sub>m</sub> = <em>r</em>·<em>f</em><sub>c</sub> (<em>r</em> &lt; 1)',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em>(<em>t</em>)</span>·sin(2π<em>f</em><sub>m</sub><em>t</em>))',
+    formulaSub: 'Subharmonische Modulation: f_m = r·f_c',
     customParam: { name: "Sub-Pegel", min: 0, max: 2, step: 0.01, val: 1.0 },
     defaults: { ratio: 0.5, I0: 2.8, dI: 1.8, lfo: 0.045, atk: 2.2, rel: 5.0, vol: 0.82, oct: -1, latch: false },
     presets: [{ name: "Abgrund", r: 0.25, i: 3.5, d: 2.0 }, { name: "Tiefsee", r: 0.5, i: 2.8, d: 1.8 }, { name: "Swell", r: 0.75, i: 1.6, d: 1.2 }]
@@ -1545,8 +1482,8 @@ const SYNTH_DEFS = [
   {
     id: 11, bank: "B", keyDisplay: "⇧2", name: "Kristall-Glocke", color: "#ffc46b",
     desc: "Inharmonische Glocken-FM mit exponentiellem Index-Decay",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A(t)<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + (<span class="sym">I₀<span class="val" id="f_I0">—</span></span> + <span class="sym idx">I<sub>pk</sub>·e<sup>-t/tau</sup><span class="val" id="f_I">—</span></span>)·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
-    formulaSub: 'Inharmonisches Verhältnis <em>r</em> ≈ 3.414 für metallische Röhrenglocken',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A(t)·sin(2π<em>f</em><sub>c</sub><em>t</em> + (I₀ + <span class="idx">I<sub>pk</sub>·e<sup>-t/τ</sup></span>)·sin(2π<em>f</em><sub>m</sub><em>t</em>))',
+    formulaSub: 'Inharmonisches Verhältnis r ≈ 3.414',
     customParam: { name: "Index-Decay τ", min: 0.1, max: 4, step: 0.05, val: 1.2 },
     defaults: { ratio: 3.414, I0: 0.4, dI: 4.8, lfo: 0.08, atk: 0.01, rel: 4.2, vol: 0.75, oct: 0, latch: false },
     presets: [{ name: "Röhrenglocke", r: 3.414, i: 0.4, d: 4.8 }, { name: "Tibet-Schale", r: 2.756, i: 0.8, d: 3.2 }, { name: "Kristallglas", r: 5.12, i: 0.2, d: 2.5 }]
@@ -1554,8 +1491,8 @@ const SYNTH_DEFS = [
   {
     id: 12, bank: "B", keyDisplay: "⇧3", name: "Vokal-Chor", color: "#b8a4ff",
     desc: "Harmonische Formant-FM mit Vokal-Resonanz & Vibrato",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π(<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span> + δ<sub>vib</sub>)<em>t</em> + <span class="sym idx"><em>I</em>(<em>t</em>)<span class="val" id="f_I">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
-    formulaSub: 'Harmonische Vokal-Formanten A-O-U mit 5.5 Hz Naturvibrato',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π(<em>f</em><sub>c</sub> + δ<sub>vib</sub>)<em>t</em> + <span class="idx"><em>I</em>(<em>t</em>)</span>·sin(2π<em>f</em><sub>m</sub><em>t</em>))',
+    formulaSub: 'Harmonische Vokal-Formanten A-O-U',
     customParam: { name: "Vibrato-Tiefe", min: 0, max: 12, step: 0.1, val: 3.5 },
     defaults: { ratio: 1.0, I0: 1.8, dI: 1.1, lfo: 0.12, atk: 1.2, rel: 3.6, vol: 0.78, oct: 0, latch: false },
     presets: [{ name: "Chor (A-O)", r: 1.0, i: 1.8, d: 1.1 }, { name: "Tenor (E-I)", r: 2.0, i: 2.2, d: 0.8 }, { name: "Sakral", r: 3.0, i: 1.2, d: 0.6 }]
@@ -1563,8 +1500,8 @@ const SYNTH_DEFS = [
   {
     id: 13, bank: "B", keyDisplay: "⇧4", name: "Kaskaden-FM", color: "#ff6b81",
     desc: "3-Operator Kaskade (Mod₂ → Mod₁ → Carrier) mit chaotischer Sättigung",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em>₁<span class="val" id="f_I">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>m1</sub><span class="val" id="f_fm">—</span></span><em>t</em> + <span class="sym" style="color:#ff6b81"><em>I</em>₂<span class="val" id="f_I2">—</span></span>·sin(2π<em>f</em><sub>m2</sub><em>t</em>)))',
-    formulaSub: 'Nichtlineare Kaskadierung erzeugt dichte Obertöne und Biss',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em>₁</span>·sin(2π<em>f</em><sub>m1</sub><em>t</em> + <em>I</em>₂·sin(2π<em>f</em><sub>m2</sub><em>t</em>)))',
+    formulaSub: 'Nichtlineare Kaskadierung',
     customParam: { name: "Kaskade I₂", min: 0, max: 8, step: 0.05, val: 2.4 },
     defaults: { ratio: 1.5, I0: 2.2, dI: 1.4, lfo: 0.15, atk: 0.08, rel: 2.8, vol: 0.68, oct: 0, latch: false },
     presets: [{ name: "Kaskade Rau", r: 1.5, i: 2.2, d: 1.4 }, { name: "Biss-Lead", r: 2.5, i: 3.6, d: 2.0 }, { name: "Metall-Grit", r: 0.75, i: 4.2, d: 2.5 }]
@@ -1572,8 +1509,8 @@ const SYNTH_DEFS = [
   {
     id: 14, bank: "B", keyDisplay: "⇧5", name: "Kosmos-Pad", color: "#38c7ff",
     desc: "Parallele Dual-Modulatoren mit feiner Schwebung & Hall",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em><sub>A</sub><span class="val" id="f_I">—</span></span>·sin(2π<em>r</em><sub>A</sub><em>f</em><sub>c</sub><em>t</em>) + <span class="sym" style="color:#38c7ff"><em>I</em><sub>B</sub><span class="val" id="f_I2">—</span></span>·sin(2π(<em>r</em><sub>B</sub><em>f</em><sub>c</sub>+δ)<em>t</em>))',
-    formulaSub: 'Zwei unabhängige Modulatoren für schwebende cinematische Strings',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em><sub>A</sub></span>·sin(2πr<sub>A</sub>f<sub>c</sub>t) + <em>I</em><sub>B</sub>·sin(2π(r<sub>B</sub>f<sub>c</sub>+δ)t))',
+    formulaSub: 'Zwei unabhängige Modulatoren für Schwebung',
     customParam: { name: "Schwebung δ", min: 0.1, max: 4, step: 0.05, val: 0.85 },
     defaults: { ratio: 2.0, I0: 1.6, dI: 1.2, lfo: 0.065, atk: 2.5, rel: 6.0, vol: 0.75, oct: 0, latch: false },
     presets: [{ name: "Astral-Strings", r: 2.0, i: 1.6, d: 1.2 }, { name: "Shimmer", r: 3.0, i: 2.4, d: 1.5 }, { name: "Nebel-Pad", r: 0.5, i: 1.2, d: 0.8 }]
@@ -1581,8 +1518,8 @@ const SYNTH_DEFS = [
   {
     id: 15, bank: "B", keyDisplay: "⇧6", name: "Zupf-Koto / Tines", color: "#55efc4",
     desc: "Perkussives Pluck-FM mit steilem Start-Index & perkussivem Snap",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A(t)<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + (<span class="sym">I₀<span class="val" id="f_I0">—</span></span> + <span class="sym idx">I<sub>pk</sub>·e<sup>-t/tau</sup><span class="val" id="f_I">—</span></span>)·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
-    formulaSub: 'DX-Electric-Piano / Koto-Zupfen mit schnellem Hüllkurven-Transienten',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A(t)·sin(2π<em>f</em><sub>c</sub><em>t</em> + (I₀ + <span class="idx">I<sub>pk</sub>·e<sup>-t/τ</sup></span>)·sin(2π<em>f</em><sub>m</sub><em>t</em>))',
+    formulaSub: 'DX-Electric-Piano / Koto-Zupfen',
     customParam: { name: "Pluck-Snap", min: 1, max: 12, step: 0.1, val: 6.5 },
     defaults: { ratio: 1.0, I0: 0.2, dI: 5.5, lfo: 0.2, atk: 0.005, rel: 2.2, vol: 0.85, oct: 0, latch: false },
     presets: [{ name: "E-Piano Tines", r: 1.0, i: 0.2, d: 5.5 }, { name: "Koto Zupf", r: 2.0, i: 0.1, d: 7.0 }, { name: "Holz-Marimba", r: 3.5, i: 0.3, d: 4.5 }]
@@ -1590,8 +1527,8 @@ const SYNTH_DEFS = [
   {
     id: 16, bank: "B", keyDisplay: "⇧7", name: "Schwarm-Textur", color: "#fd79a8",
     desc: "3-stimmiger Unisono-Cluster mit Detune-Spreizung & Phasen-LFO",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <sup>1</sup>/₃ ∑<sub>k∈{-1,0,1}</sub> sin(2π(<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span>+k·Δf)<em>t</em> + <span class="sym idx"><em>I</em>(<em>t</em>,θ<sub>k</sub>)<span class="val" id="f_I">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
-    formulaSub: 'Dichter Unisono-Schwarm erzeugt pulsierende Supersaw-Breite',
+    formulaLatex: '<em>y</em>(<em>t</em>) = <sup>1</sup>/₃ ∑ sin(2π(<em>f</em><sub>c</sub>+kΔf)t + <span class="idx"><em>I</em>(<em>t</em>,θ<sub>k</sub>)</span>·sin(2π<em>f</em><sub>m</sub><em>t</em>))',
+    formulaSub: 'Dichter Unisono-Schwarm erzeugt Breite',
     customParam: { name: "Cluster-Detune", min: 0.2, max: 8, step: 0.1, val: 2.2 },
     defaults: { ratio: 2.0, I0: 2.5, dI: 1.8, lfo: 0.08, atk: 1.8, rel: 4.5, vol: 0.72, oct: 0, latch: false },
     presets: [{ name: "Hyper-Drone", r: 2.0, i: 2.5, d: 1.8 }, { name: "Mega-Schwarm", r: 1.0, i: 3.5, d: 2.2 }, { name: "Sanfter Chorus", r: 2.0, i: 1.2, d: 0.8 }]
@@ -1599,8 +1536,8 @@ const SYNTH_DEFS = [
   {
     id: 17, bank: "B", keyDisplay: "⇧8", name: "Goldener Schnitt", color: "#ffd32a",
     desc: "Inharmonische Fibonacci-FM (r = φ ≈ 1.618034) mit Spiegelspektren",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em>(<em>t</em>)<span class="val" id="f_I">—</span></span>·sin(2π·<span class="sym">1.618034 <em>f</em><sub>c</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
-    formulaSub: 'Nicht-periodische Bessel-Seitenbänder & sci-fi Ringmodulation',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em>(<em>t</em>)</span>·sin(2π·1.618034 <em>f</em><sub>c</sub><em>t</em>))',
+    formulaSub: 'Nicht-periodische Fibonacci-Seitenbänder',
     customParam: { name: "Phi-Potenz φⁿ", min: 0.5, max: 3, step: 0.01, val: 1.0 },
     defaults: { ratio: 1.618034, I0: 3.2, dI: 2.0, lfo: 0.05, atk: 1.5, rel: 4.0, vol: 0.78, oct: 0, latch: false },
     presets: [{ name: "Goldener Schnitt φ", r: 1.618034, i: 3.2, d: 2.0 }, { name: "Silberner Schnitt δ", r: 2.414213, i: 2.8, d: 1.6 }, { name: "Euler e/2", r: 1.35914, i: 3.8, d: 2.2 }]
@@ -1608,8 +1545,8 @@ const SYNTH_DEFS = [
   {
     id: 18, bank: "B", keyDisplay: "⇧9", name: "Glitch-Puls", color: "#ff9f43",
     desc: "Sample & Hold getaktete harmonische Ratio- & Index-Sprünge",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em><sub>step</sub>(<em>t</em>)<span class="val" id="f_I">—</span></span>·sin(2π·<span class="sym"><em>r</em><sub>step</sub>(<em>t</em>)<em>f</em><sub>c</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
-    formulaSub: 'Rhythmisch getaktete Stufen-Modulation für modulare Cyber-Arps',
+    formulaLatex: '<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em><sub>step</sub>(<em>t</em>)</span>·sin(2π·r<sub>step</sub>(t)<em>f</em><sub>c</sub><em>t</em>))',
+    formulaSub: 'Rhythmisch getaktete Stufen-Modulation',
     customParam: { name: "Step-Geschw.", min: 0.5, max: 16, step: 0.5, val: 4.0 },
     defaults: { ratio: 2.0, I0: 2.0, dI: 2.5, lfo: 2.0, atk: 0.05, rel: 2.5, vol: 0.8, oct: 0, latch: false },
     presets: [{ name: "Cyber Arp", r: 2.0, i: 2.0, d: 2.5 }, { name: "Glitch Bubbles", r: 3.5, i: 3.0, d: 3.0 }, { name: "8-Bit Pulse", r: 1.0, i: 4.0, d: 2.0 }]
@@ -1617,8 +1554,8 @@ const SYNTH_DEFS = [
   {
     id: 19, bank: "B", keyDisplay: "⇧0", name: "Vektor-FM", color: "#9c88ff",
     desc: "2-Phasen Quadratur-FM mit kontinuierlicher Vektor-Raum-Drehung",
-    formulaLatex: '<em>y</em>(<em>t</em>) = cos(θ)·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + <span class="sym idx"><em>I</em><span class="val" id="f_I">—</span></span>sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>)) + sin(θ)·cos(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>cos(2π<em>f</em><sub>m</sub><em>t</em>))',
-    formulaSub: 'Orthogonale Quadratur-Phasen erzeugen kreisförmige Lissajous-Sphären',
+    formulaLatex: '<em>y</em>(<em>t</em>) = cos(θ)·sin(2π<em>f</em><sub>c</sub><em>t</em> + <span class="idx"><em>I</em></span>sin(2π<em>f</em><sub>m</sub><em>t</em>)) + sin(θ)·cos(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>cos(2π<em>f</em><sub>m</sub><em>t</em>))',
+    formulaSub: 'Quadratur-Phasen erzeugen Lissajous-Sphären',
     customParam: { name: "Vektor-Drehung θ̇", min: 0.01, max: 2, step: 0.01, val: 0.25 },
     defaults: { ratio: 2.0, I0: 2.2, dI: 1.5, lfo: 0.07, atk: 1.8, rel: 5.2, vol: 0.75, oct: 0, latch: false },
     presets: [{ name: "Lissajous-Sphäre", r: 2.0, i: 2.2, d: 1.5 }, { name: "Orbital-Sweep", r: 1.5, i: 3.0, d: 2.0 }, { name: "Ring-Torus", r: 4.0, i: 1.8, d: 1.2 }]
@@ -1974,7 +1911,7 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
       mod1.connect(mod1G).connect(car.frequency);
       car.connect(env).connect(inst.bus);
       mod2.start(now); mod1.start(now); car.start(now);
-      voiceObj = { ...voiceObj, car, mod: mod1, modG: mod1G, mod2, mod2G };
+      voiceObj = { ...voiceObj, car, mod, modG, mod2, mod2G };
       break;
     }
     case 14: {
@@ -2290,7 +2227,7 @@ function setLayerVolume(id, vol) {
 
 function deleteLoopLayer(id) {
   const idx = loopStack.findIndex(l => l.id === id);
-  if (!idx === -1) return;
+  if (idx === -1) return;
   const layer = loopStack[idx];
   try {
     layer.srcNode.stop();
@@ -2326,7 +2263,7 @@ function clearAllLoops() {
 function updateStackSummary() {
   const activeCount = loopStack.filter(l => l.isOn).length;
   stackSummaryText.textContent = `${activeCount}/${loopStack.length} aktiv`;
-  document.getElementById("stackCount").textContent = `${activeCount} aktiv`;
+  document.getElementById("stackCount").textContent = `${activeCount}`;
 }
 
 function renderLoopStackUI() {
@@ -2538,8 +2475,8 @@ saveSongBtn.addEventListener("click", () => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 
-  saveSongBtn.textContent = "✓ Gespeichert";
-  setTimeout(() => saveSongBtn.textContent = "💾 Speichern", 1600);
+  saveSongBtn.textContent = "✓ Saved";
+  setTimeout(() => saveSongBtn.textContent = "💾 Save", 1600);
 });
 
 loadSongBtn.addEventListener("click", () => songFileInput.click());
@@ -2549,7 +2486,7 @@ songFileInput.addEventListener("change", async e => {
   if (!file) return;
 
   try {
-    loadSongBtn.textContent = "Lädt …";
+    loadSongBtn.textContent = "Lädt…";
     const text = await file.text();
     const songData = JSON.parse(text);
 
@@ -2602,12 +2539,12 @@ songFileInput.addEventListener("change", async e => {
     // 5. Aktiven Synthesizer umschalten & UI synchronisieren
     selectSynth(songData.activeSynthIdx ?? 0);
 
-    loadSongBtn.textContent = "✓ Geladen";
-    setTimeout(() => loadSongBtn.textContent = "📂 Laden", 1600);
+    loadSongBtn.textContent = "✓ Loaded";
+    setTimeout(() => loadSongBtn.textContent = "📂 Load", 1600);
   } catch (err) {
     console.error("Fehler beim Laden des Songs:", err);
     alert("Konnte Song-Datei nicht laden: " + err.message);
-    loadSongBtn.textContent = "📂 Laden";
+    loadSongBtn.textContent = "📂 Load";
   }
   songFileInput.value = "";
 });
@@ -2817,7 +2754,6 @@ function setupUnifiedParamControls() {
           activeDragTarget = "thumb";
           if (thumb) thumb.classList.add("dragging");
         } else {
-          // Klick auf die Spur: Bewege den näherliegenden Handle oder setze den Wert
           const pct = getTrackPct(e);
           const inst = synthInstances[activeSynthIdx];
           const pctA = valToPct(param, inst.oscillators[param].min);
@@ -2938,10 +2874,10 @@ layWideRack.addEventListener("click", () => {
 layFullscreen.addEventListener("click", () => {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen().catch(() => {});
-    layFullscreen.textContent = "✕ Beenden";
+    layFullscreen.textContent = "✕";
   } else {
     document.exitFullscreen().catch(() => {});
-    layFullscreen.textContent = "⛶ Vollbild";
+    layFullscreen.textContent = "⛶";
   }
 });
 
@@ -3288,7 +3224,7 @@ function drawOrb() {
   g.lineWidth = 1;
   g.beginPath();
   g.moveTo(cx - R * 1.25, cy); g.lineTo(cx + R * 1.25, cy);
-  g.moveTo(cx, cy - R * 1.25); g.lineTo(cx, cy + R * 1.25);
+  g.moveTo(cx, cy - R * 1.25); g.lineTo(cx + R * 1.25, cy);
   g.stroke();
 
   let hasAnyVoices = false;
@@ -3410,26 +3346,13 @@ function renderFrame() {
   drawOrb();
 
   document.getElementById("ilive").textContent = currentI.toFixed(2);
-  document.getElementById("fclive").textContent = activeInst.primary.f.toFixed(1) + " Hz";
-  document.getElementById("fmlive").textContent = (activeInst.primary.fm || activeInst.primary.f * activeInst.params.ratio).toFixed(1) + " Hz";
-  document.getElementById("dlive").textContent = (currentI * (activeInst.primary.fm || activeInst.primary.f * activeInst.params.ratio)).toFixed(0) + " Hz";
+  document.getElementById("fclive").textContent = activeInst.primary.f.toFixed(1);
+  document.getElementById("fmlive").textContent = (activeInst.primary.fm || activeInst.primary.f * activeInst.params.ratio).toFixed(1);
+  document.getElementById("dlive").textContent = (currentI * (activeInst.primary.fm || activeInst.primary.f * activeInst.params.ratio)).toFixed(0);
 
   let totalVoices = 0;
   synthInstances.forEach(s => totalVoices += s.voices.size);
   document.getElementById("totVoices").textContent = totalVoices;
-
-  const fA = document.getElementById("f_A");
-  if (fA) fA.textContent = activeInst.voices.size ? "×" + activeInst.voices.size : "0";
-  const fFc = document.getElementById("f_fc");
-  if (fFc) fFc.textContent = activeInst.primary.f.toFixed(1);
-  const fFm = document.getElementById("f_fm");
-  if (fFm) fFm.textContent = (activeInst.primary.fm || activeInst.primary.f * activeInst.params.ratio).toFixed(1);
-  const fI = document.getElementById("f_I");
-  if (fI) fI.textContent = currentI.toFixed(2);
-  const fI0 = document.getElementById("f_I0");
-  if (fI0) fI0.textContent = activeInst.params.I0.toFixed(2);
-  const fI2 = document.getElementById("f_I2");
-  if (fI2) fI2.textContent = activeInst.customVal.toFixed(2);
 
   updateLoopStatusFrame();
 }
@@ -3438,9 +3361,8 @@ function renderFrame() {
    UI Steuerung & Synthesizer Umschaltung
    ============================================================ */
 const synthSelect = document.getElementById("synthSelect");
-const pillsBankA = document.getElementById("pillsBankA");
-const pillsBankB = document.getElementById("pillsBankB");
-const formulaEl = document.getElementById("formula");
+const microPillsBar = document.getElementById("microPillsBar");
+const formulaInline = document.getElementById("formulaInline");
 const synthBadge = document.getElementById("synthBadge");
 const badgeName = document.getElementById("badgeName");
 const badgeVoices = document.getElementById("badgeVoices");
@@ -3459,33 +3381,55 @@ SYNTH_DEFS.forEach((def, i) => {
   opt.textContent = `[${def.keyDisplay}] ${def.name}`;
   if (def.bank === "A") optGroupA.appendChild(opt);
   else optGroupB.appendChild(opt);
-
-  const pill = document.createElement("button");
-  pill.type = "button";
-  pill.className = "synth-pill" + (i === 0 ? " active" : "");
-  pill.style.setProperty("--pill-color", def.color);
-  pill.innerHTML = `<span class="key-num">${def.keyDisplay}</span><span>${def.name}</span><span class="voice-dot"></span>`;
-  pill.addEventListener("click", () => selectSynth(i));
-
-  if (def.bank === "A") pillsBankA.appendChild(pill);
-  else pillsBankB.appendChild(pill);
 });
 
 synthSelect.appendChild(optGroupA);
 synthSelect.appendChild(optGroupB);
-
 synthSelect.addEventListener("change", e => selectSynth(parseInt(e.target.value, 10)));
+
+// 10 dynamische Micro-Pills aufbauen
+const microPills = [];
+for (let k = 0; k < 10; k++) {
+  const p = document.createElement("button");
+  p.type = "button";
+  p.className = "micro-pill" + (k === 0 ? " active" : "");
+  p.innerHTML = `<span class="p-num">${k === 9 ? '0' : (k + 1)}</span><span class="voice-dot"></span>`;
+  p.addEventListener("click", () => {
+    const isBankB = btnBankB.classList.contains("active");
+    selectSynth((isBankB ? 10 : 0) + k);
+  });
+  microPillsBar.appendChild(p);
+  microPills.push(p);
+}
 
 btnBankA.addEventListener("click", () => {
   btnBankA.classList.add("active");
   btnBankB.classList.remove("active");
   if (activeSynthIdx >= 10) selectSynth(activeSynthIdx - 10);
+  else renderMicroPills();
 });
 btnBankB.addEventListener("click", () => {
   btnBankB.classList.add("active");
   btnBankA.classList.remove("active");
   if (activeSynthIdx < 10) selectSynth(activeSynthIdx + 10);
+  else renderMicroPills();
 });
+
+function renderMicroPills() {
+  const isBankB = (activeSynthIdx >= 10);
+  btnBankA.classList.toggle("active", !isBankB);
+  btnBankB.classList.toggle("active", isBankB);
+
+  microPills.forEach((p, k) => {
+    const synthIdx = (isBankB ? 10 : 0) + k;
+    const def = SYNTH_DEFS[synthIdx];
+    p.style.setProperty("--pill-color", def.color);
+    p.title = `[${def.keyDisplay}] ${def.name}`;
+    p.querySelector(".p-num").textContent = isBankB ? `⇧${k === 9 ? '0' : (k + 1)}` : (k === 9 ? '0' : (k + 1));
+    p.classList.toggle("active", synthIdx === activeSynthIdx);
+    p.classList.toggle("has-voices", synthInstances[synthIdx].voices.size > 0);
+  });
+}
 
 function selectSynth(idx) {
   if (idx < 0 || idx >= synthInstances.length) return;
@@ -3495,14 +3439,10 @@ function selectSynth(idx) {
   document.documentElement.style.setProperty("--accent", inst.def.color);
   synthSelect.value = idx;
 
-  btnBankA.classList.toggle("active", inst.def.bank === "A");
-  btnBankB.classList.toggle("active", inst.def.bank === "B");
+  renderMicroPills();
 
-  document.querySelectorAll(".synth-pill").forEach((p, i) => {
-    p.classList.toggle("active", i === idx);
-  });
-
-  formulaEl.innerHTML = inst.def.formulaLatex + '<span class="subtext">' + inst.def.formulaSub + '</span>';
+  formulaInline.innerHTML = inst.def.formulaLatex;
+  formulaInline.title = inst.def.desc + " — " + inst.def.formulaSub;
 
   badgeName.textContent = `[${inst.def.keyDisplay}] · ${inst.def.name}`;
   badgeName.style.color = inst.def.color;
@@ -3549,10 +3489,10 @@ function selectSynth(idx) {
 }
 
 function updateUIBadges() {
-  const allPills = document.querySelectorAll(".synth-pill");
-  synthInstances.forEach((inst, i) => {
-    const pill = allPills[i];
-    if (pill) pill.classList.toggle("has-voices", inst.voices.size > 0);
+  const isBankB = (activeSynthIdx >= 10);
+  microPills.forEach((p, k) => {
+    const synthIdx = (isBankB ? 10 : 0) + k;
+    p.classList.toggle("has-voices", synthInstances[synthIdx].voices.size > 0);
   });
 
   const activeInst = synthInstances[activeSynthIdx];
