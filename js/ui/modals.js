@@ -603,6 +603,13 @@ if (synthPanicBtn) {
   });
 }
 
+const globalPanicBtn = document.getElementById("globalPanic");
+if (globalPanicBtn) {
+  globalPanicBtn.addEventListener("click", () => {
+    panicAll();
+  });
+}
+
 const latchBtn = document.getElementById("latch");
 if (latchBtn) {
   latchBtn.addEventListener("click", () => {
