@@ -442,11 +442,20 @@ function initFxEngine() {
   FX_CHAIN_ORDER.forEach(id => {
     const node = fxNodes[id];
     if (node) {
+      if (node.dry) node.dry.gain.value = 1.0;
+      if (node.wet) node.wet.gain.value = 0.0;
       chainCurr.connect(node.in);
       chainCurr = node.out;
     }
   });
   chainCurr.connect(fxMasterOut);
+
+  if (typeof dryGain !== "undefined" && dryGain) {
+    fxMasterOut.connect(dryGain);
+  }
+  if (typeof conv !== "undefined" && conv) {
+    fxMasterOut.connect(conv);
+  }
 
   // Apply default Dry/Wet mixes for all modules
   FX_CHAIN_ORDER.forEach(id => updateFxModuleMix(id));
