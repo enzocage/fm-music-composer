@@ -5012,26 +5012,41 @@ function syncArpUI() {
 }
 
 /* ============================================================
-   Klaviatur
+   Klaviatur & Universelles Keyboard Event Handling
    ============================================================ */
 const keysEl = document.getElementById("keys");
 const keyEls = [];
 
+function ensureAudioActive() {
+  const veilEl = document.getElementById("veil");
+  if (veilEl) veilEl.remove();
+  initAudio();
+  if (ctx && ctx.state === "suspended") {
+    ctx.resume().catch(() => {});
+  }
+}
+
 LETTERS.forEach((ltr, i) => {
   const d = document.createElement("div");
   d.className = "key" + (BLACK_KEYS.includes(i) ? " blk" : "");
-  d.tabIndex = 0;
+  d.tabIndex = -1;
   d.innerHTML = `<span class="ltr">${ltr.toUpperCase()}</span><span class="nt">${NOTES[i]}</span>`;
 
-  d.addEventListener("pointerdown", e => { e.preventDefault(); toggleKey(i); });
+  d.addEventListener("pointerdown", e => {
+    e.preventDefault();
+    ensureAudioActive();
+    toggleKey(i);
+  });
   d.addEventListener("pointerup", () => releaseKey(i));
   d.addEventListener("pointerleave", () => releaseKey(i));
+  d.addEventListener("pointercancel", () => releaseKey(i));
 
   keysEl.appendChild(d);
   keyEls.push(d);
 });
 
 function toggleKey(i) {
+  ensureAudioActive();
   const inst = synthInstances[activeSynthIdx];
   if (arpState.enabled) {
     if (arpState.latch && arpState.heldKeys.size === 0) {
@@ -5082,19 +5097,69 @@ function syncKeys() {
   });
 }
 
-const KEYMAP = {};
-LETTERS.forEach((l, i) => KEYMAP[l] = i);
+function resolveNoteFromKeyEvent(e) {
+  const code = e.code;
+  const key = e.key ? e.key.toLowerCase() : "";
+
+  if (code === "KeyA") return 0;
+  if (code === "KeyW") return 1;
+  if (code === "KeyS") return 2;
+  if (code === "KeyE") return 3;
+  if (code === "KeyD") return 4;
+  if (code === "KeyF") return 5;
+  if (code === "KeyT") return 6;
+  if (code === "KeyG") return 7;
+  if (code === "KeyH") return 9;
+  if (code === "KeyU") return 10;
+  if (code === "KeyJ") return 11;
+  if (code === "KeyK") return 12;
+
+  // QWERTZ vs QWERTY Note 8 (G#) handling
+  if (code === "KeyZ") {
+    if (key === "z") return 8;
+    return 8;
+  }
+  if (code === "KeyY") {
+    if (key === "y") return 8;
+    return 8;
+  }
+
+  const directIdx = LETTERS.indexOf(key);
+  if (directIdx !== -1) return directIdx;
+
+  return null;
+}
+
+const activeHeldPhysicalNotes = new Map();
 
 window.addEventListener("keydown", e => {
-  if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
-  if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
 
-  if (e.key === "Escape") { panicAll(); return; }
-  if (e.key.toLowerCase() === "r") { e.preventDefault(); toggleRecording(); return; }
-  if (e.key.toLowerCase() === "h") { e.preventDefault(); toggleHeaderExpand(); return; }
+  // Nur echte Texteingaben blockieren (z. B. wenn Textfelder da wären), nie Slider oder Knöpfe!
+  if (e.target && e.target.tagName === "INPUT" && (e.target.type === "text" || e.target.type === "password" || e.target.type === "search")) {
+    return;
+  }
+  if (e.target && e.target.tagName === "TEXTAREA") {
+    return;
+  }
+
+  if (e.key === "Escape") {
+    panicAll();
+    return;
+  }
+  if (e.key.toLowerCase() === "r" && !e.repeat) {
+    e.preventDefault();
+    toggleRecording();
+    return;
+  }
+  if (e.key.toLowerCase() === "h" && !e.repeat) {
+    e.preventDefault();
+    toggleHeaderExpand();
+    return;
+  }
 
   const digitMatch = e.code && e.code.match(/^Digit([0-9])$/);
-  if (digitMatch) {
+  if (digitMatch && !e.repeat) {
     const num = parseInt(digitMatch[1], 10);
     const digitIdx = (num === 0 ? 9 : num - 1);
     e.preventDefault();
@@ -5102,21 +5167,75 @@ window.addEventListener("keydown", e => {
     return;
   }
 
-  const k = e.key.toLowerCase();
-  if (k === "y") { e.preventDefault(); setOctave(-1); return; }
-  if (k === "x") { e.preventDefault(); setOctave(+1); return; }
+  if (e.code === "KeyX" || e.key.toLowerCase() === "x") {
+    if (!e.repeat) {
+      e.preventDefault();
+      ensureAudioActive();
+      setOctave(+1);
+    }
+    return;
+  }
 
-  const i = KEYMAP[k];
-  if (i === undefined) return;
-  e.preventDefault();
-  toggleKey(i);
+  const isOctDown = (
+    (e.code === "KeyY" && e.key.toLowerCase() === "y") ||
+    (e.code === "KeyZ" && e.key.toLowerCase() === "y") ||
+    (e.code === "IntlBackslash")
+  );
+  if (isOctDown && e.code !== "KeyY" && e.code !== "KeyZ") {
+    if (!e.repeat) {
+      e.preventDefault();
+      ensureAudioActive();
+      setOctave(-1);
+    }
+    return;
+  }
+
+  const noteIdx = resolveNoteFromKeyEvent(e);
+  if (noteIdx !== null && noteIdx >= 0 && noteIdx <= 12) {
+    e.preventDefault();
+    if (document.activeElement && document.activeElement !== document.body && document.activeElement.tagName !== "BODY") {
+      try { document.activeElement.blur(); } catch(err){}
+    }
+
+    if (e.repeat) return;
+    ensureAudioActive();
+    activeHeldPhysicalNotes.set(e.code, noteIdx);
+    toggleKey(noteIdx);
+    return;
+  }
 });
 
 window.addEventListener("keyup", e => {
-  const k = e.key.toLowerCase();
-  const i = KEYMAP[k];
-  if (i === undefined) return;
-  releaseKey(i);
+  if (e.target && e.target.tagName === "INPUT" && (e.target.type === "text" || e.target.type === "password" || e.target.type === "search")) {
+    return;
+  }
+  if (e.target && e.target.tagName === "TEXTAREA") {
+    return;
+  }
+
+  const noteIdx = activeHeldPhysicalNotes.get(e.code) ?? resolveNoteFromKeyEvent(e);
+  if (noteIdx !== null && noteIdx >= 0 && noteIdx <= 12) {
+    activeHeldPhysicalNotes.delete(e.code);
+    releaseKey(noteIdx);
+  }
+});
+
+window.addEventListener("blur", () => {
+  activeHeldPhysicalNotes.clear();
+  const inst = synthInstances[activeSynthIdx];
+  if (!inst.params.latch && !arpState.latch) {
+    panicSynth(activeSynthIdx);
+  }
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    activeHeldPhysicalNotes.clear();
+    const inst = synthInstances[activeSynthIdx];
+    if (!inst.params.latch && !arpState.latch) {
+      panicSynth(activeSynthIdx);
+    }
+  }
 });
 
 /* ============================================================
