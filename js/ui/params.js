@@ -285,6 +285,101 @@ function bindUnifiedParamRow(paramKey) {
   trackArea.addEventListener("pointercancel", onPointerUpTrack);
 }
 
+function mutateClusterKeys(keys, btnElement = null) {
+  const inst = synthInstances[activeSynthIdx];
+  if (!inst) return;
+
+  if (btnElement) {
+    btnElement.style.transform = "scale(0.92)";
+    btnElement.style.background = "var(--accent, #00f2fe)";
+    btnElement.style.color = "#05070d";
+    setTimeout(() => {
+      btnElement.style.transform = "none";
+      btnElement.style.background = "";
+      btnElement.style.color = "";
+    }, 180);
+  }
+
+  keys.forEach(k => {
+    const b = PARAM_BOUNDS[k] || { min: 0, max: 10 };
+    let randVal = 0;
+
+    if (k === "r1_ratio") {
+      const ratios = [0.25, 0.5, 0.75, 1.0, 1.333, 1.5, 2.0, 3.0, 4.0];
+      randVal = ratios[Math.floor(Math.random() * ratios.length)];
+    } else if (k === "r2_ratio" || k === "r3_ratio" || k === "r4_ratio") {
+      const harmonics = [0.25, 0.5, 0.75, 1.0, 1.25, 1.333, 1.414, 1.5, 1.618, 1.75, 2.0, 2.38, 2.414, 2.5, 2.76, 3.0, 3.141, 3.52, 4.0, 4.2, 5.0, 5.4, 5.84, 7.0, 8.0, 11.0, 14.0];
+      randVal = harmonics[Math.floor(Math.random() * harmonics.length)] + (Math.random() - 0.5) * 0.03;
+    } else if (k === "op_detune") {
+      randVal = (Math.random() - 0.5) * 24.0;
+    } else if (k === "op_spread") {
+      randVal = 30.0 + Math.random() * 70.0;
+    } else if (k === "mod_I0") {
+      randVal = 0.6 + Math.random() * 8.5;
+    } else if (k === "mod_dI") {
+      randVal = 0.3 + Math.random() * 6.0;
+    } else if (k === "mod_cross") {
+      randVal = Math.random() < 0.25 ? 0.0 : (0.2 + Math.random() * 3.5);
+    } else if (k === "mod_fb") {
+      randVal = Math.random() < 0.25 ? 0.0 : (0.1 + Math.random() * 1.2);
+    } else if (k === "mod_skew") {
+      randVal = Math.random() * 360.0;
+    } else if (k === "shape_fold") {
+      randVal = Math.random() < 0.3 ? 0.0 : (0.3 + Math.random() * 5.0);
+    } else if (k === "shape_morph") {
+      randVal = Math.random();
+    } else if (k === "shape_bias") {
+      randVal = (Math.random() - 0.5) * 0.8;
+    } else if (k === "shape_drive") {
+      randVal = 1.0 + Math.random() * 3.5;
+    } else if (k === "env_atk") {
+      const profile = Math.random();
+      randVal = profile < 0.4 ? (0.001 + Math.random() * 0.02) : (profile < 0.75 ? (0.04 + Math.random() * 0.3) : (0.5 + Math.random() * 2.5));
+    } else if (k === "env_dec") {
+      randVal = 0.15 + Math.random() * 2.5;
+    } else if (k === "env_sus") {
+      randVal = Math.random() * 95.0;
+    } else if (k === "env_rel") {
+      randVal = 0.2 + Math.random() * 5.5;
+    } else if (k === "flt_cutoff") {
+      randVal = 200 + Math.pow(Math.random(), 2) * 14500;
+    } else if (k === "flt_reso") {
+      randVal = 0.8 + Math.random() * 8.5;
+    } else if (k === "flt_envAmt") {
+      randVal = (Math.random() - 0.4) * 8000;
+    } else if (k === "space_pan") {
+      randVal = 15.0 + Math.random() * 70.0;
+    } else if (k === "custom_math") {
+      randVal = b.min + Math.random() * (b.max - b.min);
+    } else {
+      randVal = b.min + Math.random() * (b.max - b.min);
+    }
+
+    randVal = Math.max(b.min, Math.min(b.max, randVal));
+    if (b.step) {
+      const inv = 1 / b.step;
+      randVal = Math.round(randVal * inv) / inv;
+    }
+
+    inst.params[k] = randVal;
+    if (k === "r2_ratio") inst.params.ratio = randVal;
+    if (k === "mod_I0") inst.params.I0 = randVal;
+    if (k === "mod_dI") inst.params.dI = randVal;
+    if (k === "env_atk") inst.params.atk = randVal;
+    if (k === "env_rel") inst.params.rel = randVal;
+    if (k === "custom_math") inst.customVal = randVal;
+
+    applyParamChange(k);
+    updateParamRowVisual(k);
+  });
+
+  // Cross-triggers for live updating voice engine
+  applyParamChange("r2_ratio");
+  applyParamChange("mod_I0");
+  applyParamChange("flt_cutoff");
+  applyParamChange("flt_reso");
+}
+
 function renderSynthParamRack() {
   const container = document.getElementById("synthParamsContainer");
   if (!container) return;
@@ -292,24 +387,54 @@ function renderSynthParamRack() {
   const inst = synthInstances[activeSynthIdx];
   container.innerHTML = "";
 
-  let keysToRender = [];
-  if (activeParamCluster === "all") {
-    keysToRender = OSC_PARAM_KEYS.filter(k => k !== "vibDepth");
-  } else if (SYNTH_PARAM_CLUSTERS[activeParamCluster]) {
-    keysToRender = SYNTH_PARAM_CLUSTERS[activeParamCluster].keys;
-  } else {
-    keysToRender = SYNTH_PARAM_CLUSTERS.operators.keys;
-  }
+  const clustersToRender = (activeParamCluster === "all")
+    ? Object.values(SYNTH_PARAM_CLUSTERS)
+    : [SYNTH_PARAM_CLUSTERS[activeParamCluster] || SYNTH_PARAM_CLUSTERS.operators];
 
-  keysToRender.forEach(k => {
-    const b = PARAM_BOUNDS[k] || { min: 0, max: 10 };
-    const pObj = {
-      val: inst.params[k] ?? b.min,
-      osc: inst.oscillators[k] || { min: b.min, max: b.max, speed: 25 }
-    };
-    container.insertAdjacentHTML("beforeend", buildUnifiedParamRowHTML(k, pObj));
-    bindUnifiedParamRow(k);
-    updateParamRowVisual(k);
+  clustersToRender.forEach(cluster => {
+    const card = document.createElement("div");
+    card.className = "param-group-card";
+    card.style.setProperty("--grp-color", cluster.color);
+
+    const header = document.createElement("div");
+    header.className = "param-group-header";
+    header.innerHTML = `
+      <span class="param-group-title">
+        <span class="param-group-badge">${cluster.badge}</span>
+        <span>${cluster.icon} ${cluster.title}</span>
+      </span>
+      <button type="button" class="mutate-btn" data-mutate-cluster="${cluster.id}" style="color:${cluster.color}; border-color:${cluster.color}66;" title="${cluster.title} mutieren">⚄ Mutieren</button>
+    `;
+
+    const rowsWrap = document.createElement("div");
+    rowsWrap.className = "param-group-rows";
+
+    cluster.keys.forEach(k => {
+      const b = PARAM_BOUNDS[k] || { min: 0, max: 10 };
+      const pObj = {
+        val: inst.params[k] ?? b.min,
+        osc: inst.oscillators[k] || { min: b.min, max: b.max, speed: 25 }
+      };
+      rowsWrap.insertAdjacentHTML("beforeend", buildUnifiedParamRowHTML(k, pObj));
+    });
+
+    card.appendChild(header);
+    card.appendChild(rowsWrap);
+    container.appendChild(card);
+
+    // Bind events for rows
+    cluster.keys.forEach(k => {
+      bindUnifiedParamRow(k);
+      updateParamRowVisual(k);
+    });
+
+    // Bind card mutate button
+    const cardMutateBtn = header.querySelector(".mutate-btn");
+    if (cardMutateBtn) {
+      cardMutateBtn.addEventListener("click", () => {
+        mutateClusterKeys(cluster.keys, cardMutateBtn);
+      });
+    }
   });
 }
 
@@ -324,73 +449,48 @@ function setupClusterTabs() {
     });
   });
 
+  // 5 spezifische Mutieren-Buttons in der Toolbar
+  const btnMutateRatios = document.getElementById("btnMutateRatios");
+  if (btnMutateRatios) {
+    btnMutateRatios.addEventListener("click", () => {
+      mutateClusterKeys(SYNTH_PARAM_CLUSTERS.operators.keys, btnMutateRatios);
+    });
+  }
+
+  const btnMutateMod = document.getElementById("btnMutateMod");
+  if (btnMutateMod) {
+    btnMutateMod.addEventListener("click", () => {
+      mutateClusterKeys(SYNTH_PARAM_CLUSTERS.modulation.keys, btnMutateMod);
+    });
+  }
+
+  const btnMutateShape = document.getElementById("btnMutateShape");
+  if (btnMutateShape) {
+    btnMutateShape.addEventListener("click", () => {
+      mutateClusterKeys(SYNTH_PARAM_CLUSTERS.waveshaping.keys, btnMutateShape);
+    });
+  }
+
+  const btnMutateEnv = document.getElementById("btnMutateEnv");
+  if (btnMutateEnv) {
+    btnMutateEnv.addEventListener("click", () => {
+      mutateClusterKeys(SYNTH_PARAM_CLUSTERS.envelopes.keys, btnMutateEnv);
+    });
+  }
+
+  const btnMutateSpace = document.getElementById("btnMutateSpace");
+  if (btnMutateSpace) {
+    btnMutateSpace.addEventListener("click", () => {
+      mutateClusterKeys(SYNTH_PARAM_CLUSTERS.space_filter.keys, btnMutateSpace);
+    });
+  }
+
+  // Master Total-Mutation Button (⚡ TOTAL)
   const randBtn = document.getElementById("btnRandomizeCluster");
   if (randBtn) {
     randBtn.addEventListener("click", () => {
-      const inst = synthInstances[activeSynthIdx];
-      let keys = [];
-      if (activeParamCluster === "all") {
-        keys = OSC_PARAM_KEYS.filter(k => k !== "vibDepth");
-      } else if (SYNTH_PARAM_CLUSTERS[activeParamCluster]) {
-        keys = SYNTH_PARAM_CLUSTERS[activeParamCluster].keys;
-      } else {
-        keys = OSC_PARAM_KEYS.filter(k => k !== "vibDepth");
-      }
-
-      // Button Feedback Animation
-      randBtn.style.transform = "scale(0.92)";
-      randBtn.style.background = "var(--accent)";
-      randBtn.style.color = "#05070d";
-      setTimeout(() => {
-        randBtn.style.transform = "none";
-        randBtn.style.background = "transparent";
-        randBtn.style.color = "var(--accent)";
-      }, 180);
-
-      keys.forEach(k => {
-        const b = PARAM_BOUNDS[k] || { min: 0, max: 10 };
-        // Radical musical distribution
-        let randVal = 0;
-        if (k === "r1_ratio") {
-          const ratios = [0.5, 0.75, 1.0, 1.333, 1.5, 2.0, 3.0, 4.0];
-          randVal = ratios[Math.floor(Math.random() * ratios.length)];
-        } else if (k === "r2_ratio" || k === "r3_ratio" || k === "r4_ratio") {
-          const harmonics = [0.25, 0.5, 0.75, 1.0, 1.25, 1.333, 1.5, 1.75, 2.0, 2.5, 3.0, 3.141, 3.52, 4.0, 5.84, 7.0, 8.0, 11.0, 14.0];
-          randVal = harmonics[Math.floor(Math.random() * harmonics.length)] + (Math.random() - 0.5) * 0.05;
-        } else if (k === "mod_I0") {
-          randVal = 0.5 + Math.random() * 8.5;
-        } else if (k === "mod_dI") {
-          randVal = 0.2 + Math.random() * 6.0;
-        } else if (k === "flt_cutoff") {
-          randVal = 180 + Math.pow(Math.random(), 2) * 14000;
-        } else if (k === "flt_reso") {
-          randVal = 0.5 + Math.random() * 9.5;
-        } else {
-          randVal = b.min + Math.random() * (b.max - b.min);
-        }
-
-        randVal = Math.max(b.min, Math.min(b.max, randVal));
-        if (b.step) {
-          const inv = 1 / b.step;
-          randVal = Math.round(randVal * inv) / inv;
-        }
-        inst.params[k] = randVal;
-
-        if (k === "r2_ratio") inst.params.ratio = randVal;
-        if (k === "mod_I0") inst.params.I0 = randVal;
-        if (k === "mod_dI") inst.params.dI = randVal;
-        if (k === "custom_math") inst.customVal = randVal;
-
-        applyParamChange(k);
-        updateParamRowVisual(k);
-      });
-
-      // Synchronize all dependencies and live indicators
-      if (inst.params.r2_ratio) applyParamChange("r2_ratio");
-      if (inst.params.mod_I0) applyParamChange("mod_I0");
-      if (inst.params.mod_dI) applyParamChange("mod_dI");
-      if (inst.params.flt_cutoff) applyParamChange("flt_cutoff");
-      if (inst.params.flt_reso) applyParamChange("flt_reso");
+      const allKeys = OSC_PARAM_KEYS.filter(k => k !== "vibDepth");
+      mutateClusterKeys(allKeys, randBtn);
     });
   }
 }

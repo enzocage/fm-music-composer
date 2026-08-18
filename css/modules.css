@@ -1009,9 +1009,132 @@
   }
   .param-cluster-tab.active {
     color: #05070d;
-    background: var(--accent, #00f2fe);
+    background: var(--tab-color, var(--accent, #00f2fe));
     font-weight: 800;
-    box-shadow: 0 0 8px -2px var(--accent, #00f2fe);
+    border-color: var(--tab-color, var(--accent, #00f2fe));
+    box-shadow: 0 0 8px -2px var(--tab-color, var(--accent, #00f2fe));
+  }
+
+  .mutate-btn-group {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .mutate-btn {
+    font-family: var(--mono);
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    padding: 2px 5px;
+    background: rgba(14, 20, 32, 0.8);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .12s ease;
+    white-space: nowrap;
+  }
+  .mutate-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+  }
+  .mutate-btn-ratios {
+    color: #00f2fe;
+    border-color: rgba(0, 242, 254, 0.4);
+  }
+  .mutate-btn-ratios:hover {
+    background: rgba(0, 242, 254, 0.2);
+    box-shadow: 0 0 8px rgba(0, 242, 254, 0.35);
+  }
+  .mutate-btn-mod {
+    color: #ffd200;
+    border-color: rgba(255, 210, 0, 0.4);
+  }
+  .mutate-btn-mod:hover {
+    background: rgba(255, 210, 0, 0.2);
+    box-shadow: 0 0 8px rgba(255, 210, 0, 0.35);
+  }
+  .mutate-btn-shape {
+    color: #ff007f;
+    border-color: rgba(255, 0, 127, 0.4);
+  }
+  .mutate-btn-shape:hover {
+    background: rgba(255, 0, 127, 0.2);
+    box-shadow: 0 0 8px rgba(255, 0, 127, 0.35);
+  }
+  .mutate-btn-env {
+    color: #2ed573;
+    border-color: rgba(46, 213, 115, 0.4);
+  }
+  .mutate-btn-env:hover {
+    background: rgba(46, 213, 115, 0.2);
+    box-shadow: 0 0 8px rgba(46, 213, 115, 0.35);
+  }
+  .mutate-btn-space {
+    color: #a29bfe;
+    border-color: rgba(162, 155, 254, 0.4);
+  }
+  .mutate-btn-space:hover {
+    background: rgba(162, 155, 254, 0.2);
+    box-shadow: 0 0 8px rgba(162, 155, 254, 0.35);
+  }
+  .mutate-btn-all {
+    color: #ff4757;
+    border-color: rgba(255, 71, 87, 0.5);
+    background: rgba(255, 71, 87, 0.1);
+  }
+  .mutate-btn-all:hover {
+    background: #ff4757;
+    color: #05070d;
+    box-shadow: 0 0 10px rgba(255, 71, 87, 0.45);
+  }
+
+  .param-group-card {
+    background: rgba(6, 10, 18, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid var(--grp-color, #00f2fe);
+    border-radius: 3px;
+    padding: 5px 6px;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    transition: all .15s ease;
+  }
+  .param-group-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    border-left-color: var(--grp-color, #00f2fe);
+    box-shadow: 0 0 10px -2px var(--grp-color, #00f2fe);
+  }
+  .param-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .param-group-title {
+    font-family: var(--mono);
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--grp-color, #00f2fe);
+    letter-spacing: .06em;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .param-group-badge {
+    font-size: 6.5px;
+    font-weight: 700;
+    padding: 1px 4px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--grp-color, #00f2fe);
+    border: 1px solid var(--grp-color, #00f2fe);
+    border-radius: 2px;
+  }
+  .param-group-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
   }
 
   .synth-params-grid {

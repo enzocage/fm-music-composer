@@ -27,37 +27,47 @@ const OSC_PARAM_KEYS = [
 const SYNTH_PARAM_CLUSTERS = {
   operators: {
     id: "operators",
-    title: "OPERATOREN & DETUNE",
+    title: "OSZILLATOREN & FREQUENZ-MATRIX",
+    color: "#00f2fe",
     icon: "🎛️",
+    badge: "GRUPPE 1",
     keys: ["r1_ratio", "r2_ratio", "r3_ratio", "r4_ratio", "op_detune", "op_spread"]
   },
   modulation: {
     id: "modulation",
-    title: "MODULATION & FEEDBACK",
+    title: "FM-MODULATION & FEEDBACK",
+    color: "#ffd200",
     icon: "🌊",
+    badge: "GRUPPE 2",
     keys: ["mod_I0", "mod_dI", "mod_cross", "mod_fb", "mod_skew"]
   },
   waveshaping: {
     id: "waveshaping",
     title: "WAVESHAPER & SÄTTIGUNG",
+    color: "#ff007f",
     icon: "📐",
+    badge: "GRUPPE 3",
     keys: ["shape_fold", "shape_morph", "shape_bias", "shape_drive"]
   },
-  envelopes_filter: {
-    id: "envelopes_filter",
-    title: "FILTER & HÜLLKURVEN",
-    icon: "🎚️",
-    keys: ["flt_cutoff", "flt_reso", "flt_envAmt", "space_pan", "env_atk", "env_dec", "env_sus", "env_rel"]
+  envelopes: {
+    id: "envelopes",
+    title: "ADSR ZEIT- & HÜLLKURVEN",
+    color: "#2ed573",
+    icon: "⏱️",
+    badge: "GRUPPE 4",
+    keys: ["env_atk", "env_dec", "env_sus", "env_rel"]
   },
-  custom: {
-    id: "custom",
-    title: "MATHEMATISCHER KERN",
-    icon: "⚛️",
-    keys: ["custom_math"]
+  space_filter: {
+    id: "space_filter",
+    title: "FILTER, 3D RAUM & PHYSIK-FORMEL",
+    color: "#a29bfe",
+    icon: "🌌",
+    badge: "GRUPPE 5",
+    keys: ["flt_cutoff", "flt_reso", "flt_envAmt", "space_pan", "custom_math"]
   }
 };
 
-let activeParamCluster = "operators"; // 'operators' | 'modulation' | 'waveshaping' | 'envelopes_filter' | 'all'
+let activeParamCluster = "all"; // 'all' | 'operators' | 'modulation' | 'waveshaping' | 'envelopes' | 'space_filter'
 
 const PARAM_BOUNDS = {
   // Cluster A

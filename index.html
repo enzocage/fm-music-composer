@@ -243,16 +243,24 @@
       <div class="grp grp-synth-matrix" id="synthMatrixGrp">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; flex-wrap:wrap; gap:4px;">
           <h2><span style="color:var(--accent); font-weight:800;">6-Operator Matrix (24 Parameter)</span></h2>
-          <button type="button" class="arp-pre-btn" id="btnRandomizeCluster" style="padding:1px 6px; font-size:7.5px; border-color:rgba(0,242,254,0.4); color:var(--accent);" title="Zufällige musikalische Mutation für aktiven Cluster">⚄ Mutieren</button>
+          <div class="mutate-btn-group">
+            <button type="button" class="mutate-btn mutate-btn-ratios" id="btnMutateRatios" title="Mutiert Oszillatoren & Ratios (Gruppe 1: r1, r2, r3, r4, Detune, Spread)">⚄ Ratios</button>
+            <button type="button" class="mutate-btn mutate-btn-mod" id="btnMutateMod" title="Mutiert FM-Modulation & Feedback (Gruppe 2: I0, ΔI, I_cross, β_fb, Skew)">⚄ FM-Index</button>
+            <button type="button" class="mutate-btn mutate-btn-shape" id="btnMutateShape" title="Mutiert Waveshaper & Drive (Gruppe 3: Fold, Morph, Bias, Drive)">⚄ Wavefolder</button>
+            <button type="button" class="mutate-btn mutate-btn-env" id="btnMutateEnv" title="Mutiert ADSR Zeit-Hüllkurven (Gruppe 4: Attack, Decay, Sustain, Release)">⚄ ADSR</button>
+            <button type="button" class="mutate-btn mutate-btn-space" id="btnMutateSpace" title="Mutiert Filter, Raum & Physik (Gruppe 5: Cutoff, Q, Env, Pan, Physik)">⚄ Filter/Raum</button>
+            <button type="button" class="mutate-btn mutate-btn-all" id="btnRandomizeCluster" title="Total-Mutation aller 24 Parameter">⚡ TOTAL</button>
+          </div>
         </div>
 
-        <!-- 5 Cluster Tabs Navigation -->
+        <!-- 5 Farbige Cluster Tabs Navigation -->
         <div class="param-cluster-tab-bar" id="paramClusterTabs" style="display:flex; gap:2px; margin-bottom:6px; flex-wrap:wrap;">
-          <button type="button" class="param-cluster-tab active" data-cluster="operators" title="Carrier & Modulator Ratios, Fine-Detune & Spread">🎛️ Operatoren (6)</button>
-          <button type="button" class="param-cluster-tab" data-cluster="modulation" title="Haupt-Index I0, Dynamik ΔI, Cross-Mod & Feedback">🌊 Modulation & FB (5)</button>
-          <button type="button" class="param-cluster-tab" data-cluster="waveshaping" title="Chebyshev Wavefolding, Morph, Bias & Drive">📐 Waveshaper (4)</button>
-          <button type="button" class="param-cluster-tab" data-cluster="envelopes_filter" title="Filter Cutoff, Resonanz & ADSR Hüllkurven">🎚️ Filter & Hüllkurven (8)</button>
-          <button type="button" class="param-cluster-tab" data-cluster="all" title="Alle 24 Parameter im Voll-Überblick">⊞ Alle 24</button>
+          <button type="button" class="param-cluster-tab active" data-cluster="all" title="Alle 24 Parameter geordnet in 5 Farbgruppen">⊞ Alle 24</button>
+          <button type="button" class="param-cluster-tab tab-g1" data-cluster="operators" style="--tab-color:#00f2fe;" title="Gruppe 1: Carrier & Modulator Ratios, Fine-Detune & Spread">🎛️ 1. Oszillatoren (6)</button>
+          <button type="button" class="param-cluster-tab tab-g2" data-cluster="modulation" style="--tab-color:#ffd200;" title="Gruppe 2: Haupt-Index I0, Dynamik ΔI, Cross-Mod & Feedback">🌊 2. Modulation & FB (5)</button>
+          <button type="button" class="param-cluster-tab tab-g3" data-cluster="waveshaping" style="--tab-color:#ff007f;" title="Gruppe 3: Chebyshev Wavefolding, Morph, Bias & Drive">📐 3. Waveshaper (4)</button>
+          <button type="button" class="param-cluster-tab tab-g4" data-cluster="envelopes" style="--tab-color:#2ed573;" title="Gruppe 4: ADSR Zeit- & Amplituden-Hüllkurven">⏱️ 4. Hüllkurven (4)</button>
+          <button type="button" class="param-cluster-tab tab-g5" data-cluster="space_filter" style="--tab-color:#a29bfe;" title="Gruppe 5: Filter Cutoff, Resonanz, 3D Pan & Physik-Formel">🌌 5. Filter & Raum (5)</button>
         </div>
 
         <!-- Dynamischer 24-Parameter Container -->
