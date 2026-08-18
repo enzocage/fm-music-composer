@@ -673,25 +673,28 @@ window.addEventListener("keydown", e => {
     return;
   }
 
+  // Octave Down: Y key (German QWERTZ key 'y' or code KeyY/IntlBackslash)
+  const isOctDown = (
+    e.key.toLowerCase() === "y" ||
+    (e.code === "KeyY" && e.key.toLowerCase() !== "z") ||
+    (e.code === "KeyZ" && e.key.toLowerCase() === "y") ||
+    e.code === "IntlBackslash"
+  );
+  if (isOctDown) {
+    if (!e.repeat) {
+      e.preventDefault();
+      ensureAudioActive();
+      setOctave(-1);
+    }
+    return;
+  }
+
+  // Octave Up: X key
   if (e.code === "KeyX" || e.key.toLowerCase() === "x") {
     if (!e.repeat) {
       e.preventDefault();
       ensureAudioActive();
       setOctave(+1);
-    }
-    return;
-  }
-
-  const isOctDown = (
-    (e.code === "KeyY" && e.key.toLowerCase() === "y") ||
-    (e.code === "KeyZ" && e.key.toLowerCase() === "y") ||
-    (e.code === "IntlBackslash")
-  );
-  if (isOctDown && e.code !== "KeyY" && e.code !== "KeyZ") {
-    if (!e.repeat) {
-      e.preventDefault();
-      ensureAudioActive();
-      setOctave(-1);
     }
     return;
   }

@@ -93,31 +93,26 @@ function resolveNoteFromKeyEvent(e) {
   const code = e.code;
   const key = e.key ? e.key.toLowerCase() : "";
 
-  if (code === "KeyA") return 0;
-  if (code === "KeyW") return 1;
-  if (code === "KeyS") return 2;
-  if (code === "KeyE") return 3;
-  if (code === "KeyD") return 4;
-  if (code === "KeyF") return 5;
-  if (code === "KeyT") return 6;
-  if (code === "KeyG") return 7;
-  if (code === "KeyH") return 9;
-  if (code === "KeyU") return 10;
-  if (code === "KeyJ") return 11;
-  if (code === "KeyK") return 12;
+  // Y is reserved exclusively for Octave Down
+  if (key === "y") return null;
 
-  // QWERTZ vs QWERTY Note 8 (G#) handling
-  if (code === "KeyZ") {
-    if (key === "z") return 8;
-    return 8;
-  }
-  if (code === "KeyY") {
-    if (key === "y") return 8;
-    return 8;
-  }
+  if (code === "KeyA" || key === "a") return 0;
+  if (code === "KeyW" || key === "w") return 1;
+  if (code === "KeyS" || key === "s") return 2;
+  if (code === "KeyE" || key === "e") return 3;
+  if (code === "KeyD" || key === "d") return 4;
+  if (code === "KeyF" || key === "f") return 5;
+  if (code === "KeyT" || key === "t") return 6;
+  if (code === "KeyG" || key === "g") return 7;
+  // Note 8: G# on German QWERTZ is Z (home row between T/G and U/H)
+  if (key === "z" || (code === "KeyZ" && key !== "y")) return 8;
+  if (code === "KeyH" || key === "h") return 9;
+  if (code === "KeyU" || key === "u") return 10;
+  if (code === "KeyJ" || key === "j") return 11;
+  if (code === "KeyK" || key === "k") return 12;
 
   const directIdx = LETTERS.indexOf(key);
-  if (directIdx !== -1) return directIdx;
+  if (directIdx !== -1 && directIdx !== 8) return directIdx;
 
   return null;
 }
