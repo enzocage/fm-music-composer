@@ -253,7 +253,7 @@ function createSynthInstance(def) {
     rel: src.env_rel ?? src.rel ?? 1.5,
     vol: src.vol ?? 0.85,
     oct: src.oct ?? 0,
-    latch: false,
+    latch: src.latch !== undefined ? src.latch : true,
     vibDepth: src.vibDepth ?? 4.5,
     lfo: src.lfo ?? 0.25
   };

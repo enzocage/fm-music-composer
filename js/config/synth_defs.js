@@ -60,7 +60,7 @@ const SYNTH_DEFS = [
     "atk": 0.02,
     "rel": 1.5,
     "customParam": 0.075,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -205,7 +205,7 @@ const SYNTH_DEFS = [
     "atk": 0.05,
     "rel": 2,
     "customParam": 0.15,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -350,7 +350,7 @@ const SYNTH_DEFS = [
     "atk": 0.005,
     "rel": 2.5,
     "customParam": 0.22499999999999998,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -495,7 +495,7 @@ const SYNTH_DEFS = [
     "atk": 0.03,
     "rel": 1.5,
     "customParam": 0.3,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -640,7 +640,7 @@ const SYNTH_DEFS = [
     "atk": 0.02,
     "rel": 1.2,
     "customParam": 0.375,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -785,7 +785,7 @@ const SYNTH_DEFS = [
     "atk": 0.01,
     "rel": 1,
     "customParam": 0.44999999999999996,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -930,7 +930,7 @@ const SYNTH_DEFS = [
     "atk": 0.08,
     "rel": 2.2,
     "customParam": 0.525,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -1075,7 +1075,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 2,
     "customParam": 0.6,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -1220,7 +1220,7 @@ const SYNTH_DEFS = [
     "atk": 0.18,
     "rel": 3,
     "customParam": 0.6749999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -1365,7 +1365,7 @@ const SYNTH_DEFS = [
     "atk": 0.01,
     "rel": 2,
     "customParam": 0.75,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -1510,7 +1510,7 @@ const SYNTH_DEFS = [
     "atk": 0.015,
     "rel": 1.2,
     "customParam": 0.825,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -1655,7 +1655,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 4.5,
     "customParam": 0.8999999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -1800,7 +1800,7 @@ const SYNTH_DEFS = [
     "atk": 0.03,
     "rel": 1.5,
     "customParam": 0.975,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -1945,7 +1945,7 @@ const SYNTH_DEFS = [
     "atk": 0.04,
     "rel": 1.6,
     "customParam": 1.05,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -2090,7 +2090,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 2,
     "customParam": 1.125,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -2235,7 +2235,7 @@ const SYNTH_DEFS = [
     "atk": 0.06,
     "rel": 2.2,
     "customParam": 1.2,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -2380,7 +2380,7 @@ const SYNTH_DEFS = [
     "atk": 0.08,
     "rel": 2.5,
     "customParam": 1.275,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -2525,7 +2525,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.5,
     "customParam": 1.3499999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -2670,7 +2670,7 @@ const SYNTH_DEFS = [
     "atk": 0.005,
     "rel": 5.5,
     "customParam": 1.425,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -2815,7 +2815,7 @@ const SYNTH_DEFS = [
     "atk": 0.12,
     "rel": 3,
     "customParam": 1.5,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -2960,7 +2960,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 2.5,
     "customParam": 1.575,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -3105,7 +3105,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 2.2,
     "customParam": 1.65,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -3250,7 +3250,7 @@ const SYNTH_DEFS = [
     "atk": 0.004,
     "rel": 1,
     "customParam": 1.7249999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -3395,7 +3395,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 4.8,
     "customParam": 1.7999999999999998,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -3540,7 +3540,7 @@ const SYNTH_DEFS = [
     "atk": 0.03,
     "rel": 1.6,
     "customParam": 1.875,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -3685,7 +3685,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 1.2,
     "customParam": 1.95,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -3830,7 +3830,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.6,
     "customParam": 2.025,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -3975,7 +3975,7 @@ const SYNTH_DEFS = [
     "atk": 0.05,
     "rel": 3,
     "customParam": 2.1,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -4120,7 +4120,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.5,
     "customParam": 2.175,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -4265,7 +4265,7 @@ const SYNTH_DEFS = [
     "atk": 0.25,
     "rel": 4.5,
     "customParam": 2.25,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -4410,7 +4410,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 0.8,
     "customParam": 2.3249999999999997,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -4555,7 +4555,7 @@ const SYNTH_DEFS = [
     "atk": 0.005,
     "rel": 1.2,
     "customParam": 2.4,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -4700,7 +4700,7 @@ const SYNTH_DEFS = [
     "atk": 0.001,
     "rel": 2,
     "customParam": 2.475,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -4845,7 +4845,7 @@ const SYNTH_DEFS = [
     "atk": 0.12,
     "rel": 2.8,
     "customParam": 2.55,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -4990,7 +4990,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 1.2,
     "customParam": 2.625,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -5135,7 +5135,7 @@ const SYNTH_DEFS = [
     "atk": 0.06,
     "rel": 1.8,
     "customParam": 2.6999999999999997,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -5280,7 +5280,7 @@ const SYNTH_DEFS = [
     "atk": 0.001,
     "rel": 1,
     "customParam": 2.775,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -5425,7 +5425,7 @@ const SYNTH_DEFS = [
     "atk": 0.001,
     "rel": 0.8,
     "customParam": 2.85,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -5570,7 +5570,7 @@ const SYNTH_DEFS = [
     "atk": 0.15,
     "rel": 3.5,
     "customParam": 2.925,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -5715,7 +5715,7 @@ const SYNTH_DEFS = [
     "atk": 0.001,
     "rel": 1.2,
     "customParam": 3,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -5860,7 +5860,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 2.5,
     "customParam": 3.0749999999999997,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -6005,7 +6005,7 @@ const SYNTH_DEFS = [
     "atk": 0.004,
     "rel": 2.8,
     "customParam": 3.15,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -6150,7 +6150,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 3.5,
     "customParam": 3.225,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -6295,7 +6295,7 @@ const SYNTH_DEFS = [
     "atk": 0.08,
     "rel": 2.2,
     "customParam": 3.3,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -6440,7 +6440,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 2.2,
     "customParam": 3.375,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -6585,7 +6585,7 @@ const SYNTH_DEFS = [
     "atk": 0.07,
     "rel": 2.5,
     "customParam": 3.4499999999999997,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -6730,7 +6730,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 4,
     "customParam": 3.525,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -6875,7 +6875,7 @@ const SYNTH_DEFS = [
     "atk": 0.12,
     "rel": 3,
     "customParam": 3.5999999999999996,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -7020,7 +7020,7 @@ const SYNTH_DEFS = [
     "atk": 0.04,
     "rel": 1.8,
     "customParam": 3.675,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -7165,7 +7165,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 3,
     "customParam": 3.75,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -7310,7 +7310,7 @@ const SYNTH_DEFS = [
     "atk": 0.04,
     "rel": 3.5,
     "customParam": 3.8249999999999997,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -7455,7 +7455,7 @@ const SYNTH_DEFS = [
     "atk": 0.008,
     "rel": 2,
     "customParam": 3.9,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -7600,7 +7600,7 @@ const SYNTH_DEFS = [
     "atk": 0.3,
     "rel": 5.5,
     "customParam": 3.9749999999999996,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -7745,7 +7745,7 @@ const SYNTH_DEFS = [
     "atk": 0.18,
     "rel": 4,
     "customParam": 4.05,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -7890,7 +7890,7 @@ const SYNTH_DEFS = [
     "atk": 0.4,
     "rel": 6.5,
     "customParam": 4.125,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -8035,7 +8035,7 @@ const SYNTH_DEFS = [
     "atk": 0.2,
     "rel": 4.8,
     "customParam": 4.2,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -8180,7 +8180,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 6.5,
     "customParam": 4.2749999999999995,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -8325,7 +8325,7 @@ const SYNTH_DEFS = [
     "atk": 0.08,
     "rel": 2.6,
     "customParam": 4.35,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -8470,7 +8470,7 @@ const SYNTH_DEFS = [
     "atk": 0.35,
     "rel": 6,
     "customParam": 4.425,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -8615,7 +8615,7 @@ const SYNTH_DEFS = [
     "atk": 0.5,
     "rel": 8.5,
     "customParam": 4.5,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -8760,7 +8760,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.8,
     "customParam": 4.575,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -8905,7 +8905,7 @@ const SYNTH_DEFS = [
     "atk": 0.001,
     "rel": 1.2,
     "customParam": 4.6499999999999995,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -9050,7 +9050,7 @@ const SYNTH_DEFS = [
     "atk": 0.004,
     "rel": 1.8,
     "customParam": 4.725,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -9195,7 +9195,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 2.2,
     "customParam": 4.8,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -9340,7 +9340,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 1.2,
     "customParam": 4.875,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -9485,7 +9485,7 @@ const SYNTH_DEFS = [
     "atk": 0.06,
     "rel": 2.5,
     "customParam": 4.95,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -9630,7 +9630,7 @@ const SYNTH_DEFS = [
     "atk": 0.001,
     "rel": 1,
     "customParam": 5.0249999999999995,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -9775,7 +9775,7 @@ const SYNTH_DEFS = [
     "atk": 0.04,
     "rel": 2.4,
     "customParam": 5.1,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -9920,7 +9920,7 @@ const SYNTH_DEFS = [
     "atk": 0.01,
     "rel": 1.8,
     "customParam": 5.175,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -10065,7 +10065,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.6,
     "customParam": 5.25,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -10210,7 +10210,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1,
     "customParam": 5.325,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -10355,7 +10355,7 @@ const SYNTH_DEFS = [
     "atk": 0.004,
     "rel": 1.5,
     "customParam": 5.3999999999999995,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -10500,7 +10500,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 1.6,
     "customParam": 5.475,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -10645,7 +10645,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1,
     "customParam": 5.55,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -10790,7 +10790,7 @@ const SYNTH_DEFS = [
     "atk": 0.005,
     "rel": 2.2,
     "customParam": 5.625,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -10935,7 +10935,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 1.4,
     "customParam": 5.7,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -11080,7 +11080,7 @@ const SYNTH_DEFS = [
     "atk": 0.2,
     "rel": 4.5,
     "customParam": 5.7749999999999995,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -11225,7 +11225,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.1,
     "customParam": 5.85,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -11370,7 +11370,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.4,
     "customParam": 5.925,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -11515,7 +11515,7 @@ const SYNTH_DEFS = [
     "atk": 0.015,
     "rel": 1.8,
     "customParam": 6,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -11660,7 +11660,7 @@ const SYNTH_DEFS = [
     "atk": 0.3,
     "rel": 5.5,
     "customParam": 6.075,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -11805,7 +11805,7 @@ const SYNTH_DEFS = [
     "atk": 0.25,
     "rel": 5,
     "customParam": 6.1499999999999995,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -11950,7 +11950,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 2,
     "customParam": 6.225,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -12095,7 +12095,7 @@ const SYNTH_DEFS = [
     "atk": 0.4,
     "rel": 6.5,
     "customParam": 6.3,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -12240,7 +12240,7 @@ const SYNTH_DEFS = [
     "atk": 0.08,
     "rel": 3.5,
     "customParam": 6.375,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -12385,7 +12385,7 @@ const SYNTH_DEFS = [
     "atk": 0.01,
     "rel": 1.8,
     "customParam": 6.45,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -12530,7 +12530,7 @@ const SYNTH_DEFS = [
     "atk": 0.2,
     "rel": 4.5,
     "customParam": 6.5249999999999995,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -12675,7 +12675,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.8,
     "customParam": 6.6,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -12820,7 +12820,7 @@ const SYNTH_DEFS = [
     "atk": 0.3,
     "rel": 5.8,
     "customParam": 6.675,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -12965,7 +12965,7 @@ const SYNTH_DEFS = [
     "atk": 0.02,
     "rel": 2.2,
     "customParam": 6.75,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -13110,7 +13110,7 @@ const SYNTH_DEFS = [
     "atk": 0.004,
     "rel": 1.6,
     "customParam": 6.825,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -13255,7 +13255,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 1.2,
     "customParam": 6.8999999999999995,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -13400,7 +13400,7 @@ const SYNTH_DEFS = [
     "atk": 0.001,
     "rel": 1.5,
     "customParam": 6.975,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -13545,7 +13545,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.5,
     "customParam": 7.05,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -13690,7 +13690,7 @@ const SYNTH_DEFS = [
     "atk": 0.18,
     "rel": 4,
     "customParam": 7.125,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -13835,7 +13835,7 @@ const SYNTH_DEFS = [
     "atk": 0.001,
     "rel": 1,
     "customParam": 7.199999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -13980,7 +13980,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.1,
     "customParam": 7.2749999999999995,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -14125,7 +14125,7 @@ const SYNTH_DEFS = [
     "atk": 0.001,
     "rel": 1.2,
     "customParam": 7.35,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -14270,7 +14270,7 @@ const SYNTH_DEFS = [
     "atk": 0.25,
     "rel": 5,
     "customParam": 7.425,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -14415,7 +14415,7 @@ const SYNTH_DEFS = [
     "atk": 0.005,
     "rel": 1.5,
     "customParam": 7.5,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -14560,7 +14560,7 @@ const SYNTH_DEFS = [
     "atk": 0.5,
     "rel": 8.5,
     "customParam": 7.574999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -14705,7 +14705,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.5,
     "customParam": 7.6499999999999995,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -14850,7 +14850,7 @@ const SYNTH_DEFS = [
     "atk": 0.4,
     "rel": 7,
     "customParam": 7.725,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -14995,7 +14995,7 @@ const SYNTH_DEFS = [
     "atk": 0.08,
     "rel": 4,
     "customParam": 7.8,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -15140,7 +15140,7 @@ const SYNTH_DEFS = [
     "atk": 0.04,
     "rel": 3,
     "customParam": 7.875,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -15285,7 +15285,7 @@ const SYNTH_DEFS = [
     "atk": 0.4,
     "rel": 7.5,
     "customParam": 7.949999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -15430,7 +15430,7 @@ const SYNTH_DEFS = [
     "atk": 0.01,
     "rel": 2.2,
     "customParam": 8.025,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -15575,7 +15575,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 2.5,
     "customParam": 8.1,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -15720,7 +15720,7 @@ const SYNTH_DEFS = [
     "atk": 0.6,
     "rel": 10,
     "customParam": 8.174999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -15865,7 +15865,7 @@ const SYNTH_DEFS = [
     "atk": 0.5,
     "rel": 8.5,
     "customParam": 8.25,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -16010,7 +16010,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.5,
     "customParam": 8.325,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -16155,7 +16155,7 @@ const SYNTH_DEFS = [
     "atk": 0.001,
     "rel": 1.2,
     "customParam": 8.4,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -16300,7 +16300,7 @@ const SYNTH_DEFS = [
     "atk": 0.04,
     "rel": 2.5,
     "customParam": 8.475,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -16445,7 +16445,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 1.6,
     "customParam": 8.549999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -16590,7 +16590,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.2,
     "customParam": 8.625,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -16735,7 +16735,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 2.2,
     "customParam": 8.7,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -16880,7 +16880,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.6,
     "customParam": 8.775,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -17025,7 +17025,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.1,
     "customParam": 8.85,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -17170,7 +17170,7 @@ const SYNTH_DEFS = [
     "atk": 0.02,
     "rel": 2.5,
     "customParam": 8.924999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -17315,7 +17315,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 1.4,
     "customParam": 9,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -17460,7 +17460,7 @@ const SYNTH_DEFS = [
     "atk": 0.5,
     "rel": 8.5,
     "customParam": 9.075,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -17605,7 +17605,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 3.5,
     "customParam": 9.15,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -17750,7 +17750,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 2.2,
     "customParam": 9.225,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -17895,7 +17895,7 @@ const SYNTH_DEFS = [
     "atk": 0.05,
     "rel": 5,
     "customParam": 9.299999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -18040,7 +18040,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.2,
     "customParam": 9.375,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -18185,7 +18185,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 3.2,
     "customParam": 9.45,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -18330,7 +18330,7 @@ const SYNTH_DEFS = [
     "atk": 0.6,
     "rel": 9.5,
     "customParam": 9.525,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -18475,7 +18475,7 @@ const SYNTH_DEFS = [
     "atk": 0.003,
     "rel": 1.8,
     "customParam": 9.6,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -18620,7 +18620,7 @@ const SYNTH_DEFS = [
     "atk": 0.002,
     "rel": 1.6,
     "customParam": 9.674999999999999,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
@@ -18765,7 +18765,7 @@ const SYNTH_DEFS = [
     "atk": 0.03,
     "rel": 3,
     "customParam": 9.75,
-    "latch": false
+    "latch": true
   },
   "subPresets": [
     {
