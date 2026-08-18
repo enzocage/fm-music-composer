@@ -363,9 +363,22 @@ function panicSynth(synthIdx = activeSynthIdx) {
         v.env.gain.setValueAtTime(0, now);
       } catch(e){}
     }
-    const stopTime = now + 0.005;
+    const stopTime = now + 0.002;
+    if (v.nodes && Array.isArray(v.nodes)) {
+      v.nodes.forEach(n => {
+        try {
+          if (n && typeof n.stop === "function") n.stop(stopTime);
+          if (n && typeof n.disconnect === "function") n.disconnect();
+        } catch(e){}
+      });
+    }
     [v.car, v.car1, v.car2, v.mod, v.mod1, v.mod2, v.mod3, v.mod4, v.vibOsc, v.vibLfo].forEach(node => {
-      if (node) { try { node.stop(stopTime); node.disconnect(); } catch(e){} }
+      if (node) {
+        try {
+          if (typeof node.stop === "function") node.stop(stopTime);
+          if (typeof node.disconnect === "function") node.disconnect();
+        } catch(e){}
+      }
     });
   }
   inst.voices.clear();
@@ -378,12 +391,6 @@ function panicSynth(synthIdx = activeSynthIdx) {
     if (kbLatch) {
       kbLatch.classList.remove("active");
       kbLatch.textContent = "LATCH: AUS";
-    }
-    if (typeof stopArpClock === "function") stopArpClock();
-    if (typeof arpState !== "undefined" && arpState) {
-      arpState.heldKeys.clear();
-      arpState.latchedKeys = [];
-      if (typeof updateArpActiveNotesHint === "function") updateArpActiveNotesHint();
     }
   }
 
@@ -401,26 +408,38 @@ function panicAll() {
       try {
         inst.bus.gain.cancelScheduledValues(now);
         inst.bus.gain.setValueAtTime(0, now);
-        inst.bus.gain.setValueAtTime(inst.params.vol, now + 0.06);
+        inst.bus.gain.setValueAtTime(inst.params.vol, now + 0.04);
       } catch(e){}
     }
   });
 
-  // 2. Stop Arpeggiator
+  // 2. Stop & Disable Arpeggiator
   if (typeof stopArpClock === "function") stopArpClock();
   if (typeof arpState !== "undefined" && arpState) {
+    arpState.enabled = false;
     arpState.heldKeys.clear();
     arpState.latchedKeys = [];
     arpState.latch = false;
+    const arpChk = document.getElementById("arp_enabled");
+    if (arpChk) arpChk.checked = false;
+    const arpBadge = document.getElementById("arp_badge");
+    if (arpBadge) {
+      arpBadge.style.background = "transparent";
+      arpBadge.style.color = "var(--dim)";
+    }
     const arpLatchBtn = document.getElementById("arpLatchBtn");
     if (arpLatchBtn) arpLatchBtn.classList.remove("active");
     if (typeof updateArpActiveNotesHint === "function") updateArpActiveNotesHint();
   }
 
-  // 3. Stop All Drum & Percussion Channels
+  // 3. Stop & Disable All Drum & Percussion Channels
   if (typeof stopPercEngineClock === "function") stopPercEngineClock();
   if (typeof percState !== "undefined" && percState) {
     percState.enabled = false;
+    if (percState.timerId) {
+      clearTimeout(percState.timerId);
+      percState.timerId = null;
+    }
     const percChk = document.getElementById("perc_enabled");
     if (percChk) percChk.checked = false;
     const percBadge = document.getElementById("perc_badge");
@@ -432,7 +451,7 @@ function panicAll() {
       try {
         percState.bus.gain.cancelScheduledValues(now);
         percState.bus.gain.setValueAtTime(0, now);
-        percState.bus.gain.setValueAtTime(1.0, now + 0.06);
+        percState.bus.gain.setValueAtTime(1.0, now + 0.04);
       } catch(e){}
     }
   }
@@ -477,17 +496,17 @@ function panicAll() {
     if (typeof wetGain !== "undefined" && wetGain) {
       wetGain.gain.cancelScheduledValues(now);
       wetGain.gain.setValueAtTime(0, now);
-      wetGain.gain.linearRampToValueAtTime(GLOBAL.wet, now + 0.06);
+      wetGain.gain.linearRampToValueAtTime(GLOBAL.wet, now + 0.04);
     }
     if (typeof dryGain !== "undefined" && dryGain) {
       dryGain.gain.cancelScheduledValues(now);
       dryGain.gain.setValueAtTime(0, now);
-      dryGain.gain.linearRampToValueAtTime(1 - GLOBAL.wet * 0.5, now + 0.06);
+      dryGain.gain.linearRampToValueAtTime(1 - GLOBAL.wet * 0.5, now + 0.04);
     }
     if (typeof stackMasterGain !== "undefined" && stackMasterGain) {
       stackMasterGain.gain.cancelScheduledValues(now);
       stackMasterGain.gain.setValueAtTime(0, now);
-      stackMasterGain.gain.linearRampToValueAtTime(1.0, now + 0.06);
+      stackMasterGain.gain.linearRampToValueAtTime(1.0, now + 0.04);
     }
   }
 
