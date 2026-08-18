@@ -16,7 +16,8 @@
 
 ### 1. 100 Distinct FM Synthesizer Engines (10 Soundbanks)
 > **Bank Navigation:** Switch active soundbanks with keys **`ß`** *(Previous Bank)* and **`´`** *(Next Bank)* or click `A, B, C, D, E, F, G, H, I, J`.  
-> **Direct Instrument Selection:** Keys **`1` to `0`** instantly select instruments 1 through 10 of the currently active soundbank without needing `Shift`!
+> **Direct Instrument Selection:** Keys **`1` to `0`** instantly select instruments 1 through 10 of the currently active soundbank without needing `Shift`!  
+> **Next/Previous Instrument Stepper:** Use the tactile **`[ ◀ ]`** and **`[ ▶ ]`** buttons located directly beside the instrument dropdown in the header to effortlessly browse through all 100 synthesizers one by one!
 
 - **Bank A (Exotik & Chaos — Instruments 1 to 10):**
   1. **`1` Lorenz Chaos FM:** Runge-Kutta 4th-order ($\text{RK4}$) chaotic attractor $\dot{x}=\sigma(y-x), \dot{y}=x(\rho-z)-y, \dot{z}=xy-\beta z$.

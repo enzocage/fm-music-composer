@@ -383,6 +383,21 @@ BANKS.forEach(b => {
 });
 synthSelect.addEventListener("change", e => selectSynth(parseInt(e.target.value, 10)));
 
+const btnSynthPrev = document.getElementById("btnSynthPrev");
+const btnSynthNext = document.getElementById("btnSynthNext");
+if (btnSynthPrev) {
+  btnSynthPrev.addEventListener("click", () => {
+    const nextIdx = (activeSynthIdx - 1 + SYNTH_DEFS.length) % SYNTH_DEFS.length;
+    selectSynth(nextIdx);
+  });
+}
+if (btnSynthNext) {
+  btnSynthNext.addEventListener("click", () => {
+    const nextIdx = (activeSynthIdx + 1) % SYNTH_DEFS.length;
+    selectSynth(nextIdx);
+  });
+}
+
 // 10 dynamische Micro-Pills für primäre Leiste
 const microPills = [];
 microPillsBar.innerHTML = "";
