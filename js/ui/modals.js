@@ -687,8 +687,25 @@ function renderMicroPills() {
 
 function selectSynth(idx) {
   if (idx < 0 || idx >= synthInstances.length) return;
+
+  if (activeSynthIdx !== idx && typeof panicSynth === "function") {
+    const oldInst = synthInstances[activeSynthIdx];
+    if (oldInst && !oldInst.params.latch && oldInst.voices.size > 0) {
+      panicSynth(activeSynthIdx);
+    }
+  }
+
   activeSynthIdx = idx;
   const inst = synthInstances[idx];
+
+  // Ensure Audio Bus exists for selected instrument
+  if (ctx && !inst.bus && typeof stackMasterGain !== "undefined" && stackMasterGain) {
+    inst.bus = ctx.createGain();
+    inst.bus.gain.value = inst.params.vol;
+    inst.bus.connect(stackMasterGain);
+  } else if (ctx && inst.bus) {
+    inst.bus.gain.value = inst.params.vol;
+  }
 
   document.documentElement.style.setProperty("--accent", inst.def.color);
   synthSelect.value = idx;
@@ -771,6 +788,9 @@ function selectSynth(idx) {
   if (latchBtn) latchBtn.setAttribute("aria-pressed", inst.params.latch);
 
   syncSliderValues();
+  if (typeof OSC_PARAM_KEYS !== "undefined" && typeof updateParamRowVisual === "function") {
+    OSC_PARAM_KEYS.forEach(k => updateParamRowVisual(k));
+  }
   updateUIBadges();
   syncKeys();
 }

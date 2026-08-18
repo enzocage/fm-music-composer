@@ -111,15 +111,15 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
   const lfoG  = ctx.createGain();
   const fbGain = ctx.createGain();
 
-  const scaledI0 = i0 * keyScaleFactor;
-  const scaledDI = di * keyScaleFactor;
+  const scaledI0 = Math.max(0, i0) * keyScaleFactor;
+  const scaledDI = Math.max(0, di) * keyScaleFactor;
   const peakI2 = (scaledI0 + scaledDI) * fm2;
-  const susI2  = Math.max(0.001, scaledI0 * modSusPct) * fm2;
+  const susI2  = (scaledI0 * modSusPct) * fm2;
 
-  // Apply Modulator Envelope on Mod2
-  mod2G.gain.setValueAtTime(Math.max(0.001, scaledI0 * 0.1) * fm2, now);
+  // Apply Modulator Envelope on Mod2 (100% mathematically safe linear ramps)
+  mod2G.gain.setValueAtTime(scaledI0 * 0.1 * fm2, now);
   mod2G.gain.linearRampToValueAtTime(peakI2, now + modAtk);
-  mod2G.gain.exponentialRampToValueAtTime(susI2, now + modAtk + modDec);
+  mod2G.gain.linearRampToValueAtTime(susI2, now + modAtk + modDec);
 
   lfoG.gain.value = di * fm2;
   mod3G.gain.value = cross * fm3 * keyScaleFactor;
@@ -141,7 +141,7 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
   if (fltEnvAmt !== 0) {
     const peakCutoff = Math.max(20, Math.min(20000, fltCutoff + fltEnvAmt));
     filter.frequency.linearRampToValueAtTime(peakCutoff, now + atk);
-    filter.frequency.exponentialRampToValueAtTime(Math.max(20, fltCutoff), now + atk + dec);
+    filter.frequency.linearRampToValueAtTime(Math.max(20, fltCutoff), now + atk + dec);
   }
   filter.Q.value = fltReso;
 
@@ -155,6 +155,13 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
   if (ctx.createStereoPanner) {
     panner = ctx.createStereoPanner();
     panner.pan.setValueAtTime(panVal, now);
+  }
+
+  // Ensure instrument output bus is valid
+  if (!inst.bus && typeof stackMasterGain !== "undefined" && stackMasterGain) {
+    inst.bus = ctx.createGain();
+    inst.bus.gain.value = inst.params.vol;
+    inst.bus.connect(stackMasterGain);
   }
 
   // --- ALGORITHM TOPOLOGY ROUTING ---

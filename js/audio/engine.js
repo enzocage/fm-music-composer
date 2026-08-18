@@ -199,55 +199,63 @@ let lastFrameT = 0;
 
 function createSynthInstance(def) {
   const oscs = {};
+  const src = Object.assign({}, def.defaults || {}, def.params || {});
   
   const defParams = {
-    // Cluster A
-    r1_ratio: def.defaults?.r1_ratio ?? 1.0,
-    r2_ratio: def.defaults?.r2_ratio ?? def.defaults?.ratio ?? 1.0,
-    r3_ratio: def.defaults?.r3_ratio ?? ((def.defaults?.r2_ratio || def.defaults?.ratio) ? (def.defaults.r2_ratio || def.defaults.ratio) * 2.0 : 2.0),
-    r4_ratio: def.defaults?.r4_ratio ?? 0.5,
-    op_detune: def.defaults?.op_detune ?? 0.0,
-    op_spread: def.defaults?.op_spread ?? 50.0,
+    // Topologie & Algorithmus (Plan 4)
+    algo_type: def.algo_type ?? src.algo_type ?? 1,
+    op_wave: src.op_wave ?? 0,
+    key_scaling: src.key_scaling ?? 25.0,
 
-    // Cluster B
-    mod_I0: def.defaults?.mod_I0 ?? def.defaults?.I0 ?? 2.5,
-    mod_dI: def.defaults?.mod_dI ?? def.defaults?.dI ?? 1.2,
-    mod_cross: def.defaults?.mod_cross ?? 0.0,
-    mod_fb: def.defaults?.mod_fb ?? 0.0,
-    mod_skew: def.defaults?.mod_skew ?? 0.0,
+    // Cluster 1: Ratios & Detune
+    r1_ratio: src.r1_ratio ?? 1.0,
+    r2_ratio: src.r2_ratio ?? src.ratio ?? 1.0,
+    r3_ratio: src.r3_ratio ?? (src.r2_ratio ? src.r2_ratio * 2.0 : 2.0),
+    r4_ratio: src.r4_ratio ?? 0.5,
+    op_detune: src.op_detune ?? 0.0,
+    op_spread: src.op_spread ?? 50.0,
 
-    // Cluster C
-    shape_fold: def.defaults?.shape_fold ?? 0.0,
-    shape_morph: def.defaults?.shape_morph ?? 0.0,
-    shape_bias: def.defaults?.shape_bias ?? 0.0,
-    shape_drive: def.defaults?.shape_drive ?? 1.0,
+    // Cluster 2: Modulation & Feedback
+    mod_I0: src.mod_I0 ?? src.I0 ?? 2.5,
+    mod_dI: src.mod_dI ?? src.dI ?? 1.2,
+    mod_cross: src.mod_cross ?? 0.0,
+    mod_fb: src.mod_fb ?? 0.0,
+    mod_skew: src.mod_skew ?? 0.0,
 
-    // Cluster D
-    env_atk: def.defaults?.env_atk ?? def.defaults?.atk ?? 0.02,
-    env_dec: def.defaults?.env_dec ?? 0.8,
-    env_sus: def.defaults?.env_sus ?? 70.0,
-    env_rel: def.defaults?.env_rel ?? def.defaults?.rel ?? 1.5,
+    // Cluster 3: Wavefolder
+    shape_fold: src.shape_fold ?? 0.0,
+    shape_morph: src.shape_morph ?? 0.0,
+    shape_bias: src.shape_bias ?? 0.0,
+    shape_drive: src.shape_drive ?? 1.0,
 
-    // Cluster E
-    flt_cutoff: def.defaults?.flt_cutoff ?? 12000.0,
-    flt_reso: def.defaults?.flt_reso ?? 1.0,
-    flt_envAmt: def.defaults?.flt_envAmt ?? 0.0,
-    space_pan: def.defaults?.space_pan ?? 50.0,
+    // Cluster 4: ADSR Envelopes (Amplitude & Modulator)
+    env_atk: src.env_atk ?? src.atk ?? 0.02,
+    env_dec: src.env_dec ?? 0.8,
+    env_sus: src.env_sus ?? 70.0,
+    env_rel: src.env_rel ?? src.rel ?? 1.5,
+    mod_env_atk: src.mod_env_atk ?? 0.003,
+    mod_env_dec: src.mod_env_dec ?? 0.4,
+    mod_env_sus: src.mod_env_sus ?? 25.0,
+    mod_env_rel: src.mod_env_rel ?? 0.5,
 
-    // Cluster F
-    custom_math: def.customParam ? def.customParam.val : (def.defaults?.custom_math ?? 1.0),
+    // Cluster 5: Filter & Space
+    flt_cutoff: src.flt_cutoff ?? 12000.0,
+    flt_reso: src.flt_reso ?? 1.0,
+    flt_envAmt: src.flt_envAmt ?? 0.0,
+    space_pan: src.space_pan ?? 50.0,
 
-    // Legacy Aliases
-    ratio: def.defaults?.r2_ratio ?? def.defaults?.ratio ?? 1.0,
-    I0: def.defaults?.mod_I0 ?? def.defaults?.I0 ?? 2.5,
-    dI: def.defaults?.mod_dI ?? def.defaults?.dI ?? 1.2,
-    atk: def.defaults?.env_atk ?? def.defaults?.atk ?? 0.02,
-    rel: def.defaults?.env_rel ?? def.defaults?.rel ?? 1.5,
-    vol: def.defaults?.vol ?? 0.85,
-    oct: 0,
+    // Cluster 6: Custom & Aliases
+    custom_math: def.customParam ? def.customParam.val : (src.custom_math ?? 1.0),
+    ratio: src.r2_ratio ?? src.ratio ?? 1.0,
+    I0: src.mod_I0 ?? src.I0 ?? 2.5,
+    dI: src.mod_dI ?? src.dI ?? 1.2,
+    atk: src.env_atk ?? src.atk ?? 0.02,
+    rel: src.env_rel ?? src.rel ?? 1.5,
+    vol: src.vol ?? 0.85,
+    oct: src.oct ?? 0,
     latch: false,
-    vibDepth: def.defaults?.vibDepth ?? 4.5,
-    lfo: def.defaults?.lfo ?? 0.25
+    vibDepth: src.vibDepth ?? 4.5,
+    lfo: src.lfo ?? 0.25
   };
 
   OSC_PARAM_KEYS.forEach(k => {
