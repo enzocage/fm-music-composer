@@ -57,9 +57,12 @@
 
 ---
 
-### 3. Ultra-Compact 1-Element Intelligent HUD Header
-- Consolidated title, Bank A/B segmented switcher, 10 dynamic micro-pills with voice-activity indicators, dropdown selector, live DSP telemetry ($f_c, f_m, I, D$), song save/load, and layout buttons into a single sleek 38px strip.
-- Frees over 210 vertical pixels for maximum oscilloscope and rack clarity.
+### 3. Dynamically Expandable Intelligent HUD & Command Center
+- **Compact HUD Mode (Default 38px):** Consolidated title, Bank A/B segmented switcher, 10 dynamic micro-pills with voice-activity indicators, dropdown selector, live DSP telemetry ($f_c, f_m, I, D$), song save/load, and layout presets in a single sleek row.
+- **Expanded Command Center (Toggle with `[ ▾ DETAILS ]` or Key `H`):**
+  - Smoothly expands to reveal both **Bank A & Bank B 20-synthesizer matrix** with individual color tags and live voice activity indicators.
+  - Large-format mathematical physics description and differential equations ($\text{RK4}$, Chebyshev, Bessel, KdV-Solitons, Lie-Algebra).
+- **Intelligent Responsive Scaling:** Auto-flows and scales across all viewports (Mobile, Laptop, 4K Ultrawide) using CSS Grid with zero clipping.
 
 ---
 
@@ -75,15 +78,15 @@ Every sound shaping parameter ($r, I_0, \Delta I, f_L$, custom parameters like $
 
 ---
 
-### 4. Complete Song Save & Load (.json)
+### 5. Complete Song Save & Load (.json)
 Save your complete musical composition to a portable `.json` file:
 - **Lossless Audio Serializer:** Encodes all recorded loops as 32-bit Float WAV base64 data.
-- **Full Parameter Snapshot:** Preserves all 20 synthesizer configurations, custom variables, active oscillator states, speed knob settings, global master/reverb levels, and speech pause parameters.
+- **Full Parameter Snapshot:** Preserves all 20 synthesizer configurations, custom variables, active oscillator states, speed knob settings, individual loop pause lengths (1–100s), global master/reverb levels, and speech pause parameters.
 - **One-Click Instant Restore:** Reloads loops, reconstructs audio buffers, and restores all UI dials and switches.
 
 ---
 
-### 5. 4-Panel Synchronized Oscilloscopes
+### 6. 4-Panel Synchronized Oscilloscopes
 1. **$y(t)$ Time Domain:** Real-time microphone/sum measurement vs. analytical active synthesizer model.
 2. **$f(t)$ Instantaneous Frequency:** Modulator trajectory and deviation bandwidth $\pm D$.
 3. **Spectrum Analysis:** Real FFT magnitude vs. analytical Bessel sideband stems $|J_n(I)|$.
@@ -91,7 +94,7 @@ Save your complete musical composition to a portable `.json` file:
 
 ---
 
-### 6. Resizable Modular Studio Layout
+### 7. Resizable Modular Studio Layout
 - **Horizontal Splitter (`#splitH`):** Drag to adjust width between visualizer plots and the control rack.
 - **Vertical Splitter (`#splitV`):** Drag to customize piano keyboard height.
 - **Dual-Rack Mode:** Automatically arranges controls into 2 parallel columns when expanded over 480px, making every dial and loop card visible without scrolling.
@@ -108,6 +111,7 @@ Save your complete musical composition to a portable `.json` file:
 | `Shift + 1` to `Shift + 0` | Select Bank B Synthesizers (11–20) |
 | `Y` / `X` | Octave Down ($-1$) / Octave Up ($+1$) |
 | `R` | Start / Stop Loop Recording (REC) |
+| `H` | Toggle Header Expand / Compact Details |
 | `Escape` | Global Panic (Silence all voices) |
 
 ---
