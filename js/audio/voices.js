@@ -1623,11 +1623,11 @@ function panicSynth(synthIdx = activeSynthIdx) {
         v.env.gain.setValueAtTime(0, now);
       } catch(e){}
     }
-    const stopTime = now + 0.01;
+    const stopTime = now + 0.005;
     [v.car, v.car1, v.car2, v.car3, v.carL, v.carR, v.carSub, v.carHigh, v.mod, v.mod1, v.mod2, v.modSin, v.modCos, v.vibOsc, v.vibLfo].forEach(node => {
-      if (node) { try { node.stop(stopTime); } catch(e){} }
+      if (node) { try { node.stop(stopTime); node.disconnect(); } catch(e){} }
     });
-    if (v.clusterCars) v.clusterCars.forEach(c => { try { c.stop(stopTime); } catch(e){} });
+    if (v.clusterCars) v.clusterCars.forEach(c => { try { c.stop(stopTime); c.disconnect(); } catch(e){} });
   }
   inst.voices.clear();
 
@@ -1653,30 +1653,55 @@ function panicSynth(synthIdx = activeSynthIdx) {
 }
 
 function panicAll() {
-  // 1. All 100 Synths
-  synthInstances.forEach((_, idx) => panicSynth(idx));
+  const now = ctx ? ctx.currentTime : 0;
+
+  // 1. All 100 Synth Instances & Channel Buses
+  synthInstances.forEach((inst, idx) => {
+    panicSynth(idx);
+    if (inst.bus && ctx) {
+      try {
+        inst.bus.gain.cancelScheduledValues(now);
+        inst.bus.gain.setValueAtTime(0, now);
+        inst.bus.gain.setValueAtTime(inst.params.vol, now + 0.06);
+      } catch(e){}
+    }
+  });
 
   // 2. Stop Arpeggiator
   if (typeof stopArpClock === "function") stopArpClock();
   if (typeof arpState !== "undefined" && arpState) {
     arpState.heldKeys.clear();
     arpState.latchedKeys = [];
+    arpState.latch = false;
+    const arpLatchBtn = document.getElementById("arpLatchBtn");
+    if (arpLatchBtn) arpLatchBtn.classList.remove("active");
     if (typeof updateArpActiveNotesHint === "function") updateArpActiveNotesHint();
   }
 
-  // 3. Stop Percussion Engine
-  if (typeof stopPercClock === "function") stopPercClock();
+  // 3. Stop All Drum & Percussion Channels
+  if (typeof stopPercEngineClock === "function") stopPercEngineClock();
   if (typeof percState !== "undefined" && percState) {
-    percState.isPlaying = false;
-    const playBtn = document.getElementById("btnPercPlay");
-    if (playBtn) {
-      playBtn.classList.remove("playing");
-      playBtn.textContent = "▶ BEAT START";
+    percState.enabled = false;
+    const percChk = document.getElementById("perc_enabled");
+    if (percChk) percChk.checked = false;
+    const percBadge = document.getElementById("perc_badge");
+    if (percBadge) {
+      percBadge.style.background = "transparent";
+      percBadge.style.color = "var(--dim)";
+    }
+    if (percState.bus && ctx) {
+      try {
+        percState.bus.gain.cancelScheduledValues(now);
+        percState.bus.gain.setValueAtTime(0, now);
+        percState.bus.gain.setValueAtTime(1.0, now + 0.06);
+      } catch(e){}
     }
   }
 
-  // 4. Stop Speech Looper
-  if (typeof loopState !== "undefined" && loopState) {
+  // 4. Stop Speech Looper Channel
+  if (typeof stopLoopPlayback === "function") {
+    stopLoopPlayback();
+  } else if (typeof loopState !== "undefined" && loopState) {
     if (loopState.activeSourceNode) {
       try { loopState.activeSourceNode.stop(); } catch(e){}
       loopState.activeSourceNode = null;
@@ -1686,52 +1711,52 @@ function panicAll() {
       loopState.pauseTimerId = null;
     }
     loopState.isPlaying = false;
-    const loopBtn = document.getElementById("loopbtn");
-    if (loopBtn) {
-      loopBtn.setAttribute("aria-pressed", "false");
-      loopBtn.textContent = "Abspielen";
-    }
-    const statusText = document.getElementById("loopStatusText");
-    if (statusText) statusText.textContent = "Stille";
   }
 
-  // 5. Stop Multi-Layer Looper Stack
+  // 5. Stop Multi-Layer Looper Stack Channels
   if (typeof loopStack !== "undefined" && Array.isArray(loopStack)) {
     loopStack.forEach(layer => {
       layer.isOn = false;
-      if (layer.sourceNode) {
-        try { layer.sourceNode.stop(); } catch(e){}
-        layer.sourceNode = null;
+      if (typeof stopLayerPlayback === "function") {
+        stopLayerPlayback(layer);
+      } else if (layer.srcNode) {
+        try { layer.srcNode.stop(); layer.srcNode.disconnect(); } catch(e){}
+        layer.srcNode = null;
       }
-      if (layer.pauseTimerId) {
-        clearTimeout(layer.pauseTimerId);
-        layer.pauseTimerId = null;
-      }
-      if (layer.statusBadgeEl) {
-        layer.statusBadgeEl.textContent = "AUS";
-        layer.statusBadgeEl.style.color = "var(--dimmer)";
+      if (layer.gainNode && ctx) {
+        try {
+          layer.gainNode.gain.cancelScheduledValues(now);
+          layer.gainNode.gain.setValueAtTime(0, now);
+        } catch(e){}
       }
     });
+    if (typeof renderLoopStackUI === "function") renderLoopStackUI();
   }
 
-  // 6. Reset any FX feedback delay lines to flush reverb/delay tails to absolute 0
+  // 6. Hard-Cut Reverb Tails, Delay Feedback & Master Channels
+  if (ctx) {
+    if (typeof wetGain !== "undefined" && wetGain) {
+      wetGain.gain.cancelScheduledValues(now);
+      wetGain.gain.setValueAtTime(0, now);
+      wetGain.gain.linearRampToValueAtTime(GLOBAL.wet, now + 0.06);
+    }
+    if (typeof dryGain !== "undefined" && dryGain) {
+      dryGain.gain.cancelScheduledValues(now);
+      dryGain.gain.setValueAtTime(0, now);
+      dryGain.gain.linearRampToValueAtTime(1 - GLOBAL.wet * 0.5, now + 0.06);
+    }
+    if (typeof stackMasterGain !== "undefined" && stackMasterGain) {
+      stackMasterGain.gain.cancelScheduledValues(now);
+      stackMasterGain.gain.setValueAtTime(0, now);
+      stackMasterGain.gain.linearRampToValueAtTime(1.0, now + 0.06);
+    }
+  }
+
+  // 7. Flush FX Module Delay & Resonator Feedback Lines
   if (typeof fxNodes !== "undefined" && ctx) {
-    const now = ctx.currentTime;
-    if (fxNodes.shimmer && fxNodes.shimmer.fb) {
-      fxNodes.shimmer.fb.gain.setValueAtTime(0, now);
-      setTimeout(() => {
-        if (typeof applyFxParamChange === "function") applyFxParamChange("shimmer", "shim_decay");
-      }, 80);
-    }
-    if (fxNodes.waveguide && fxNodes.waveguide.fb) {
-      fxNodes.waveguide.fb.gain.setValueAtTime(0, now);
-      setTimeout(() => {
-        if (typeof applyFxParamChange === "function") applyFxParamChange("waveguide", "string_decay");
-      }, 80);
-    }
-    if (fxNodes.granular && fxNodes.granular.fb) {
-      fxNodes.granular.fb.gain.setValueAtTime(0, now);
-    }
+    if (fxNodes.shimmer && fxNodes.shimmer.fb) fxNodes.shimmer.fb.gain.setValueAtTime(0, now);
+    if (fxNodes.waveguide && fxNodes.waveguide.fb) fxNodes.waveguide.fb.gain.setValueAtTime(0, now);
+    if (fxNodes.granular && fxNodes.granular.fb) fxNodes.granular.fb.gain.setValueAtTime(0, now);
   }
 
   if (typeof activeHeldPhysicalNotes !== "undefined") {
