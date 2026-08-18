@@ -187,6 +187,21 @@
     color: #ff007f;
     box-shadow: 0 0 6px rgba(255, 0, 127, 0.3);
   }
+  .bank-seg-btn.active#btnBankH {
+    background: rgba(46, 213, 115, 0.28);
+    color: #2ed573;
+    box-shadow: 0 0 6px rgba(46, 213, 115, 0.3);
+  }
+  .bank-seg-btn.active#btnBankI {
+    background: rgba(162, 155, 254, 0.28);
+    color: #a29bfe;
+    box-shadow: 0 0 6px rgba(162, 155, 254, 0.3);
+  }
+  .bank-seg-btn.active#btnBankJ {
+    background: rgba(255, 165, 2, 0.28);
+    color: #ffa502;
+    box-shadow: 0 0 6px rgba(255, 165, 2, 0.3);
+  }
 
   /* 10 Micro Numeric Pills */
   .micro-pills-bar {
@@ -1923,6 +1938,9 @@
         <button type="button" class="bank-seg-btn" id="btnBankE" title="Bank E: Cinematic Drones (Tasten: 1–0)">E</button>
         <button type="button" class="bank-seg-btn" id="btnBankF" title="Bank F: World Acoustic (Tasten: 1–0)">F</button>
         <button type="button" class="bank-seg-btn" id="btnBankG" title="Bank G: Modular & FX (Tasten: 1–0)">G</button>
+        <button type="button" class="bank-seg-btn" id="btnBankH" title="Bank H: Buchla & Organic Perc (Tasten: 1–0)">H</button>
+        <button type="button" class="bank-seg-btn" id="btnBankI" title="Bank I: Microsound & Glitch FX (Tasten: 1–0)">I</button>
+        <button type="button" class="bank-seg-btn" id="btnBankJ" title="Bank J: Generative Kinetic (Tasten: 1–0)">J</button>
         <button type="button" class="bank-nav-arrow-btn" id="btnBankNext" title="Nächste Bank (Taste ´)">´ ▶</button>
       </div>
 
@@ -2001,6 +2019,18 @@
       <div class="drawer-bank-col">
         <div class="drawer-bank-title" style="color:#ff007f;">BANK G: MODULAR & FX</div>
         <div class="drawer-pills-grid" id="drawerPillsG"></div>
+      </div>
+      <div class="drawer-bank-col">
+        <div class="drawer-bank-title" style="color:#2ed573;">BANK H: BUCHLA & ORGANIC PERC</div>
+        <div class="drawer-pills-grid" id="drawerPillsH"></div>
+      </div>
+      <div class="drawer-bank-col">
+        <div class="drawer-bank-title" style="color:#a29bfe;">BANK I: MICROSOUND & GLITCH FX</div>
+        <div class="drawer-pills-grid" id="drawerPillsI"></div>
+      </div>
+      <div class="drawer-bank-col">
+        <div class="drawer-bank-title" style="color:#ffa502;">BANK J: GENERATIVE KINETIC</div>
+        <div class="drawer-pills-grid" id="drawerPillsJ"></div>
       </div>
     </div>
 
@@ -2487,7 +2517,7 @@
         
         <div class="help-feature-grid">
           <div class="help-feat-box">
-            <div class="feat-box-title" style="color:#ff4757;">70 FM-SYNTHESIZER (7 BÄNKE)</div>
+            <div class="feat-box-title" style="color:#ff4757;">100 FM-SYNTHESIZER (10 BÄNKE)</div>
             <div class="feat-box-desc">Authentische mathematische & physikalische FM-Topologien: Runge-Kutta 4. Ordnung Chaos (Lorenz), Chebyshev Wavefolding, KdV Solitone, DX7 6-Op Rhodes, YM2612 Genesis Leads, OPL2 Chiptunes, Vangelis Cinematic Pads, Shakuhachi Atemmodelle, Gamelan & Quanten-Noise.</div>
           </div>
           <div class="help-feat-box">
@@ -2520,7 +2550,7 @@
           </div>
           <div class="shortcut-row">
             <div class="sc-keys"><kbd>ß</kbd> / <kbd>´</kbd></div>
-            <div class="sc-desc"><strong>Soundbank umschalten:</strong> `ß` = Vorherige Bank · `´` = Nächste Bank (zyklisch durch alle 7 Bänke A bis G).</div>
+            <div class="sc-desc"><strong>Soundbank umschalten:</strong> `ß` = Vorherige Bank · `´` = Nächste Bank (zyklisch durch alle 10 Bänke A bis J).</div>
           </div>
           <div class="shortcut-row">
             <div class="sc-keys"><kbd>1</kbd> bis <kbd>9</kbd>, <kbd>0</kbd></div>
@@ -2555,7 +2585,7 @@
 
 <div id="veil">
   <h2>FM Music Composer · Modulares Studio</h2>
-  <p>70 eigenständige FM-Synthesizer (7 Soundbänke), Multi-Layer Looper mit Pausen-Drehreglern, programmierbarer 16-Step Arpeggiator und automatisierte Parameter-Oszillation.</p>
+  <p>100 eigenständige FM-Synthesizer (10 Soundbänke), Multi-Layer Looper mit Pausen-Drehreglern, programmierbarer 16-Step Arpeggiator und automatisierte Parameter-Oszillation.</p>
   <div class="hint">Tasten: A–K spielen · ß/´ Bank wechseln · 1–0 Synth wählen · Ü Hilfe</div>
   <button class="start-btn" id="startBtn">Studio aktivieren</button>
 </div>
@@ -5926,7 +5956,1447 @@ const SYNTH_DEFS = [
         "d": 2.5
       }
     ]
-  }
+  },
+  {
+  "id": 70,
+  "bank": "H",
+  "keyDisplay": "1",
+  "name": "Buchla 292 Vactrol Bongo",
+  "color": "#2ed573",
+  "desc": "West-Coast Low-Pass Gate (LPG) Vactrol-Ping mit nichtlinearer Oberton-Dämpfung und natürlichem Bongo-Ausklingen",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·<em>e</em><sup>-t/τ(Vactrol)</sup>·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>(<em>t</em>)·sin(2π<em>f</em><sub>m</sub><em>t</em>))",
+  "formulaSub": "Vactrol LPG Strike & Slew Damping",
+  "customParam": {
+    "name": "Vactrol Slew/Lag",
+    "min": 0.02,
+    "max": 0.45,
+    "step": 0.01,
+    "val": 0.14
+  },
+  "defaults": {
+    "ratio": 1.414,
+    "I0": 3.5,
+    "dI": 2.8,
+    "lfo": 0.05,
+    "atk": 0.002,
+    "rel": 0.35,
+    "vol": 0.85,
+    "oct": -1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "West Coast Bongo",
+      "r": 1.414,
+      "i": 3.5,
+      "d": 2.8
+    },
+    {
+      "name": "Deep Wood Ping",
+      "r": 0.707,
+      "i": 4.2,
+      "d": 3
+    },
+    {
+      "name": "Snappy LPG Thud",
+      "r": 2,
+      "i": 2.5,
+      "d": 1.8
+    }
+  ]
+},
+  {
+  "id": 71,
+  "bank": "H",
+  "keyDisplay": "2",
+  "name": "Hydro Water Droplet",
+  "color": "#00d2d3",
+  "desc": "Tropfendes Wasser mit Oberflächenspannungs-Pitchbend und akustischer Hohlraum-Resonanz",
+  "formulaLatex": "<em>f</em><sub>c</sub>(<em>t</em>) = <em>f</em><sub>0</sub>·(1 + Δ<em>f</em>·<em>e</em><sup>-t/τ<sub>drop</sub></sup>), <em>y</em>(<em>t</em>) = A·sin(2π∫<em>f</em><sub>c</sub><em>dt</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))",
+  "formulaSub": "Oberflächenspannungs-Fluidresonanz",
+  "customParam": {
+    "name": "Tropfen-Spannung",
+    "min": 0.2,
+    "max": 3,
+    "step": 0.05,
+    "val": 1.6
+  },
+  "defaults": {
+    "ratio": 2.76,
+    "I0": 1.8,
+    "dI": 1.5,
+    "lfo": 0.1,
+    "atk": 0.001,
+    "rel": 0.18,
+    "vol": 0.82,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Höhlentropfen",
+      "r": 2.76,
+      "i": 1.8,
+      "d": 1.5
+    },
+    {
+      "name": "Glasklarer Tropfen",
+      "r": 3.5,
+      "i": 2.2,
+      "d": 1.8
+    },
+    {
+      "name": "Tiefe Wasserblase",
+      "r": 1.5,
+      "i": 2.8,
+      "d": 2
+    }
+  ]
+},
+  {
+  "id": 72,
+  "bank": "H",
+  "keyDisplay": "3",
+  "name": "Bamboo Stomp & Anklung",
+  "color": "#10ac84",
+  "desc": "Hohler Bambus-Stomp mit Klick-Transiente und zylindrischer Luftkammersäule",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·[sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·sin(6π<em>f</em><sub>c</sub><em>t</em>)) + 0.3·sin(10π<em>f</em><sub>c</sub><em>t</em>)]·<em>e</em><sup>-t/τ</sup>",
+  "formulaSub": "Zylindrische Bambussäulen-Moden",
+  "customParam": {
+    "name": "Rohr-Hohlraum Q",
+    "min": 0.3,
+    "max": 4,
+    "step": 0.1,
+    "val": 1.8
+  },
+  "defaults": {
+    "ratio": 3,
+    "I0": 2.4,
+    "dI": 2,
+    "lfo": 0.08,
+    "atk": 0.003,
+    "rel": 0.28,
+    "vol": 0.84,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Bambuswald",
+      "r": 3,
+      "i": 2.4,
+      "d": 2
+    },
+    {
+      "name": "Anklung Rassel",
+      "r": 4.5,
+      "i": 3,
+      "d": 2.5
+    },
+    {
+      "name": "Stomp Box",
+      "r": 1.5,
+      "i": 3.8,
+      "d": 3
+    }
+  ]
+},
+  {
+  "id": 73,
+  "bank": "H",
+  "keyDisplay": "4",
+  "name": "Modal Membrane Pluck",
+  "color": "#1dd1a1",
+  "desc": "Modale 2D-Kreismembran-Resonanzen (Bessel-Nullstellen 2.295, 3.598, 4.90) nach Mutable Rings",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = ∑ <em>A</em><sub>n</sub>·sin(2π<em>k</em><sub>n</sub><em>f</em><sub>c</sub><em>t</em> + <em>I</em><sub>n</sub>·sin(2π<em>f</em><sub>m</sub><em>t</em>))·<em>e</em><sup>-d<sub>n</sub>t</sup>",
+  "formulaSub": "2D Kreismembran Bessel-Moden",
+  "customParam": {
+    "name": "Membran-Dämpfung",
+    "min": 0.1,
+    "max": 2.5,
+    "step": 0.05,
+    "val": 0.85
+  },
+  "defaults": {
+    "ratio": 2.295,
+    "I0": 2.2,
+    "dI": 1.8,
+    "lfo": 0.12,
+    "atk": 0.002,
+    "rel": 0.45,
+    "vol": 0.8,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Trommelfell Modal",
+      "r": 2.295,
+      "i": 2.2,
+      "d": 1.8
+    },
+    {
+      "name": "Platte Resonant",
+      "r": 3.598,
+      "i": 3,
+      "d": 2.4
+    },
+    {
+      "name": "Dämpfungs-Zupf",
+      "r": 1.85,
+      "i": 1.5,
+      "d": 1.2
+    }
+  ]
+},
+  {
+  "id": 74,
+  "bank": "H",
+  "keyDisplay": "5",
+  "name": "Seed Pod Shaker",
+  "color": "#54a0ff",
+  "desc": "Stochastischer Samenkapsel-Shaker mit Poisson-verteilten Körnerkollisionen und Reibung",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = ∑<sub>k</sub> δ(<em>t</em> - <em>t</em><sub>k</sub>) * [<em>e</em><sup>-t/τ</sup>·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))]",
+  "formulaSub": "Poisson-Körner Kollisionsmodell",
+  "customParam": {
+    "name": "Körner-Dichte",
+    "min": 0.5,
+    "max": 5,
+    "step": 0.1,
+    "val": 2.4
+  },
+  "defaults": {
+    "ratio": 4.2,
+    "I0": 3,
+    "dI": 2.5,
+    "lfo": 0.15,
+    "atk": 0.005,
+    "rel": 0.32,
+    "vol": 0.78,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Samenkapsel",
+      "r": 4.2,
+      "i": 3,
+      "d": 2.5
+    },
+    {
+      "name": "Feiner Sandregen",
+      "r": 6,
+      "i": 4,
+      "d": 3.2
+    },
+    {
+      "name": "Holzperlen",
+      "r": 2.5,
+      "i": 2,
+      "d": 1.5
+    }
+  ]
+},
+  {
+  "id": 75,
+  "bank": "H",
+  "keyDisplay": "6",
+  "name": "Clay Udu Drum Breath",
+  "color": "#e17055",
+  "desc": "Afrikanische Ton-Udu mit tiefem Daumenschlag-Helmholtz-Resonator und seitlichem Luftloch-Zischen",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>Helmholtz</sub><em>t</em> + <em>I</em>·sin(π<em>f</em><sub>c</sub><em>t</em>)) + N(<em>t</em>)·<em>e</em><sup>-t/τ<sub>air</sub></sup>",
+  "formulaSub": "Helmholtz Tonkrug Resonanz",
+  "customParam": {
+    "name": "Tonkrug Resonanz",
+    "min": 0.4,
+    "max": 3.5,
+    "step": 0.1,
+    "val": 1.7
+  },
+  "defaults": {
+    "ratio": 0.5,
+    "I0": 4,
+    "dI": 3.2,
+    "lfo": 0.06,
+    "atk": 0.008,
+    "rel": 0.55,
+    "vol": 0.88,
+    "oct": -2,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Tonkrug Bass",
+      "r": 0.5,
+      "i": 4,
+      "d": 3.2
+    },
+    {
+      "name": "Hals-Schlag",
+      "r": 1.2,
+      "i": 2.8,
+      "d": 2.2
+    },
+    {
+      "name": "Luftloch Zupf",
+      "r": 2.4,
+      "i": 1.8,
+      "d": 1.4
+    }
+  ]
+},
+  {
+  "id": 76,
+  "bank": "H",
+  "keyDisplay": "7",
+  "name": "Micro-Kalimba Ghost Pluck",
+  "color": "#fdcb6e",
+  "desc": "Extrem zarter, gedämpfter Metallzungen-Zupf mit kurzem metallischem Klick und leisem Holzkorpus",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em><sub>0</sub>·<em>e</em><sup>-t/0.03</sup>·sin(2π<em>f</em><sub>m</sub><em>t</em>))·<em>e</em><sup>-t/τ</sup>",
+  "formulaSub": "Gedämpfte Metallzinken-Transiente",
+  "customParam": {
+    "name": "Zinken Dämpfung",
+    "min": 0.05,
+    "max": 0.8,
+    "step": 0.02,
+    "val": 0.22
+  },
+  "defaults": {
+    "ratio": 2.75,
+    "I0": 3.2,
+    "dI": 2.6,
+    "lfo": 0.08,
+    "atk": 0.001,
+    "rel": 0.25,
+    "vol": 0.82,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Geister-Kalimba",
+      "r": 2.75,
+      "i": 3.2,
+      "d": 2.6
+    },
+    {
+      "name": "Gedämpfte Tines",
+      "r": 3.8,
+      "i": 4,
+      "d": 3
+    },
+    {
+      "name": "Holzbox Klick",
+      "r": 1.7,
+      "i": 2,
+      "d": 1.5
+    }
+  ]
+},
+  {
+  "id": 77,
+  "bank": "H",
+  "keyDisplay": "8",
+  "name": "Bio-Acoustic Cicada Pulse",
+  "color": "#6c5ce7",
+  "desc": "Biomimetische Zikaden-Tymbal-Muskelkontraktionen mit hochfrequenten Klick-Salven",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = ∑<sub>n</sub> [δ(<em>t</em> - n·Δ<em>T</em>) * A·sin(2π<em>f</em><sub>tymbal</sub><em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))]",
+  "formulaSub": "Zikaden Tymbal Klick-Salven",
+  "customParam": {
+    "name": "Salven-Dichte",
+    "min": 0.2,
+    "max": 4,
+    "step": 0.1,
+    "val": 2.1
+  },
+  "defaults": {
+    "ratio": 5.5,
+    "I0": 3.5,
+    "dI": 3,
+    "lfo": 0.2,
+    "atk": 0.002,
+    "rel": 0.22,
+    "vol": 0.76,
+    "oct": 2,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Zikadenschwarm",
+      "r": 5.5,
+      "i": 3.5,
+      "d": 3
+    },
+    {
+      "name": "Grillen-Chirpen",
+      "r": 4,
+      "i": 2.8,
+      "d": 2.2
+    },
+    {
+      "name": "Mikro-Insekten",
+      "r": 7.2,
+      "i": 4.2,
+      "d": 3.5
+    }
+  ]
+},
+  {
+  "id": 78,
+  "bank": "H",
+  "keyDisplay": "9",
+  "name": "Raindrop on Tin Roof",
+  "color": "#0984e3",
+  "desc": "Stochastischer Regentropfen-Aufprall auf dünnem Blechdach mit mikrotonaler Biegung",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em><sub>1</sub>·sin(2π<em>f</em><sub>m1</sub><em>t</em>) + <em>I</em><sub>2</sub>·sin(2π<em>f</em><sub>m2</sub><em>t</em>))·<em>e</em><sup>-t/τ</sup>",
+  "formulaSub": "Blechdach Platten-Resonanz",
+  "customParam": {
+    "name": "Blech-Spannung",
+    "min": 0.5,
+    "max": 5,
+    "step": 0.1,
+    "val": 2.8
+  },
+  "defaults": {
+    "ratio": 3.42,
+    "I0": 2.8,
+    "dI": 2.2,
+    "lfo": 0.1,
+    "atk": 0.001,
+    "rel": 0.26,
+    "vol": 0.8,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Blechdach Regen",
+      "r": 3.42,
+      "i": 2.8,
+      "d": 2.2
+    },
+    {
+      "name": "Metallwanne",
+      "r": 2.15,
+      "i": 3.6,
+      "d": 2.8
+    },
+    {
+      "name": "Tropfenfeuer",
+      "r": 5.1,
+      "i": 4.2,
+      "d": 3.5
+    }
+  ]
+},
+  {
+  "id": 79,
+  "bank": "H",
+  "keyDisplay": "0",
+  "name": "Pebble Cascade Scatter",
+  "color": "#636e72",
+  "desc": "Granulare Lawine kleiner Kieselsteine auf Marmor mit stochastischem Zerfall",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = ∑ <em>a</em><sub>i</sub>·sin(2π<em>f</em><sub>i</sub><em>t</em> + <em>I</em><sub>i</sub>·sin(2π<em>r</em><sub>i</sub><em>f</em><sub>i</sub><em>t</em>))·<em>e</em><sup>-(t-t<sub>i</sub>)/τ<sub>i</sub></sup>",
+  "formulaSub": "Granulare Kiesel-Kaskade",
+  "customParam": {
+    "name": "Kiesel-Streuung",
+    "min": 0.3,
+    "max": 3.5,
+    "step": 0.1,
+    "val": 1.9
+  },
+  "defaults": {
+    "ratio": 3.85,
+    "I0": 3.2,
+    "dI": 2.6,
+    "lfo": 0.14,
+    "atk": 0.002,
+    "rel": 0.38,
+    "vol": 0.79,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Kiesel Kaskade",
+      "r": 3.85,
+      "i": 3.2,
+      "d": 2.6
+    },
+    {
+      "name": "Marmor Klicker",
+      "r": 5.2,
+      "i": 4,
+      "d": 3
+    },
+    {
+      "name": "Schiefer Rutsch",
+      "r": 2.4,
+      "i": 2.5,
+      "d": 2
+    }
+  ]
+},
+  {
+  "id": 80,
+  "bank": "I",
+  "keyDisplay": "1",
+  "name": "Pointillist Microsound Click",
+  "color": "#a29bfe",
+  "desc": "1ms Sub-Millisekunden Impuls mit ultrakurzer spektraler FM-Seitenband-Aufflackerung",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·δ<sub>1ms</sub>(<em>t</em>)·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em><sub>pulse</sub>·sin(2π<em>f</em><sub>m</sub><em>t</em>))",
+  "formulaSub": "Sub-Millisekunden Spektral-Impuls",
+  "customParam": {
+    "name": "Impuls-Schärfe",
+    "min": 0.5,
+    "max": 6,
+    "step": 0.1,
+    "val": 3.2
+  },
+  "defaults": {
+    "ratio": 4,
+    "I0": 5,
+    "dI": 4,
+    "lfo": 0.05,
+    "atk": 0.0005,
+    "rel": 0.04,
+    "vol": 0.88,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Pointillist Click",
+      "r": 4,
+      "i": 5,
+      "d": 4
+    },
+    {
+      "name": "Laser Needle",
+      "r": 7.5,
+      "i": 6,
+      "d": 5
+    },
+    {
+      "name": "Sub-Tick",
+      "r": 1,
+      "i": 4,
+      "d": 3
+    }
+  ]
+},
+  {
+  "id": 81,
+  "bank": "I",
+  "keyDisplay": "2",
+  "name": "Quantum State Collapse",
+  "color": "#e056fd",
+  "desc": "Wellenfunktions-Kollaps mit stochastischem Phasensprung und Quantenrauschen",
+  "formulaLatex": "Ψ(<em>t</em>) → |ψ<sub>n</sub>⟩, <em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + θ<sub>rand</sub> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))·<em>e</em><sup>-t/τ</sup>",
+  "formulaSub": "Stochastischer Wellenfunktions-Kollaps",
+  "customParam": {
+    "name": "Quanten-Fluktuation",
+    "min": 0.2,
+    "max": 4.5,
+    "step": 0.1,
+    "val": 2.3
+  },
+  "defaults": {
+    "ratio": 2.618,
+    "I0": 3.6,
+    "dI": 3,
+    "lfo": 0.18,
+    "atk": 0.001,
+    "rel": 0.12,
+    "vol": 0.84,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Zustands-Kollaps",
+      "r": 2.618,
+      "i": 3.6,
+      "d": 3
+    },
+    {
+      "name": "Vakuum-Fluktuation",
+      "r": 4.236,
+      "i": 4.8,
+      "d": 3.8
+    },
+    {
+      "name": "Spin-Flip",
+      "r": 1.618,
+      "i": 2.5,
+      "d": 2
+    }
+  ]
+},
+  {
+  "id": 82,
+  "bank": "I",
+  "keyDisplay": "3",
+  "name": "Tape Splicer Crinkle",
+  "color": "#ff7979",
+  "desc": "Analoger Tonband-Rasierklingen-Klebeschnitt mit Oxidpartikel-Knacks",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·[sin(2π<em>f</em><sub>c</sub><em>t</em>) + <em>I</em>·N(<em>t</em>)]·<em>e</em><sup>-t/0.02</sup>",
+  "formulaSub": "Oxidband Schnitt-Transiente",
+  "customParam": {
+    "name": "Bandoxid-Rauheit",
+    "min": 0.3,
+    "max": 4,
+    "step": 0.1,
+    "val": 1.8
+  },
+  "defaults": {
+    "ratio": 3.14,
+    "I0": 4,
+    "dI": 3.2,
+    "lfo": 0.08,
+    "atk": 0.0008,
+    "rel": 0.06,
+    "vol": 0.82,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Klebeschnitt",
+      "r": 3.14,
+      "i": 4,
+      "d": 3.2
+    },
+    {
+      "name": "Tonband-Knistern",
+      "r": 5.5,
+      "i": 4.5,
+      "d": 3.8
+    },
+    {
+      "name": "Kassetten-Klick",
+      "r": 1.8,
+      "i": 3,
+      "d": 2.2
+    }
+  ]
+},
+  {
+  "id": 83,
+  "bank": "I",
+  "keyDisplay": "4",
+  "name": "Silicon Micro-Relay Click",
+  "color": "#686de0",
+  "desc": "Elektromechanisches Miniatur-Relais-Prellen mit Mikro-Funkenentladung",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·[δ(<em>t</em>) + 0.4·δ(<em>t</em>-0.003)] * [sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))]",
+  "formulaSub": "Relais Kontakt-Prellen",
+  "customParam": {
+    "name": "Kontakt-Prellen",
+    "min": 0.1,
+    "max": 3,
+    "step": 0.05,
+    "val": 1.4
+  },
+  "defaults": {
+    "ratio": 2.85,
+    "I0": 3.8,
+    "dI": 3,
+    "lfo": 0.06,
+    "atk": 0.0006,
+    "rel": 0.08,
+    "vol": 0.85,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Silizium-Relais",
+      "r": 2.85,
+      "i": 3.8,
+      "d": 3
+    },
+    {
+      "name": "Schaltkreis-Funke",
+      "r": 6.2,
+      "i": 5,
+      "d": 4
+    },
+    {
+      "name": "Mikroschalter",
+      "r": 1.4,
+      "i": 2.8,
+      "d": 2
+    }
+  ]
+},
+  {
+  "id": 84,
+  "bank": "I",
+  "keyDisplay": "5",
+  "name": "Granular Dust Cloud",
+  "color": "#be2edd",
+  "desc": "Wolke aus 5-15ms Mikrokörnern über tonhöhenversetzter FM-Trägerstruktur",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = ∑<sub>g</sub> G(<em>t</em> - <em>t</em><sub>g</sub>)·sin(2π<em>f</em><sub>g</sub><em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))",
+  "formulaSub": "Asynchrones Granular-Staub Partikelfeld",
+  "customParam": {
+    "name": "Korn-Dichte",
+    "min": 0.5,
+    "max": 5,
+    "step": 0.1,
+    "val": 2.6
+  },
+  "defaults": {
+    "ratio": 3.33,
+    "I0": 2.8,
+    "dI": 2.4,
+    "lfo": 0.16,
+    "atk": 0.003,
+    "rel": 0.28,
+    "vol": 0.78,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Granularstaub",
+      "r": 3.33,
+      "i": 2.8,
+      "d": 2.4
+    },
+    {
+      "name": "Mikro-Pollen",
+      "r": 5.8,
+      "i": 3.8,
+      "d": 3.2
+    },
+    {
+      "name": "Nebel-Körner",
+      "r": 1.9,
+      "i": 2,
+      "d": 1.6
+    }
+  ]
+},
+  {
+  "id": 85,
+  "bank": "I",
+  "keyDisplay": "6",
+  "name": "Bit-Crush Kinetic Pop",
+  "color": "#ff5252",
+  "desc": "Nichtlinear heruntergerechneter kinetischer Transienten-Pop mit Samplerate-Jitter",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = Q<sub>bit</sub>(sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>)))·<em>e</em><sup>-t/0.05</sup>",
+  "formulaSub": "Quantisierungs-Transienten-Reduktion",
+  "customParam": {
+    "name": "Crush-Tiefe",
+    "min": 1,
+    "max": 6,
+    "step": 0.1,
+    "val": 3.4
+  },
+  "defaults": {
+    "ratio": 2,
+    "I0": 4.5,
+    "dI": 3.5,
+    "lfo": 0.1,
+    "atk": 0.001,
+    "rel": 0.09,
+    "vol": 0.86,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Bitcrush Pop",
+      "r": 2,
+      "i": 4.5,
+      "d": 3.5
+    },
+    {
+      "name": "8-Bit Holzblock",
+      "r": 3.5,
+      "i": 5.2,
+      "d": 4
+    },
+    {
+      "name": "Chiptune Zap",
+      "r": 1,
+      "i": 3,
+      "d": 2.2
+    }
+  ]
+},
+  {
+  "id": 86,
+  "bank": "I",
+  "keyDisplay": "7",
+  "name": "Ionizing Cloud Chamber",
+  "color": "#48dbfb",
+  "desc": "Geiger-Partikel-Ionisierungsspuren mit unvorhersehbaren Poisson-Eintreffintervallen",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = ∑<sub>k</sub> [P(Δ<em>t</em>) * A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))·<em>e</em><sup>-t/0.015</sup>]",
+  "formulaSub": "Nebelkammer Ionisationsspuren",
+  "customParam": {
+    "name": "Strahlungs-Rate",
+    "min": 0.2,
+    "max": 4,
+    "step": 0.1,
+    "val": 1.9
+  },
+  "defaults": {
+    "ratio": 4.8,
+    "I0": 3.8,
+    "dI": 3,
+    "lfo": 0.12,
+    "atk": 0.0005,
+    "rel": 0.07,
+    "vol": 0.8,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Nebelkammer",
+      "r": 4.8,
+      "i": 3.8,
+      "d": 3
+    },
+    {
+      "name": "Alpha-Teilchen",
+      "r": 7,
+      "i": 5,
+      "d": 4.2
+    },
+    {
+      "name": "Gammastrom",
+      "r": 2.2,
+      "i": 2.8,
+      "d": 2
+    }
+  ]
+},
+  {
+  "id": 87,
+  "bank": "I",
+  "keyDisplay": "8",
+  "name": "Sub-Bass Air Burst",
+  "color": "#222f3e",
+  "desc": "15Hz Druckluft-Kolbenstoß mit extrem tiefem Infraschall-Impuls und weichem Ausatmen",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·sin(2π·15<em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>c</sub><em>t</em>))·<em>e</em><sup>-t/0.25</sup>",
+  "formulaSub": "Pneumatischer Sub-Druckimpuls",
+  "customParam": {
+    "name": "Druckluft-Schub",
+    "min": 0.5,
+    "max": 5,
+    "step": 0.1,
+    "val": 2.8
+  },
+  "defaults": {
+    "ratio": 0.25,
+    "I0": 4.8,
+    "dI": 3.8,
+    "lfo": 0.04,
+    "atk": 0.005,
+    "rel": 0.35,
+    "vol": 0.9,
+    "oct": -3,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Druckluftstoß",
+      "r": 0.25,
+      "i": 4.8,
+      "d": 3.8
+    },
+    {
+      "name": "Sub-Impuls 20Hz",
+      "r": 0.5,
+      "i": 3.5,
+      "d": 2.8
+    },
+    {
+      "name": "Kammervakuum",
+      "r": 0.125,
+      "i": 5.5,
+      "d": 4.5
+    }
+  ]
+},
+  {
+  "id": 88,
+  "bank": "I",
+  "keyDisplay": "9",
+  "name": "Optical CD Tracking Error",
+  "color": "#ff9ff3",
+  "desc": "Optischer Laser-Spurfehler mit hochfrequentem Ringmodulator-Chirp und Servo-Sprung",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em>)·sin(2π(<em>f</em><sub>m</sub> + Δ<em>f</em>·sin(2π500<em>t</em>))<em>t</em>)·<em>e</em><sup>-t/0.03</sup>",
+  "formulaSub": "Laser-Servo Tracking Glitch",
+  "customParam": {
+    "name": "Tracking-Glitch",
+    "min": 0.5,
+    "max": 6,
+    "step": 0.1,
+    "val": 3.1
+  },
+  "defaults": {
+    "ratio": 3.75,
+    "I0": 4.2,
+    "dI": 3.5,
+    "lfo": 0.15,
+    "atk": 0.0004,
+    "rel": 0.05,
+    "vol": 0.82,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Laser Tracking Error",
+      "r": 3.75,
+      "i": 4.2,
+      "d": 3.5
+    },
+    {
+      "name": "CD-Glitch Chirp",
+      "r": 6.5,
+      "i": 5.5,
+      "d": 4.5
+    },
+    {
+      "name": "Servo Stutter",
+      "r": 1.8,
+      "i": 3,
+      "d": 2.2
+    }
+  ]
+},
+  {
+  "id": 89,
+  "bank": "I",
+  "keyDisplay": "0",
+  "name": "Josephson Quantum Click",
+  "color": "#5f27cd",
+  "desc": "Supraleitender Josephson-Tunneleffekt-Spannungsstufen-Impuls mit ultrapräzisem Transienten-Biss",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·sin(2π·2.718<em>f</em><sub>c</sub><em>t</em>))·<em>e</em><sup>-t/0.025</sup>",
+  "formulaSub": "Josephson Tunnelkontakt Quantensprung",
+  "customParam": {
+    "name": "Tunnel-Spannung",
+    "min": 0.5,
+    "max": 5,
+    "step": 0.1,
+    "val": 2.7
+  },
+  "defaults": {
+    "ratio": 2.718,
+    "I0": 4,
+    "dI": 3.2,
+    "lfo": 0.08,
+    "atk": 0.0005,
+    "rel": 0.045,
+    "vol": 0.86,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Josephson Click",
+      "r": 2.718,
+      "i": 4,
+      "d": 3.2
+    },
+    {
+      "name": "Supraleiter-Schlag",
+      "r": 4.5,
+      "i": 5,
+      "d": 4
+    },
+    {
+      "name": "Quanten-Tick",
+      "r": 1.414,
+      "i": 3,
+      "d": 2.5
+    }
+  ]
+},
+  {
+  "id": 90,
+  "bank": "J",
+  "keyDisplay": "1",
+  "name": "Ciat-Lonbarde Paper Wire",
+  "color": "#ffa502",
+  "desc": "Peter Blasser Holzschaltungs-Rückkopplung berührt mit leitfähigem Kohlepapier",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·tanh(γ·[sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em> + φ<sub>paper</sub>))])",
+  "formulaSub": "Ciat-Lonbarde Papier-Rückkopplung",
+  "customParam": {
+    "name": "Papier-Leitwert",
+    "min": 0.2,
+    "max": 4.5,
+    "step": 0.1,
+    "val": 2.1
+  },
+  "defaults": {
+    "ratio": 1.732,
+    "I0": 3.5,
+    "dI": 2.8,
+    "lfo": 0.1,
+    "atk": 0.003,
+    "rel": 0.32,
+    "vol": 0.82,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Papierdraht",
+      "r": 1.732,
+      "i": 3.5,
+      "d": 2.8
+    },
+    {
+      "name": "Holzbox Resonanz",
+      "r": 2.5,
+      "i": 4.2,
+      "d": 3.5
+    },
+    {
+      "name": "Tast-Kollision",
+      "r": 0.866,
+      "i": 2.6,
+      "d": 2
+    }
+  ]
+},
+  {
+  "id": 91,
+  "bank": "J",
+  "keyDisplay": "2",
+  "name": "Chaotic Double Pendulum",
+  "color": "#ff6348",
+  "desc": "Nicht-periodische Doppelpendel-Gelenkkollisionen im 2-Achsen-Phasenraum",
+  "formulaLatex": "θ̈<sub>1,2</sub>(<em>t</em>) = f(θ<sub>1</sub>, θ<sub>2</sub>, θ̇<sub>1</sub>, θ̇<sub>2</sub>), <em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub>(θ)<em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))",
+  "formulaSub": "Doppelpendel Phasen-Kollision",
+  "customParam": {
+    "name": "Pendel-Energie",
+    "min": 0.3,
+    "max": 4,
+    "step": 0.1,
+    "val": 1.9
+  },
+  "defaults": {
+    "ratio": 2.414,
+    "I0": 3,
+    "dI": 2.5,
+    "lfo": 0.15,
+    "atk": 0.002,
+    "rel": 0.24,
+    "vol": 0.8,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Doppelpendel",
+      "r": 2.414,
+      "i": 3,
+      "d": 2.5
+    },
+    {
+      "name": "Chaotischer Stoß",
+      "r": 3.8,
+      "i": 4.2,
+      "d": 3.6
+    },
+    {
+      "name": "Schwung-Klick",
+      "r": 1.2,
+      "i": 2,
+      "d": 1.5
+    }
+  ]
+},
+  {
+  "id": 92,
+  "bank": "J",
+  "keyDisplay": "3",
+  "name": "Wind Chime Aeolian Drift",
+  "color": "#7bed9f",
+  "desc": "Asynchrone kinetische Bambus- und Glasstäbe im sanften Windhauch kollidierend",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = ∑ <em>A</em><sub>k</sub>·sin(2π<em>f</em><sub>k</sub><em>t</em> + <em>I</em><sub>k</sub>·sin(2π<em>r</em><sub>k</sub><em>f</em><sub>k</sub><em>t</em>))·<em>e</em><sup>-(t-t<sub>k</sub>)/τ</sup>",
+  "formulaSub": "Äolische Windspiel-Kollisionen",
+  "customParam": {
+    "name": "Wind-Böen Dichte",
+    "min": 0.4,
+    "max": 4,
+    "step": 0.1,
+    "val": 2.2
+  },
+  "defaults": {
+    "ratio": 3.162,
+    "I0": 2.6,
+    "dI": 2,
+    "lfo": 0.12,
+    "atk": 0.002,
+    "rel": 0.48,
+    "vol": 0.78,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Windspiel Drift",
+      "r": 3.162,
+      "i": 2.6,
+      "d": 2
+    },
+    {
+      "name": "Glastropfen Spiel",
+      "r": 5.5,
+      "i": 3.8,
+      "d": 3
+    },
+    {
+      "name": "Bambus Röhren",
+      "r": 2,
+      "i": 2.2,
+      "d": 1.6
+    }
+  ]
+},
+  {
+  "id": 93,
+  "bank": "J",
+  "keyDisplay": "4",
+  "name": "Turing Shift-Register Pulse",
+  "color": "#70a1ff",
+  "desc": "8-Bit pseudo-zufälliges lineares Feedback-Schieberegister (LFSR) mit getakteten Klickfolgen",
+  "formulaLatex": "<em>b</em><sub>n</sub> = <em>b</em><sub>n-1</sub> ⊕ <em>b</em><sub>n-3</sub>, <em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub>(<em>b</em><sub>n</sub>)<em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))·<em>e</em><sup>-t/τ</sup>",
+  "formulaSub": "8-Bit Galois LFSR Schieberegister",
+  "customParam": {
+    "name": "Register-Feedback",
+    "min": 0.2,
+    "max": 4.5,
+    "step": 0.1,
+    "val": 2.4
+  },
+  "defaults": {
+    "ratio": 2.5,
+    "I0": 3.6,
+    "dI": 3,
+    "lfo": 0.18,
+    "atk": 0.001,
+    "rel": 0.15,
+    "vol": 0.84,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Turing Puls",
+      "r": 2.5,
+      "i": 3.6,
+      "d": 3
+    },
+    {
+      "name": "Pseudo-Random Loop",
+      "r": 4,
+      "i": 4.8,
+      "d": 3.8
+    },
+    {
+      "name": "LFSR Takt-Klick",
+      "r": 1.25,
+      "i": 2.4,
+      "d": 1.8
+    }
+  ]
+},
+  {
+  "id": 94,
+  "bank": "J",
+  "keyDisplay": "5",
+  "name": "Sub-Zero Ice Fracture",
+  "color": "#70d6ff",
+  "desc": "Tektonisches Brechen von gefrorenem Seeeis unter Spannung mit dispersiven Hochton-Peitschen",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>crack</sub>(<em>t</em>)<em>t</em> + <em>I</em>(<em>t</em>)·sin(2π<em>f</em><sub>m</sub><em>t</em>))·<em>e</em><sup>-t/τ</sup>",
+  "formulaSub": "Dispersive See-Eis Riss-Akustik",
+  "customParam": {
+    "name": "Eis-Spannung",
+    "min": 0.4,
+    "max": 5,
+    "step": 0.1,
+    "val": 2.9
+  },
+  "defaults": {
+    "ratio": 3.65,
+    "I0": 3.8,
+    "dI": 3.2,
+    "lfo": 0.08,
+    "atk": 0.0008,
+    "rel": 0.28,
+    "vol": 0.82,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Seeeis-Bruch",
+      "r": 3.65,
+      "i": 3.8,
+      "d": 3.2
+    },
+    {
+      "name": "Eis-Peitsche",
+      "r": 6.2,
+      "i": 5,
+      "d": 4.2
+    },
+    {
+      "name": "Gletscher-Knacks",
+      "r": 1.8,
+      "i": 3,
+      "d": 2.2
+    }
+  ]
+},
+  {
+  "id": 95,
+  "bank": "J",
+  "keyDisplay": "6",
+  "name": "Magnetic Ferrofluid Ripple",
+  "color": "#2f3542",
+  "desc": "Flüssiges Eisen-Ferrofluid formt stachelige Spitzen unter pulsierendem Magnetfeld-Gradienten",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·tanh(sin(2π<em>f</em><sub>m</sub><em>t</em>)))·<em>e</em><sup>-t/0.18</sup>",
+  "formulaSub": "Ferromagnetische Flüssigkeits-Spitzen",
+  "customParam": {
+    "name": "Magnetfeld-Gradient",
+    "min": 0.5,
+    "max": 5,
+    "step": 0.1,
+    "val": 2.7
+  },
+  "defaults": {
+    "ratio": 1.5,
+    "I0": 4.2,
+    "dI": 3.4,
+    "lfo": 0.1,
+    "atk": 0.004,
+    "rel": 0.22,
+    "vol": 0.86,
+    "oct": -1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Ferrofluid Ripple",
+      "r": 1.5,
+      "i": 4.2,
+      "d": 3.4
+    },
+    {
+      "name": "Magnet-Stacheln",
+      "r": 2.8,
+      "i": 5,
+      "d": 4
+    },
+    {
+      "name": "Flüssiges Metall",
+      "r": 0.75,
+      "i": 3,
+      "d": 2.4
+    }
+  ]
+},
+  {
+  "id": 96,
+  "bank": "J",
+  "keyDisplay": "7",
+  "name": "Crystal Lattice Cleavage",
+  "color": "#eccc68",
+  "desc": "Piezoelektrische Kristall-Spaltung entlang atomarer Gitterebenen mit obertonreichem Nachklingen",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·sin(2π·4.33<em>f</em><sub>c</sub><em>t</em>))·<em>e</em><sup>-t/0.35</sup>",
+  "formulaSub": "Piezoelektrische Kristall-Gitterspaltung",
+  "customParam": {
+    "name": "Gitter-Härte",
+    "min": 0.4,
+    "max": 4,
+    "step": 0.1,
+    "val": 2.1
+  },
+  "defaults": {
+    "ratio": 4.33,
+    "I0": 3.4,
+    "dI": 2.8,
+    "lfo": 0.08,
+    "atk": 0.0006,
+    "rel": 0.35,
+    "vol": 0.8,
+    "oct": 1,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Kristallgitter",
+      "r": 4.33,
+      "i": 3.4,
+      "d": 2.8
+    },
+    {
+      "name": "Quarz-Spaltung",
+      "r": 6.8,
+      "i": 4.5,
+      "d": 3.8
+    },
+    {
+      "name": "Saphir-Klick",
+      "r": 2.5,
+      "i": 2.6,
+      "d": 2
+    }
+  ]
+},
+  {
+  "id": 97,
+  "bank": "J",
+  "keyDisplay": "8",
+  "name": "Cosmic Ray Muon Shower",
+  "color": "#ff4757",
+  "desc": "Sekundärer Myonen-Teilchenschauer aus der oberen Atmosphäre trifft Szintillationsdetektor",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = ∑ δ(<em>t</em> - <em>t</em><sub>muon</sub>) * [A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))·<em>e</em><sup>-t/0.012</sup>]",
+  "formulaSub": "Atmosphärischer Myonen-Schauer",
+  "customParam": {
+    "name": "Myonen-Energie",
+    "min": 0.5,
+    "max": 5.5,
+    "step": 0.1,
+    "val": 3
+  },
+  "defaults": {
+    "ratio": 5.25,
+    "I0": 4.5,
+    "dI": 3.8,
+    "lfo": 0.14,
+    "atk": 0.0004,
+    "rel": 0.05,
+    "vol": 0.85,
+    "oct": 2,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Myonen-Schauer",
+      "r": 5.25,
+      "i": 4.5,
+      "d": 3.8
+    },
+    {
+      "name": "Höhenstrahlung",
+      "r": 8,
+      "i": 5.8,
+      "d": 4.8
+    },
+    {
+      "name": "Szintillator",
+      "r": 3,
+      "i": 3.2,
+      "d": 2.5
+    }
+  ]
+},
+  {
+  "id": 98,
+  "bank": "J",
+  "keyDisplay": "9",
+  "name": "Neuronal Membrane Spike",
+  "color": "#2ed573",
+  "desc": "Hodgkin-Huxley Aktionspotenzial-Depolarisationsklick mit Ionenkanal-Porenöffnung",
+  "formulaLatex": "<em>V</em>(<em>t</em>) = <em>V</em><sub>rest</sub> + Δ<em>V</em>·(<em>t</em>/τ)·<em>e</em><sup>-t/τ</sup>, <em>y</em>(<em>t</em>) = A·sin(2π<em>f</em><sub>c</sub><em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))",
+  "formulaSub": "Hodgkin-Huxley Ionen-Spike",
+  "customParam": {
+    "name": "Ionen-Kanal Leitwert",
+    "min": 0.3,
+    "max": 4,
+    "step": 0.1,
+    "val": 2.2
+  },
+  "defaults": {
+    "ratio": 2.3,
+    "I0": 3.2,
+    "dI": 2.6,
+    "lfo": 0.1,
+    "atk": 0.001,
+    "rel": 0.14,
+    "vol": 0.82,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Neuronaler Spike",
+      "r": 2.3,
+      "i": 3.2,
+      "d": 2.6
+    },
+    {
+      "name": "Axon-Feuer",
+      "r": 4.1,
+      "i": 4.2,
+      "d": 3.5
+    },
+    {
+      "name": "Dendriten-Puls",
+      "r": 1.15,
+      "i": 2.2,
+      "d": 1.6
+    }
+  ]
+},
+  {
+  "id": 99,
+  "bank": "J",
+  "keyDisplay": "0",
+  "name": "Clock Divider Polymeter",
+  "color": "#e84118",
+  "desc": "Poly-temporale euklidische Sub-Taktteiler-Gatterimpulse für organisch verschobene Mikrorhythmen",
+  "formulaLatex": "<em>y</em>(<em>t</em>) = ∑<sub>m=2,3,5</sub> [A<sub>m</sub>·sin(2π·(<em>f</em><sub>c</sub>/m)<em>t</em> + <em>I</em>·sin(2π<em>f</em><sub>m</sub><em>t</em>))·<em>e</em><sup>-t/τ</sup>]",
+  "formulaSub": "Euklidische Sub-Takt Polymetrik",
+  "customParam": {
+    "name": "Teiler-Ratio",
+    "min": 0.5,
+    "max": 4.5,
+    "step": 0.1,
+    "val": 2.5
+  },
+  "defaults": {
+    "ratio": 2,
+    "I0": 3.8,
+    "dI": 3,
+    "lfo": 0.12,
+    "atk": 0.001,
+    "rel": 0.18,
+    "vol": 0.84,
+    "oct": 0,
+    "latch": false
+  },
+  "presets": [
+    {
+      "name": "Polymeter Takt",
+      "r": 2,
+      "i": 3.8,
+      "d": 3
+    },
+    {
+      "name": "Euklid 3:5:7",
+      "r": 3.33,
+      "i": 4.5,
+      "d": 3.6
+    },
+    {
+      "name": "Mikro-Gatter",
+      "r": 1,
+      "i": 2.6,
+      "d": 2
+    }
+  ]
+}
 ];
 
 
@@ -7075,6 +8545,429 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
       voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, warpMix };
       break;
     }
+    // ============================================================
+    // BANK H: BUCHLA & WEST COAST ORGANIC PERCUSSION (70–79)
+    // ============================================================
+    case 70: {
+      // Buchla 292 Vactrol Bongo (LPG decay with non-linear slew)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI) * fm, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + Math.max(0.02, inst.customVal * 0.8));
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 71: {
+      // Hydro Water Droplet (surface tension pitch dive)
+      const car = ctx.createOscillator();
+      car.frequency.setValueAtTime(f * (1 + inst.customVal), now);
+      car.frequency.exponentialRampToValueAtTime(f, now + 0.04);
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime(inst.params.I0 * fm, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.05);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 72: {
+      // Bamboo Stomp & Anklung (hollow column resonance)
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 3.0;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * fm, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.07);
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const mix = ctx.createGain(); mix.gain.value = 0.5;
+      car1.connect(mix); car2.connect(mix);
+      mix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, mix };
+      break;
+    }
+    case 73: {
+      // Modal Membrane Pluck (Mutable Rings Bessel modes)
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 2.295;
+      const car3 = ctx.createOscillator(); car3.frequency.value = f * 3.598;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime(inst.params.I0 * fm, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + Math.max(0.03, inst.customVal * 0.2));
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency); modG.connect(car3.frequency);
+      const modalMix = ctx.createGain(); modalMix.gain.value = 0.35;
+      car1.connect(modalMix); car2.connect(modalMix); car3.connect(modalMix);
+      modalMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now); car3.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, car3, mod, modG, modalMix };
+      break;
+    }
+    case 74: {
+      // Seed Pod Shaker (Poisson micro-collision bursts)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * (inst.params.ratio * inst.customVal);
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI) * f * 2.0, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + 0.06);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 75: {
+      // Clay Udu Drum Breath (deep Helmholtz resonance)
+      const car = ctx.createOscillator(); car.frequency.value = f * 0.5;
+      const mod = ctx.createOscillator(); mod.frequency.value = f;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal * 1.5) * f, now);
+      modG.gain.exponentialRampToValueAtTime(0.02 * f, now + 0.14);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 76: {
+      // Micro-Kalimba Ghost Pluck (damped tines)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 2.75;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal) * f * 2.75, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + Math.max(0.03, inst.customVal * 0.4));
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 77: {
+      // Bio-Acoustic Cicada Pulse (high-freq tymbal click)
+      const car = ctx.createOscillator(); car.frequency.value = f * 2.0;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 5.5;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * f * 5.5, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + 0.05);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 78: {
+      // Raindrop on Tin Roof (plate excitation)
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 3.42;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 1.5;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * f * 1.5, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + 0.07);
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const tinMix = ctx.createGain(); tinMix.gain.value = 0.5;
+      car1.connect(tinMix); car2.connect(tinMix);
+      tinMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, tinMix };
+      break;
+    }
+    case 79: {
+      // Pebble Cascade Scatter (granular stone scatter)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 3.85;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal) * f * 3.85, now);
+      modG.gain.exponentialRampToValueAtTime(0.02 * f, now + 0.09);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+
+    // ============================================================
+    // BANK I: MICROSOUND & GLITCH FX TEXTURES (80–89)
+    // ============================================================
+    case 80: {
+      // Pointillist Microsound Click (1ms sub-millisecond impulse)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 4.0;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal * 2.0) * fm * 4.0, now);
+      modG.gain.exponentialRampToValueAtTime(0.001 * fm, now + 0.02);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 81: {
+      // Quantum State Collapse (stochastic phase transient)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 2.618;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * f * 2.618, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + 0.04);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 82: {
+      // Tape Splicer Crinkle (oxide razor transient)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = fm * 3.14;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * fm * 3.14, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.03);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 83: {
+      // Silicon Micro-Relay Click (contact bounce)
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 2.85;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * fm, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.025);
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const relayMix = ctx.createGain(); relayMix.gain.value = 0.5;
+      car1.connect(relayMix); car2.connect(relayMix);
+      relayMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, relayMix };
+      break;
+    }
+    case 84: {
+      // Granular Dust Cloud (5-15ms micro-grains)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * (inst.params.ratio * inst.customVal);
+      const modG = ctx.createGain(); modG.gain.setValueAtTime(inst.params.I0 * f, now);
+      modG.gain.exponentialRampToValueAtTime(0.02 * f, now + 0.08);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 85: {
+      // Bit-Crush Kinetic Pop (quantization transient)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 2.0;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * fm * 2.0, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.035);
+      const shaper = ctx.createWaveShaper();
+      const n_samples = 512, curve = new Float32Array(n_samples);
+      for (let i = 0; i < n_samples; ++i) {
+        const x = (i * 2) / n_samples - 1;
+        curve[i] = Math.round(x * inst.customVal) / inst.customVal;
+      }
+      shaper.curve = curve;
+      mod.connect(modG).connect(car.frequency);
+      car.connect(shaper).connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG, shaper };
+      break;
+    }
+    case 86: {
+      // Ionizing Cloud Chamber (Geiger Poisson arrivals)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 4.8;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * f * 4.8, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + 0.03);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 87: {
+      // Sub-Bass Air Burst (pneumatic 15Hz sub-impulse)
+      const car = ctx.createOscillator(); car.frequency.value = Math.max(15, f * 0.25);
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 0.5;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal * 2.0) * f, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + 0.15);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 88: {
+      // Optical CD Tracking Error (laser servo chirp)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 3.75;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * fm * 3.75, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.025);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 89: {
+      // Josephson Quantum Click (superconducting step impulse)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 2.718;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * f * 2.718, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + 0.02);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+
+    // ============================================================
+    // BANK J: GENERATIVE KINETIC STRUCTURES & CIAT-LONBARDE (90–99)
+    // ============================================================
+    case 90: {
+      // Ciat-Lonbarde Paper Wire (conductive paper feedback)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = fm * 1.732;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * fm * 1.732, now);
+      modG.gain.exponentialRampToValueAtTime(0.02 * fm, now + 0.1);
+      const shaper = ctx.createWaveShaper();
+      const n_samples = 512, curve = new Float32Array(n_samples);
+      for (let i = 0; i < n_samples; ++i) {
+        const x = (i * 2) / n_samples - 1;
+        curve[i] = Math.tanh(inst.customVal * x * 1.2);
+      }
+      shaper.curve = curve;
+      mod.connect(modG).connect(car.frequency);
+      car.connect(shaper).connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG, shaper };
+      break;
+    }
+    case 91: {
+      // Chaotic Double Pendulum (2D phase collision pulse)
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 2.414;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * fm, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.08);
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const pendMix = ctx.createGain(); pendMix.gain.value = 0.5;
+      car1.connect(pendMix); car2.connect(pendMix);
+      pendMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, pendMix };
+      break;
+    }
+    case 92: {
+      // Wind Chime Aeolian Drift (bamboo/glass collision)
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 3.162;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 1.618;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * f * 1.618, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + 0.18);
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const chimeMix = ctx.createGain(); chimeMix.gain.value = 0.5;
+      car1.connect(chimeMix); car2.connect(chimeMix);
+      chimeMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, chimeMix };
+      break;
+    }
+    case 93: {
+      // Turing Shift-Register Pulse (LFSR burst)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 2.5;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * fm * 2.5, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.05);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 94: {
+      // Sub-Zero Ice Fracture (lake ice cracking)
+      const car = ctx.createOscillator();
+      car.frequency.setValueAtTime(f * (1 + inst.customVal * 1.2), now);
+      car.frequency.exponentialRampToValueAtTime(f, now + 0.06);
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 3.65;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI) * fm * 3.65, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.09);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 95: {
+      // Magnetic Ferrofluid Ripple (liquid iron spikes)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = fm * 1.5;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * fm * 1.5, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.08);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 96: {
+      // Crystal Lattice Cleavage (piezoelectric fracture ring)
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 4.33;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 2.0;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * f * 2.0, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + 0.12);
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const cryMix = ctx.createGain(); cryMix.gain.value = 0.5;
+      car1.connect(cryMix); car2.connect(cryMix);
+      cryMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, cryMix };
+      break;
+    }
+    case 97: {
+      // Cosmic Ray Muon Shower (atmospheric secondary particle cascade)
+      const car = ctx.createOscillator(); car.frequency.value = f * 2.0;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 5.25;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal * 1.5) * f * 5.25, now);
+      modG.gain.exponentialRampToValueAtTime(0.005 * f, now + 0.025);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 98: {
+      // Neuronal Membrane Spike (Hodgkin-Huxley action potential click)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 2.3;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * f * 2.3, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * f, now + 0.045);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 99: {
+      // Clock Divider Polymeter (Euclidean poly-temporal burst)
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 2.0;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.customVal) * fm, now);
+      modG.gain.exponentialRampToValueAtTime(0.01 * fm, now + 0.06);
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const polyMix = ctx.createGain(); polyMix.gain.value = 0.5;
+      car1.connect(polyMix); car2.connect(polyMix);
+      polyMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, polyMix };
+      break;
+    }
+
 
   }
 
@@ -8779,7 +10672,10 @@ const BANKS = [
   { id: "D", name: "Bank D: YM2612 & Arcade (31–40)", color: "#00c6fb", offset: 30 },
   { id: "E", name: "Bank E: Cinematic Drones (41–50)", color: "#8fd3f4", offset: 40 },
   { id: "F", name: "Bank F: World Acoustic (51–60)", color: "#ffd200", offset: 50 },
-  { id: "G", name: "Bank G: Modular & FX (61–70)", color: "#ff007f", offset: 60 }
+  { id: "G", name: "Bank G: Modular & FX (61–70)", color: "#ff007f", offset: 60 },
+  { id: "H", name: "Bank H: Buchla & Organic Perc (71–80)", color: "#2ed573", offset: 70 },
+  { id: "I", name: "Bank I: Microsound & Glitch FX (81–90)", color: "#a29bfe", offset: 80 },
+  { id: "J", name: "Bank J: Generative Kinetic (91–100)", color: "#ffa502", offset: 90 }
 ];
 
 let currentBankId = "A";
@@ -8791,7 +10687,10 @@ const bankButtons = {
   D: document.getElementById("btnBankD"),
   E: document.getElementById("btnBankE"),
   F: document.getElementById("btnBankF"),
-  G: document.getElementById("btnBankG")
+  G: document.getElementById("btnBankG"),
+  H: document.getElementById("btnBankH"),
+  I: document.getElementById("btnBankI"),
+  J: document.getElementById("btnBankJ")
 };
 
 const drawerPillContainers = {
@@ -8801,7 +10700,10 @@ const drawerPillContainers = {
   D: document.getElementById("drawerPillsD"),
   E: document.getElementById("drawerPillsE"),
   F: document.getElementById("drawerPillsF"),
-  G: document.getElementById("drawerPillsG")
+  G: document.getElementById("drawerPillsG"),
+  H: document.getElementById("drawerPillsH"),
+  I: document.getElementById("drawerPillsI"),
+  J: document.getElementById("drawerPillsJ")
 };
 
 function toggleHeaderExpand(forceState = null) {

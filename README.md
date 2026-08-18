@@ -1,6 +1,6 @@
 # FM Music Composer 🎹✨
 
-> **Advanced Web Audio 70-Synthesizer Workstation (7 Soundbanks), Multi-Layer Looper & Live Parameter-Automation Engine**
+> **Advanced Web Audio 100-Synthesizer Workstation (10 Soundbanks), Multi-Layer Looper & Live Parameter-Automation Engine**
 
 ![Web Audio API](https://img.shields.io/badge/Web%20Audio-API-ff4757.svg?style=flat-square)
 ![HTML5 Canvas](https://img.shields.io/badge/Canvas-60%20FPS-6ee7c0.svg?style=flat-square)
@@ -8,14 +8,14 @@
 ![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-38c7ff.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)
 
-**FM Music Composer** is a zero-dependency, browser-based modular music studio that combines 70 complex Frequency Modulation (FM) synthesizer architectures across 7 soundbanks, a real-time multi-layer audio looper, per-parameter sine-wave automation with rotary speed knobs, complete song session serialization (`.json`), a programmable 16-step arpeggiator, and 4 synchronized high-resolution oscilloscopes.
+**FM Music Composer** is a zero-dependency, browser-based modular music studio that combines 100 complex Frequency Modulation (FM) synthesizer architectures across 10 soundbanks, a real-time multi-layer audio looper, per-parameter sine-wave automation with rotary speed knobs, complete song session serialization (`.json`), a programmable 16-step arpeggiator, and 4 synchronized high-resolution oscilloscopes.
 
 ---
 
 ## 🌟 Key Features
 
-### 1. 70 Distinct FM Synthesizer Engines (7 Soundbanks)
-> **Bank Navigation:** Switch active soundbanks with keys **`ß`** *(Previous Bank)* and **`´`** *(Next Bank)* or click `A, B, C, D, E, F, G`.  
+### 1. 100 Distinct FM Synthesizer Engines (10 Soundbanks)
+> **Bank Navigation:** Switch active soundbanks with keys **`ß`** *(Previous Bank)* and **`´`** *(Next Bank)* or click `A, B, C, D, E, F, G, H, I, J`.  
 > **Direct Instrument Selection:** Keys **`1` to `0`** instantly select instruments 1 through 10 of the currently active soundbank without needing `Shift`!
 
 - **Bank A (Exotik & Chaos — Instruments 1 to 10):**
@@ -95,6 +95,39 @@
   68. **`68` Ringmod Laser Swarm:** Quad-ringmodulator sci-fi laser swarm with swirling sidebands.
   69. **`69` Black Hole Event Horizon:** Gravitational redshift drone dragging frequencies into deep sub-bass void.
   70. **`70` Warp Engine Plasma Drive:** Starship warp drive spooling up with roaring harmonic plasma resonance.
+- **Bank H (Buchla & West Coast Organic Percussion — Bank `H`):**
+  71. **`71` Buchla 292 Vactrol Bongo:** West-Coast Low Pass Gate (LPG) vactrol ping with non-linear exponential harmonic decay.
+  72. **`72` Hydro Water Droplet:** Surface tension micro-pitch bend with liquid cavity resonance.
+  73. **`73` Bamboo Stomp & Anklung:** Hollow woody strike with non-linear strike velocity and chamber air.
+  74. **`74` Modal Membrane Pluck:** Mutable Instruments Elements/Rings 2D circular membrane Bessel modal frequencies (2.295, 3.598).
+  75. **`75` Seed Pod Shaker:** Poisson stochastic seed collisions in a dried gourd with micro-friction.
+  76. **`76` Clay Udu Drum Breath:** Aerophone Helmholtz cavity resonance with deep thumb slap.
+  77. **`77` Micro-Kalimba Ghost Pluck:** Ultra-soft damped tine with metallic transient and wooden body.
+  78. **`78` Bio-Acoustic Cicada Pulse:** Biomimetic high-frequency tymbal micro-clicks with periodic cluster bursts.
+  79. **`79` Raindrop on Tin Roof:** Stochastic metal plate excitation with microtonal spread.
+  80. **`80` Pebble Cascade Scatter:** Granular avalanche scattering of tiny stones on marble.
+- **Bank I (Microsound & Glitch FX Textures — Bank `I`):**
+  81. **`81` Pointillist Microsound Click:** Sub-millisecond impulse with spectral FM sideband flare.
+  82. **`82` Quantum State Collapse:** Wavefunction collapse transient with stochastic phase jump.
+  83. **`83` Tape Splicer Crinkle:** Vintage magnetic tape razor cut transient with oxide flake noise.
+  84. **`84` Silicon Micro-Relay Click:** Electro-mechanical relay chatter with micro-spark resonance.
+  85. **`85` Granular Dust Cloud:** Cloud of 5-15ms micro-grains floating over pitch-transposed FM.
+  86. **`86` Bit-Crush Kinetic Pop:** Non-linear sample-reduced transient with downsampled jitter.
+  87. **`87` Ionizing Cloud Chamber:** Geiger particle ionizing trail with Poisson arrival intervals.
+  88. **`88` Sub-Bass Air Burst:** 15Hz pneumatic piston impulse with low-end pressure wave.
+  89. **`89` Optical CD Tracking Error:** Laser servo tracking skip glitch with high-frequency ringmod chirp.
+  90. **`90` Josephson Quantum Click:** Superconducting Josephson tunnel junction micro-voltage step impulse.
+- **Bank J (Generative Kinetic Structures & Ciat-Lonbarde — Bank `J`):**
+  91. **`91` Ciat-Lonbarde Paper Wire:** Peter Blasser wooden box feedback touched with conductive carbon paper.
+  92. **`92` Chaotic Double Pendulum:** Non-periodic double-arm collision pulses in 2D phase space.
+  93. **`93` Wind Chime Aeolian Drift:** Asynchronous kinetic bamboo/glass rods colliding in gentle wind.
+  94. **`94` Turing Shift-Register Pulse:** 8-bit pseudo-random linear feedback shift register (LFSR) burst.
+  95. **`95` Sub-Zero Ice Fracture:** Tectonic lake ice cracking under stress with dispersive high frequencies.
+  96. **`96` Magnetic Ferrofluid Ripple:** Liquid iron ferrofluid droplets snapping under magnetic gradient.
+  97. **`97` Crystal Lattice Cleavage:** Piezoelectric crystal fracturing with high harmonic ring.
+  98. **`98` Cosmic Ray Muon Shower:** Atmospheric secondary muon cascade particle shower impulse.
+  99. **`99` Neuronal Membrane Spike:** Hodgkin-Huxley membrane action potential depolarization click burst.
+  100. **`100` Clock Divider Polymeter:** Poly-temporal Euclidean sub-clock gate bursts.
 
 ---
 
