@@ -38,17 +38,24 @@
         <button type="button" class="bank-seg-btn" id="btnBankH" title="Bank H: Buchla & Organic Perc (Tasten: 1–0)">H</button>
         <button type="button" class="bank-seg-btn" id="btnBankI" title="Bank I: Microsound & Glitch FX (Tasten: 1–0)">I</button>
         <button type="button" class="bank-seg-btn" id="btnBankJ" title="Bank J: Generative Kinetic (Tasten: 1–0)">J</button>
+        <button type="button" class="bank-seg-btn" id="btnBankK" title="Bank K: Cyberpunk & Dark Electro (Tasten: 1–0)">K</button>
+        <button type="button" class="bank-seg-btn" id="btnBankL" title="Bank L: Cosmic Ambient & Deep Space (Tasten: 1–0)">L</button>
+        <button type="button" class="bank-seg-btn" id="btnBankM" title="Bank M: Hyperpop & Future Bass (Tasten: 1–0)">M</button>
         <button type="button" class="bank-nav-arrow-btn" id="btnBankNext" title="Nächste Bank (Taste ´)">´ ▶</button>
       </div>
 
       <!-- 10 dynamische Micro-Pills -->
       <div class="micro-pills-bar" id="microPillsBar"></div>
 
-      <!-- Instrument Stepper & Dropdown -->
+      <!-- Instrument Stepper, Dropdown & Instrument Management -->
       <div class="synth-stepper-wrap">
         <button type="button" class="synth-step-btn" id="btnSynthPrev" title="Vorheriges Instrument (◀)">◀</button>
-        <select id="synthSelect" title="Synthesizer-Auswahl (1–100)"></select>
+        <select id="synthSelect" title="Synthesizer-Auswahl (1–130)"></select>
         <button type="button" class="synth-step-btn" id="btnSynthNext" title="Nächstes Instrument (▶)">▶</button>
+        <button type="button" class="header-action-btn btn-primary-action" id="btnAddInstrument" title="Neues benutzerdefiniertes Instrument hinzufügen (+)">+ INSTRUMENT</button>
+        <button type="button" class="header-action-btn" id="btnSaveInstrumentJson" title="Aktuelles Instrument als JSON-Datei exportieren (💾)">💾 EXPORT</button>
+        <button type="button" class="header-action-btn" id="btnLoadInstrumentJson" title="Instrument(e) aus JSON-Datei importieren (📂)">📂 IMPORT</button>
+        <input type="file" id="instrumentFileInput" accept=".json" style="display:none">
       </div>
     </div>
 
@@ -152,6 +159,18 @@
       <div class="drawer-bank-col">
         <div class="drawer-bank-title" style="color:#ffa502;">BANK J: GENERATIVE KINETIC</div>
         <div class="drawer-pills-grid" id="drawerPillsJ"></div>
+      </div>
+      <div class="drawer-bank-col">
+        <div class="drawer-bank-title" style="color:#e056fd;">BANK K: CYBERPUNK & DARK ELECTRO</div>
+        <div class="drawer-pills-grid" id="drawerPillsK"></div>
+      </div>
+      <div class="drawer-bank-col">
+        <div class="drawer-bank-title" style="color:#48dbfb;">BANK L: COSMIC AMBIENT & DEEP SPACE</div>
+        <div class="drawer-pills-grid" id="drawerPillsL"></div>
+      </div>
+      <div class="drawer-bank-col">
+        <div class="drawer-bank-title" style="color:#ff9ff3;">BANK M: HYPERPOP & FUTURE BASS</div>
+        <div class="drawer-pills-grid" id="drawerPillsM"></div>
       </div>
     </div>
 

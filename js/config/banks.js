@@ -10,7 +10,10 @@ const BANKS = [
   { id: "G", name: "Bank G: Modular & FX (61–70)", color: "#ff007f", offset: 60 },
   { id: "H", name: "Bank H: Buchla & Organic Perc (71–80)", color: "#2ed573", offset: 70 },
   { id: "I", name: "Bank I: Microsound & Glitch FX (81–90)", color: "#a29bfe", offset: 80 },
-  { id: "J", name: "Bank J: Generative Kinetic (91–100)", color: "#ffa502", offset: 90 }
+  { id: "J", name: "Bank J: Generative Kinetic (91–100)", color: "#ffa502", offset: 90 },
+  { id: "K", name: "Bank K: Cyberpunk & Dark Electro (101–110)", color: "#e056fd", offset: 100 },
+  { id: "L", name: "Bank L: Cosmic Ambient & Deep Space (111–120)", color: "#48dbfb", offset: 110 },
+  { id: "M", name: "Bank M: Hyperpop & Future Bass (121–130)", color: "#ff9ff3", offset: 120 }
 ];
 
 let currentBankId = "A";

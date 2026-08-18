@@ -376,7 +376,10 @@ const bankButtons = {
   G: document.getElementById("btnBankG"),
   H: document.getElementById("btnBankH"),
   I: document.getElementById("btnBankI"),
-  J: document.getElementById("btnBankJ")
+  J: document.getElementById("btnBankJ"),
+  K: document.getElementById("btnBankK"),
+  L: document.getElementById("btnBankL"),
+  M: document.getElementById("btnBankM")
 };
 
 const drawerPillContainers = {
@@ -389,7 +392,10 @@ const drawerPillContainers = {
   G: document.getElementById("drawerPillsG"),
   H: document.getElementById("drawerPillsH"),
   I: document.getElementById("drawerPillsI"),
-  J: document.getElementById("drawerPillsJ")
+  J: document.getElementById("drawerPillsJ"),
+  K: document.getElementById("drawerPillsK"),
+  L: document.getElementById("drawerPillsL"),
+  M: document.getElementById("drawerPillsM")
 };
 
 function toggleHeaderExpand(forceState = null) {
@@ -405,20 +411,68 @@ function toggleHeaderExpand(forceState = null) {
 expandHeaderBtn.addEventListener("click", () => toggleHeaderExpand());
 hudCenterCapsule.addEventListener("click", () => toggleHeaderExpand());
 
-// 70 Synths in Dropdown mit 7 Gruppen aufbauen
-synthSelect.innerHTML = "";
-BANKS.forEach(b => {
-  const grp = document.createElement("optgroup");
-  grp.label = b.name;
-  for (let i = b.offset; i < b.offset + 10; i++) {
-    const def = SYNTH_DEFS[i];
-    const opt = document.createElement("option");
-    opt.value = i;
-    opt.textContent = `[${i + 1}] ${def.name}`;
-    grp.appendChild(opt);
+const drawerPillEls = [];
+const microPills = [];
+
+function buildSynthSelectors() {
+  // 1. Dropdown
+  synthSelect.innerHTML = "";
+  BANKS.forEach(b => {
+    const grp = document.createElement("optgroup");
+    grp.label = b.name;
+    for (let i = b.offset; i < b.offset + 10; i++) {
+      if (i >= SYNTH_DEFS.length) break;
+      const def = SYNTH_DEFS[i];
+      const opt = document.createElement("option");
+      opt.value = i;
+      opt.textContent = `[${i + 1}] ${def.name}`;
+      grp.appendChild(opt);
+    }
+    synthSelect.appendChild(grp);
+  });
+  synthSelect.value = activeSynthIdx;
+
+  // 2. Micro-Pills (10 Tasten)
+  microPills.length = 0;
+  microPillsBar.innerHTML = "";
+  for (let k = 0; k < 10; k++) {
+    const p = document.createElement("button");
+    p.type = "button";
+    p.className = "micro-pill" + (k === 0 ? " active" : "");
+    p.innerHTML = `<span class="p-num">${k === 9 ? '0' : (k + 1)}</span><span class="voice-dot"></span>`;
+    p.addEventListener("click", () => {
+      const bObj = BANKS.find(b => b.id === currentBankId) || BANKS[0];
+      if (bObj.offset + k < SYNTH_DEFS.length) {
+        selectSynth(bObj.offset + k);
+      }
+    });
+    microPillsBar.appendChild(p);
+    microPills.push(p);
   }
-  synthSelect.appendChild(grp);
-});
+
+  // 3. Drawer Pills im ausfahrbaren Bereich
+  drawerPillEls.length = 0;
+  Object.keys(drawerPillContainers).forEach(k => {
+    if (drawerPillContainers[k]) drawerPillContainers[k].innerHTML = "";
+  });
+
+  SYNTH_DEFS.forEach((def, i) => {
+    const pill = document.createElement("div");
+    pill.className = "drawer-synth-pill" + (i === activeSynthIdx ? " active" : "");
+    pill.style.setProperty("--pill-color", def.color);
+    pill.innerHTML = `<span class="d-key">${i + 1}</span> <span>${def.name}</span>`;
+    pill.addEventListener("click", () => selectSynth(i));
+    
+    if (drawerPillContainers[def.bank]) {
+      drawerPillContainers[def.bank].appendChild(pill);
+    }
+
+    drawerPillEls.push(pill);
+  });
+
+  renderMicroPills();
+}
+
 synthSelect.addEventListener("change", e => selectSynth(parseInt(e.target.value, 10)));
 
 const btnSynthPrev = document.getElementById("btnSynthPrev");
@@ -436,37 +490,144 @@ if (btnSynthNext) {
   });
 }
 
-// 10 dynamische Micro-Pills für primäre Leiste
-const microPills = [];
-microPillsBar.innerHTML = "";
-for (let k = 0; k < 10; k++) {
-  const p = document.createElement("button");
-  p.type = "button";
-  p.className = "micro-pill" + (k === 0 ? " active" : "");
-  p.innerHTML = `<span class="p-num">${k === 9 ? '0' : (k + 1)}</span><span class="voice-dot"></span>`;
-  p.addEventListener("click", () => {
-    const bObj = BANKS.find(b => b.id === currentBankId) || BANKS[0];
-    selectSynth(bObj.offset + k);
+// + Instrument & Save/Load Buttons
+const btnAddInstrument = document.getElementById("btnAddInstrument");
+const btnSaveInstrumentJson = document.getElementById("btnSaveInstrumentJson");
+const btnLoadInstrumentJson = document.getElementById("btnLoadInstrumentJson");
+const instrumentFileInput = document.getElementById("instrumentFileInput");
+
+if (btnAddInstrument) {
+  btnAddInstrument.addEventListener("click", () => {
+    const activeDef = SYNTH_DEFS[activeSynthIdx] || SYNTH_DEFS[0];
+    const activeInst = synthInstances[activeSynthIdx] || synthInstances[0];
+    const newIndex = SYNTH_DEFS.length;
+    const currentBank = BANKS.find(b => b.id === currentBankId) || BANKS[0];
+
+    const customName = prompt("Name für neues Instrument eingeben:", `Custom Synth ${newIndex + 1}`);
+    if (!customName || !customName.trim()) return;
+
+    const newDef = {
+      id: newIndex,
+      bank: currentBank.id,
+      keyDisplay: (newIndex % 10 === 9 ? "0" : (newIndex % 10 + 1)).toString(),
+      name: customName.trim(),
+      color: currentBank.color,
+      desc: `Benutzerdefiniertes FM Instrument (${currentBank.name})`,
+      formulaLatex: activeDef.formulaLatex,
+      formulaSub: `Custom Sound · Bank ${currentBank.id}`,
+      customParam: activeDef.customParam ? { ...activeDef.customParam } : { name: "Custom Parameter", min: 0.1, max: 10, step: 0.1, val: 1.0 },
+      defaults: { ...activeInst.params },
+      presets: [
+        { name: "Standard", r: activeInst.params.r2_ratio, i: activeInst.params.mod_I0, d: activeInst.params.mod_dI },
+        { name: "Intensiv", r: activeInst.params.r2_ratio * 1.5, i: activeInst.params.mod_I0 * 1.4, d: activeInst.params.mod_dI * 1.3 },
+        { name: "Sanft", r: activeInst.params.r2_ratio * 0.75, i: activeInst.params.mod_I0 * 0.6, d: activeInst.params.mod_dI * 0.5 }
+      ]
+    };
+
+    SYNTH_DEFS.push(newDef);
+    const newInst = createSynthInstance(newDef);
+    synthInstances.push(newInst);
+
+    buildSynthSelectors();
+    selectSynth(newIndex);
   });
-  microPillsBar.appendChild(p);
-  microPills.push(p);
 }
 
-// 70 Drawer Pills im ausfahrbaren Bereich aufbauen
-const drawerPillEls = [];
-SYNTH_DEFS.forEach((def, i) => {
-  const pill = document.createElement("div");
-  pill.className = "drawer-synth-pill" + (i === 0 ? " active" : "");
-  pill.style.setProperty("--pill-color", def.color);
-  pill.innerHTML = `<span class="d-key">${i + 1}</span> <span>${def.name}</span>`;
-  pill.addEventListener("click", () => selectSynth(i));
-  
-  if (drawerPillContainers[def.bank]) {
-    drawerPillContainers[def.bank].appendChild(pill);
-  }
+if (btnSaveInstrumentJson) {
+  btnSaveInstrumentJson.addEventListener("click", () => {
+    const activeDef = SYNTH_DEFS[activeSynthIdx];
+    const activeInst = synthInstances[activeSynthIdx];
+    if (!activeDef || !activeInst) return;
 
-  drawerPillEls.push(pill);
-});
+    const exportData = {
+      version: "1.0",
+      type: "fm-music-composer-instrument",
+      timestamp: new Date().toISOString(),
+      instrument: {
+        name: activeDef.name,
+        bank: activeDef.bank,
+        color: activeDef.color,
+        desc: activeDef.desc,
+        formulaLatex: activeDef.formulaLatex,
+        formulaSub: activeDef.formulaSub,
+        customParam: activeDef.customParam,
+        params: { ...activeInst.params },
+        presets: activeDef.presets
+      }
+    };
+
+    const jsonStr = JSON.stringify(exportData, null, 2);
+    const blob = new Blob([jsonStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    const safeName = activeDef.name.toLowerCase().replace(/[^a-z0-9]+/g, "_");
+    a.href = url;
+    a.download = `synth_${activeSynthIdx + 1}_${safeName}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+}
+
+if (btnLoadInstrumentJson && instrumentFileInput) {
+  btnLoadInstrumentJson.addEventListener("click", () => {
+    instrumentFileInput.value = "";
+    instrumentFileInput.click();
+  });
+
+  instrumentFileInput.addEventListener("change", e => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        const rawInst = data.instrument || (data.name ? data : null);
+        if (!rawInst || !rawInst.name) {
+          throw new Error("Ungültiges Instrument-JSON Format");
+        }
+
+        const newIndex = SYNTH_DEFS.length;
+        const currentBank = BANKS.find(b => b.id === (rawInst.bank || currentBankId)) || BANKS[0];
+
+        const loadedDef = {
+          id: newIndex,
+          bank: currentBank.id,
+          keyDisplay: (newIndex % 10 === 9 ? "0" : (newIndex % 10 + 1)).toString(),
+          name: rawInst.name,
+          color: rawInst.color || currentBank.color,
+          desc: rawInst.desc || "Importiertes Instrument",
+          formulaLatex: rawInst.formulaLatex || "<em>y</em>(<em>t</em>) = sin(2π<em>f</em><sub>c</sub><em>t</em>)",
+          formulaSub: rawInst.formulaSub || "Importiertes JSON Preset",
+          customParam: rawInst.customParam || { name: "Custom Parameter", min: 0.1, max: 10, step: 0.1, val: 1.0 },
+          defaults: rawInst.params || rawInst.defaults || {},
+          presets: rawInst.presets || [
+            { name: "Standard", r: rawInst.params?.r2_ratio || 1.0, i: rawInst.params?.mod_I0 || 2.5, d: rawInst.params?.mod_dI || 1.2 }
+          ]
+        };
+
+        SYNTH_DEFS.push(loadedDef);
+        const newInst = createSynthInstance(loadedDef);
+        if (rawInst.params) {
+          Object.assign(newInst.params, rawInst.params);
+        }
+        synthInstances.push(newInst);
+
+        buildSynthSelectors();
+        selectSynth(newIndex);
+      } catch(err) {
+        console.error("JSON Import Error:", err);
+        alert("Fehler beim Laden der JSON-Datei: " + err.message);
+      }
+    };
+    reader.readAsText(file);
+  });
+}
+
+// Initialisiere Dropdown & Drawer
+buildSynthSelectors();
 
 Object.keys(bankButtons).forEach(bId => {
   const btn = bankButtons[bId];

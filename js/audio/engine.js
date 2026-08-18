@@ -104,57 +104,62 @@ const PARAM_BOUNDS = {
   vibDepth: { name: "Vibrato-Tiefe Δf_vib", min: 0.0, max: 24.0, step: 0.1, unit: "Hz", fmt: v => v.toFixed(2) + " Hz" }
 };
 
-const synthInstances = SYNTH_DEFS.map(def => {
+let ctx = null, masterGain, comp, dryGain, wetGain, conv, analyser, cosWave;
+let stackMasterGain = null;
+let timeData, freqData;
+let lastFrameT = 0;
+
+function createSynthInstance(def) {
   const oscs = {};
   
   const defParams = {
     // Cluster A
-    r1_ratio: def.defaults.r1_ratio ?? 1.0,
-    r2_ratio: def.defaults.r2_ratio ?? def.defaults.ratio ?? 1.0,
-    r3_ratio: def.defaults.r3_ratio ?? ((def.defaults.r2_ratio || def.defaults.ratio) ? (def.defaults.r2_ratio || def.defaults.ratio) * 2.0 : 2.0),
-    r4_ratio: def.defaults.r4_ratio ?? 0.5,
-    op_detune: def.defaults.op_detune ?? 0.0,
-    op_spread: def.defaults.op_spread ?? 50.0,
+    r1_ratio: def.defaults?.r1_ratio ?? 1.0,
+    r2_ratio: def.defaults?.r2_ratio ?? def.defaults?.ratio ?? 1.0,
+    r3_ratio: def.defaults?.r3_ratio ?? ((def.defaults?.r2_ratio || def.defaults?.ratio) ? (def.defaults.r2_ratio || def.defaults.ratio) * 2.0 : 2.0),
+    r4_ratio: def.defaults?.r4_ratio ?? 0.5,
+    op_detune: def.defaults?.op_detune ?? 0.0,
+    op_spread: def.defaults?.op_spread ?? 50.0,
 
     // Cluster B
-    mod_I0: def.defaults.mod_I0 ?? def.defaults.I0 ?? 2.5,
-    mod_dI: def.defaults.mod_dI ?? def.defaults.dI ?? 1.2,
-    mod_cross: def.defaults.mod_cross ?? 0.0,
-    mod_fb: def.defaults.mod_fb ?? 0.0,
-    mod_skew: def.defaults.mod_skew ?? 0.0,
+    mod_I0: def.defaults?.mod_I0 ?? def.defaults?.I0 ?? 2.5,
+    mod_dI: def.defaults?.mod_dI ?? def.defaults?.dI ?? 1.2,
+    mod_cross: def.defaults?.mod_cross ?? 0.0,
+    mod_fb: def.defaults?.mod_fb ?? 0.0,
+    mod_skew: def.defaults?.mod_skew ?? 0.0,
 
     // Cluster C
-    shape_fold: def.defaults.shape_fold ?? 0.0,
-    shape_morph: def.defaults.shape_morph ?? 0.0,
-    shape_bias: def.defaults.shape_bias ?? 0.0,
-    shape_drive: def.defaults.shape_drive ?? 1.0,
+    shape_fold: def.defaults?.shape_fold ?? 0.0,
+    shape_morph: def.defaults?.shape_morph ?? 0.0,
+    shape_bias: def.defaults?.shape_bias ?? 0.0,
+    shape_drive: def.defaults?.shape_drive ?? 1.0,
 
     // Cluster D
-    env_atk: def.defaults.env_atk ?? def.defaults.atk ?? 0.02,
-    env_dec: def.defaults.env_dec ?? 0.8,
-    env_sus: def.defaults.env_sus ?? 70.0,
-    env_rel: def.defaults.env_rel ?? def.defaults.rel ?? 1.5,
+    env_atk: def.defaults?.env_atk ?? def.defaults?.atk ?? 0.02,
+    env_dec: def.defaults?.env_dec ?? 0.8,
+    env_sus: def.defaults?.env_sus ?? 70.0,
+    env_rel: def.defaults?.env_rel ?? def.defaults?.rel ?? 1.5,
 
     // Cluster E
-    flt_cutoff: def.defaults.flt_cutoff ?? 12000.0,
-    flt_reso: def.defaults.flt_reso ?? 1.0,
-    flt_envAmt: def.defaults.flt_envAmt ?? 0.0,
-    space_pan: def.defaults.space_pan ?? 50.0,
+    flt_cutoff: def.defaults?.flt_cutoff ?? 12000.0,
+    flt_reso: def.defaults?.flt_reso ?? 1.0,
+    flt_envAmt: def.defaults?.flt_envAmt ?? 0.0,
+    space_pan: def.defaults?.space_pan ?? 50.0,
 
     // Cluster F
-    custom_math: def.customParam ? def.customParam.val : (def.defaults.custom_math ?? 1.0),
+    custom_math: def.customParam ? def.customParam.val : (def.defaults?.custom_math ?? 1.0),
 
     // Legacy Aliases
-    ratio: def.defaults.r2_ratio ?? def.defaults.ratio ?? 1.0,
-    I0: def.defaults.mod_I0 ?? def.defaults.I0 ?? 2.5,
-    dI: def.defaults.mod_dI ?? def.defaults.dI ?? 1.2,
-    atk: def.defaults.env_atk ?? def.defaults.atk ?? 0.02,
-    rel: def.defaults.env_rel ?? def.defaults.rel ?? 1.5,
-    vol: def.defaults.vol ?? 0.85,
+    ratio: def.defaults?.r2_ratio ?? def.defaults?.ratio ?? 1.0,
+    I0: def.defaults?.mod_I0 ?? def.defaults?.I0 ?? 2.5,
+    dI: def.defaults?.mod_dI ?? def.defaults?.dI ?? 1.2,
+    atk: def.defaults?.env_atk ?? def.defaults?.atk ?? 0.02,
+    rel: def.defaults?.env_rel ?? def.defaults?.rel ?? 1.5,
+    vol: def.defaults?.vol ?? 0.85,
     oct: 0,
     latch: false,
-    vibDepth: def.defaults.vibDepth ?? 4.5,
-    lfo: def.defaults.lfo ?? 0.25
+    vibDepth: def.defaults?.vibDepth ?? 4.5,
+    lfo: def.defaults?.lfo ?? 0.25
   };
 
   OSC_PARAM_KEYS.forEach(k => {
@@ -182,7 +187,7 @@ const synthInstances = SYNTH_DEFS.map(def => {
     oscs[k] = { enabled: false, min: minV, max: maxV, speed, phase: Math.random() * Math.PI * 2 };
   });
 
-  return {
+  const inst = {
     def,
     params: defParams,
     customVal: def.customParam ? def.customParam.val : 1.0,
@@ -201,18 +206,23 @@ const synthInstances = SYNTH_DEFS.map(def => {
     lfoPhase: Math.random() * Math.PI * 2,
     primary: { f: 130.813, fm: 130.813 * defParams.r2_ratio }
   };
-});
+
+  if (ctx && stackMasterGain) {
+    inst.bus = ctx.createGain();
+    inst.bus.gain.value = inst.params.vol;
+    inst.bus.connect(stackMasterGain);
+  }
+
+  return inst;
+}
+
+let synthInstances = SYNTH_DEFS.map(createSynthInstance);
 
 const GLOBAL = { master: 0.65, wet: 0.5, oct: 0 };
 const BASE_FREQ = 130.813;
 const NOTES = ["C","C♯","D","D♯","E","F","F♯","G","G♯","A","A♯","H","C"];
 const LETTERS = ["a","w","s","e","d","f","t","g","z","h","u","j","k"];
 const BLACK_KEYS = [1, 3, 6, 8, 10];
-
-let ctx = null, masterGain, comp, dryGain, wetGain, conv, analyser, cosWave;
-let stackMasterGain = null;
-let timeData, freqData;
-let lastFrameT = 0;
 
 /* ============================================================
    Web Audio Initialisierung
