@@ -333,14 +333,64 @@ function setupClusterTabs() {
         keys = OSC_PARAM_KEYS.filter(k => k !== "vibDepth");
       } else if (SYNTH_PARAM_CLUSTERS[activeParamCluster]) {
         keys = SYNTH_PARAM_CLUSTERS[activeParamCluster].keys;
+      } else {
+        keys = OSC_PARAM_KEYS.filter(k => k !== "vibDepth");
       }
+
+      // Button Feedback Animation
+      randBtn.style.transform = "scale(0.92)";
+      randBtn.style.background = "var(--accent)";
+      randBtn.style.color = "#05070d";
+      setTimeout(() => {
+        randBtn.style.transform = "none";
+        randBtn.style.background = "transparent";
+        randBtn.style.color = "var(--accent)";
+      }, 180);
+
       keys.forEach(k => {
         const b = PARAM_BOUNDS[k] || { min: 0, max: 10 };
-        const randVal = b.min + Math.random() * (b.max - b.min);
-        inst.params[k] = Math.round(randVal * 100) / 100;
+        // Radical musical distribution
+        let randVal = 0;
+        if (k === "r1_ratio") {
+          const ratios = [0.5, 0.75, 1.0, 1.333, 1.5, 2.0, 3.0, 4.0];
+          randVal = ratios[Math.floor(Math.random() * ratios.length)];
+        } else if (k === "r2_ratio" || k === "r3_ratio" || k === "r4_ratio") {
+          const harmonics = [0.25, 0.5, 0.75, 1.0, 1.25, 1.333, 1.5, 1.75, 2.0, 2.5, 3.0, 3.141, 3.52, 4.0, 5.84, 7.0, 8.0, 11.0, 14.0];
+          randVal = harmonics[Math.floor(Math.random() * harmonics.length)] + (Math.random() - 0.5) * 0.05;
+        } else if (k === "mod_I0") {
+          randVal = 0.5 + Math.random() * 8.5;
+        } else if (k === "mod_dI") {
+          randVal = 0.2 + Math.random() * 6.0;
+        } else if (k === "flt_cutoff") {
+          randVal = 180 + Math.pow(Math.random(), 2) * 14000;
+        } else if (k === "flt_reso") {
+          randVal = 0.5 + Math.random() * 9.5;
+        } else {
+          randVal = b.min + Math.random() * (b.max - b.min);
+        }
+
+        randVal = Math.max(b.min, Math.min(b.max, randVal));
+        if (b.step) {
+          const inv = 1 / b.step;
+          randVal = Math.round(randVal * inv) / inv;
+        }
+        inst.params[k] = randVal;
+
+        if (k === "r2_ratio") inst.params.ratio = randVal;
+        if (k === "mod_I0") inst.params.I0 = randVal;
+        if (k === "mod_dI") inst.params.dI = randVal;
+        if (k === "custom_math") inst.customVal = randVal;
+
         applyParamChange(k);
         updateParamRowVisual(k);
       });
+
+      // Synchronize all dependencies and live indicators
+      if (inst.params.r2_ratio) applyParamChange("r2_ratio");
+      if (inst.params.mod_I0) applyParamChange("mod_I0");
+      if (inst.params.mod_dI) applyParamChange("mod_dI");
+      if (inst.params.flt_cutoff) applyParamChange("flt_cutoff");
+      if (inst.params.flt_reso) applyParamChange("flt_reso");
     });
   }
 }

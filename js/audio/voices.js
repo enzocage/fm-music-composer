@@ -1492,6 +1492,19 @@ function applyParamChange(k, synthIdx = activeSynthIdx) {
   if (!inst) return;
   const val = inst.params[k];
 
+  // Synchronize key aliases
+  if (k === "r2_ratio") inst.params.ratio = val;
+  if (k === "ratio") inst.params.r2_ratio = val;
+  if (k === "mod_I0") inst.params.I0 = val;
+  if (k === "I0") inst.params.mod_I0 = val;
+  if (k === "mod_dI") inst.params.dI = val;
+  if (k === "dI") inst.params.mod_dI = val;
+  if (k === "custom_math" || k === "customParam") {
+    inst.customVal = val;
+    inst.params.custom_math = val;
+    inst.params.customParam = val;
+  }
+
   if (!ctx) return;
   const now = ctx.currentTime;
 
@@ -1510,46 +1523,67 @@ function applyParamChange(k, synthIdx = activeSynthIdx) {
     }
   }
 
-  // 24-Parameter Real-Time Matrix Modulation
+  // 24-Parameter Real-Time Matrix Modulation on all active voices
   for (const vo of inst.voices.values()) {
+    const r1 = inst.params.r1_ratio || 1.0;
+    const r2 = inst.params.r2_ratio || inst.params.ratio || 1.0;
+    const r3 = inst.params.r3_ratio || 2.0;
+    const r4 = inst.params.r4_ratio || 0.5;
+    const i0 = inst.params.mod_I0 ?? inst.params.I0 ?? 2.5;
+    const di = inst.params.mod_dI ?? inst.params.dI ?? 1.2;
+    const detuneMult = Math.pow(2, (inst.params.op_detune || 0) / 1200);
+
+    const fc = vo.f * r1 * detuneMult;
+    const fm = vo.f * r2;
+    const fm3 = vo.f * r3;
+    const fm4 = vo.f * r4;
+
     // Carrier Frequencies
     if (k === "r1_ratio" || k === "op_detune") {
-      const detuneMult = Math.pow(2, (inst.params.op_detune || 0) / 1200);
-      const fc1 = vo.f * (inst.params.r1_ratio || 1.0) * detuneMult;
-      if (vo.car) vo.car.frequency.setTargetAtTime(fc1, now, 0.03);
+      [vo.car, vo.car1, vo.car2, vo.car3, vo.carL, vo.carR].forEach(c => {
+        if (c && c.frequency) c.frequency.setTargetAtTime(fc, now, 0.03);
+      });
+      if (vo.carSub && vo.carSub.frequency) vo.carSub.frequency.setTargetAtTime(fc * 0.5, now, 0.03);
+      if (vo.carHigh && vo.carHigh.frequency) vo.carHigh.frequency.setTargetAtTime(fc * 2.0, now, 0.03);
+      if (vo.clusterCars) {
+        vo.clusterCars.forEach((c, idx) => {
+          if (c && c.frequency) c.frequency.setTargetAtTime(fc * (1 + (idx - 2) * 0.015), now, 0.03);
+        });
+      }
     }
 
-    // Modulator Frequencies & Gains
+    // Modulator Frequencies
     if (k === "r2_ratio" || k === "ratio") {
-      const fm2 = vo.f * (inst.params.r2_ratio || inst.params.ratio || 1.0);
-      if (vo.mod) vo.mod.frequency.setTargetAtTime(fm2, now, 0.03);
+      [vo.mod, vo.mod1, vo.modSin, vo.modCos].forEach(m => {
+        if (m && m.frequency) m.frequency.setTargetAtTime(fm, now, 0.03);
+      });
     }
     if (k === "r3_ratio") {
-      const fm3 = vo.f * (inst.params.r3_ratio || 2.0);
-      if (vo.mod3) vo.mod3.frequency.setTargetAtTime(fm3, now, 0.03);
+      if (vo.mod3 && vo.mod3.frequency) vo.mod3.frequency.setTargetAtTime(fm3, now, 0.03);
+      if (vo.mod2 && vo.mod2.frequency) vo.mod2.frequency.setTargetAtTime(fm3, now, 0.03);
     }
     if (k === "r4_ratio") {
-      const fm4 = vo.f * (inst.params.r4_ratio || 0.5);
-      if (vo.mod4) vo.mod4.frequency.setTargetAtTime(fm4, now, 0.03);
+      if (vo.mod4 && vo.mod4.frequency) vo.mod4.frequency.setTargetAtTime(fm4, now, 0.03);
     }
 
-    // Mod Index & Cross Mod
-    if (k === "mod_I0" || k === "I0" || k === "r2_ratio") {
-      const fm2 = vo.f * (inst.params.r2_ratio || 1.0);
-      const idx = inst.params.mod_I0 ?? inst.params.I0 ?? 2.5;
-      if (vo.modG) vo.modG.gain.setTargetAtTime(idx * fm2, now, 0.03);
+    // Mod Index Gains (Radical Timbre Warp!)
+    if (k === "mod_I0" || k === "I0" || k === "r2_ratio" || k === "ratio") {
+      [vo.modG, vo.mod1G, vo.modSinG, vo.modCosG].forEach(mg => {
+        if (mg && mg.gain) mg.gain.setTargetAtTime(i0 * fm, now, 0.03);
+      });
     }
-    if (k === "mod_dI" || k === "dI") {
-      const fm2 = vo.f * (inst.params.r2_ratio || 1.0);
-      const dIdx = inst.params.mod_dI ?? inst.params.dI ?? 1.2;
-      if (vo.lfoG) vo.lfoG.gain.setTargetAtTime(dIdx * fm2, now, 0.03);
+    if (k === "mod_dI" || k === "dI" || k === "r2_ratio") {
+      if (vo.lfoG && vo.lfoG.gain) vo.lfoG.gain.setTargetAtTime(di * fm, now, 0.03);
+      if (vo.mod2G && vo.mod2G.gain) vo.mod2G.gain.setTargetAtTime(di * fm3 * 0.8, now, 0.03);
     }
     if (k === "mod_cross") {
-      const fm3 = vo.f * (inst.params.r3_ratio || 2.0);
-      if (vo.mod3G) vo.mod3G.gain.setTargetAtTime(val * fm3, now, 0.03);
+      const crossVal = inst.params.mod_cross || 0;
+      if (vo.mod3G && vo.mod3G.gain) vo.mod3G.gain.setTargetAtTime(crossVal * fm3, now, 0.03);
+      if (vo.rotG1 && vo.rotG1.gain) vo.rotG1.gain.setTargetAtTime(crossVal, now, 0.03);
     }
     if (k === "mod_fb") {
-      if (vo.fbGain) vo.fbGain.gain.setTargetAtTime(Math.min(0.95, val * 0.15), now, 0.03);
+      const fbVal = inst.params.mod_fb || 0;
+      if (vo.fbGain && vo.fbGain.gain) vo.fbGain.gain.setTargetAtTime(Math.min(0.95, fbVal * 0.18), now, 0.03);
     }
 
     // Filter Cutoff & Reso
@@ -1561,8 +1595,8 @@ function applyParamChange(k, synthIdx = activeSynthIdx) {
     }
 
     // Stereo Panning
-    if (k === "space_pan" && vo.panner) {
-      const panVal = (val - 50) / 50; // -1 to +1
+    if (k === "space_pan" && vo.panner && vo.panner.pan) {
+      const panVal = ((inst.params.space_pan || 50) - 50) / 50; // -1 to +1
       vo.panner.pan.setTargetAtTime(panVal, now, 0.04);
     }
   }
