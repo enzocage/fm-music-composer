@@ -533,23 +533,33 @@
       <!-- RACK SECTION 3.8: 10 HIGH-END AUDIO FX MODULES (FX.MD) -->
       <div class="grp grp-fx" id="fxRackGrp" style="background:rgba(8,14,26,0.85); border-color:rgba(56,199,255,0.25);">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; flex-wrap:wrap; gap:4px;">
-          <h2><span style="color:#38c7ff; font-weight:800;" id="fxActiveTitle">🌌 Spectral Shimmer Diffuser</span></h2>
-          <div style="display:flex; align-items:center; gap:6px;">
-            <label class="osc-toggle-label" title="FX Modul Bypass An/Aus">
-              <button type="button" class="kb-latch-toggle" id="fxBypassBtn" style="padding:2px 8px; font-size:7.5px; height:18px;">AUS</button>
-            </label>
-            <div style="display:flex; align-items:center; gap:3px;">
-              <span style="font-size:7px; color:var(--dim);">MIX:</span>
-              <input type="range" id="fxMixSlider" min="0" max="1" step="0.01" value="0.45" style="width:45px; height:14px;">
-              <span id="v_fxMix" style="font-size:7px; color:#38c7ff; font-weight:700; width:24px;">45 %</span>
-            </div>
+          <h2>
+            <span style="color:#38c7ff; font-weight:800;">10 Master Audio FX Module</span>
+            <span id="fxActiveCountBadge" style="font-size:7.5px; background:rgba(56,199,255,0.15); color:#38c7ff; padding:1px 5px; border-radius:2px; border:1px solid rgba(56,199,255,0.3); margin-left:4px;">0 / 10 Aktiv</span>
+          </h2>
+          <div class="mutate-btn-group" style="margin-top:0;">
+            <button type="button" class="mutate-btn" id="btnFxToggleAll" style="color:#2ed573; border-color:rgba(46,213,115,0.4);" title="Schaltet alle 10 FX Module AN / AUS">✨ Alle AN / AUS</button>
+            <button type="button" class="mutate-btn" id="btnFxMutate" style="color:#ffc46b; border-color:rgba(255,196,107,0.4);" title="Zufällige Mutation aller FX Parameter">⚄ FX Mutieren</button>
+            <button type="button" class="mutate-btn" id="btnFxReset" style="color:#ff6b81; border-color:rgba(255,107,129,0.4);" title="Setzt alle FX auf Bypass & Standard">↺ Reset</button>
           </div>
         </div>
 
-        <!-- 10 FX Module Selector Tabs Bar -->
-        <div class="fx-module-tab-bar" id="fxModuleSelector" style="display:flex; gap:2px; overflow-x:auto; padding-bottom:2px; margin-bottom:6px;"></div>
+        <!-- Filter- & Direktanzeige-Leiste -->
+        <div class="param-cluster-tab-bar" id="fxViewFilterBar" style="display:flex; gap:2px; margin-bottom:6px; flex-wrap:wrap;">
+          <button type="button" class="param-cluster-tab active" data-fx-filter="all" id="tabFxAll" title="Zeigt alle 10 FX Module direkt im Vollüberblick">⊞ Alle 10 Module Direkt</button>
+          <button type="button" class="param-cluster-tab" data-fx-filter="shimmer">🌌 Shimmer</button>
+          <button type="button" class="param-cluster-tab" data-fx-filter="resonator">🪵 Resonator</button>
+          <button type="button" class="param-cluster-tab" data-fx-filter="barberpole">💈 Phaser</button>
+          <button type="button" class="param-cluster-tab" data-fx-filter="tape">📼 Tape</button>
+          <button type="button" class="param-cluster-tab" data-fx-filter="waveguide">🎻 Waveguide</button>
+          <button type="button" class="param-cluster-tab" data-fx-filter="granular">☁️ Granular</button>
+          <button type="button" class="param-cluster-tab" data-fx-filter="wavefolder">⚡ Wavefold</button>
+          <button type="button" class="param-cluster-tab" data-fx-filter="sculptor">🎚️ Sculptor</button>
+          <button type="button" class="param-cluster-tab" data-fx-filter="orbit3d">🪐 3D Orbit</button>
+          <button type="button" class="param-cluster-tab" data-fx-filter="glitch">🔀 Glitch</button>
+        </div>
 
-        <!-- Active FX Dynamic 4-Parameter Container -->
+        <!-- Dynamic FX Grid Rendering Container (Alle 10 Module direkt sichtbar) -->
         <div id="fxParamsContainer" class="synth-params-grid"></div>
       </div>
 

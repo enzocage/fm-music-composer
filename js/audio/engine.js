@@ -263,8 +263,6 @@ function initAudio() {
 
   stackMasterGain = ctx.createGain();
   stackMasterGain.gain.value = 1.0;
-  stackMasterGain.connect(dryGain);
-  stackMasterGain.connect(conv);
 
   analyser = ctx.createAnalyser();
   analyser.fftSize = 8192; analyser.smoothingTimeConstant = 0.6;
@@ -283,7 +281,18 @@ function initAudio() {
     inst.lfoOsc.start();
   });
 
-  if (typeof initFxEngine === "function") initFxEngine();
+  if (typeof initFxEngine === "function") {
+    initFxEngine();
+    if (typeof fxMasterIn !== "undefined" && fxMasterIn) {
+      stackMasterGain.connect(fxMasterIn);
+    } else {
+      stackMasterGain.connect(dryGain);
+      stackMasterGain.connect(conv);
+    }
+  } else {
+    stackMasterGain.connect(dryGain);
+    stackMasterGain.connect(conv);
+  }
 }
 
 function createReverbIR(duration, decay) {

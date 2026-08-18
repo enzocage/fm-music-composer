@@ -9,6 +9,7 @@ const FX_CONFIG = {
     id: "shimmer",
     name: "Spectral Shimmer Diffuser",
     icon: "🌌",
+    color: "#00f2fe",
     enabled: false,
     mix: 0.45,
     params: {
@@ -22,6 +23,7 @@ const FX_CONFIG = {
     id: "resonator",
     name: "Resonator Bank & Modal Body",
     icon: "🪵",
+    color: "#e67e22",
     enabled: false,
     mix: 0.5,
     params: {
@@ -35,6 +37,7 @@ const FX_CONFIG = {
     id: "barberpole",
     name: "Barberpole Shepard Phaser",
     icon: "💈",
+    color: "#9b59b6",
     enabled: false,
     mix: 0.5,
     params: {
@@ -48,6 +51,7 @@ const FX_CONFIG = {
     id: "tape",
     name: "Magnetic Tape Hysteresis",
     icon: "📼",
+    color: "#f39c12",
     enabled: false,
     mix: 0.6,
     params: {
@@ -61,6 +65,7 @@ const FX_CONFIG = {
     id: "waveguide",
     name: "Karplus-Strong Waveguide",
     icon: "🎻",
+    color: "#1abc9c",
     enabled: false,
     mix: 0.5,
     params: {
@@ -74,6 +79,7 @@ const FX_CONFIG = {
     id: "granular",
     name: "Granular Cloud & Scatter",
     icon: "☁️",
+    color: "#3498db",
     enabled: false,
     mix: 0.5,
     params: {
@@ -87,6 +93,7 @@ const FX_CONFIG = {
     id: "wavefolder",
     name: "Asymmetric Diode Wavefolder",
     icon: "⚡",
+    color: "#ff007f",
     enabled: false,
     mix: 0.5,
     params: {
@@ -100,6 +107,7 @@ const FX_CONFIG = {
     id: "sculptor",
     name: "Dynamic Spectral Sculptor",
     icon: "🎚️",
+    color: "#2ecc71",
     enabled: false,
     mix: 0.6,
     params: {
@@ -113,6 +121,7 @@ const FX_CONFIG = {
     id: "orbit3d",
     name: "Binaural 3D Spatial Orbit",
     icon: "🪐",
+    color: "#a29bfe",
     enabled: false,
     mix: 0.65,
     params: {
@@ -126,6 +135,7 @@ const FX_CONFIG = {
     id: "glitch",
     name: "Probabilistic Glitch Shuffler",
     icon: "🔀",
+    color: "#ff4757",
     enabled: false,
     mix: 0.45,
     params: {
@@ -136,6 +146,19 @@ const FX_CONFIG = {
     }
   }
 };
+
+const FX_CHAIN_ORDER = [
+  "shimmer",
+  "resonator",
+  "barberpole",
+  "tape",
+  "waveguide",
+  "granular",
+  "wavefolder",
+  "sculptor",
+  "orbit3d",
+  "glitch"
+];
 
 // Upfront FX State Oscillators Initialization
 Object.keys(FX_CONFIG).forEach(fxId => {
@@ -156,109 +179,177 @@ Object.keys(FX_CONFIG).forEach(fxId => {
 });
 
 let activeFxId = "shimmer";
-
-// Master FX DSP Chain Nodes
+let fxMasterIn = null;
+let fxMasterOut = null;
 const fxNodes = {};
 
 function initFxEngine() {
   if (!ctx) return;
 
-  // 1. Shimmer Nodes
+  fxMasterIn = ctx.createGain();
+  fxMasterIn.gain.value = 1.0;
+  fxMasterOut = ctx.createGain();
+  fxMasterOut.gain.value = 1.0;
+
+  const n_samples = 1024;
+
+  // ------------------------------------------------------------
+  // 1. Shimmer Diffuser Nodes
+  // ------------------------------------------------------------
   const shimIn = ctx.createGain();
-  const shimDelay = ctx.createDelay(1.0);
+  const shimDry = ctx.createGain();
+  const shimWet = ctx.createGain();
+  const shimOut = ctx.createGain();
+  const shimDelay = ctx.createDelay(1.5);
   shimDelay.delayTime.value = 0.085;
   const shimFilter = ctx.createBiquadFilter();
   shimFilter.type = "lowpass";
   shimFilter.frequency.value = 8000;
   const shimFeedback = ctx.createGain();
   shimFeedback.gain.value = 0.75;
-  const shimDry = ctx.createGain();
-  const shimWet = ctx.createGain();
-  const shimOut = ctx.createGain();
 
   shimIn.connect(shimDry).connect(shimOut);
   shimIn.connect(shimDelay).connect(shimFilter).connect(shimFeedback).connect(shimDelay);
   shimFilter.connect(shimWet).connect(shimOut);
 
-  fxNodes.shimmer = { in: shimIn, out: shimOut, delay: shimDelay, filter: shimFilter, fb: shimFeedback, dry: shimDry, wet: shimWet };
+  fxNodes.shimmer = { in: shimIn, out: shimOut, dry: shimDry, wet: shimWet, delay: shimDelay, filter: shimFilter, fb: shimFeedback };
 
-  // 2. Resonator Bank (4 Stufen Biquad)
+  // ------------------------------------------------------------
+  // 2. Resonator Bank (4-Band Modal Body)
+  // ------------------------------------------------------------
   const resIn = ctx.createGain();
+  const resDry = ctx.createGain();
+  const resWet = ctx.createGain();
   const resOut = ctx.createGain();
   const resFilters = [];
+
+  resIn.connect(resDry).connect(resOut);
+
   for (let k = 1; k <= 4; k++) {
     const f = ctx.createBiquadFilter();
     f.type = "bandpass";
     f.frequency.value = 260 * k;
     f.Q.value = 18;
     const g = ctx.createGain();
-    g.gain.value = 0.35 / k;
-    resIn.connect(f).connect(g).connect(resOut);
+    g.gain.value = 0.6 / Math.sqrt(k);
+    resIn.connect(f).connect(g).connect(resWet);
     resFilters.push({ filter: f, gain: g });
   }
-  fxNodes.resonator = { in: resIn, out: resOut, filters: resFilters };
+  resWet.connect(resOut);
 
-  // 3. Barberpole Phaser Nodes
+  fxNodes.resonator = { in: resIn, out: resOut, dry: resDry, wet: resWet, filters: resFilters };
+
+  // ------------------------------------------------------------
+  // 3. Barberpole Shepard Phaser
+  // ------------------------------------------------------------
   const barbIn = ctx.createGain();
+  const barbDry = ctx.createGain();
+  const barbWet = ctx.createGain();
   const barbOut = ctx.createGain();
+  const barbFeedback = ctx.createGain();
+  barbFeedback.gain.value = 0.65;
   const barbAllpass = [];
+
+  barbIn.connect(barbDry).connect(barbOut);
+
   let prevNode = barbIn;
   for (let i = 0; i < 4; i++) {
     const ap = ctx.createBiquadFilter();
     ap.type = "allpass";
-    ap.frequency.value = 800 + i * 400;
-    ap.Q.value = 4.0;
+    ap.frequency.value = 600 + i * 450;
+    ap.Q.value = 3.5;
     prevNode.connect(ap);
     prevNode = ap;
     barbAllpass.push(ap);
   }
-  prevNode.connect(barbOut);
-  fxNodes.barberpole = { in: barbIn, out: barbOut, allpass: barbAllpass };
+  prevNode.connect(barbFeedback).connect(barbAllpass[0]);
+  prevNode.connect(barbWet).connect(barbOut);
 
-  // 4. Tape Hysteresis / Saturator Nodes
+  fxNodes.barberpole = { in: barbIn, out: barbOut, dry: barbDry, wet: barbWet, allpass: barbAllpass, fb: barbFeedback };
+
+  // ------------------------------------------------------------
+  // 4. Magnetic Tape Hysteresis & Flutter
+  // ------------------------------------------------------------
   const tapeIn = ctx.createGain();
-  const tapeDrive = ctx.createGain(); tapeDrive.gain.value = 2.8;
-  const tapeShaper = ctx.createWaveShaper();
-  const tapeFilter = ctx.createBiquadFilter(); tapeFilter.type = "lowpass"; tapeFilter.frequency.value = 9500;
+  const tapeDry = ctx.createGain();
+  const tapeWet = ctx.createGain();
   const tapeOut = ctx.createGain();
+  const tapeDrive = ctx.createGain();
+  tapeDrive.gain.value = 2.8;
+  const tapeShaper = ctx.createWaveShaper();
+  const tapeDelay = ctx.createDelay(0.1);
+  tapeDelay.delayTime.value = 0.015;
+  const tapeFilter = ctx.createBiquadFilter();
+  tapeFilter.type = "lowpass";
+  tapeFilter.frequency.value = 9500;
 
-  // Jiles-Atherton Hysteresis curve
-  const n_samples = 1024, curve = new Float32Array(n_samples);
+  const tapeCurve = new Float32Array(n_samples);
   for (let i = 0; i < n_samples; ++i) {
     const x = (i * 2) / n_samples - 1;
-    curve[i] = Math.tanh(1.8 * x + 0.15 * x * x);
+    tapeCurve[i] = Math.tanh(1.9 * x + 0.12 * x * x);
   }
-  tapeShaper.curve = curve;
+  tapeShaper.curve = tapeCurve;
   tapeShaper.oversample = "4x";
 
-  tapeIn.connect(tapeDrive).connect(tapeShaper).connect(tapeFilter).connect(tapeOut);
-  fxNodes.tape = { in: tapeIn, out: tapeOut, drive: tapeDrive, shaper: tapeShaper, filter: tapeFilter };
+  tapeIn.connect(tapeDry).connect(tapeOut);
+  tapeIn.connect(tapeDrive).connect(tapeShaper).connect(tapeDelay).connect(tapeFilter).connect(tapeWet).connect(tapeOut);
 
-  // 5. Waveguide String Resonator
+  fxNodes.tape = { in: tapeIn, out: tapeOut, dry: tapeDry, wet: tapeWet, drive: tapeDrive, shaper: tapeShaper, delay: tapeDelay, filter: tapeFilter };
+
+  // ------------------------------------------------------------
+  // 5. Karplus-Strong Waveguide
+  // ------------------------------------------------------------
   const wgIn = ctx.createGain();
-  const wgDelay = ctx.createDelay(0.5); wgDelay.delayTime.value = 1 / 220;
-  const wgFilter = ctx.createBiquadFilter(); wgFilter.type = "lowpass"; wgFilter.frequency.value = 3500;
-  const wgFeedback = ctx.createGain(); wgFeedback.gain.value = 0.94;
+  const wgDry = ctx.createGain();
+  const wgWet = ctx.createGain();
   const wgOut = ctx.createGain();
+  const wgDelay = ctx.createDelay(0.5);
+  wgDelay.delayTime.value = 1 / 220;
+  const wgFilter = ctx.createBiquadFilter();
+  wgFilter.type = "lowpass";
+  wgFilter.frequency.value = 4500;
+  const wgFeedback = ctx.createGain();
+  wgFeedback.gain.value = 0.92;
 
+  wgIn.connect(wgDry).connect(wgOut);
   wgIn.connect(wgDelay).connect(wgFilter).connect(wgFeedback).connect(wgDelay);
-  wgFilter.connect(wgOut);
-  fxNodes.waveguide = { in: wgIn, out: wgOut, delay: wgDelay, filter: wgFilter, fb: wgFeedback };
+  wgFilter.connect(wgWet).connect(wgOut);
 
-  // 6. Granular Delay Cloud
+  fxNodes.waveguide = { in: wgIn, out: wgOut, dry: wgDry, wet: wgWet, delay: wgDelay, filter: wgFilter, fb: wgFeedback };
+
+  // ------------------------------------------------------------
+  // 6. Granular Cloud Delay & Scatter
+  // ------------------------------------------------------------
   const granIn = ctx.createGain();
-  const granDelay = ctx.createDelay(1.0); granDelay.delayTime.value = 0.065;
-  const granFeedback = ctx.createGain(); granFeedback.gain.value = 0.55;
+  const granDry = ctx.createGain();
+  const granWet = ctx.createGain();
   const granOut = ctx.createGain();
-  granIn.connect(granDelay).connect(granFeedback).connect(granDelay);
-  granDelay.connect(granOut);
-  fxNodes.granular = { in: granIn, out: granOut, delay: granDelay, fb: granFeedback };
+  const granDelay = ctx.createDelay(1.5);
+  granDelay.delayTime.value = 0.065;
+  const granFilter = ctx.createBiquadFilter();
+  granFilter.type = "bandpass";
+  granFilter.frequency.value = 2200;
+  granFilter.Q.value = 2.0;
+  const granFeedback = ctx.createGain();
+  granFeedback.gain.value = 0.55;
 
+  granIn.connect(granDry).connect(granOut);
+  granIn.connect(granDelay).connect(granFilter).connect(granFeedback).connect(granDelay);
+  granFilter.connect(granWet).connect(granOut);
+
+  fxNodes.granular = { in: granIn, out: granOut, dry: granDry, wet: granWet, delay: granDelay, filter: granFilter, fb: granFeedback };
+
+  // ------------------------------------------------------------
   // 7. Asymmetric Diode Wavefolder
+  // ------------------------------------------------------------
   const wfIn = ctx.createGain();
-  const wfDrive = ctx.createGain(); wfDrive.gain.value = 2.2;
-  const wfShaper = ctx.createWaveShaper();
+  const wfDry = ctx.createGain();
+  const wfWet = ctx.createGain();
   const wfOut = ctx.createGain();
+  const wfDrive = ctx.createGain();
+  wfDrive.gain.value = 2.2;
+  const wfShaper = ctx.createWaveShaper();
+
   const wfCurve = new Float32Array(n_samples);
   for (let i = 0; i < n_samples; ++i) {
     const x = (i * 2) / n_samples - 1;
@@ -266,34 +357,132 @@ function initFxEngine() {
   }
   wfShaper.curve = wfCurve;
   wfShaper.oversample = "4x";
-  wfIn.connect(wfDrive).connect(wfShaper).connect(wfOut);
-  fxNodes.wavefolder = { in: wfIn, out: wfOut, drive: wfDrive, shaper: wfShaper };
 
-  // 8. Multi-Band Dynamic Sculptor
+  wfIn.connect(wfDry).connect(wfOut);
+  wfIn.connect(wfDrive).connect(wfShaper).connect(wfWet).connect(wfOut);
+
+  fxNodes.wavefolder = { in: wfIn, out: wfOut, dry: wfDry, wet: wfWet, drive: wfDrive, shaper: wfShaper };
+
+  // ------------------------------------------------------------
+  // 8. Dynamic Spectral Sculptor
+  // ------------------------------------------------------------
   const scIn = ctx.createGain();
-  const scComp = ctx.createDynamicsCompressor();
-  scComp.threshold.value = -18; scComp.ratio.value = 4.0;
+  const scDry = ctx.createGain();
+  const scWet = ctx.createGain();
   const scOut = ctx.createGain();
-  scIn.connect(scComp).connect(scOut);
-  fxNodes.sculptor = { in: scIn, out: scOut, comp: scComp };
+  const scDuck = ctx.createBiquadFilter();
+  scDuck.type = "peaking";
+  scDuck.frequency.value = 350;
+  scDuck.Q.value = 1.8;
+  scDuck.gain.value = -6.5;
 
-  // 9. 3D Spatial Orbit Panner
+  const scAir = ctx.createBiquadFilter();
+  scAir.type = "highshelf";
+  scAir.frequency.value = 7500;
+  scAir.gain.value = 3.5;
+
+  const scComp = ctx.createDynamicsCompressor();
+  scComp.threshold.value = -18;
+  scComp.knee.value = 12;
+  scComp.ratio.value = 4.0;
+  scComp.attack.value = 0.005;
+  scComp.release.value = 0.15;
+
+  scIn.connect(scDry).connect(scOut);
+  scIn.connect(scDuck).connect(scAir).connect(scComp).connect(scWet).connect(scOut);
+
+  fxNodes.sculptor = { in: scIn, out: scOut, dry: scDry, wet: scWet, duck: scDuck, air: scAir, comp: scComp };
+
+  // ------------------------------------------------------------
+  // 9. Binaural 3D Spatial Orbit Panner
+  // ------------------------------------------------------------
   const orbIn = ctx.createGain();
-  const orbPanner = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+  const orbDry = ctx.createGain();
+  const orbWet = ctx.createGain();
   const orbOut = ctx.createGain();
-  if (orbPanner) {
-    orbIn.connect(orbPanner).connect(orbOut);
-  } else {
-    orbIn.connect(orbOut);
-  }
-  fxNodes.orbit3d = { in: orbIn, out: orbOut, panner: orbPanner };
+  const orbPanner = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
 
-  // 10. Probabilistic Glitch Shuffler
+  orbIn.connect(orbDry).connect(orbOut);
+  if (orbPanner) {
+    orbIn.connect(orbPanner).connect(orbWet).connect(orbOut);
+  } else {
+    orbIn.connect(orbWet).connect(orbOut);
+  }
+
+  fxNodes.orbit3d = { in: orbIn, out: orbOut, dry: orbDry, wet: orbWet, panner: orbPanner };
+
+  // ------------------------------------------------------------
+  // 10. Probabilistic Glitch Shuffler & Bitcrush
+  // ------------------------------------------------------------
   const glIn = ctx.createGain();
-  const glDelay = ctx.createDelay(1.0); glDelay.delayTime.value = 0.125;
+  const glDry = ctx.createGain();
+  const glWet = ctx.createGain();
   const glOut = ctx.createGain();
-  glIn.connect(glDelay).connect(glOut);
-  fxNodes.glitch = { in: glIn, out: glOut, delay: glDelay };
+  const glShaper = ctx.createWaveShaper();
+  const glDelay = ctx.createDelay(1.0);
+  glDelay.delayTime.value = 0.125;
+
+  const glCurve = new Float32Array(n_samples);
+  const steps = 16;
+  for (let i = 0; i < n_samples; ++i) {
+    const x = (i * 2) / n_samples - 1;
+    glCurve[i] = Math.round(x * steps) / steps;
+  }
+  glShaper.curve = glCurve;
+
+  glIn.connect(glDry).connect(glOut);
+  glIn.connect(glShaper).connect(glDelay).connect(glWet).connect(glOut);
+
+  fxNodes.glitch = { in: glIn, out: glOut, dry: glDry, wet: glWet, shaper: glShaper, delay: glDelay };
+
+  // ------------------------------------------------------------
+  // Wire the 10 FX Modules into a continuous serial master bus
+  // ------------------------------------------------------------
+  let chainCurr = fxMasterIn;
+  FX_CHAIN_ORDER.forEach(id => {
+    const node = fxNodes[id];
+    if (node) {
+      chainCurr.connect(node.in);
+      chainCurr = node.out;
+    }
+  });
+  chainCurr.connect(fxMasterOut);
+
+  // Apply default Dry/Wet mixes for all modules
+  FX_CHAIN_ORDER.forEach(id => updateFxModuleMix(id));
+}
+
+function updateFxModuleMix(fxId) {
+  const fx = FX_CONFIG[fxId];
+  const nodes = fxNodes[fxId];
+  if (!fx || !nodes || !ctx) return;
+  const now = ctx.currentTime;
+
+  if (fx.enabled) {
+    const mix = Math.max(0, Math.min(1, fx.mix));
+    nodes.dry.gain.setTargetAtTime(1.0 - mix * 0.75, now, 0.02);
+    nodes.wet.gain.setTargetAtTime(mix * 1.15, now, 0.02);
+  } else {
+    nodes.dry.gain.setTargetAtTime(1.0, now, 0.02);
+    nodes.wet.gain.setTargetAtTime(0.0, now, 0.02);
+  }
+}
+
+function toggleFx(fxId, forcedState) {
+  const fx = FX_CONFIG[fxId];
+  if (!fx) return;
+  fx.enabled = typeof forcedState === "boolean" ? forcedState : !fx.enabled;
+  updateFxModuleMix(fxId);
+  if (typeof updateFxCardState === "function") {
+    updateFxCardState(fxId);
+  }
+}
+
+function setFxMix(fxId, mixVal) {
+  const fx = FX_CONFIG[fxId];
+  if (!fx) return;
+  fx.mix = Math.max(0, Math.min(1, mixVal));
+  updateFxModuleMix(fxId);
 }
 
 function applyFxParamChange(fxId, paramKey) {
@@ -325,10 +514,8 @@ function applyFxParamChange(fxId, paramKey) {
     }
   }
   else if (fxId === "barberpole") {
-    if (paramKey === "barber_rate") {
-      nodes.allpass.forEach((ap, idx) => {
-        ap.frequency.setTargetAtTime(Math.max(100, Math.min(14000, 600 + idx * 500 + val * 200)), now, 0.05);
-      });
+    if (paramKey === "barber_feedback") {
+      nodes.fb.gain.setTargetAtTime(Math.min(0.95, val / 100), now, 0.05);
     }
   }
   else if (fxId === "tape") {
@@ -346,10 +533,71 @@ function applyFxParamChange(fxId, paramKey) {
   else if (fxId === "wavefolder") {
     if (paramKey === "fold_drive") nodes.drive.gain.setTargetAtTime(val, now, 0.05);
   }
+  else if (fxId === "sculptor") {
+    if (paramKey === "sculpt_low_duck") nodes.duck.gain.setTargetAtTime(val, now, 0.05);
+    if (paramKey === "sculpt_air_excite") nodes.air.gain.setTargetAtTime(val, now, 0.05);
+  }
   else if (fxId === "orbit3d" && nodes.panner) {
     if (paramKey === "orbit_speed") {
       const panVal = Math.sin(now * val * Math.PI * 2);
       nodes.panner.pan.setTargetAtTime(panVal, now, 0.05);
     }
   }
+  else if (fxId === "glitch") {
+    if (paramKey === "glitch_downsample") {
+      nodes.delay.delayTime.setTargetAtTime(Math.max(0.01, 1 / (val * 1000)), now, 0.05);
+    }
+  }
+}
+
+function tickFxOscillators(dt) {
+  if (!ctx) return;
+  const now = ctx.currentTime;
+
+  FX_CHAIN_ORDER.forEach(fxId => {
+    const fx = FX_CONFIG[fxId];
+    if (!fx || !fx.enabled) return;
+
+    // 1. Barberpole Dynamic Allpass Phase Sweep
+    if (fxId === "barberpole" && fxNodes.barberpole && fxNodes.barberpole.allpass) {
+      const rate = fx.params.barber_rate.val;
+      fxNodes.barberpole.allpass.forEach((ap, idx) => {
+        const ph = (now * rate + idx * 0.25) % 1;
+        const f = 400 + Math.sin(ph * Math.PI * 2) * 1200 + 800;
+        ap.frequency.setValueAtTime(Math.max(80, f), now);
+      });
+    }
+
+    // 2. Tape Wow & Flutter LFO Modulation
+    if (fxId === "tape" && fxNodes.tape && fxNodes.tape.delay) {
+      const wow = (fx.params.tape_wow.val / 100) * 0.004;
+      const flutter = (fx.params.tape_flutter.val / 100) * 0.0015;
+      const dtVal = 0.015 + Math.sin(now * 0.5 * Math.PI * 2) * wow + Math.sin(now * 6.0 * Math.PI * 2) * flutter;
+      fxNodes.tape.delay.delayTime.setValueAtTime(Math.max(0.001, dtVal), now);
+    }
+
+    // 3. Orbit 3D Rotation
+    if (fxId === "orbit3d" && fxNodes.orbit3d && fxNodes.orbit3d.panner) {
+      const spd = fx.params.orbit_speed.val;
+      const pan = Math.sin(now * spd * Math.PI * 2);
+      fxNodes.orbit3d.panner.pan.setValueAtTime(pan, now);
+    }
+
+    // 4. Parameter Oscillators
+    if (fx.oscillators) {
+      Object.keys(fx.oscillators).forEach(pKey => {
+        const osc = fx.oscillators[pKey];
+        if (!osc || !osc.enabled) return;
+        const freq = 0.01 + Math.pow(osc.speed / 100, 2) * 4.5;
+        osc.phase = (osc.phase + freq * dt * Math.PI * 2) % (Math.PI * 2);
+        const lfo = 0.5 + 0.5 * Math.sin(osc.phase);
+        const val = osc.min + lfo * (osc.max - osc.min);
+        fx.params[pKey].val = val;
+        applyFxParamChange(fxId, pKey);
+        if (typeof updateFxParamRowVisual === "function") {
+          updateFxParamRowVisual(fxId, pKey);
+        }
+      });
+    }
+  });
 }

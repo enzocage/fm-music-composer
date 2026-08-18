@@ -138,32 +138,10 @@ function renderFrame() {
     }
 
     // ------------------------------------------------------------
-    // 10 High-End Audio FX Modules Parameter Oscillations (FX.MD)
+    // 10 High-End Audio FX Modules Continuous Modulation (FX.MD)
     // ------------------------------------------------------------
-    if (typeof FX_CONFIG !== "undefined") {
-      Object.keys(FX_CONFIG).forEach(fxId => {
-        const fx = FX_CONFIG[fxId];
-        if (!fx || !fx.oscillators) return;
-        Object.keys(fx.params).forEach(pKey => {
-          const osc = fx.oscillators[pKey];
-          if (!osc || !osc.enabled) return;
-
-          const f_osc = 0.01 + Math.pow(osc.speed / 100, 2) * 4.5;
-          osc.phase += 2 * Math.PI * f_osc * dt;
-          if (osc.phase > Math.PI * 2) osc.phase -= Math.PI * 2;
-
-          const sineVal = 0.5 * (1 + Math.sin(osc.phase));
-          const val = osc.min + (osc.max - osc.min) * sineVal;
-          fx.params[pKey].val = val;
-
-          if (fxId === activeFxId && typeof updateFxParamRowVisual === "function") {
-            updateFxParamRowVisual(fxId, pKey);
-          }
-          if (typeof applyFxParamChange === "function") {
-            applyFxParamChange(fxId, pKey);
-          }
-        });
-      });
+    if (typeof tickFxOscillators === "function") {
+      tickFxOscillators(dt);
     }
 
     // Loop Layer Playheads & Pause Status

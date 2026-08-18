@@ -203,7 +203,7 @@ function initPercAudio() {
 
   percState.bus.connect(percState.driveNode);
   percState.driveNode.connect(percState.filterNode);
-  percState.filterNode.connect(percState.dryGain).connect(masterGain);
+  percState.filterNode.connect(percState.dryGain).connect(typeof stackMasterGain !== "undefined" && stackMasterGain ? stackMasterGain : masterGain);
   if (conv) percState.filterNode.connect(percState.wetGain).connect(conv);
 }
 

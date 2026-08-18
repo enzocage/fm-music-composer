@@ -2,7 +2,10 @@
 
 /* ============================================================
    10 HIGH-END FX MODULES UI CONTROLLER (FX.MD)
+   Direct 10-Module Grid & Interactive Real-Time Controls
    ============================================================ */
+
+let currentFxViewFilter = "all"; // 'all' | 'shimmer' | 'resonator' | ...
 
 function getFxParamBounds(fxId, paramKey) {
   const fx = FX_CONFIG[fxId];
@@ -35,14 +38,14 @@ function updateFxParamRowVisual(fxId, paramKey) {
   const osc = fx.oscillators[paramKey];
   const p = fx.params[paramKey];
 
-  const block = document.getElementById("fx_block_" + paramKey);
-  const spanEl = document.getElementById("fx_span_" + paramKey);
-  const handleA = document.getElementById("fx_handle_a_" + paramKey);
-  const handleB = document.getElementById("fx_handle_b_" + paramKey);
-  const thumb = document.getElementById("fx_thumb_" + paramKey);
-  const knob = document.getElementById("fx_knob_" + paramKey);
-  const chk = document.getElementById("fx_osc_en_" + paramKey);
-  const valEl = document.getElementById("fx_v_" + paramKey);
+  const block = document.getElementById("fx_block_" + fxId + "_" + paramKey);
+  const spanEl = document.getElementById("fx_span_" + fxId + "_" + paramKey);
+  const handleA = document.getElementById("fx_handle_a_" + fxId + "_" + paramKey);
+  const handleB = document.getElementById("fx_handle_b_" + fxId + "_" + paramKey);
+  const thumb = document.getElementById("fx_thumb_" + fxId + "_" + paramKey);
+  const knob = document.getElementById("fx_knob_" + fxId + "_" + paramKey);
+  const chk = document.getElementById("fx_osc_en_" + fxId + "_" + paramKey);
+  const valEl = document.getElementById("fx_v_" + fxId + "_" + paramKey);
 
   if (!block) return;
 
@@ -76,26 +79,26 @@ function buildFxParamRowHTML(fxId, paramKey, pObj) {
   const osc = (FX_CONFIG[fxId].oscillators && FX_CONFIG[fxId].oscillators[paramKey]) || { speed: 20 };
 
   return (
-    '<div class="param-row-unified" id="fx_block_' + paramKey + '" data-fx="' + fxId + '" data-param="' + paramKey + '">' +
+    '<div class="param-row-unified" id="fx_block_' + fxId + '_' + paramKey + '" data-fx="' + fxId + '" data-param="' + paramKey + '">' +
       '<div class="p-header">' +
         '<span class="p-name">' + (b.name || paramKey) + '</span>' +
         '<div class="p-right">' +
-          '<span class="p-val" id="fx_v_' + paramKey + '">' + dispVal + '</span>' +
+          '<span class="p-val" id="fx_v_' + fxId + '_' + paramKey + '">' + dispVal + '</span>' +
           '<label class="osc-toggle-label" title="Oszillation An/Aus">' +
-            '<input type="checkbox" id="fx_osc_en_' + paramKey + '" class="osc-chk" data-fx="' + fxId + '" data-param="' + paramKey + '">' +
+            '<input type="checkbox" id="fx_osc_en_' + fxId + '_' + paramKey + '" class="osc-chk" data-fx="' + fxId + '" data-param="' + paramKey + '">' +
             '<span class="osc-badge">~ OSC</span>' +
           '</label>' +
         '</div>' +
       '</div>' +
       '<div class="p-controls-row">' +
-        '<div class="track-area" id="fx_trackarea_' + paramKey + '" data-fx="' + fxId + '" data-param="' + paramKey + '">' +
+        '<div class="track-area" id="fx_trackarea_' + fxId + '_' + paramKey + '" data-fx="' + fxId + '" data-param="' + paramKey + '">' +
           '<div class="track-line"></div>' +
-          '<div class="track-span" id="fx_span_' + paramKey + '"></div>' +
-          '<div class="handle handle-a" id="fx_handle_a_' + paramKey + '" title="Start A"><span class="h-tag">A</span></div>' +
-          '<div class="handle handle-b" id="fx_handle_b_' + paramKey + '" title="Ende B"><span class="h-tag">B</span></div>' +
-          '<div class="handle handle-thumb" id="fx_thumb_' + paramKey + '" title="Wert ziehen"></div>' +
+          '<div class="track-span" id="fx_span_' + fxId + '_' + paramKey + '"></div>' +
+          '<div class="handle handle-a" id="fx_handle_a_' + fxId + '_' + paramKey + '" title="Start A"><span class="h-tag">A</span></div>' +
+          '<div class="handle handle-b" id="fx_handle_b_' + fxId + '_' + paramKey + '" title="Ende B"><span class="h-tag">B</span></div>' +
+          '<div class="handle handle-thumb" id="fx_thumb_' + fxId + '_' + paramKey + '" title="Wert ziehen"></div>' +
         '</div>' +
-        '<div class="knob-mini-wrap" id="fx_knob_' + paramKey + '" data-fx="' + fxId + '" data-param="' + paramKey + '" title="Oszillations-Speed (0.01–10 Hz)">' +
+        '<div class="knob-mini-wrap" id="fx_knob_' + fxId + '_' + paramKey + '" data-fx="' + fxId + '" data-param="' + paramKey + '" title="Oszillations-Speed (0.01–10 Hz)">' +
           '<div class="knob-dial">' +
             '<svg class="knob-svg" viewBox="0 0 32 32">' +
               '<circle class="knob-bg" cx="16" cy="16" r="13" />' +
@@ -111,13 +114,13 @@ function buildFxParamRowHTML(fxId, paramKey, pObj) {
 }
 
 function bindFxParamRow(fxId, paramKey) {
-  const block = document.getElementById("fx_block_" + paramKey);
-  const trackArea = document.getElementById("fx_trackarea_" + paramKey);
-  const handleA = document.getElementById("fx_handle_a_" + paramKey);
-  const handleB = document.getElementById("fx_handle_b_" + paramKey);
-  const thumb = document.getElementById("fx_thumb_" + paramKey);
-  const knob = document.getElementById("fx_knob_" + paramKey);
-  const chk = document.getElementById("fx_osc_en_" + paramKey);
+  const block = document.getElementById("fx_block_" + fxId + "_" + paramKey);
+  const trackArea = document.getElementById("fx_trackarea_" + fxId + "_" + paramKey);
+  const handleA = document.getElementById("fx_handle_a_" + fxId + "_" + paramKey);
+  const handleB = document.getElementById("fx_handle_b_" + fxId + "_" + paramKey);
+  const thumb = document.getElementById("fx_thumb_" + fxId + "_" + paramKey);
+  const knob = document.getElementById("fx_knob_" + fxId + "_" + paramKey);
+  const chk = document.getElementById("fx_osc_en_" + fxId + "_" + paramKey);
 
   if (!block || !trackArea) return;
 
@@ -225,81 +228,177 @@ function bindFxParamRow(fxId, paramKey) {
   trackArea.addEventListener("pointercancel", onPointerUpTrack);
 }
 
-function renderActiveFxRack() {
+function updateFxCardState(fxId) {
+  const fx = FX_CONFIG[fxId];
+  if (!fx) return;
+
+  const card = document.getElementById("fxcard_" + fxId);
+  const powerBtn = document.getElementById("fxpower_" + fxId);
+  const mixSlider = document.getElementById("fxmix_" + fxId);
+  const mixValEl = document.getElementById("fx_v_mix_" + fxId);
+
+  if (card) {
+    card.classList.toggle("fx-active", !!fx.enabled);
+  }
+  if (powerBtn) {
+    powerBtn.classList.toggle("active", !!fx.enabled);
+    powerBtn.textContent = fx.enabled ? "● AN" : "○ AUS";
+    powerBtn.style.color = fx.enabled ? "#05070d" : "var(--dim)";
+    powerBtn.style.background = fx.enabled ? (fx.color || "#38c7ff") : "rgba(255,255,255,0.05)";
+    powerBtn.style.borderColor = fx.enabled ? (fx.color || "#38c7ff") : "var(--rule)";
+  }
+  if (mixSlider) {
+    mixSlider.value = fx.mix;
+  }
+  if (mixValEl) {
+    mixValEl.textContent = Math.round(fx.mix * 100) + "%";
+  }
+
+  // Update overall active counter badge
+  updateFxActiveCounter();
+}
+
+function updateFxActiveCounter() {
+  const countBadge = document.getElementById("fxActiveCountBadge");
+  if (!countBadge) return;
+  const activeCount = Object.values(FX_CONFIG).filter(f => f.enabled).length;
+  countBadge.textContent = `${activeCount} / 10 Aktiv`;
+  countBadge.style.color = activeCount > 0 ? "#00ff88" : "#38c7ff";
+  countBadge.style.borderColor = activeCount > 0 ? "rgba(0,255,136,0.4)" : "rgba(56,199,255,0.3)";
+}
+
+function renderAllFxRack() {
   const container = document.getElementById("fxParamsContainer");
   if (!container) return;
 
-  const fx = FX_CONFIG[activeFxId];
-  if (!fx) return;
-
-  const titleEl = document.getElementById("fxActiveTitle");
-  if (titleEl) titleEl.textContent = `${fx.icon} ${fx.name}`;
-
-  const bypassBtn = document.getElementById("fxBypassBtn");
-  if (bypassBtn) {
-    bypassBtn.classList.toggle("active", !!fx.enabled);
-    bypassBtn.textContent = fx.enabled ? "AN" : "AUS";
-  }
-
-  const mixInp = document.getElementById("fxMixSlider");
-  if (mixInp) {
-    mixInp.value = fx.mix;
-    const mixVal = document.getElementById("v_fxMix");
-    if (mixVal) mixVal.textContent = Math.round(fx.mix * 100) + " %";
-  }
-
   container.innerHTML = "";
-  Object.keys(fx.params).forEach(pKey => {
-    const pObj = fx.params[pKey];
-    container.insertAdjacentHTML("beforeend", buildFxParamRowHTML(activeFxId, pKey, pObj));
-    bindFxParamRow(activeFxId, pKey);
-    updateFxParamRowVisual(activeFxId, pKey);
+
+  const modulesToRender = (currentFxViewFilter === "all")
+    ? FX_CHAIN_ORDER
+    : [currentFxViewFilter];
+
+  modulesToRender.forEach((fxId, idx) => {
+    const fx = FX_CONFIG[fxId];
+    if (!fx) return;
+
+    const card = document.createElement("div");
+    card.className = "param-group-card fx-module-card" + (fx.enabled ? " fx-active" : "");
+    card.id = "fxcard_" + fxId;
+    card.style.setProperty("--grp-color", fx.color || "#38c7ff");
+
+    const header = document.createElement("div");
+    header.className = "param-group-header";
+    header.innerHTML = `
+      <div class="param-group-title">
+        <span class="param-group-badge" style="background:${fx.color}22; color:${fx.color}; border-color:${fx.color};">${fx.icon} FX ${FX_CHAIN_ORDER.indexOf(fxId) + 1}</span>
+        <span style="color:${fx.color}; font-weight:800;">${fx.name}</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:6px;">
+        <button type="button" class="kb-latch-toggle fx-power-btn ${fx.enabled ? 'active' : ''}" data-fx="${fxId}" id="fxpower_${fxId}" style="padding:2px 7px; font-size:7.5px; height:18px; ${fx.enabled ? `background:${fx.color}; color:#05070d; border-color:${fx.color};` : ''}">
+          ${fx.enabled ? '● AN' : '○ AUS'}
+        </button>
+        <div style="display:flex; align-items:center; gap:2px;" title="Wet / Dry Mix Anteil">
+          <span style="font-size:7px; color:var(--dim);">MIX:</span>
+          <input type="range" class="fx-card-mix-slider" data-fx="${fxId}" id="fxmix_${fxId}" min="0" max="1" step="0.01" value="${fx.mix}" style="width:42px; height:12px;">
+          <span id="fx_v_mix_${fxId}" style="font-size:7px; color:${fx.color}; font-weight:700; width:22px; text-align:right;">${Math.round(fx.mix * 100)}%</span>
+        </div>
+      </div>
+    `;
+
+    const rowsWrap = document.createElement("div");
+    rowsWrap.className = "param-group-rows";
+
+    Object.keys(fx.params).forEach(pKey => {
+      const pObj = fx.params[pKey];
+      rowsWrap.insertAdjacentHTML("beforeend", buildFxParamRowHTML(fxId, pKey, pObj));
+    });
+
+    card.appendChild(header);
+    card.appendChild(rowsWrap);
+    container.appendChild(card);
+
+    // Bind parameter row drag and knob events
+    Object.keys(fx.params).forEach(pKey => {
+      bindFxParamRow(fxId, pKey);
+      updateFxParamRowVisual(fxId, pKey);
+    });
+
+    // Bind card power toggle button
+    const powerBtn = header.querySelector(".fx-power-btn");
+    if (powerBtn) {
+      powerBtn.addEventListener("click", () => {
+        toggleFx(fxId);
+      });
+    }
+
+    // Bind card mix slider
+    const mixSlider = header.querySelector(".fx-card-mix-slider");
+    if (mixSlider) {
+      mixSlider.addEventListener("input", () => {
+        setFxMix(fxId, parseFloat(mixSlider.value));
+        const mixValEl = document.getElementById("fx_v_mix_" + fxId);
+        if (mixValEl) mixValEl.textContent = Math.round(fx.mix * 100) + "%";
+      });
+    }
   });
+
+  updateFxActiveCounter();
 }
 
 function setupFxControls() {
-  const selector = document.getElementById("fxModuleSelector");
-  if (selector) {
-    selector.innerHTML = "";
-    Object.keys(FX_CONFIG).forEach(fxId => {
-      const fx = FX_CONFIG[fxId];
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "fx-tab-btn" + (fxId === activeFxId ? " active" : "") + (fx.enabled ? " fx-on" : "");
-      btn.id = "fxtab_" + fxId;
-      btn.innerHTML = `<span>${fx.icon}</span> <span>${fx.name.split(" ")[0]}</span>`;
-      btn.title = fx.name;
-      btn.addEventListener("click", () => {
-        activeFxId = fxId;
-        document.querySelectorAll(".fx-tab-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        renderActiveFxRack();
+  // Filter tabs in FX toolbar
+  const filterBtns = document.querySelectorAll("#fxViewFilterBar .param-cluster-tab");
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      currentFxViewFilter = btn.dataset.fxFilter || "all";
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderAllFxRack();
+    });
+  });
+
+  // Global "Alle AN / AUS" button
+  const btnToggleAll = document.getElementById("btnFxToggleAll");
+  if (btnToggleAll) {
+    btnToggleAll.addEventListener("click", () => {
+      const anyActive = Object.values(FX_CONFIG).some(f => f.enabled);
+      const targetState = !anyActive;
+      FX_CHAIN_ORDER.forEach(id => {
+        toggleFx(id, targetState);
       });
-      selector.appendChild(btn);
     });
   }
 
-  const bypassBtn = document.getElementById("fxBypassBtn");
-  if (bypassBtn) {
-    bypassBtn.addEventListener("click", () => {
-      const fx = FX_CONFIG[activeFxId];
-      fx.enabled = !fx.enabled;
-      bypassBtn.classList.toggle("active", fx.enabled);
-      bypassBtn.textContent = fx.enabled ? "AN" : "AUS";
-      const tabBtn = document.getElementById("fxtab_" + activeFxId);
-      if (tabBtn) tabBtn.classList.toggle("fx-on", fx.enabled);
+  // Global "FX Mutieren" button
+  const btnFxMutate = document.getElementById("btnFxMutate");
+  if (btnFxMutate) {
+    btnFxMutate.addEventListener("click", () => {
+      FX_CHAIN_ORDER.forEach(fxId => {
+        const fx = FX_CONFIG[fxId];
+        if (!fx) return;
+        Object.keys(fx.params).forEach(pKey => {
+          const p = fx.params[pKey];
+          const span = p.max - p.min;
+          p.val = p.min + Math.random() * span;
+          if (p.step) p.val = Math.round(p.val / p.step) * p.step;
+          applyFxParamChange(fxId, pKey);
+          updateFxParamRowVisual(fxId, pKey);
+        });
+      });
+      btnFxMutate.style.transform = "scale(0.95)";
+      setTimeout(() => btnFxMutate.style.transform = "", 150);
     });
   }
 
-  const mixInp = document.getElementById("fxMixSlider");
-  if (mixInp) {
-    mixInp.addEventListener("input", () => {
-      const fx = FX_CONFIG[activeFxId];
-      fx.mix = parseFloat(mixInp.value);
-      const mixVal = document.getElementById("v_fxMix");
-      if (mixVal) mixVal.textContent = Math.round(fx.mix * 100) + " %";
+  // Global "Reset" button
+  const btnFxReset = document.getElementById("btnFxReset");
+  if (btnFxReset) {
+    btnFxReset.addEventListener("click", () => {
+      FX_CHAIN_ORDER.forEach(id => {
+        toggleFx(id, false);
+      });
     });
   }
 
-  renderActiveFxRack();
+  renderAllFxRack();
 }

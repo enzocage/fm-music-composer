@@ -1210,3 +1210,28 @@
     color: #2ed573;
     background: rgba(46, 213, 115, 0.12);
   }
+
+  .fx-module-card {
+    transition: all .15s ease;
+    border-left: 3px solid var(--grp-color, #38c7ff) !important;
+  }
+  .fx-module-card.fx-active {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 12px -2px var(--grp-color, #38c7ff), 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .fx-power-btn {
+    font-family: var(--mono);
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all .12s ease;
+    user-select: none;
+  }
+  .fx-power-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 6px rgba(255,255,255,0.2);
+  }
+  .fx-card-mix-slider {
+    accent-color: var(--grp-color, #38c7ff);
+    cursor: pointer;
+  }
