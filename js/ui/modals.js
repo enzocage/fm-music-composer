@@ -709,6 +709,19 @@ function selectSynth(idx) {
   activeSynthTag.textContent = `[${inst.def.keyDisplay}] ${inst.def.name}`;
   activeSynthTag.style.color = inst.def.color;
 
+  const curBank = BANKS.find(b => idx >= b.offset && idx < b.offset + 10) || BANKS[0];
+  const badgeComplexity = document.getElementById("badgeComplexity");
+  if (badgeComplexity) {
+    badgeComplexity.textContent = `Stufe ${curBank.level} · ${curBank.paramCount || 24} Params`;
+    badgeComplexity.title = curBank.complexityLabel || '';
+    badgeComplexity.style.borderColor = (curBank.color || inst.def.color || '#00f2fe') + '88';
+    badgeComplexity.style.color = curBank.color || inst.def.color || '#00f2fe';
+  }
+  const txtBankParamCount = document.getElementById("txtBankParamCount");
+  if (txtBankParamCount) {
+    txtBankParamCount.textContent = curBank.paramCount || 24;
+  }
+
   const customParamTitle = document.getElementById("customParamTitle");
   const customParamLabel = document.getElementById("customParamLabel");
 
@@ -729,21 +742,24 @@ function selectSynth(idx) {
   const presetContainer = document.getElementById("presetButtons");
   if (presetContainer && inst.def.presets) {
     presetContainer.innerHTML = "";
-    inst.def.presets.forEach(p => {
+    const presetList = Array.isArray(inst.def.presets)
+      ? inst.def.presets
+      : Object.values(inst.def.presets);
+
+    presetList.forEach(p => {
       const btn = document.createElement("button");
+      btn.className = "arp-pre-btn";
       btn.textContent = p.name;
       btn.addEventListener("click", () => {
-        inst.params.r1_ratio = 1.0;
-        inst.params.r2_ratio = p.r;
-        inst.params.ratio = p.r;
-        inst.params.mod_I0 = p.i;
-        inst.params.I0 = p.i;
-        inst.params.mod_dI = p.d;
-        inst.params.dI = p.d;
+        if (p.params) {
+          Object.assign(inst.params, p.params);
+        } else {
+          if (p.r !== undefined) { inst.params.r2_ratio = p.r; inst.params.ratio = p.r; }
+          if (p.i !== undefined) { inst.params.mod_I0 = p.i; inst.params.I0 = p.i; }
+          if (p.d !== undefined) { inst.params.mod_dI = p.d; inst.params.dI = p.d; }
+        }
         syncSliderValues();
-        applyParamChange("r2_ratio");
-        applyParamChange("mod_I0");
-        applyParamChange("mod_dI");
+        OSC_PARAM_KEYS.forEach(k => applyParamChange(k));
       });
       presetContainer.appendChild(btn);
     });

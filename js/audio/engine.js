@@ -67,7 +67,7 @@ const SYNTH_PARAM_CLUSTERS = {
   }
 };
 
-let activeParamCluster = "all"; // 'all' | 'operators' | 'modulation' | 'waveshaping' | 'envelopes' | 'space_filter'
+let activeParamCluster = "focused"; // 'focused' | 'all' | 'operators' | 'modulation' | 'waveshaping' | 'envelopes' | 'space_filter'
 
 const PARAM_BOUNDS = {
   // Cluster A

@@ -387,11 +387,34 @@ function renderSynthParamRack() {
   const inst = synthInstances[activeSynthIdx];
   container.innerHTML = "";
 
-  const clustersToRender = (activeParamCluster === "all")
-    ? Object.values(SYNTH_PARAM_CLUSTERS)
-    : [SYNTH_PARAM_CLUSTERS[activeParamCluster] || SYNTH_PARAM_CLUSTERS.operators];
+  const curBank = BANKS.find(b => activeSynthIdx >= b.offset && activeSynthIdx < b.offset + 10) || BANKS[0];
+  const bankVisibleKeys = curBank.visibleParams; // null or Array
 
-  clustersToRender.forEach(cluster => {
+  // Update bank param count and complexity badge
+  const txtBankParamCount = document.getElementById("txtBankParamCount");
+  if (txtBankParamCount) {
+    txtBankParamCount.textContent = curBank.paramCount || 24;
+  }
+  const badgeComplexity = document.getElementById("badgeComplexity");
+  if (badgeComplexity) {
+    badgeComplexity.textContent = `Stufe ${curBank.level} · ${curBank.paramCount || 24} Params`;
+    badgeComplexity.title = curBank.complexityLabel || '';
+    badgeComplexity.style.borderColor = (curBank.color || '#00f2fe') + '88';
+    badgeComplexity.style.color = curBank.color || '#00f2fe';
+  }
+
+  let clustersToProcess = Object.values(SYNTH_PARAM_CLUSTERS);
+  if (activeParamCluster !== "all" && activeParamCluster !== "focused" && SYNTH_PARAM_CLUSTERS[activeParamCluster]) {
+    clustersToProcess = [SYNTH_PARAM_CLUSTERS[activeParamCluster]];
+  }
+
+  clustersToProcess.forEach(cluster => {
+    let keysToRender = cluster.keys;
+    if (activeParamCluster === "focused" && Array.isArray(bankVisibleKeys)) {
+      keysToRender = cluster.keys.filter(k => bankVisibleKeys.includes(k));
+    }
+    if (keysToRender.length === 0) return;
+
     const card = document.createElement("div");
     card.className = "param-group-card";
     card.style.setProperty("--grp-color", cluster.color);
@@ -409,7 +432,7 @@ function renderSynthParamRack() {
     const rowsWrap = document.createElement("div");
     rowsWrap.className = "param-group-rows";
 
-    cluster.keys.forEach(k => {
+    keysToRender.forEach(k => {
       const b = PARAM_BOUNDS[k] || { min: 0, max: 10 };
       const pObj = {
         val: inst.params[k] ?? b.min,
@@ -423,7 +446,7 @@ function renderSynthParamRack() {
     container.appendChild(card);
 
     // Bind events for rows
-    cluster.keys.forEach(k => {
+    keysToRender.forEach(k => {
       bindUnifiedParamRow(k);
       updateParamRowVisual(k);
     });
@@ -432,7 +455,7 @@ function renderSynthParamRack() {
     const cardMutateBtn = header.querySelector(".mutate-btn");
     if (cardMutateBtn) {
       cardMutateBtn.addEventListener("click", () => {
-        mutateClusterKeys(cluster.keys, cardMutateBtn);
+        mutateClusterKeys(keysToRender, cardMutateBtn);
       });
     }
   });

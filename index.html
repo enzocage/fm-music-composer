@@ -28,19 +28,19 @@
       
       <div class="bank-segmented">
         <button type="button" class="bank-nav-arrow-btn" id="btnBankPrev" title="Vorherige Bank (Taste ß)">◀ ß</button>
-        <button type="button" class="bank-seg-btn active" id="btnBankA" title="Bank A: Exotik & Chaos (Tasten: 1–0)">A</button>
-        <button type="button" class="bank-seg-btn" id="btnBankB" title="Bank B: Klassik & Labor (Tasten: 1–0)">B</button>
-        <button type="button" class="bank-seg-btn" id="btnBankC" title="Bank C: DX7 & 80s Icons (Tasten: 1–0)">C</button>
-        <button type="button" class="bank-seg-btn" id="btnBankD" title="Bank D: YM2612 & Arcade (Tasten: 1–0)">D</button>
-        <button type="button" class="bank-seg-btn" id="btnBankE" title="Bank E: Cinematic Drones (Tasten: 1–0)">E</button>
-        <button type="button" class="bank-seg-btn" id="btnBankF" title="Bank F: World Acoustic (Tasten: 1–0)">F</button>
-        <button type="button" class="bank-seg-btn" id="btnBankG" title="Bank G: Modular & FX (Tasten: 1–0)">G</button>
-        <button type="button" class="bank-seg-btn" id="btnBankH" title="Bank H: Buchla & Organic Perc (Tasten: 1–0)">H</button>
-        <button type="button" class="bank-seg-btn" id="btnBankI" title="Bank I: Microsound & Glitch FX (Tasten: 1–0)">I</button>
-        <button type="button" class="bank-seg-btn" id="btnBankJ" title="Bank J: Generative Kinetic (Tasten: 1–0)">J</button>
-        <button type="button" class="bank-seg-btn" id="btnBankK" title="Bank K: Cyberpunk & Dark Electro (Tasten: 1–0)">K</button>
-        <button type="button" class="bank-seg-btn" id="btnBankL" title="Bank L: Cosmic Ambient & Deep Space (Tasten: 1–0)">L</button>
-        <button type="button" class="bank-seg-btn" id="btnBankM" title="Bank M: Hyperpop & Future Bass (Tasten: 1–0)">M</button>
+        <button type="button" class="bank-seg-btn active" id="btnBankA" title="Bank A: Pure Sine & Einstieg (Stufe 1 · 4 Params)">A</button>
+        <button type="button" class="bank-seg-btn" id="btnBankB" title="Bank B: CCRMA & Harmonik (Stufe 2 · 6 Params)">B</button>
+        <button type="button" class="bank-seg-btn" id="btnBankC" title="Bank C: DX7 & 80s Icons (Stufe 3 · 8 Params)">C</button>
+        <button type="button" class="bank-seg-btn" id="btnBankD" title="Bank D: YM2612 & Arcade (Stufe 4 · 10 Params)">D</button>
+        <button type="button" class="bank-seg-btn" id="btnBankE" title="Bank E: World Acoustic & Saiten (Stufe 5 · 12 Params)">E</button>
+        <button type="button" class="bank-seg-btn" id="btnBankF" title="Bank F: Cinematic & Ambient Drones (Stufe 6 · 14 Params)">F</button>
+        <button type="button" class="bank-seg-btn" id="btnBankG" title="Bank G: Buchla & Organic Perc (Stufe 7 · 15 Params)">G</button>
+        <button type="button" class="bank-seg-btn" id="btnBankH" title="Bank H: Modular & Acid FX (Stufe 8 · 16 Params)">H</button>
+        <button type="button" class="bank-seg-btn" id="btnBankI" title="Bank I: Exotik & Chaos (Stufe 9 · 18 Params)">I</button>
+        <button type="button" class="bank-seg-btn" id="btnBankJ" title="Bank J: Generative Kinetic (Stufe 10 · 20 Params)">J</button>
+        <button type="button" class="bank-seg-btn" id="btnBankK" title="Bank K: Cyberpunk & Dark Electro (Stufe 11 · 22 Params)">K</button>
+        <button type="button" class="bank-seg-btn" id="btnBankL" title="Bank L: Cosmic Deep Space (Stufe 12 · 24 Params)">L</button>
+        <button type="button" class="bank-seg-btn" id="btnBankM" title="Bank M: Hyperpop & Future Bass (Stufe 13 · 24 Params)">M</button>
         <button type="button" class="bank-nav-arrow-btn" id="btnBankNext" title="Nächste Bank (Taste ´)">´ ▶</button>
       </div>
 
@@ -215,7 +215,8 @@
   <!-- Rechte Seite: Sidebar Control Rack mit subtil farbcodierten Sektionen -->
   <div class="sidebar-container multi-col" id="sidebarContainer">
     <div class="synth-header-badge" id="synthBadge">
-      <span class="name" id="badgeName">1 · Lorenz Chaos FM</span>
+      <span class="name" id="badgeName">1 · Pure Chowning Sine (1:1)</span>
+      <span class="badge" id="badgeComplexity" style="background:rgba(0,242,254,0.15); color:var(--accent); border:1px solid rgba(0,242,254,0.4); margin-left:auto; margin-right:4px;">Stufe 1 · 4 Params</span>
       <span class="badge" id="badgeVoices">0 Stimmen aktiv</span>
     </div>
 
@@ -255,7 +256,8 @@
 
         <!-- 5 Farbige Cluster Tabs Navigation -->
         <div class="param-cluster-tab-bar" id="paramClusterTabs" style="display:flex; gap:2px; margin-bottom:6px; flex-wrap:wrap;">
-          <button type="button" class="param-cluster-tab active" data-cluster="all" title="Alle 24 Parameter geordnet in 5 Farbgruppen">⊞ Alle 24</button>
+          <button type="button" class="param-cluster-tab active" data-cluster="focused" id="tabBankFocused" title="Zeigt nur die aufsteigend fokussierten Parameter der aktuellen Bank">🎯 Bank-Fokus (<span id="txtBankParamCount">4</span> Params)</button>
+          <button type="button" class="param-cluster-tab" data-cluster="all" title="Alle 24 Parameter geordnet in 5 Farbgruppen">⊞ Alle 24</button>
           <button type="button" class="param-cluster-tab tab-g1" data-cluster="operators" style="--tab-color:#00f2fe;" title="Gruppe 1: Carrier & Modulator Ratios, Fine-Detune & Spread">🎛️ 1. Oszillatoren (6)</button>
           <button type="button" class="param-cluster-tab tab-g2" data-cluster="modulation" style="--tab-color:#ffd200;" title="Gruppe 2: Haupt-Index I0, Dynamik ΔI, Cross-Mod & Feedback">🌊 2. Modulation & FB (5)</button>
           <button type="button" class="param-cluster-tab tab-g3" data-cluster="waveshaping" style="--tab-color:#ff007f;" title="Gruppe 3: Chebyshev Wavefolding, Morph, Bias & Drive">📐 3. Waveshaper (4)</button>
