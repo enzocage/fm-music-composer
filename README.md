@@ -208,13 +208,14 @@ Save your complete musical composition to a portable `.json` file:
 
 | Key | Action |
 |---|---|
-| `A`, `W`, `S`, `E`, `D`, `F`, `T`, `G`, `Z`, `H`, `U`, `J`, `K` | Play chromatic scale (C to C') |
-| `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `0` | Select Bank A Synthesizers (1–10) |
-| `Shift + 1` to `Shift + 0` | Select Bank B Synthesizers (11–20) |
+| `A`, `W`, `S`, `E`, `D`, `F`, `T`, `G`, `Z`, `H`, `U`, `J`, `K` | Play chromatic scale (C to C') polyphonically |
+| `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `0` | Direct Synth Selection (1–10 within current bank, no Shift) |
+| `ß` / `´` | Previous / Next Soundbank (Cycle through Banks A to G) |
 | `Y` / `X` | Transpose Octave Down / Up (Expanded Range: $-3$ to $+3$) |
 | `R` | Start / Stop Loop Recording (REC) |
-| `H` | Toggle Header Expand / Compact Details |
-| `Escape` | Global Panic (Silence all voices) |
+| `H` | Toggle Header Expand / Compact Command Center Details |
+| `Ü` | Toggle Help & Keybindings Overlay (`Code by Felix Schmidt`) |
+| `Escape` | Close Overlays / Global Panic (Silence all voices) |
 
 ---
 
@@ -227,7 +228,12 @@ Save your complete musical composition to a portable `.json` file:
    ```
 2. Open `index.html` in any modern web browser (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge).
 3. Click **"Studio aktivieren"** to start the Web Audio Context.
-4. Play notes with your keyboard or mouse, toggle `~ OSC` for automation, and press `R` to capture your loops!
+4. Play notes with your keyboard or mouse, toggle `~ OSC` for automation, press `Ü` for help, and press `R` to capture your loops!
+
+---
+
+## 👨‍💻 Credits & Author
+- **Code by Felix Schmidt**
 
 ---
 

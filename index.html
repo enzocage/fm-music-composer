@@ -1644,6 +1644,258 @@
     box-shadow: 0 0 20px -4px #ff4757;
   }
 
+  /* ---------- HILFE & KEYBINDINGS MODAL OVERLAY (Taste Ü) ---------- */
+  .help-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 4, 8, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .2s ease, visibility .2s ease;
+  }
+  .help-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .help-modal-card {
+    background: linear-gradient(180deg, #090e1a 0%, #050811 100%);
+    border: 1px solid rgba(56, 199, 255, 0.35);
+    border-radius: 6px;
+    max-width: 820px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8), 0 0 24px rgba(56, 199, 255, 0.15);
+    overflow: hidden;
+    animation: modalPop .2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes modalPop {
+    from { transform: scale(0.96); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .help-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    background: rgba(12, 18, 32, 0.95);
+    border-bottom: 1px solid rgba(34, 45, 68, 0.8);
+  }
+  .help-modal-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .help-modal-badge {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .15em;
+    padding: 2px 6px;
+    background: rgba(56, 199, 255, 0.15);
+    border: 1px solid rgba(56, 199, 255, 0.4);
+    color: #7ad7ff;
+    border-radius: 2px;
+  }
+  .help-modal-title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    color: #fff;
+    margin: 0;
+  }
+  .help-author-pill {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    padding: 2px 8px;
+    background: linear-gradient(135deg, rgba(255, 71, 87, 0.25) 0%, rgba(162, 155, 254, 0.25) 100%);
+    border: 1px solid rgba(255, 71, 87, 0.4);
+    color: #ff9aa2;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 71, 87, 0.2);
+  }
+  .help-modal-close-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--dim);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .12s;
+  }
+  .help-modal-close-btn:hover {
+    background: #ff4757;
+    color: #fff;
+    border-color: #ff4757;
+    box-shadow: 0 0 10px #ff4757;
+  }
+
+  .help-modal-body {
+    padding: 16px 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: calc(90vh - 110px);
+  }
+  .help-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .help-section-title {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid rgba(34, 45, 68, 0.6);
+    padding-bottom: 4px;
+  }
+  .help-desc-text {
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: var(--fg);
+    margin: 0;
+  }
+  .help-feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  @media (max-width: 640px) {
+    .help-feature-grid { grid-template-columns: 1fr; }
+  }
+  .help-feat-box {
+    background: rgba(10, 15, 26, 0.7);
+    border: 1px solid rgba(34, 45, 68, 0.8);
+    border-radius: 3px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .feat-box-title {
+    font-size: 8.5px;
+    font-weight: 800;
+    letter-spacing: .08em;
+  }
+  .feat-box-desc {
+    font-size: 9px;
+    line-height: 1.4;
+    color: var(--dim);
+  }
+
+  .help-shortcuts-table {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: rgba(6, 10, 18, 0.8);
+    border: 1px solid rgba(34, 45, 68, 0.9);
+    border-radius: 4px;
+    padding: 8px;
+  }
+  .shortcut-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 6px;
+    border-radius: 2px;
+    transition: background .08s;
+  }
+  .shortcut-row:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .shortcut-row:hover {
+    background: rgba(56, 199, 255, 0.08);
+  }
+  .sc-keys {
+    display: flex;
+    gap: 3px;
+    min-width: 140px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+  kbd {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    font-weight: 700;
+    padding: 2px 5px;
+    background: #141c2c;
+    border: 1px solid #2a3a58;
+    color: #e1e9f8;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+  .sc-desc {
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: var(--fg);
+  }
+  .sc-desc strong {
+    color: #fff;
+  }
+
+  .help-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18px;
+    background: rgba(12, 18, 32, 0.95);
+    border-top: 1px solid rgba(34, 45, 68, 0.8);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .help-footer-brand {
+    font-size: 8.5px;
+    color: var(--dim);
+    letter-spacing: .04em;
+  }
+  .help-footer-brand strong {
+    color: #ff9aa2;
+  }
+  .help-modal-ok-btn {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    padding: 5px 14px;
+    background: var(--accent);
+    color: #05070d;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .12s;
+    box-shadow: 0 0 10px -2px var(--accent);
+  }
+  .help-modal-ok-btn:hover {
+    transform: scale(1.03);
+    filter: brightness(1.15);
+  }
+
   @media (max-width: 860px) {
     #studioLayout { flex-direction: column; }
     .splitter-h { width: 100%; height: 5px; cursor: row-resize; }
@@ -1709,6 +1961,7 @@
       </div>
 
       <button id="quickRecBtn" style="border-color:rgba(255, 71, 87, 0.5);background:rgba(255, 71, 87, 0.15);color:#ff4757;font-weight:700;padding:3px 8px;font-size:9px;">● REC (R)</button>
+      <button id="openHelpBtn" class="help-nav-btn" style="border-color:rgba(162, 155, 254, 0.5);background:rgba(162, 155, 254, 0.15);color:#a29bfe;font-weight:700;padding:3px 7px;font-size:9px;" title="Hilfe, Tastenbelegung & App-Referenz öffnen (Taste Ü)">? HILFE (Ü)</button>
       <button id="globalPanic" style="border-color:rgba(255, 107, 129, 0.4);background:rgba(255, 107, 129, 0.12);color:#ff6b81;font-weight:600;padding:3px 7px;font-size:9px;">Stille</button>
 
       <!-- Dynamischer Expand / Collapse Umschalter -->
@@ -2212,10 +2465,98 @@
   </div>
 </div>
 
+<!-- HILFE & KEYBINDINGS MODAL OVERLAY (Taste Ü) -->
+<div id="helpOverlay" class="help-overlay hidden">
+  <div class="help-modal-card" id="helpModalCard">
+    <div class="help-modal-header">
+      <div class="help-modal-title-wrap">
+        <span class="help-modal-badge">REFERENZ & HILFE</span>
+        <h2 class="help-modal-title">FM MUSIC COMPOSER</h2>
+        <span class="help-author-pill">Code by Felix Schmidt</span>
+      </div>
+      <button type="button" class="help-modal-close-btn" id="closeHelpBtn" title="Hilfe schließen (Taste ESC oder Ü)">✕</button>
+    </div>
+
+    <div class="help-modal-body">
+      <!-- Section 1: App Beschreibung -->
+      <div class="help-section">
+        <h3 class="help-section-title"><span>🌟</span> Über den FM Music Composer</h3>
+        <p class="help-desc-text">
+          Der <strong>FM Music Composer</strong> ist eine modulare Web Audio Workstation, die <strong>70 eigenständige FM-Synthesizer</strong> (in 7 Soundbänken), einen <strong>Multi-Layer Live Looper</strong> mit individuellen Pausen-Drehknöpfen (1–100s), einen programmierbaren <strong>16-Step Arpeggiator</strong>, ein <strong>Komplex-Vibrato mit Humanizer-Jitter</strong>, <strong>per-Parameter LFO-Automationen</strong> und <strong>4 synchronisierte 60-FPS Echtzeit-Oszilloskope</strong> in einer latenzfreien Studio-Umgebung vereint.
+        </p>
+        
+        <div class="help-feature-grid">
+          <div class="help-feat-box">
+            <div class="feat-box-title" style="color:#ff4757;">70 FM-SYNTHESIZER (7 BÄNKE)</div>
+            <div class="feat-box-desc">Authentische mathematische & physikalische FM-Topologien: Runge-Kutta 4. Ordnung Chaos (Lorenz), Chebyshev Wavefolding, KdV Solitone, DX7 6-Op Rhodes, YM2612 Genesis Leads, OPL2 Chiptunes, Vangelis Cinematic Pads, Shakuhachi Atemmodelle, Gamelan & Quanten-Noise.</div>
+          </div>
+          <div class="help-feat-box">
+            <div class="feat-box-title" style="color:#ffc46b;">MULTI-LAYER LOOPER & PAUSEN (1-100s)</div>
+            <div class="feat-box-desc">Echtzeitaufnahme (Taste `R`) mit 128-Sample Klick-Eliminierung, individuellen Pausen-Drehreglern (1 bis 100 Sekunden) mit automatischem Loop-Neustart, Wellenform-Displays & Playhead-Tracking.</div>
+          </div>
+          <div class="help-feat-box">
+            <div class="feat-box-title" style="color:#2ed573;">16-STEP PROGRAMMIERBARER ARPEGGIATOR</div>
+            <div class="feat-box-desc">Echtzeit-Akkord-Verarbeitung über Computertastatur, Latch-Haltefunktion, 6 Spielrichtungen (Up, Down, Up/Dn, Random, Converge, Chord), Swing, Gate-Länge, Oktav-Span 1–4 & Euclid-Presets.</div>
+          </div>
+          <div class="help-feat-box">
+            <div class="feat-box-title" style="color:#a29bfe;">KOMPLEX-VIBRATO & PARAMETER-LFO</div>
+            <div class="feat-box-desc">Organisches Vibrato mit variablen Wellenformen (Sinus, Dreieck, Ramp, Saw, S&H) und Humanizer-Jitter. Eigene Sinus-Oszillatoren pro Regler mit stufenloser Geschwindigkeits-Regelung.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Tastaturbelegung (Keybindings) -->
+      <div class="help-section">
+        <h3 class="help-section-title"><span>⌨️</span> Tastaturbelegung & Shortcuts (Cheat-Sheet)</h3>
+        
+        <div class="help-shortcuts-table">
+          <div class="shortcut-row">
+            <div class="sc-keys"><kbd>A</kbd><kbd>W</kbd><kbd>S</kbd><kbd>E</kbd><kbd>D</kbd><kbd>F</kbd><kbd>T</kbd><kbd>G</kbd><kbd>Z</kbd><kbd>H</kbd><kbd>U</kbd><kbd>J</kbd><kbd>K</kbd></div>
+            <div class="sc-desc"><strong>Klaviatur / Noten spielen:</strong> Chromatische Tonleiter (C bis C'). Funktioniert jederzeit live und polyphon auf allen Synthesizern.</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="sc-keys"><kbd>Y</kbd> / <kbd>X</kbd></div>
+            <div class="sc-desc"><strong>Oktaven-Transposition:</strong> `Y` = Oktave tiefer (−1) · `X` = Oktave höher (+1) [Bereich: −3 bis +3 Oktaven].</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="sc-keys"><kbd>ß</kbd> / <kbd>´</kbd></div>
+            <div class="sc-desc"><strong>Soundbank umschalten:</strong> `ß` = Vorherige Bank · `´` = Nächste Bank (zyklisch durch alle 7 Bänke A bis G).</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="sc-keys"><kbd>1</kbd> bis <kbd>9</kbd>, <kbd>0</kbd></div>
+            <div class="sc-desc"><strong>Direktes Instrument wählen:</strong> Wählt sofort Instrument 1 bis 10 der aktuell aktiven Bank (ohne Shift).</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="sc-keys"><kbd>R</kbd></div>
+            <div class="sc-desc"><strong>Looper-Aufnahme:</strong> Startet / stoppt die Echtzeit-Aufnahme auf eine neue Looper-Spur.</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="sc-keys"><kbd>H</kbd></div>
+            <div class="sc-desc"><strong>Command Center Toggle:</strong> Kopfbereich ausklappen / einklappen für 70-Synth-Matrix & mathematische Formeln.</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="sc-keys"><kbd>Ü</kbd></div>
+            <div class="sc-desc"><strong>Hilfe & Referenz:</strong> Öffnet / schließt dieses Hilfe- und Dokumentationsfenster.</div>
+          </div>
+          <div class="shortcut-row">
+            <div class="sc-keys"><kbd>Esc</kbd></div>
+            <div class="sc-desc"><strong>Panik / Stille:</strong> Schließt Overlays und stoppt sofort alle klingenden Stimmen und Synthesizer.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="help-modal-footer">
+      <span class="help-footer-brand">FM Music Composer · Zero Dependencies · Web Audio API · <strong>Code by Felix Schmidt</strong></span>
+      <button type="button" class="help-modal-ok-btn" id="okHelpBtn">Verstanden (ESC / Ü)</button>
+    </div>
+  </div>
+</div>
+
 <div id="veil">
   <h2>FM Music Composer · Modulares Studio</h2>
-  <p>20 eigenständige FM-Synthesizer mit stufenlos skalierbaren Teilfenstern, Multi-Layer Looper, Song-Speichern/Laden (.json) und automatisierter Parameter-Oszillation.</p>
-  <div class="hint">Alle Teilfenster können an den Trennlinien beliebig skaliert werden.</div>
+  <p>70 eigenständige FM-Synthesizer (7 Soundbänke), Multi-Layer Looper mit Pausen-Drehreglern, programmierbarer 16-Step Arpeggiator und automatisierte Parameter-Oszillation.</p>
+  <div class="hint">Tasten: A–K spielen · ß/´ Bank wechseln · 1–0 Synth wählen · Ü Hilfe</div>
   <button class="start-btn" id="startBtn">Studio aktivieren</button>
 </div>
 
@@ -9477,6 +9818,31 @@ function resolveNoteFromKeyEvent(e) {
 
 const activeHeldPhysicalNotes = new Map();
 
+/* ============================================================
+   Hilfe- & Referenz-Modal (Taste Ü)
+   ============================================================ */
+function toggleHelpModal(forceState = null) {
+  const helpOverlay = document.getElementById("helpOverlay");
+  if (!helpOverlay) return;
+  const isHidden = helpOverlay.classList.contains("hidden");
+  const targetState = forceState !== null ? forceState : isHidden;
+  helpOverlay.classList.toggle("hidden", !targetState);
+}
+
+const openHelpBtn = document.getElementById("openHelpBtn");
+const closeHelpBtn = document.getElementById("closeHelpBtn");
+const okHelpBtn = document.getElementById("okHelpBtn");
+const helpOverlay = document.getElementById("helpOverlay");
+
+if (openHelpBtn) openHelpBtn.addEventListener("click", () => toggleHelpModal(true));
+if (closeHelpBtn) closeHelpBtn.addEventListener("click", () => toggleHelpModal(false));
+if (okHelpBtn) okHelpBtn.addEventListener("click", () => toggleHelpModal(false));
+if (helpOverlay) {
+  helpOverlay.addEventListener("click", e => {
+    if (e.target === helpOverlay) toggleHelpModal(false);
+  });
+}
+
 window.addEventListener("keydown", e => {
   if (e.metaKey || e.ctrlKey || e.altKey) return;
 
@@ -9488,7 +9854,23 @@ window.addEventListener("keydown", e => {
     return;
   }
 
+  // Hilfe-Modal mit Ü / ü umschalten
+  const isHelpKey = (
+    e.key === "ü" || e.key === "Ü" ||
+    (e.code === "BracketLeft" && !e.ctrlKey && !e.altKey && !e.metaKey)
+  );
+  if (isHelpKey && !e.repeat) {
+    e.preventDefault();
+    toggleHelpModal();
+    return;
+  }
+
   if (e.key === "Escape") {
+    const helpEl = document.getElementById("helpOverlay");
+    if (helpEl && !helpEl.classList.contains("hidden")) {
+      toggleHelpModal(false);
+      return;
+    }
     panicAll();
     return;
   }
