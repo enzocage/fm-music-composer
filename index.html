@@ -213,16 +213,25 @@
   <div class="splitter-h" id="splitH" title="Ziehen zum Vergrößern/Verkleinern"></div>
 
   <!-- Rechte Seite: Sidebar Control Rack mit subtil farbcodierten Sektionen -->
-  <div class="sidebar-container multi-col" id="sidebarContainer">
+  <div class="sidebar-container multi-col" id="sidebarContainer" data-active-workspace="synth">
     <div class="synth-header-badge" id="synthBadge">
       <span class="name" id="badgeName">1 · Pure Chowning Sine (1:1)</span>
       <span class="badge" id="badgeComplexity" style="background:rgba(0,242,254,0.15); color:var(--accent); border:1px solid rgba(0,242,254,0.4); margin-left:auto; margin-right:4px;">Stufe 1 · 4 Params</span>
       <span class="badge" id="badgeVoices">0 Stimmen aktiv</span>
     </div>
 
+    <!-- ERGONOMISCHER STUDIO WORKSPACE NAVIGATOR (Zero-Scroll Workflow) -->
+    <div class="studio-workspace-nav" id="studioWorkspaceNav">
+      <button type="button" class="workspace-tab-btn active" data-workspace="synth" id="tabWsSynth" title="Synthesizer Matrix & 5 Farbgruppen (Taste 1)">🎛️ SYNTH</button>
+      <button type="button" class="workspace-tab-btn" data-workspace="fx" id="tabWsFx" title="10 Master Audio FX Module Direkt (Taste 2)">⚡ FX RACK (10)</button>
+      <button type="button" class="workspace-tab-btn" data-workspace="rhythm" id="tabWsRhythm" title="Perkussion & Arpeggiator Sequenzer (Taste 3)">🥁 RHYTHM & ARP</button>
+      <button type="button" class="workspace-tab-btn" data-workspace="looper" id="tabWsLooper" title="Looper Stack & Sprach-Zuspiel (Taste 4)">🎙️ LOOPER</button>
+      <button type="button" class="workspace-tab-btn" data-workspace="all" id="tabWsAll" title="Studio Vollüberblick: Alle Module parallel im Multi-Column Grid (Taste 5)">⊞ STUDIO ALL</button>
+    </div>
+
     <div class="rack-grid">
       <!-- RACK SECTION 1: LOOP STACK & RECORD (Subtil Crimson) -->
-      <div class="grp grp-loop">
+      <div class="grp grp-loop" data-workspace="looper" id="loopStackGrp">
         <h2><span>Loop-Stack & Aufnahme</span><span id="recStatusInfo" style="color:var(--rec);font-weight:bold;">BEREIT</span></h2>
         <button class="rec-btn" id="recToggleBtn">
           <span class="rec-dot"></span>
@@ -241,7 +250,7 @@
       </div>
 
       <!-- RACK SECTION 2: 24-PARAMETER 6-OPERATOR HIGH-ORDER MATRIX (PLAN 3) -->
-      <div class="grp grp-synth-matrix" id="synthMatrixGrp">
+      <div class="grp grp-synth-matrix active-workspace-section" id="synthMatrixGrp" data-workspace="synth">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; flex-wrap:wrap; gap:4px;">
           <h2><span style="color:var(--accent); font-weight:800;">6-Operator Matrix (24 Parameter)</span></h2>
           <div class="mutate-btn-group">
@@ -282,7 +291,7 @@
       </div>
 
       <!-- RACK SECTION 3.5: KOMPLEX-VIBRATO & HUMANIZER (Subtil Lavendel) -->
-      <div class="grp grp-vib" id="vibratoGrp">
+      <div class="grp grp-vib active-workspace-section" id="vibratoGrp" data-workspace="synth">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
           <h2><span style="color:#dcd6fd;">Komplex-Vibrato & Humanizer</span></h2>
           <label class="osc-toggle-label" title="Vibrato Ein/Aus">
@@ -344,7 +353,7 @@
       </div>
 
       <!-- RACK SECTION 3.6: PROGRAMMIERBARER ARPEGGIATOR (Subtil Bernstein) -->
-      <div class="grp grp-arp" id="arpeggiatorGrp">
+      <div class="grp grp-arp" id="arpeggiatorGrp" data-workspace="rhythm">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
           <h2><span style="color:#ffc46b;">Programmierbarer Arpeggiator</span></h2>
           <div style="display:flex; gap:3px; align-items:center;">
@@ -413,9 +422,8 @@
         </div>
       </div>
 
-      <!-- RACK SECTION 3.7: AMBIENT PERCUSSIVE STRUCTURE GENERATOR (15 Parameter & 4/4 Sync) -->
       <!-- RACK SECTION 3.7: AMBIENT PERCUSSIVE STRUCTURE GENERATOR (Multi-Voice Stepper & Pattern Suggestion) -->
-      <div class="grp grp-perc" id="percModuleCard">
+      <div class="grp grp-perc" id="percModuleCard" data-workspace="rhythm">
         <h2>
           <span>Stochastische Ambient-Perkussion</span>
           <div style="display:flex;align-items:center;gap:4px;">
@@ -531,7 +539,7 @@
       </div>
 
       <!-- RACK SECTION 3.8: 10 HIGH-END AUDIO FX MODULES (FX.MD) -->
-      <div class="grp grp-fx" id="fxRackGrp" style="background:rgba(8,14,26,0.85); border-color:rgba(56,199,255,0.25);">
+      <div class="grp grp-fx" id="fxRackGrp" data-workspace="fx" style="background:rgba(8,14,26,0.85); border-color:rgba(56,199,255,0.25);">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; flex-wrap:wrap; gap:4px;">
           <h2>
             <span style="color:#38c7ff; font-weight:800;">10 Master Audio FX Module</span>
@@ -564,7 +572,7 @@
       </div>
 
       <!-- RACK SECTION 4: SPIELHILFEN & SPRACH-ZUSPIEL (Subtil Jade) -->
-      <div class="grp grp-voice">
+      <div class="grp grp-voice" id="voiceLoopGrp" data-workspace="looper">
         <h2><span>Spielhilfen & Presets</span></h2>
         <div class="btns">
           <button id="latch" aria-pressed="false">Latch</button>

@@ -1,7 +1,9 @@
-/* Rechter Bereich: Sidebar Rack (Skaliert flüssig bis 90% Breite) */
+/* ============================================================
+   STUDIO WORKSPACE DOCK & USABILITY-OPTIMIZED LAYOUT
+   ============================================================ */
   .sidebar-container {
     width: var(--sidebar-w);
-    min-width: 240px;
+    min-width: 260px;
     max-width: 95vw;
     height: 100%;
     background: #05070e;
@@ -9,24 +11,131 @@
     flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 8px 10px 12px;
+    padding: 6px 8px 12px;
     flex-shrink: 0;
+    position: relative;
+  }
+
+  /* Top Studio Header & Telemetry Badge */
+  .synth-header-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 6px;
+    background: linear-gradient(90deg, rgba(56, 199, 255, 0.12) 0%, rgba(10, 15, 28, 0.85) 100%);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+  }
+  .synth-header-badge .name {
+    font-weight: 800;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: .04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .synth-header-badge .badge {
+    font-size: 8px;
+    font-weight: 700;
+    background: rgba(255,255,255,0.08);
+    padding: 1px 4px;
+    border-radius: 2px;
+    color: var(--fg);
+    white-space: nowrap;
+  }
+
+  /* Ergonomischer Studio Workspace Navigator */
+  .studio-workspace-nav {
+    display: flex;
+    gap: 3px;
+    background: rgba(8, 14, 26, 0.95);
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    margin-bottom: 6px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 15;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+  .workspace-tab-btn {
+    flex: 1;
+    font-family: var(--mono);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    padding: 4px 5px;
+    background: rgba(14, 20, 34, 0.7);
+    border: 1px solid var(--rule);
+    color: var(--dim);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .15s ease;
+    white-space: nowrap;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    user-select: none;
+  }
+  .workspace-tab-btn:hover {
+    color: var(--fg);
+    background: rgba(56, 199, 255, 0.12);
+    border-color: rgba(56, 199, 255, 0.4);
+  }
+  .workspace-tab-btn.active {
+    color: #05070d;
+    background: var(--accent);
+    border-color: var(--accent);
+    font-weight: 800;
+    box-shadow: 0 0 10px -1px var(--accent);
+  }
+
+  /* Master Quick Toolbar Strip */
+  .rack-master-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    background: rgba(10, 16, 28, 0.8);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 3px 6px;
+    margin-bottom: 6px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  /* Studio Workspace View Filtering */
+  .sidebar-container:not([data-active-workspace="all"]) .rack-grid > .grp:not(.active-workspace-section) {
+    display: none !important;
   }
 
   .rack-grid {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
+    width: 100%;
   }
-  .sidebar-container.multi-col .rack-grid {
+
+  /* Multi-Column / All-In-One Studio Grid */
+  .sidebar-container.multi-col .rack-grid,
+  .sidebar-container[data-active-workspace="all"] .rack-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 6px;
     align-items: stretch;
     grid-auto-flow: dense;
     width: 100%;
   }
-  .sidebar-container.multi-col .rack-grid > .grp {
+
+  .sidebar-container.multi-col .rack-grid > .grp,
+  .sidebar-container[data-active-workspace="all"] .rack-grid > .grp {
     margin-bottom: 0;
     display: flex;
     flex-direction: column;
@@ -34,32 +143,12 @@
     height: 100%;
     box-sizing: border-box;
   }
-  .sidebar-container.multi-col .rack-grid > .grp.grp-synth-matrix {
-    grid-column: 1 / -1; /* Spans full width like a justified block */
-  }
 
-  .synth-header-badge {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 7px;
-    background: linear-gradient(90deg, rgba(255, 71, 87, 0.12) 0%, rgba(10, 15, 28, 0.8) 100%);
-    border: 1px solid var(--accent);
-    border-radius: 3px;
-    margin-bottom: 6px;
-  }
-  .synth-header-badge .name {
-    font-weight: 700;
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: .04em;
-  }
-  .synth-header-badge .badge {
-    font-size: 8.5px;
-    background: rgba(255,255,255,0.08);
-    padding: 1px 4px;
-    border-radius: 2px;
-    color: var(--fg);
+  .sidebar-container.multi-col .rack-grid > .grp.grp-synth-matrix,
+  .sidebar-container[data-active-workspace="all"] .rack-grid > .grp.grp-synth-matrix,
+  .sidebar-container.multi-col .rack-grid > .grp.grp-fx,
+  .sidebar-container[data-active-workspace="all"] .rack-grid > .grp.grp-fx {
+    grid-column: 1 / -1; /* Spans full width like a justified block */
   }
 
   

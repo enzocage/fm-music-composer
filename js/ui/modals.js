@@ -1212,3 +1212,61 @@ function updateLoopStatusFrame() {
     loopBar.style.background = "#ffc46b";
   }
 }
+
+/* ============================================================
+   Studio Workspace Switching Logic (Synth / FX / Rhythm / Looper / All)
+   ============================================================ */
+let activeStudioWorkspace = "synth";
+try {
+  const savedWs = localStorage.getItem("fm_studio_workspace");
+  if (savedWs) activeStudioWorkspace = savedWs;
+} catch (e) {}
+
+function setStudioWorkspace(ws) {
+  activeStudioWorkspace = ws;
+  try { localStorage.setItem("fm_studio_workspace", ws); } catch (e) {}
+
+  const sidebar = document.getElementById("sidebarContainer");
+  if (sidebar) {
+    sidebar.setAttribute("data-active-workspace", ws);
+  }
+
+  // Update tabs
+  document.querySelectorAll(".workspace-tab-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.getAttribute("data-workspace") === ws);
+  });
+
+  // Update rack section visibility classes
+  document.querySelectorAll(".rack-grid > .grp").forEach(grp => {
+    const grpWs = grp.getAttribute("data-workspace");
+    const isVisible = (ws === "all" || grpWs === ws);
+    grp.classList.toggle("active-workspace-section", isVisible);
+  });
+
+  // Re-trigger layout resize
+  if (typeof resize === "function") {
+    setTimeout(() => resize(), 50);
+    setTimeout(() => resize(), 200);
+  }
+}
+
+// Attach listener to workspace tabs
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".workspace-tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const ws = btn.getAttribute("data-workspace");
+      if (ws) setStudioWorkspace(ws);
+    });
+  });
+  setStudioWorkspace(activeStudioWorkspace);
+});
+
+if (document.readyState !== "loading") {
+  document.querySelectorAll(".workspace-tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const ws = btn.getAttribute("data-workspace");
+      if (ws) setStudioWorkspace(ws);
+    });
+  });
+  setStudioWorkspace(activeStudioWorkspace);
+}
