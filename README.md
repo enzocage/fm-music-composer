@@ -66,8 +66,24 @@
 
 ---
 
-### 4. Per-Parameter Visible UI Handles & Automation (`~ OSC`)
-Every sound shaping parameter ($r, I_0, \Delta I, f_L$, custom parameters like $\rho, \gamma, m, \alpha$) features an autonomous modulation engine:
+### 4. Complete Complex-Vibrato & Humanizer Engine (All 20 Instruments)
+Every instrument includes an acoustic/electronic vibrato modulation module:
+- **`[ ~ VIB ]` Master Toggle:** Activates/deactivates pitch vibrato for the selected instrument.
+- **Waveform Selector:**
+  - `∿ Sin`: Smooth, classic natural vibrato.
+  - `⋀ Tri`: Linear acoustic violin/cello-style modulation.
+  - `◈ Human`: Organic humanizer jitter and frequency micro-drift.
+  - `⩘ Saw`: Aggressive synthetic pitch ramp.
+- **Vibrato-Tiefe $\Delta f_{vib}$ (0–24 Hz):** Single-row parameter with tactile handles $[A, B]$, live value needle, and autonomous sine-wave oscillation.
+- **Vibrato-Rate (0.1–14 Hz):** Dedicated rotary speed knob for ultra-slow cosmic pitch drifts up to fast fluttering vibrato.
+- **Einsatz-Verzögerung (Delay 0.0–2.5 s):** Controls the natural bloom and onset time before vibrato kicks in after key strike.
+- **Humanizer Drift & Jitter (0–100%):** Adds randomized micro-deviations to simulate real human acoustic performances.
+- **Universal Carrier Audio Routing:** Directly modulates all carrier oscillators across all 20 complex synthesis algorithms.
+
+---
+
+### 5. Per-Parameter Visible UI Handles & Automation (`~ OSC`)
+Every sound shaping parameter ($r, I_0, \Delta I, f_L, \Delta f_{vib}$, custom parameters like $\rho, \gamma, m, \alpha$) features an autonomous modulation engine:
 - **`[ ~ OSC ]` Toggle Badge:** Instantly enables automated continuous sine-wave oscillation.
 - **Visible Draggable Handles `[ A ]` & `[ B ]`:** Tactile handles setting the exact oscillation boundaries without numeric drawers.
 - **Echtzeit-Wertnadel (White Needle):** Displays live parameter value and oscillates at 60 FPS between $A$ and $B$.
@@ -78,27 +94,29 @@ Every sound shaping parameter ($r, I_0, \Delta I, f_L$, custom parameters like $
 
 ---
 
-### 5. Complete Song Save & Load (.json)
+### 6. Complete Song Save & Load (.json)
 Save your complete musical composition to a portable `.json` file:
 - **Lossless Audio Serializer:** Encodes all recorded loops as 32-bit Float WAV base64 data.
-- **Full Parameter Snapshot:** Preserves all 20 synthesizer configurations, custom variables, active oscillator states, speed knob settings, individual loop pause lengths (1–100s), global master/reverb levels, and speech pause parameters.
+- **Full Parameter Snapshot:** Preserves all 20 synthesizer configurations, custom variables, active oscillator states, speed knob settings, complete vibrato parameters, individual loop pause lengths (1–100s), global master/reverb levels, and speech pause parameters.
 - **One-Click Instant Restore:** Reloads loops, reconstructs audio buffers, and restores all UI dials and switches.
 
 ---
 
-### 6. 4-Panel Synchronized Oscilloscopes
+### 7. 4-Panel Synchronized Oscilloscopes & Ultra-Compact 10% GFX Scaling
 1. **$y(t)$ Time Domain:** Real-time microphone/sum measurement vs. analytical active synthesizer model.
 2. **$f(t)$ Instantaneous Frequency:** Modulator trajectory and deviation bandwidth $\pm D$.
 3. **Spectrum Analysis:** Real FFT magnitude vs. analytical Bessel sideband stems $|J_n(I)|$.
 4. **$(y, \dot{y})$ Phase Portrait:** Phosphor-decay phase plane attractor displaying chaotic and orbital trajectories.
+- **10% GFX Scaling:** Visualizer section scales seamlessly down to **10% of window width** (allocating 90% space to the control rack and loop cards).
+- **Dedicated Layout Preset:** One-click `[ 10% GFX ]` button instantly expands the rack into multi-column mode and collapses the oscilloscopes into compact vertical micro-meters with zero text clipping.
 
 ---
 
-### 7. Resizable Modular Studio Layout
-- **Horizontal Splitter (`#splitH`):** Drag to adjust width between visualizer plots and the control rack.
+### 8. Resizable Modular Studio Layout
+- **Horizontal Splitter (`#splitH`):** Drag to adjust width between visualizer plots and the control rack (from 10% to 90%).
 - **Vertical Splitter (`#splitV`):** Drag to customize piano keyboard height.
-- **Dual-Rack Mode:** Automatically arranges controls into 2 parallel columns when expanded over 480px, making every dial and loop card visible without scrolling.
-- **Layout Presets:** One-click toggles for `[ 2x2 Grid ]`, `[ Doppel-Rack ]`, and `[ ⛶ Vollbild ]` (Fullscreen).
+- **Dual-Rack / Multi-Column Mode:** Automatically arranges controls into parallel columns when expanded, making every dial, vibrato module, and loop card visible without scrolling.
+- **Layout Presets:** One-click toggles for `[ Grid ]` (2x2), `[ Rack ]` (Wide), `[ 10% GFX ]` (90% Rack Focus), and `[ ⛶ Vollbild ]` (Fullscreen).
 
 ---
 
