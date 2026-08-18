@@ -6021,6 +6021,696 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
       voiceObj = { ...voiceObj, car: car1, car2, mod: modSin, modCos, modG: modSinG, modCosG, rotG1, rotG2 };
       break;
     }
+    // ============================================================
+    // BANK C: DX7 & VINTAGE 80s ICONS (20–29)
+    // ============================================================
+    case 20: {
+      // DX7 E-Piano Rhodes: Dual Carrier (Body 1:1 + Tine 1:14)
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const mod1 = ctx.createOscillator(); mod1.frequency.value = f;
+      const mod1G = ctx.createGain(); mod1G.gain.value = inst.params.I0 * f;
+      mod1.connect(mod1G).connect(car1.frequency);
+      const car2 = ctx.createOscillator(); car2.frequency.value = f;
+      const mod2 = ctx.createOscillator(); mod2.frequency.value = f * 14.0;
+      const mod2G = ctx.createGain(); mod2G.gain.value = inst.params.dI * inst.customVal * (f * 14.0);
+      mod2.connect(mod2G).connect(car2.frequency);
+      const tineMix = ctx.createGain(); tineMix.gain.value = 0.45 * inst.customVal;
+      car1.connect(env); car2.connect(tineMix).connect(env);
+      env.connect(inst.bus);
+      mod1.start(now); mod2.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod: mod1, mod1, mod2, modG: mod1G, mod1G, mod2G, tineMix };
+      break;
+    }
+    case 21: {
+      // Tubular Bells & Glockenspiel: Inharmonic Chowning 3.52 / 5.84
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const fm1 = f * (inst.params.ratio * inst.customVal);
+      const mod1 = ctx.createOscillator(); mod1.frequency.value = fm1;
+      const mod1G = ctx.createGain(); mod1G.gain.setValueAtTime((inst.params.I0 + inst.params.dI) * fm1, now);
+      mod1G.gain.exponentialRampToValueAtTime(Math.max(0.05 * fm1, 0.1), now + Math.max(0.2, inst.params.rel));
+      mod1.connect(mod1G).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod1.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod: mod1, mod1, modG: mod1G, mod1G };
+      break;
+    }
+    case 22: {
+      // Solid Bass TX81Z Lately Bass (Punchy Feedback Sub-Bass)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal) * fm, now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.1, inst.params.I0 * fm * 0.3), now + 0.18);
+      mod.connect(modG).connect(car.frequency);
+      const subCar = ctx.createOscillator(); subCar.frequency.value = f * 0.5;
+      const subG = ctx.createGain(); subG.gain.value = 0.5;
+      subCar.connect(subG).connect(env);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now); subCar.start(now);
+      voiceObj = { ...voiceObj, car, carSub: subCar, mod, modG, subG };
+      break;
+    }
+    case 23: {
+      // Slap Bass Percussion: 25ms pop transient
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 2.0;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal * 2.5) * (fm * 2.0), now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.01, inst.params.I0 * fm * 0.1), now + 0.04);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 24: {
+      // Blues Harmonica Reed
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 1.004;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal * 0.5) * fm;
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const mix = ctx.createGain(); mix.gain.value = 0.5;
+      car1.connect(mix); car2.connect(mix);
+      mix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, mix };
+      break;
+    }
+    case 25: {
+      // Marimba & Wood Balafon
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 4.0;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal) * f * 4.0, now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.01 * f, 0.1), now + 0.08);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 26: {
+      // Log Drum & Schlitz
+      const car = ctx.createOscillator();
+      car.frequency.setValueAtTime(f * (1 + inst.customVal * 1.5), now);
+      car.frequency.exponentialRampToValueAtTime(Math.max(20, f), now + 0.035);
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime(inst.params.I0 * fm, now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.01 * fm, 0.1), now + 0.06);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 27: {
+      // CS-80 Synth Brass 80s
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f + inst.customVal;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime(inst.params.I0 * fm * 0.5, now);
+      modG.gain.linearRampToValueAtTime((inst.params.I0 + inst.params.dI) * fm, now + Math.max(0.05, inst.params.atk * 1.2));
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const brassMix = ctx.createGain(); brassMix.gain.value = 0.5;
+      car1.connect(brassMix); car2.connect(brassMix);
+      brassMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, brassMix };
+      break;
+    }
+    case 28: {
+      // Digi Clavinet D6 FM
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 3.0;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal) * fm * 3.0, now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.02 * fm, 0.1), now + 0.09);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 29: {
+      // Cembalo & Harpsichord
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 2.0;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 5.0;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI) * f * 5.0, now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.01 * f, 0.1), now + 0.07);
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const mix = ctx.createGain(); mix.gain.value = 0.5;
+      const reg4G = ctx.createGain(); reg4G.gain.value = inst.customVal;
+      car1.connect(mix); car2.connect(reg4G).connect(mix);
+      mix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, mix, reg4G };
+      break;
+    }
+
+    // ============================================================
+    // BANK D: YM2612 & ARCADE LEGENDS (30–39)
+    // ============================================================
+    case 30: {
+      // Sonic 16-Bit Lead (4-Op Genesis style)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod1 = ctx.createOscillator(); mod1.frequency.value = fm;
+      const mod2 = ctx.createOscillator(); mod2.frequency.value = fm * 2.0;
+      const mod1G = ctx.createGain(); mod1G.gain.value = inst.params.I0 * fm;
+      const mod2G = ctx.createGain(); mod2G.gain.value = (inst.params.dI + inst.customVal) * (fm * 2.0);
+      mod2.connect(mod2G).connect(mod1.frequency);
+      mod1.connect(mod1G).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod2.start(now); mod1.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod: mod1, mod1, mod2, modG: mod1G, mod1G, mod2G };
+      break;
+    }
+    case 31: {
+      // Mega Drive FM Drums (Kick + Snare)
+      const car = ctx.createOscillator();
+      car.frequency.setValueAtTime(Math.max(200, f * 2), now);
+      car.frequency.exponentialRampToValueAtTime(Math.max(35, f * 0.4), now + 0.05);
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 1.5;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI) * (fm * 1.5), now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.01 * fm, 0.1), now + 0.08);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 32: {
+      // Castlevania Cathedral Organ (8' + 4' + 2 2/3')
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 2.0;
+      const car3 = ctx.createOscillator(); car3.frequency.value = f * 3.0;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = inst.params.I0 * fm;
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency); modG.connect(car3.frequency);
+      const orgMix = ctx.createGain(); orgMix.gain.value = 0.35 * inst.customVal;
+      car1.connect(orgMix); car2.connect(orgMix); car3.connect(orgMix);
+      orgMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now); car3.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, car3, mod, modG, orgMix };
+      break;
+    }
+    case 33: {
+      // AdLib Chiptune Lead (OPL2 half-sine)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.params.dI * 0.5) * fm;
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 34: {
+      // DOOM Cyberpunk Saw FM
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * fm;
+      const shaper = ctx.createWaveShaper();
+      const n_samples = 512, curve = new Float32Array(n_samples);
+      for (let i = 0; i < n_samples; ++i) {
+        const x = (i * 2) / n_samples - 1;
+        curve[i] = Math.tanh(inst.customVal * x * 1.5);
+      }
+      shaper.curve = curve;
+      mod.connect(modG).connect(car.frequency);
+      car.connect(shaper).connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG, shaper };
+      break;
+    }
+    case 35: {
+      // Thunder Laser FX FM (Sci-Fi Laser Sweep)
+      const car = ctx.createOscillator();
+      car.frequency.setValueAtTime(f * 4.0 * inst.customVal, now);
+      car.frequency.exponentialRampToValueAtTime(Math.max(20, f * 0.25), now + 0.12);
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 3.0;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime(inst.params.I0 * fm * 3.0, now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.01 * fm, 0.1), now + 0.15);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 36: {
+      // Marble Zone Steel Drum FM
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 2.75;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal) * f * 2.75, now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.05 * f, 0.1), now + 0.18);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 37: {
+      // OutRun Synthwave Bassline
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI) * fm, now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.05, inst.params.I0 * fm * 0.2), now + Math.max(0.05, inst.customVal));
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 38: {
+      // NeoGeo Arcade Pluck FM
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f + inst.customVal;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI) * fm, now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.01 * fm, 0.1), now + 0.1);
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const pluckMix = ctx.createGain(); pluckMix.gain.value = 0.5;
+      car1.connect(pluckMix); car2.connect(pluckMix);
+      pluckMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, pluckMix };
+      break;
+    }
+    case 39: {
+      // Power Metal FM Poly-Synth
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod1 = ctx.createOscillator(); mod1.frequency.value = fm;
+      const mod2 = ctx.createOscillator(); mod2.setPeriodicWave(cosWave); mod2.frequency.value = fm * 0.5;
+      const mod1G = ctx.createGain(); mod1G.gain.value = inst.params.I0 * fm;
+      const mod2G = ctx.createGain(); mod2G.gain.value = (inst.params.dI * inst.customVal) * (fm * 0.5);
+      mod1.connect(mod1G).connect(car.frequency);
+      mod2.connect(mod2G).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod1.start(now); mod2.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod: mod1, mod1, mod2, modG: mod1G, mod1G, mod2G };
+      break;
+    }
+
+    // ============================================================
+    // BANK E: CINEMATIC & CYBERPUNK DRONES (40–49)
+    // ============================================================
+    case 40: {
+      // Blade Runner CS-FM Pad
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 1.003;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime(inst.params.I0 * fm * 0.4, now);
+      modG.gain.linearRampToValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal) * fm, now + Math.max(0.5, inst.params.atk));
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const padMix = ctx.createGain(); padMix.gain.value = 0.5;
+      car1.connect(padMix); car2.connect(padMix);
+      padMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, padMix };
+      break;
+    }
+    case 41: {
+      // Dark Nebula Sub-Drone (30Hz Sub-Rumble)
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const sub = ctx.createOscillator(); sub.frequency.value = f * 0.5;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 0.5;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * (fm * 0.5);
+      mod.connect(modG).connect(car.frequency);
+      const subMix = ctx.createGain(); subMix.gain.value = 0.6;
+      car.connect(env); sub.connect(subMix).connect(env);
+      env.connect(inst.bus);
+      mod.start(now); car.start(now); sub.start(now);
+      voiceObj = { ...voiceObj, car, carSub: sub, mod, modG, subMix };
+      break;
+    }
+    case 42: {
+      // Hyperborea Shimmer Crystal
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 2.0;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 3.0;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * (f * 3.0);
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const shimMix = ctx.createGain(); shimMix.gain.value = 0.4;
+      car1.connect(shimMix); car2.connect(shimMix);
+      shimMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, shimMix };
+      break;
+    }
+    case 43: {
+      // Cryogenic Ice Whispers
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 4.12;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * (f * 4.12);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 44: {
+      // Dark Matter Pulsar Drone
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = inst.params.I0 * fm;
+      const lfoG = ctx.createGain(); lfoG.gain.value = inst.params.dI * fm * inst.customVal * 0.5;
+      mod.connect(modG).connect(car.frequency);
+      inst.lfoOsc.connect(lfoG).connect(modG.gain);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG, lfoG };
+      break;
+    }
+    case 45: {
+      // Solar Flare Granular Drone
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 1.006;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * fm;
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const flareMix = ctx.createGain(); flareMix.gain.value = 0.5;
+      car1.connect(flareMix); car2.connect(flareMix);
+      flareMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, flareMix };
+      break;
+    }
+    case 46: {
+      // Abyss Submarine Resonator
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 1.333;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * (f * 1.333);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 47: {
+      // Starlight Ethereal Voice
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 2.0;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = inst.params.I0 * fm;
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const voiceMix = ctx.createGain(); voiceMix.gain.value = 0.5;
+      car1.connect(voiceMix); car2.connect(voiceMix);
+      voiceMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, voiceMix };
+      break;
+    }
+    case 48: {
+      // Void Walker Ambient Swell
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 1.732;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * (f * 1.732);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 49: {
+      // Antimatter Reactor Drone
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod1 = ctx.createOscillator(); mod1.frequency.value = fm;
+      const mod2 = ctx.createOscillator(); mod2.frequency.value = fm * 2.0;
+      const mod1G = ctx.createGain(); mod1G.gain.value = inst.params.I0 * fm;
+      const mod2G = ctx.createGain(); mod2G.gain.value = inst.customVal * (fm * 2.0);
+      mod2.connect(mod2G).connect(mod1.frequency);
+      mod1.connect(mod1G).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod2.start(now); mod1.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod: mod1, mod1, mod2, modG: mod1G, mod1G, mod2G };
+      break;
+    }
+
+    // ============================================================
+    // BANK F: ACOUSTIC PHYSICAL & WORLD RESONANCE (50–59)
+    // ============================================================
+    case 50: {
+      // Tibetan Singing Bowl FM
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 2.756;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 5.4;
+      const modG = ctx.createGain(); modG.gain.value = inst.params.I0 * (f * 5.4);
+      mod.connect(modG).connect(car2.frequency);
+      const bowlMix = ctx.createGain(); bowlMix.gain.value = 0.5;
+      car1.connect(bowlMix); car2.connect(bowlMix);
+      bowlMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, bowlMix };
+      break;
+    }
+    case 51: {
+      // Javanese Gamelan Gong
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod1 = ctx.createOscillator(); mod1.frequency.value = f * 1.414;
+      const mod2 = ctx.createOscillator(); mod2.frequency.value = f * 2.828;
+      const mod1G = ctx.createGain(); mod1G.gain.value = inst.params.I0 * (f * 1.414);
+      const mod2G = ctx.createGain(); mod2G.gain.value = (inst.params.dI * inst.customVal) * (f * 2.828);
+      mod1.connect(mod1G).connect(car.frequency);
+      mod2.connect(mod2G).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod1.start(now); mod2.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod: mod1, mod1, mod2, modG: mod1G, mod1G, mod2G };
+      break;
+    }
+    case 52: {
+      // Shakuhachi Bamboo Air
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 2.0;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal * 0.5) * (f * 2.0);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 53: {
+      // Celtic Harp Pluck FM
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 3.0;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal) * (f * 3.0), now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.01 * f, 0.1), now + 0.07);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 54: {
+      // Koto Silk String FM
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 4.0;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal) * (f * 4.0), now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.01 * f, 0.1), now + 0.05);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 55: {
+      // Glass Armonica Resonance
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 3.0;
+      const modG = ctx.createGain(); modG.gain.value = inst.params.I0 * (f * 3.0);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 56: {
+      // Cathedral Pipe Organ 32ft
+      const car1 = ctx.createOscillator(); car1.frequency.value = f * 0.5;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f;
+      const car3 = ctx.createOscillator(); car3.frequency.value = f * 2.0;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = inst.params.I0 * fm;
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency); modG.connect(car3.frequency);
+      const pipeMix = ctx.createGain(); pipeMix.gain.value = 0.35 * inst.customVal;
+      car1.connect(pipeMix); car2.connect(pipeMix); car3.connect(pipeMix);
+      pipeMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now); car3.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, car3, mod, modG, pipeMix };
+      break;
+    }
+    case 57: {
+      // Cello Bowed FM Model
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal * 0.4) * fm;
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 58: {
+      // Kalimba Thumb Piano
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 2.7;
+      const modG = ctx.createGain(); modG.gain.setValueAtTime((inst.params.I0 + inst.params.dI * inst.customVal) * (f * 2.7), now);
+      modG.gain.exponentialRampToValueAtTime(Math.max(0.01 * f, 0.1), now + 0.06);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 59: {
+      // Ceramic Ocarina Flute
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = f;
+      const modG = ctx.createGain(); modG.gain.value = inst.params.I0 * f;
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+
+    // ============================================================
+    // BANK G: MODULAR & EXPERIMENTAL FX (60–69)
+    // ============================================================
+    case 60: {
+      // Quantum Particle Collider
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod1 = ctx.createOscillator(); mod1.frequency.value = fm;
+      const mod2 = ctx.createOscillator(); mod2.frequency.value = fm * 3.5;
+      const mod1G = ctx.createGain(); mod1G.gain.value = inst.params.I0 * fm;
+      const mod2G = ctx.createGain(); mod2G.gain.value = (inst.params.dI + inst.customVal) * (fm * 3.5);
+      mod1.connect(mod1G).connect(car.frequency);
+      mod2.connect(mod2G).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod1.start(now); mod2.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod: mod1, mod1, mod2, modG: mod1G, mod1G, mod2G };
+      break;
+    }
+    case 61: {
+      // Radio Telescope Alien Glitch
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 4.0;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * (f * 4.0);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 62: {
+      // Feedback Loop Screamer
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.setPeriodicWave(cosWave); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * fm;
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 63: {
+      // Chaotic Bifurcation Drone
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm * 2.0;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal * 0.5) * (fm * 2.0);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 64: {
+      // Geiger Counter Radiance
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 3.0;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * (f * 3.0);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 65: {
+      // Subatomic Bass Reactor
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 0.5;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * (f * 0.5);
+      const shaper = ctx.createWaveShaper();
+      const n_samples = 512, curve = new Float32Array(n_samples);
+      for (let i = 0; i < n_samples; ++i) {
+        const x = (i * 2) / n_samples - 1;
+        curve[i] = Math.tanh(inst.customVal * x);
+      }
+      shaper.curve = curve;
+      mod.connect(modG).connect(car.frequency);
+      car.connect(shaper).connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG, shaper };
+      break;
+    }
+    case 66: {
+      // Neural Network Synapse FM
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 2.2;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * (f * 2.2);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 67: {
+      // Ringmod Laser Swarm
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod1 = ctx.createOscillator(); mod1.frequency.value = fm * 1.75;
+      const mod2 = ctx.createOscillator(); mod2.frequency.value = fm * 2.5;
+      const mod1G = ctx.createGain(); mod1G.gain.value = inst.params.I0 * (fm * 1.75);
+      const mod2G = ctx.createGain(); mod2G.gain.value = (inst.params.dI * inst.customVal) * (fm * 2.5);
+      mod1.connect(mod1G).connect(car.frequency);
+      mod2.connect(mod2G).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod1.start(now); mod2.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod: mod1, mod1, mod2, modG: mod1G, mod1G, mod2G };
+      break;
+    }
+    case 68: {
+      // Black Hole Event Horizon
+      const car = ctx.createOscillator(); car.frequency.value = f;
+      const mod = ctx.createOscillator(); mod.frequency.value = f * 0.707;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal * 1.5) * (f * 0.707);
+      mod.connect(modG).connect(car.frequency);
+      car.connect(env).connect(inst.bus);
+      mod.start(now); car.start(now);
+      voiceObj = { ...voiceObj, car, mod, modG };
+      break;
+    }
+    case 69: {
+      // Warp Engine Plasma Drive
+      const car1 = ctx.createOscillator(); car1.frequency.value = f;
+      const car2 = ctx.createOscillator(); car2.frequency.value = f * 1.5;
+      const mod = ctx.createOscillator(); mod.frequency.value = fm;
+      const modG = ctx.createGain(); modG.gain.value = (inst.params.I0 + inst.customVal) * fm;
+      mod.connect(modG);
+      modG.connect(car1.frequency); modG.connect(car2.frequency);
+      const warpMix = ctx.createGain(); warpMix.gain.value = 0.5;
+      car1.connect(warpMix); car2.connect(warpMix);
+      warpMix.connect(env).connect(inst.bus);
+      mod.start(now); car1.start(now); car2.start(now);
+      voiceObj = { ...voiceObj, car: car1, car1, car2, mod, modG, warpMix };
+      break;
+    }
+
   }
 
   // ============================================================
@@ -6091,18 +6781,22 @@ function noteOff(sem, synthIdx = activeSynthIdx) {
   v.env.gain.setTargetAtTime(0, now, tau);
 
   const stopTime = now + inst.params.rel * 1.5;
-  if (v.car) v.car.stop(stopTime);
-  if (v.car2) v.car2.stop(stopTime);
-  if (v.car3) v.car3.stop(stopTime);
-  if (v.carR) v.carR.stop(stopTime);
-  if (v.carSub) v.carSub.stop(stopTime);
-  if (v.carHigh) v.carHigh.stop(stopTime);
+  if (v.car) try { v.car.stop(stopTime); } catch(e){}
+  if (v.car1) try { v.car1.stop(stopTime); } catch(e){}
+  if (v.car2) try { v.car2.stop(stopTime); } catch(e){}
+  if (v.car3) try { v.car3.stop(stopTime); } catch(e){}
+  if (v.carL) try { v.carL.stop(stopTime); } catch(e){}
+  if (v.carR) try { v.carR.stop(stopTime); } catch(e){}
+  if (v.carSub) try { v.carSub.stop(stopTime); } catch(e){}
+  if (v.carHigh) try { v.carHigh.stop(stopTime); } catch(e){}
   if (v.clusterCars) v.clusterCars.forEach(c => { try{ c.stop(stopTime); }catch(e){} });
-  if (v.mod) v.mod.stop(stopTime);
-  if (v.mod2) v.mod2.stop(stopTime);
-  if (v.modCos) v.modCos.stop(stopTime);
-  if (v.vibOsc) v.vibOsc.stop(stopTime);
-  if (v.vibLfo) { try{ v.vibLfo.stop(stopTime); }catch(e){} }
+  if (v.mod) try { v.mod.stop(stopTime); } catch(e){}
+  if (v.mod1) try { v.mod1.stop(stopTime); } catch(e){}
+  if (v.mod2) try { v.mod2.stop(stopTime); } catch(e){}
+  if (v.modSin) try { v.modSin.stop(stopTime); } catch(e){}
+  if (v.modCos) try { v.modCos.stop(stopTime); } catch(e){}
+  if (v.vibOsc) try { v.vibOsc.stop(stopTime); } catch(e){}
+  if (v.vibLfo) try { v.vibLfo.stop(stopTime); } catch(e){}
 
   setTimeout(() => {
     try {
