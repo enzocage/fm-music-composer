@@ -710,10 +710,12 @@ function selectSynth(idx) {
   activeSynthTag.style.color = inst.def.color;
 
   const curBank = BANKS.find(b => idx >= b.offset && idx < b.offset + 10) || BANKS[0];
+  const algo = (typeof FM_ALGORITHMS !== "undefined" && FM_ALGORITHMS[inst.params.algo_type]) ? FM_ALGORITHMS[inst.params.algo_type] : (FM_ALGORITHMS ? FM_ALGORITHMS[1] : null);
   const badgeComplexity = document.getElementById("badgeComplexity");
   if (badgeComplexity) {
-    badgeComplexity.textContent = `Stufe ${curBank.level} · ${curBank.paramCount || 24} Params`;
-    badgeComplexity.title = curBank.complexityLabel || '';
+    const algoStr = algo ? ` · ${algo.icon} ${algo.name}` : "";
+    badgeComplexity.textContent = `Stufe ${curBank.level} · ${curBank.paramCount || 24} Params${algoStr}`;
+    badgeComplexity.title = `${curBank.complexityLabel || ''}${algo ? `\nTopologie ${algo.desc}: ${algo.detail}` : ''}`;
     badgeComplexity.style.borderColor = (curBank.color || inst.def.color || '#00f2fe') + '88';
     badgeComplexity.style.color = curBank.color || inst.def.color || '#00f2fe';
   }
