@@ -6,21 +6,31 @@
 <title>FM Music Composer — 20 Synthesizer, Multi-Layer Looper & Parameter-Automation</title>
 <style>
   :root {
-    --ink: #04060a;
-    --panel: #090d16;
-    --panel-sub: #0e1320;
-    --grid: #141c2c;
-    --rule: #1e283c;
-    --rule-bright: #2d3b55;
-    --fg: #d7e2f8;
-    --dim: #7587a6;
-    --dimmer: #455470;
-    --mess: #ffc46b;   /* Gemessenes Audiosignal (Gold) */
-    --modl: #9fa8ff;   /* Modell / Analytisch */
-    --phos: #6ee7c0;   /* Phosphor / Phasenporträt */
-    --hot: #ff6b81;    /* Faltung / negative Frequenz */
-    --rec: #ff3838;    /* Record Rot */
-    --accent: #ff4757; /* Aktive Synth-Farbe (dynamisch) */
+    --ink: #030509;
+    --panel: #070b14;
+    --panel-sub: #0a0f1c;
+    --grid: #111827;
+    --rule: #182234;
+    --rule-bright: #25334d;
+    --fg: #dce6fb;
+    --dim: #798dae;
+    --dimmer: #485876;
+    
+    /* Subtile Farb-Tokens für spezifische Funktionsbereiche */
+    --col-loop: #ff4757;   /* Crimson/Rose für Loop-Stack & Recording */
+    --col-mod: #38c7ff;    /* Cyber Sky Blue für Klang & Modulation */
+    --col-spec: #a29bfe;   /* Soft Amethyst für Spezial-Parameter */
+    --col-env: #fd79a8;    /* Flamingo Pink für Hüllkurve */
+    --col-voice: #6ee7c0;  /* Mint Jade für Sprach-Looper & Spielhilfen */
+    --col-save: #2ed573;   /* Emerald für Save */
+    --col-load: #70a1ff;   /* Soft Royal für Load */
+
+    --mess: #ffc46b;       /* Gemessenes Audiosignal (Gold) */
+    --modl: #9fa8ff;       /* Modell / Analytisch */
+    --phos: #6ee7c0;       /* Phosphor / Phasenporträt */
+    --hot: #ff6b81;        /* Faltung / negative Frequenz */
+    --rec: #ff3838;        /* Record Rot */
+    --accent: #ff4757;     /* Aktive Synth-Farbe (dynamisch) */
     --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
     --sidebar-w: 360px;
     --kb-h: 74px;
@@ -44,7 +54,7 @@
   header {
     border-bottom: 1px solid var(--rule);
     padding: 6px 12px 6px;
-    background: linear-gradient(180deg, #080c15 0%, #04060a 100%);
+    background: linear-gradient(180deg, #090e1a 0%, #04060a 100%);
     position: relative;
     z-index: 20;
     flex-shrink: 0;
@@ -68,12 +78,13 @@
     margin: 0;
     letter-spacing: .25em;
     text-transform: uppercase;
-    color: var(--fg);
+    color: #f1f5fd;
+    text-shadow: 0 0 10px rgba(56, 199, 255, 0.2);
   }
   .sub {
     color: var(--dim);
-    font-size: 9.5px;
-    letter-spacing: .1em;
+    font-size: 9px;
+    letter-spacing: .12em;
     text-transform: uppercase;
   }
 
@@ -86,16 +97,19 @@
   .song-btn-group {
     display: flex;
     gap: 3px;
-    background: #070a12;
-    padding: 1px;
+    background: rgba(14, 20, 34, 0.7);
+    padding: 2px 3px;
     border: 1px solid var(--rule);
     border-radius: 3px;
+  }
+  .song-btn-group button {
+    border-radius: 2px;
   }
   .layout-btn-group {
     display: flex;
     gap: 2px;
-    background: #070a12;
-    padding: 1px;
+    background: rgba(14, 20, 34, 0.7);
+    padding: 2px 3px;
     border: 1px solid var(--rule);
     border-radius: 3px;
   }
@@ -121,7 +135,7 @@
     gap: 4px;
     margin-bottom: 5px;
     padding: 4px 6px;
-    background: var(--panel-sub);
+    background: linear-gradient(180deg, #090e1c 0%, #060912 100%);
     border: 1px solid var(--rule);
     border-radius: 3px;
   }
@@ -141,24 +155,35 @@
     font-family: var(--mono);
     font-size: 9px;
     letter-spacing: .08em;
-    padding: 2px 6px;
+    padding: 2px 7px;
     border-radius: 2px;
     border: 1px solid var(--rule);
-    background: #070a12;
+    background: #080c16;
     color: var(--dim);
     cursor: pointer;
     transition: all .12s;
   }
+  .bank-btn#btnBankA { border-color: rgba(255, 71, 87, 0.35); color: #ff8591; }
+  .bank-btn#btnBankB { border-color: rgba(56, 199, 255, 0.35); color: #7ad7ff; }
   .bank-btn.active {
-    background: rgba(255,255,255,0.12);
+    font-weight: 700;
+  }
+  .bank-btn#btnBankA.active {
+    background: rgba(255, 71, 87, 0.2);
     color: #fff;
-    border-color: var(--dim);
-    font-weight: 600;
+    border-color: #ff4757;
+    box-shadow: 0 0 8px -2px rgba(255, 71, 87, 0.5);
+  }
+  .bank-btn#btnBankB.active {
+    background: rgba(56, 199, 255, 0.2);
+    color: #fff;
+    border-color: #38c7ff;
+    box-shadow: 0 0 8px -2px rgba(56, 199, 255, 0.5);
   }
   select#synthSelect {
     font-family: var(--mono);
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--fg);
     background: #060911;
     border: 1px solid var(--accent);
@@ -167,6 +192,7 @@
     cursor: pointer;
     outline: none;
     max-width: 260px;
+    box-shadow: 0 0 6px -2px var(--accent);
   }
 
   .synth-pills-row {
@@ -177,20 +203,22 @@
   .bank-label-tag {
     font-size: 8.5px;
     letter-spacing: .08em;
-    color: var(--dimmer);
     text-transform: uppercase;
     align-self: center;
     padding-right: 3px;
   }
+  #pillsBankA .bank-label-tag { color: #ff6b81; }
+  #pillsBankB .bank-label-tag { color: #70a1ff; }
+
   .synth-pill {
     display: flex;
     align-items: center;
     gap: 3px;
     font-family: var(--mono);
     font-size: 9px;
-    background: #070a12;
+    background: #080c16;
     color: var(--dim);
-    border: 1px solid var(--rule);
+    border: 1px solid rgba(34, 45, 68, 0.8);
     padding: 1.5px 5px;
     border-radius: 2px;
     cursor: pointer;
@@ -227,13 +255,14 @@
   .synth-pill:hover {
     color: var(--fg);
     border-color: var(--dimmer);
+    background: #0e1424;
   }
   .synth-pill.active {
     color: #05070d;
     background: var(--pill-color, var(--accent));
     border-color: var(--pill-color, var(--accent));
-    font-weight: 600;
-    box-shadow: 0 0 8px -2px var(--pill-color, var(--accent));
+    font-weight: 700;
+    box-shadow: 0 0 9px -2px var(--pill-color, var(--accent));
   }
   .synth-pill.active .key-num {
     background: rgba(0,0,0,0.25);
@@ -242,7 +271,7 @@
 
   /* Formel-Darstellung */
   .formula-box {
-    background: #050810;
+    background: linear-gradient(180deg, #070b17 0%, #03050a 100%);
     border: 1px solid var(--rule);
     border-radius: 3px;
     padding: 4px 8px 3px;
@@ -265,27 +294,31 @@
     margin-top: 1px;
     font-variant-numeric: tabular-nums;
   }
-  .formula .op { color: var(--dim); }
-  .formula em { font-style: italic; color: #fff; }
+  .formula .op { color: #8fa0c0; }
+  .formula em { font-style: italic; color: #ffffff; }
   .formula .idx { color: var(--accent); }
   .formula .subtext { font-size: 8.5px; color: var(--dim); margin-left: 5px; }
 
   .lfoline {
     margin-top: 2px;
-    color: var(--dim);
     font-size: 9px;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
   }
   .lfoline span { white-space: nowrap; }
+  .lfoline span:nth-child(1) { color: #7ad7ff; }
+  .lfoline span:nth-child(2) { color: #a29bfe; }
+  .lfoline span:nth-child(3) { color: #ffc46b; }
+  .lfoline span:nth-child(4) { color: #fd79a8; }
+  .lfoline span:nth-child(5) { color: #6ee7c0; }
+  .lfoline span:nth-child(6) { color: #ff78ae; }
   .lfoline b {
-    color: var(--accent);
-    font-weight: 500;
+    font-weight: 600;
     font-variant-numeric: tabular-nums;
   }
 
-  /* ---------- HAUPT-STUDIOBEREICH (RESIZABLE SPLITTER LAYOUT) ---------- */
+  /* ---------- HAUPT-STUDIOBEREICH MIT SUBTILEN PANEL-FARBEN ---------- */
   #studioLayout {
     flex: 1;
     display: flex;
@@ -294,7 +327,7 @@
     overflow: hidden;
   }
 
-  /* Linker Bereich: Visualizer Grid */
+  /* Linker Bereich: Visualizer Grid mit subtilen Umrandungen */
   .plots-container {
     flex: 1;
     min-width: 240px;
@@ -314,6 +347,11 @@
     background: var(--panel);
     overflow: hidden;
   }
+  .plot:nth-child(1) { background: linear-gradient(135deg, #070c18 0%, #050810 100%); }
+  .plot:nth-child(2) { background: linear-gradient(135deg, #090a16 0%, #05060e 100%); }
+  .plot:nth-child(3) { background: linear-gradient(135deg, #0a0818 0%, #060510 100%); }
+  .plot:nth-child(4) { background: linear-gradient(135deg, #060e14 0%, #04080c 100%); }
+
   .plot:nth-child(2n) { border-right: none; }
   .plot:nth-child(3), .plot:nth-child(4) { border-bottom: none; }
   .plot canvas {
@@ -330,12 +368,20 @@
     text-transform: uppercase;
     color: var(--dim);
     pointer-events: none;
-    background: rgba(8, 12, 20, 0.85);
-    padding: 2px 4px;
+    background: rgba(8, 12, 22, 0.85);
+    padding: 2px 5px;
     border-radius: 2px;
     backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
   }
+  .plot:nth-child(1) .cap { border-left: 2px solid #38c7ff; }
+  .plot:nth-child(2) .cap { border-left: 2px solid #ffc46b; }
+  .plot:nth-child(3) .cap { border-left: 2px solid #a29bfe; }
+  .plot:nth-child(4) .cap { border-left: 2px solid #6ee7c0; }
+
   .plot .cap b {
     display: block;
     letter-spacing: .02em;
@@ -343,13 +389,12 @@
     color: var(--dimmer);
     font-weight: 400;
     font-size: 8px;
-    margin-top: 1px;
   }
 
   /* Vertikaler Resizable Splitter */
   .splitter-h {
     width: 6px;
-    background: #070a12;
+    background: #060911;
     border-left: 1px solid var(--rule);
     border-right: 1px solid var(--rule);
     cursor: col-resize;
@@ -381,7 +426,7 @@
     min-width: 260px;
     max-width: 800px;
     height: 100%;
-    background: #060911;
+    background: #05070e;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -408,13 +453,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 4px 7px;
-    background: #0b0f1a;
+    background: linear-gradient(90deg, rgba(255, 71, 87, 0.12) 0%, rgba(10, 15, 28, 0.8) 100%);
     border: 1px solid var(--accent);
     border-radius: 3px;
     margin-bottom: 6px;
   }
   .synth-header-badge .name {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 10px;
     color: var(--accent);
     letter-spacing: .04em;
@@ -427,22 +472,50 @@
     color: var(--fg);
   }
 
+  /* Subtile Gruppen-Module */
   .grp {
-    background: #090d16;
     padding: 7px 8px 6px;
     border-radius: 3px;
-    border: 1px solid rgba(34, 45, 68, 0.6);
+    border: 1px solid var(--rule);
+    position: relative;
   }
   .grp > h2 {
     font-size: 8px;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: var(--dim);
     margin: 0 0 6px;
-    font-weight: 600;
+    font-weight: 700;
     display: flex;
     justify-content: space-between;
   }
+
+  /* Modul 1: Loop Stack (Subtil Rot/Wein) */
+  .grp-loop {
+    background: linear-gradient(180deg, #0e070c 0%, #070408 100%);
+    border-color: rgba(255, 71, 87, 0.35);
+  }
+  .grp-loop > h2 { color: #ff6b81; }
+
+  /* Modul 2: Klang & Modulation (Subtil Cyan/Blau) */
+  .grp-mod {
+    background: linear-gradient(180deg, #060b17 0%, #04070e 100%);
+    border-color: rgba(56, 199, 255, 0.28);
+  }
+  .grp-mod > h2 { color: #7ad7ff; }
+
+  /* Modul 3: Spezial & Hüllkurve (Subtil Amethyst/Violett) */
+  .grp-spec {
+    background: linear-gradient(180deg, #090716 0%, #05040d 100%);
+    border-color: rgba(162, 155, 254, 0.3);
+  }
+  .grp-spec > h2 { color: #b8b1ff; }
+
+  /* Modul 4: Spielhilfen & Sprach-Zuspieler (Subtil Jade/Teal) */
+  .grp-voice {
+    background: linear-gradient(180deg, #050e12 0%, #03080b 100%);
+    border-color: rgba(110, 231, 192, 0.28);
+  }
+  .grp-voice > h2 { color: #6ee7c0; }
 
   /* Parameter-Blocks */
   .param-block {
@@ -474,6 +547,7 @@
   .param-right-ctrls .vl {
     font-size: 9.5px;
     color: var(--accent);
+    font-weight: 600;
     font-variant-numeric: tabular-nums;
   }
   .osc-toggle-label {
@@ -492,7 +566,7 @@
     letter-spacing: .06em;
     padding: 1px 3.5px;
     border-radius: 2px;
-    background: #0c101c;
+    background: #090e1a;
     color: var(--dimmer);
     border: 1px solid var(--rule);
     transition: all .12s;
@@ -515,7 +589,7 @@
     position: absolute;
     height: 3px;
     background: var(--accent);
-    opacity: 0.4;
+    opacity: 0.45;
     border-radius: 2px;
     pointer-events: none;
     display: none;
@@ -564,8 +638,8 @@
     display: none;
     margin-top: 3px;
     padding: 3px 5px 4px;
-    background: #050810;
-    border: 1px solid rgba(255, 71, 87, 0.2);
+    background: #04060c;
+    border: 1px solid rgba(255, 71, 87, 0.25);
     border-radius: 2px;
   }
   .param-block.osc-enabled .osc-drawer {
@@ -619,7 +693,7 @@
     position: relative;
   }
   .knob-svg { width: 100%; height: 100%; }
-  .knob-bg { fill: #080c16; stroke: var(--rule); stroke-width: 2; }
+  .knob-bg { fill: #070a14; stroke: var(--rule-bright); stroke-width: 2; }
   .knob-arc { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; }
   .knob-pointer { stroke: #ffffff; stroke-width: 1.6; stroke-linecap: round; }
   .knob-label { display: flex; flex-direction: column; font-size: 7.5px; color: var(--dim); }
@@ -633,7 +707,7 @@
     gap: 5px;
     width: 100%;
     padding: 5px 8px;
-    background: #140a0e;
+    background: #18090d;
     border: 1px solid #ff4757;
     color: #ff4757;
     font-weight: 700;
@@ -644,7 +718,7 @@
     transition: all .12s ease;
   }
   .rec-btn .rec-dot { width: 7px; height: 7px; border-radius: 50%; background: #ff4757; }
-  .rec-btn:hover { background: #200d14; }
+  .rec-btn:hover { background: #280e15; }
   .rec-btn.recording {
     background: #ff3838;
     color: #05070d;
@@ -660,9 +734,9 @@
     gap: 4px;
     margin-top: 5px;
     padding-top: 4px;
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid rgba(255, 71, 87, 0.2);
   }
-  .stack-summary { font-size: 8.5px; color: var(--dim); }
+  .stack-summary { font-size: 8.5px; color: #ff8591; }
   .stack-list {
     display: flex;
     flex-direction: column;
@@ -677,11 +751,11 @@
     text-align: center;
     color: var(--dimmer);
     font-size: 8.5px;
-    border: 1px dashed var(--rule);
+    border: 1px dashed rgba(255, 71, 87, 0.25);
     border-radius: 2px;
   }
   .loop-card {
-    background: #050810;
+    background: #06070f;
     border: 1px solid var(--card-color, var(--rule));
     border-radius: 2px;
     padding: 4px 6px;
@@ -732,7 +806,7 @@
   .loop-card-wave {
     width: 100%;
     height: 16px;
-    background: #030508;
+    background: #020306;
     border-radius: 2px;
     overflow: hidden;
     position: relative;
@@ -768,7 +842,7 @@
     font-size: 8.5px;
     letter-spacing: .04em;
     text-transform: uppercase;
-    background: #0c101c;
+    background: #090e1a;
     color: var(--dim);
     border: 1px solid var(--rule);
     padding: 3px 6px;
@@ -776,27 +850,27 @@
     cursor: pointer;
     transition: all .1s;
   }
-  button:hover { color: var(--fg); border-color: var(--dimmer); background: #111726; }
-  button[aria-pressed=true] { color: #05070d; background: var(--accent); border-color: var(--accent); font-weight: 600; }
+  button:hover { color: var(--fg); border-color: var(--dimmer); background: #101728; }
+  button[aria-pressed=true] { color: #05070d; background: var(--accent); border-color: var(--accent); font-weight: 700; }
 
   /* Loop Progress Indicator */
   .loop-status-box {
     margin-top: 4px;
     padding: 4px 6px;
-    background: #05070d;
-    border: 1px solid var(--rule);
+    background: #03060a;
+    border: 1px solid rgba(110, 231, 192, 0.2);
     border-radius: 2px;
     font-size: 8.5px;
   }
   .loop-status-line { display: flex; justify-content: space-between; align-items: center; color: var(--dim); margin-bottom: 2px; }
-  .loop-status-line b { color: var(--mess); font-weight: 500; }
+  .loop-status-line b { color: var(--mess); font-weight: 600; }
   .loop-bar-track { height: 2.5px; background: var(--rule); border-radius: 2px; overflow: hidden; }
   .loop-bar-fill { height: 100%; width: 0%; background: var(--mess); transition: width 0.1s linear; }
 
   /* Horizontaler Splitter */
   .splitter-v {
     height: 5px;
-    background: #070a12;
+    background: #060911;
     border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
     cursor: row-resize;
@@ -827,7 +901,7 @@
     height: var(--kb-h);
     min-height: 48px;
     max-height: 120px;
-    background: #060911;
+    background: linear-gradient(180deg, #070b16 0%, #030509 100%);
     padding: 4px 8px 6px;
     display: flex;
     flex-direction: column;
@@ -853,8 +927,8 @@
     flex: 1 1 0;
     min-width: 0;
     max-width: 70px;
-    border: 1px solid var(--rule);
-    background: #0c111e;
+    border: 1px solid #1c273c;
+    background: linear-gradient(180deg, #101626 0%, #0a0e18 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -865,14 +939,19 @@
     border-radius: 2px;
     transition: background .08s;
   }
-  .key .ltr { font-size: 11px; color: var(--fg); font-weight: 500; }
+  .key .ltr { font-size: 11px; color: #e1e9f8; font-weight: 500; }
   .key .nt { font-size: 7.5px; color: var(--dimmer); }
-  .key.blk { background: #05070d; height: 75%; align-self: flex-start; }
-  .key.blk .ltr { color: var(--dim); }
+  .key.blk {
+    background: linear-gradient(180deg, #050810 0%, #020306 100%);
+    border-color: #121a28;
+    height: 75%;
+    align-self: flex-start;
+  }
+  .key.blk .ltr { color: #8fa0c0; }
   .key.on {
-    background: var(--accent);
-    border-color: var(--accent);
-    box-shadow: 0 0 12px -2px var(--accent);
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 14px -1px var(--accent);
   }
   .key.on .ltr, .key.on .nt { color: #05070d; font-weight: bold; }
 
@@ -880,7 +959,7 @@
   #veil {
     position: fixed;
     inset: 0;
-    background: rgba(4, 6, 10, 0.95);
+    background: rgba(3, 5, 9, 0.96);
     z-index: 99;
     display: flex;
     align-items: center;
@@ -927,10 +1006,10 @@
       <div class="sub">20 Synthesizer · Looper · Song Speichern/Laden</div>
     </div>
     <div class="header-actions">
-      <!-- Song Speichern & Laden Buttons -->
+      <!-- Song Speichern & Laden Buttons mit subtilem Farbakzent -->
       <div class="song-btn-group">
-        <button id="saveSongBtn" style="border-color:#6ee7c0;color:#6ee7c0;font-weight:600;" title="Kompletten Song & alle Loops als JSON speichern">💾 Speichern</button>
-        <button id="loadSongBtn" style="border-color:#38c7ff;color:#38c7ff;font-weight:600;" title="Song & Loops aus JSON-Datei laden">📂 Laden</button>
+        <button id="saveSongBtn" style="border-color:rgba(46, 213, 115, 0.4);background:rgba(46, 213, 115, 0.08);color:#2ed573;font-weight:600;" title="Kompletten Song & alle Loops als JSON speichern">💾 Speichern</button>
+        <button id="loadSongBtn" style="border-color:rgba(112, 161, 255, 0.4);background:rgba(112, 161, 255, 0.08);color:#70a1ff;font-weight:600;" title="Song & Loops aus JSON-Datei laden">📂 Laden</button>
         <input type="file" id="songFileInput" accept=".json" style="display:none">
       </div>
 
@@ -939,8 +1018,8 @@
         <button class="layout-btn" id="layWideRack" title="Breites Multi-Spalten Rack">Doppel-Rack</button>
         <button class="layout-btn" id="layFullscreen" title="Vollbild umschalten">⛶ Vollbild</button>
       </div>
-      <button id="quickRecBtn" style="border-color:#ff4757;color:#ff4757;font-weight:600;">● REC (R)</button>
-      <button id="globalPanic" style="border-color:#ff6b81;color:#ff6b81;">Stille (Esc)</button>
+      <button id="quickRecBtn" style="border-color:rgba(255, 71, 87, 0.5);background:rgba(255, 71, 87, 0.1);color:#ff4757;font-weight:600;">● REC (R)</button>
+      <button id="globalPanic" style="border-color:rgba(255, 107, 129, 0.4);background:rgba(255, 107, 129, 0.08);color:#ff6b81;">Stille (Esc)</button>
     </div>
   </div>
 
@@ -979,7 +1058,7 @@
 
 <!-- HAUPT-STUDIOBEREICH MIT RESIZABLE SPLITTERS -->
 <div id="studioLayout">
-  <!-- Linke Seite: 4-Panel Visualizer Grid -->
+  <!-- Linke Seite: 4-Panel Visualizer Grid mit subtilen Umrandungen -->
   <div class="plots-container" id="plotsContainer">
     <div class="plot">
       <canvas id="cWave"></canvas>
@@ -1002,7 +1081,7 @@
   <!-- Vertikaler Resizable Splitter -->
   <div class="splitter-h" id="splitH" title="Ziehen zum Vergrößern/Verkleinern"></div>
 
-  <!-- Rechte Seite: Sidebar Control Rack -->
+  <!-- Rechte Seite: Sidebar Control Rack mit subtil farbcodierten Sektionen -->
   <div class="sidebar-container" id="sidebarContainer">
     <div class="synth-header-badge" id="synthBadge">
       <span class="name" id="badgeName">1 · Lorenz Chaos FM</span>
@@ -1010,8 +1089,8 @@
     </div>
 
     <div class="rack-grid">
-      <!-- RACK SECTION 1: LOOP STACK & RECORD -->
-      <div class="grp" style="border-color: rgba(255, 71, 87, 0.4); background: #0a070e;">
+      <!-- RACK SECTION 1: LOOP STACK & RECORD (Subtil Crimson) -->
+      <div class="grp grp-loop">
         <h2><span>Loop-Stack & Aufnahme</span><span id="recStatusInfo" style="color:var(--rec);font-weight:bold;">BEREIT</span></h2>
         <button class="rec-btn" id="recToggleBtn">
           <span class="rec-dot"></span>
@@ -1020,7 +1099,7 @@
         <div class="stack-controls-bar">
           <div class="btns">
             <button id="toggleAllLoopsBtn">Alle AN / AUS</button>
-            <button id="clearStackBtn" style="border-color:#ff6b81;color:#ff6b81;">Löschen</button>
+            <button id="clearStackBtn" style="border-color:rgba(255, 107, 129, 0.4);color:#ff6b81;">Löschen</button>
           </div>
           <span class="stack-summary" id="stackSummaryText">0 Loops</span>
         </div>
@@ -1029,8 +1108,8 @@
         </div>
       </div>
 
-      <!-- RACK SECTION 2: KLANG & MODULATION MIT OSZILLATION -->
-      <div class="grp">
+      <!-- RACK SECTION 2: KLANG & MODULATION MIT OSZILLATION (Subtil Cyan) -->
+      <div class="grp grp-mod">
         <h2><span>Klang & Modulation</span><span id="paramPresetInfo" style="color:var(--dimmer);font-weight:normal"></span></h2>
         
         <!-- Verhältnis r -->
@@ -1178,8 +1257,8 @@
         </div>
       </div>
 
-      <!-- RACK SECTION 3: SPEZIAL-PARAMETER & HÜLLKURVE -->
-      <div class="grp" id="customParamGrp">
+      <!-- RACK SECTION 3: SPEZIAL-PARAMETER & HÜLLKURVE (Subtil Amethyst) -->
+      <div class="grp grp-spec" id="customParamGrp">
         <h2><span id="customParamTitle">Spezial-Parameter</span></h2>
         <div class="param-block" id="block_customParam">
           <div class="param-top-row">
@@ -1216,7 +1295,7 @@
           </div>
         </div>
 
-        <div style="margin-top:6px;border-top:1px solid var(--rule);padding-top:5px;">
+        <div style="margin-top:6px;border-top:1px solid rgba(162, 155, 254, 0.25);padding-top:5px;">
           <label class="ctl"><span class="row"><span class="nm">Attack</span><span class="vl" id="v_atk"></span></span>
             <input type="range" id="atk" min="0.005" max="6" step="0.005" value="0.1"></label>
           <label class="ctl"><span class="row"><span class="nm">Release</span><span class="vl" id="v_rel"></span></span>
@@ -1230,8 +1309,8 @@
         </div>
       </div>
 
-      <!-- RACK SECTION 4: SPIELHILFEN & SPRACH-ZUSPIEL -->
-      <div class="grp">
+      <!-- RACK SECTION 4: SPIELHILFEN & SPRACH-ZUSPIEL (Subtil Jade) -->
+      <div class="grp grp-voice">
         <h2><span>Spielhilfen & Presets</span></h2>
         <div class="btns">
           <button id="latch" aria-pressed="false">Latch</button>
@@ -1241,9 +1320,9 @@
         </div>
         <div class="btns" style="margin-top:4px" id="presetButtons"></div>
 
-        <div style="margin-top:6px;border-top:1px solid var(--rule);padding-top:5px;">
+        <div style="margin-top:6px;border-top:1px solid rgba(110, 231, 192, 0.2);padding-top:5px;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:8.5px;text-transform:uppercase;color:var(--dim);font-weight:600;">Sprach-Loop</span>
+            <span style="font-size:8.5px;text-transform:uppercase;color:#6ee7c0;font-weight:700;">Sprach-Loop</span>
             <button id="loopbtn" aria-pressed="false">Abspielen</button>
           </div>
           <label class="ctl" style="margin-top:4px"><span class="row"><span class="nm">Pause</span><span class="vl" id="v_pausedur">+2.5 s</span></span>
@@ -2037,7 +2116,7 @@ function stopRecording() {
   } catch(e){}
 
   recToggleBtn.classList.remove("recording");
-  quickRecBtn.style.background = "transparent";
+  quickRecBtn.style.background = "rgba(255, 71, 87, 0.1)";
   quickRecBtn.style.color = "#ff4757";
   recBtnText.textContent = "LOOP AUFNEHMEN (R)";
   recStatusInfo.textContent = "BEREIT";
@@ -2233,14 +2312,14 @@ function renderLoopStackUI() {
 function drawMiniWaveform(canvas, buffer, color) {
   const g = canvas.getContext("2d");
   const w = canvas.width, h = canvas.height;
-  g.fillStyle = "#030508";
+  g.fillStyle = "#020306";
   g.fillRect(0, 0, w, h);
   const data = buffer.getChannelData(0);
   const step = Math.ceil(data.length / w);
   const amp = h / 2;
 
   g.strokeStyle = color;
-  g.lineWidth = 1;
+  g.lineWidth = 1.1;
   g.beginPath();
   for (let i = 0; i < w; i++) {
     let min = 1.0, max = -1.0;
@@ -2781,7 +2860,7 @@ function drawLabel(g, txt, x, y, col, size, align) {
    ------------------------------------------------------------ */
 function drawWave(currentI, activeInst) {
   const o = CV.cWave, g = o.g, w = o.w, h = o.h, mid = h * 0.54;
-  g.fillStyle = COLORS.panel;
+  g.fillStyle = "#070c18";
   g.fillRect(0, 0, w, h);
   drawGrid(g, w, h, 4, 8);
 
@@ -2883,7 +2962,7 @@ function drawWave(currentI, activeInst) {
    ------------------------------------------------------------ */
 function drawFreq(currentI, activeInst) {
   const o = CV.cFreq, g = o.g, w = o.w, h = o.h;
-  g.fillStyle = COLORS.panel;
+  g.fillStyle = "#090a16";
   g.fillRect(0, 0, w, h);
 
   const fc = activeInst.primary.f, fm = activeInst.primary.fm;
@@ -2936,7 +3015,7 @@ function drawFreq(currentI, activeInst) {
    ------------------------------------------------------------ */
 function drawSpec(currentI, activeInst) {
   const o = CV.cSpec, g = o.g, w = o.w, h = o.h;
-  g.fillStyle = COLORS.panel;
+  g.fillStyle = "#0a0818";
   g.fillRect(0, 0, w, h);
 
   const fc = activeInst.primary.f, fm = activeInst.primary.fm;
@@ -3017,11 +3096,11 @@ let orbFirst = true;
 function drawOrb() {
   const o = CV.cOrb, g = o.g, w = o.w, h = o.h;
   if (orbFirst) {
-    g.fillStyle = COLORS.panel;
+    g.fillStyle = "#060e14";
     g.fillRect(0, 0, w, h);
     orbFirst = false;
   }
-  g.fillStyle = "rgba(9,13,22,0.14)";
+  g.fillStyle = "rgba(6,14,20,0.14)";
   g.fillRect(0, 0, w, h);
 
   const cx = w / 2, cy = h / 2, R = Math.min(w, h) * 0.38;
