@@ -12,6 +12,14 @@ function makeChebyshevCurve(fold = 0, bias = 0, drive = 1) {
   const b = Math.max(-1, Math.min(1, bias));
   const drv = Math.max(0.5, Math.min(8.0, drive));
 
+  // If linear (no fold, no bias, 1.0 drive), return exact identity line (100% pure sine with 0 distortion)
+  if (gamma === 0 && b === 0 && drv === 1.0) {
+    for (let i = 0; i < n_samples; ++i) {
+      curve[i] = (i * 2) / n_samples - 1;
+    }
+    return curve;
+  }
+
   for (let i = 0; i < n_samples; ++i) {
     let x = (i * 2) / n_samples - 1;
     x = Math.max(-1, Math.min(1, (x + b * 0.4) * drv));
@@ -36,55 +44,53 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
 
   // 1. Read Canonical Matrix Parameters with Full Fallbacks
   const r1 = inst.params.r1_ratio ?? 1.0;
-  const r2 = inst.params.r2_ratio ?? inst.params.ratio ?? 1.5;
+  const r2 = inst.params.r2_ratio ?? inst.params.ratio ?? 1.0;
   const r3 = inst.params.r3_ratio ?? 2.0;
   const r4 = inst.params.r4_ratio ?? 0.5;
 
-  const i0 = inst.params.mod_I0 ?? inst.params.I0 ?? 2.5;
-  const di = inst.params.mod_dI ?? inst.params.dI ?? 1.5;
-  const cross = inst.params.mod_cross ?? 0.5;
-  const fb = inst.params.mod_fb ?? 0.0;
+  const i0 = Math.max(0, inst.params.mod_I0 ?? inst.params.I0 ?? 0.0);
+  const di = Math.max(0, inst.params.mod_dI ?? inst.params.dI ?? 0.0);
+  const cross = Math.max(0, inst.params.mod_cross ?? 0.0);
+  const fb = Math.max(0, inst.params.mod_fb ?? 0.0);
   const detuneCent = inst.params.op_detune ?? 0.0;
-  const spreadPct = inst.params.op_spread ?? 20.0;
+  const spreadPct = Math.max(0, inst.params.op_spread ?? 0.0);
 
-  const fold = inst.params.shape_fold ?? 0.0;
+  const fold = Math.max(0, inst.params.shape_fold ?? 0.0);
   const bias = inst.params.shape_bias ?? 0.0;
-  const drive = inst.params.shape_drive ?? 1.0;
+  const drive = Math.max(0.5, inst.params.shape_drive ?? 1.0);
 
-  const fltCutoff = Math.max(20, Math.min(20000, inst.params.flt_cutoff ?? 12000));
+  const fltCutoff = Math.max(20, Math.min(20000, inst.params.flt_cutoff ?? 16000));
   const fltReso = Math.max(0.1, Math.min(24.0, inst.params.flt_reso ?? 1.0));
   const fltEnvAmt = inst.params.flt_envAmt ?? 0.0;
   const panVal = ((inst.params.space_pan ?? 50) - 50) / 50;
 
   // 2. Dual Decoupled Envelopes (Amplitude vs. Modulator Spectrum)
-  const atk = Math.max(0.002, inst.params.env_atk ?? inst.params.atk ?? 0.05);
+  const atk = Math.max(0.002, inst.params.env_atk ?? inst.params.atk ?? 0.04);
   const dec = Math.max(0.01, inst.params.env_dec ?? 0.4);
-  const susPct = Math.max(0.02, Math.min(1.0, (inst.params.env_sus ?? 80) / 100));
-  const rel = Math.max(0.02, inst.params.env_rel ?? inst.params.rel ?? 2.0);
+  const susPct = Math.max(0.05, Math.min(1.0, (inst.params.env_sus ?? 85) / 100));
+  const rel = Math.max(0.02, inst.params.env_rel ?? inst.params.rel ?? 2.2);
 
   const modAtk = Math.max(0.001, inst.params.mod_env_atk ?? 0.003);
-  const modDec = Math.max(0.01, inst.params.mod_env_dec ?? (dec * 0.75));
-  const modSusPct = Math.max(0.0, Math.min(1.0, (inst.params.mod_env_sus ?? 25) / 100));
-  const modRel = Math.max(0.01, inst.params.mod_env_rel ?? (rel * 0.5));
+  const modDec = Math.max(0.01, inst.params.mod_env_dec ?? (dec * 0.8));
+  const modSusPct = Math.max(0.0, Math.min(1.0, (inst.params.mod_env_sus ?? 50) / 100));
 
-  // 3. Pitch-Dependent Key-Scaling (Keeps High Notes Silk-Smooth, Bass Punchy)
-  const keyScalePct = (inst.params.key_scaling ?? 25) / 100;
+  // 3. Pitch-Dependent Key-Scaling (Keeps High Notes Pure, Bass Punchy)
+  const keyScalePct = (inst.params.key_scaling ?? 20) / 100;
   const noteOffset = sem - 60; // Relative to Middle C (MIDI 60)
-  const keyScaleFactor = Math.max(0.25, Math.min(2.5, Math.pow(2, -noteOffset / 36 * keyScalePct)));
+  const keyScaleFactor = Math.max(0.25, Math.min(2.0, Math.pow(2, -noteOffset / 36 * keyScalePct)));
 
   // 4. Operator Frequencies
   const detuneMult = Math.pow(2, detuneCent / 1200);
   const fc1 = f * r1 * detuneMult;
-  const fc2 = fc1 * (1 + (spreadPct / 100) * 0.008);
+  const fc2 = spreadPct > 0 ? (fc1 * (1 + (spreadPct / 100) * 0.005)) : fc1;
   const fm2 = f * r2;
   const fm3 = f * r3;
   const fm4 = f * r4;
 
   inst.primary = { f, fm: fm2 };
 
-  // 5. Oscillator Allocation (Car1, Car2, Mod2, Mod3, Mod4)
+  // 5. Oscillator Allocation (Car1, Mod2, Mod3, Mod4)
   const car1 = ctx.createOscillator(); car1.frequency.value = fc1;
-  const car2 = ctx.createOscillator(); car2.frequency.value = fc2;
   const mod2 = ctx.createOscillator(); mod2.frequency.value = fm2;
   const mod3 = ctx.createOscillator(); mod3.frequency.value = fm3;
   const mod4 = ctx.createOscillator(); mod4.frequency.value = fm4;
@@ -94,14 +100,12 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
   const waveTypes = ["sine", "sawtooth", "square", "triangle"];
   if (waveTypeIdx > 0 && waveTypes[waveTypeIdx]) {
     car1.type = waveTypes[waveTypeIdx];
-    car2.type = waveTypes[waveTypeIdx];
   }
 
-  if (synthIdx === 1 || (synthIdx >= 20 && synthIdx <= 29)) {
-    mod2.setPeriodicWave(cosWave);
-  }
-  if (synthIdx >= 60 && synthIdx <= 69) {
-    car1.type = "sawtooth"; car2.type = "triangle";
+  if (typeof cosWave !== "undefined" && cosWave) {
+    if (synthIdx === 1 || (synthIdx >= 20 && synthIdx <= 29)) {
+      mod2.setPeriodicWave(cosWave);
+    }
   }
 
   // 6. Modulation Gain Nodes
@@ -111,29 +115,30 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
   const lfoG  = ctx.createGain();
   const fbGain = ctx.createGain();
 
-  const scaledI0 = Math.max(0, i0) * keyScaleFactor;
-  const scaledDI = Math.max(0, di) * keyScaleFactor;
+  const scaledI0 = i0 * keyScaleFactor;
+  const scaledDI = di * keyScaleFactor;
   const peakI2 = (scaledI0 + scaledDI) * fm2;
-  const susI2  = (scaledI0 * modSusPct) * fm2;
+  const susI2  = (scaledI0 * (0.35 + 0.65 * modSusPct)) * fm2;
 
-  // Apply Modulator Envelope on Mod2 (100% mathematically safe linear ramps)
-  mod2G.gain.setValueAtTime(scaledI0 * 0.1 * fm2, now);
-  mod2G.gain.linearRampToValueAtTime(peakI2, now + modAtk);
-  mod2G.gain.linearRampToValueAtTime(susI2, now + modAtk + modDec);
+  // Apply Modulator Envelope on Mod2
+  if (scaledI0 > 0 || scaledDI > 0) {
+    mod2G.gain.setValueAtTime(scaledI0 * 0.2 * fm2, now);
+    mod2G.gain.linearRampToValueAtTime(peakI2, now + modAtk);
+    mod2G.gain.linearRampToValueAtTime(susI2, now + modAtk + modDec);
+  } else {
+    mod2G.gain.setValueAtTime(0, now);
+  }
 
-  lfoG.gain.value = di * fm2;
+  lfoG.gain.value = scaledDI * fm2;
   mod3G.gain.value = cross * fm3 * keyScaleFactor;
-  mod4G.gain.value = r4 * fm4 * 0.7 * keyScaleFactor;
-  fbGain.gain.value = Math.min(0.95, fb * 0.18) * fm2;
+  mod4G.gain.value = cross * 0.5 * fm4 * keyScaleFactor;
+  fbGain.gain.value = Math.min(0.85, fb * 0.15) * fm2;
 
-  // 7. Determine & Wire Selected FM Algorithm (1–8)
-  const algoId = Math.round(inst.params.algo_type ?? 1);
-
-  // Common Nodes for Output Bus
+  // 7. Output Chain Nodes
   const driveNode = ctx.createGain(); driveNode.gain.value = drive;
   const shaper = ctx.createWaveShaper();
   shaper.curve = makeChebyshevCurve(fold, bias, drive);
-  shaper.oversample = "4x";
+  shaper.oversample = (fold > 0 || bias !== 0 || drive > 1.2) ? "4x" : "none";
 
   const filter = ctx.createBiquadFilter();
   filter.type = "lowpass";
@@ -145,7 +150,7 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
   }
   filter.Q.value = fltReso;
 
-  const voicePeak = 0.18;
+  const voicePeak = 0.22;
   const env = ctx.createGain();
   env.gain.setValueAtTime(0.0001, now);
   env.gain.linearRampToValueAtTime(voicePeak, now + atk);
@@ -164,72 +169,82 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
     inst.bus.connect(stackMasterGain);
   }
 
+  let car2 = null;
+  if (spreadPct > 0) {
+    car2 = ctx.createOscillator();
+    car2.frequency.value = fc2;
+    if (waveTypeIdx > 0 && waveTypes[waveTypeIdx]) car2.type = waveTypes[waveTypeIdx];
+  }
+
   // --- ALGORITHM TOPOLOGY ROUTING ---
+  const algoId = Math.round(inst.params.algo_type ?? 1);
+
   switch (algoId) {
-    case 1: // DUAL-STACK (2+2): (Mod2 -> Car1) + (Mod4 -> Car2) (DX7 Rhodes, Bells, Mallets)
+    case 1: // CLASSIC CHOWNING / DX7 STACK: Mod2 -> Car1 (Pure Chimes, Bells, Rhodes, Pianos)
       mod2.connect(mod2G).connect(car1.frequency);
-      mod2.connect(fbGain).connect(mod2.frequency);
-      mod4.connect(mod4G).connect(car2.frequency);
+      if (fb > 0) mod2.connect(fbGain).connect(mod2.frequency);
+      if (cross > 0) mod3.connect(mod3G).connect(mod2.frequency);
       car1.connect(driveNode);
-      car2.connect(driveNode);
+      if (car2) {
+        mod2G.connect(car2.frequency);
+        car2.connect(driveNode);
+      }
       break;
 
-    case 2: // DUAL-MODULATOR PARALLEL: (Mod2 + Mod3) -> Car1 (Brass, Moog Saw, Formants)
+    case 2: // DUAL-PARALLEL MODULATORS: (Mod2 + Mod3) -> Car1 (Brass, Horns, Vowels, Strings)
       mod2.connect(mod2G).connect(car1.frequency);
-      mod3.connect(mod3G).connect(car1.frequency);
-      mod2.connect(fbGain).connect(mod2.frequency);
+      if (cross > 0) mod3.connect(mod3G).connect(car1.frequency);
+      if (fb > 0) mod2.connect(fbGain).connect(mod2.frequency);
       car1.connect(driveNode);
-      car2.connect(driveNode);
+      if (car2) car2.connect(driveNode);
       break;
 
-    case 3: // 3-CARRIER ADDITIVE: Car1 + Car2 + Car3 + (Mod4 -> Car1) (Organ, B3, Pads)
-      mod4.connect(mod4G).connect(car1.frequency);
-      car1.connect(driveNode);
-      car2.connect(driveNode);
-      mod3.connect(driveNode); // Mod3 operates as third harmonic carrier
-      break;
-
-    case 4: // 4-OP DEEP CASCADE: Mod4 -> Mod3 -> Mod2 -> Car1 (Gongs, Metallics, Chiptunes)
-      mod4.connect(mod4G).connect(mod3.frequency);
-      mod3.connect(mod3G).connect(mod2.frequency);
-      mod2.connect(mod2G).connect(car1.frequency);
-      mod4.connect(fbGain).connect(mod4.frequency);
-      car1.connect(driveNode);
-      car2.connect(driveNode);
-      break;
-
-    case 5: // BRANCHING WAVEFOLD PLUCK: Mod3 -> (Car1 + Car2) -> Wavefolder (Buchla Bongos, Plucks)
-      mod3.connect(mod3G).connect(mod2.frequency);
-      mod2.connect(mod2G).connect(car1.frequency);
-      mod2G.connect(car2.frequency);
-      car1.connect(driveNode);
-      car2.connect(driveNode);
-      break;
-
-    case 6: // CROSS-MOD RING & SYNC: Mod2 <-> Car1 + Self-Feedback (Acid 303, Sync Screeches)
-      mod2.connect(mod2G).connect(car1.frequency);
-      car1.connect(mod3G).connect(mod2.frequency);
-      mod2.connect(fbGain).connect(mod2.frequency);
-      car1.connect(driveNode);
-      car2.connect(driveNode);
-      break;
-
-    case 7: // PHYSICAL MODELING WAVEGUIDE: String Burst + Resonator (Koto, Sitar, Harfe)
-      mod4.connect(mod4G).connect(car1.frequency);
+    case 3: // 3-OPERATOR ADDITIVE HARMONIC: Car1 + Mod3 (Drawbars, Cathedral Organ, B3)
       mod2.connect(mod2G).connect(car1.frequency);
       car1.connect(driveNode);
-      car2.connect(driveNode);
+      const mod3Out = ctx.createGain();
+      mod3Out.gain.value = 0.35 * Math.min(1.0, cross + 0.5);
+      mod3.connect(mod3Out).connect(driveNode);
+      if (car2) car2.connect(driveNode);
       break;
 
-    case 8: // CHAOS ATTRACTOR FM: Lorenz DGL Modulation (Quantum/Chaos)
+    case 4: // 3-STAGE CASCADE: Mod4 -> Mod3 -> Mod2 -> Car1 (Genesis Bass, FM Leads, Lasers)
+      if (cross > 0) mod4.connect(mod4G).connect(mod3.frequency);
+      if (cross > 0) mod3.connect(mod3G).connect(mod2.frequency);
+      mod2.connect(mod2G).connect(car1.frequency);
+      if (fb > 0) mod2.connect(fbGain).connect(mod2.frequency);
+      car1.connect(driveNode);
+      if (car2) car2.connect(driveNode);
+      break;
+
+    case 5: // WAVEFOLD PLUCK: Mod2 -> Car1 -> Wavefolder (Buchla Bongos, Plucks, Kalimba, Mallets)
+      mod2.connect(mod2G).connect(car1.frequency);
+      if (cross > 0) mod3.connect(mod3G).connect(mod2.frequency);
+      car1.connect(driveNode);
+      if (car2) car2.connect(driveNode);
+      break;
+
+    case 6: // ACID 303 & SYNC: Mod2 -> Car1 + Resonant Squelch (TB-303, Acid Leads, Sync Screamer)
+      mod2.connect(mod2G).connect(car1.frequency);
+      if (fb > 0) mod2.connect(fbGain).connect(mod2.frequency);
+      car1.connect(driveNode);
+      if (car2) car2.connect(driveNode);
+      break;
+
+    case 7: // PHYSICAL ACOUSTIC STRING / FLUTE: Mod2 (Air/Pluck) -> Car1 (Body Resonator)
+      mod2.connect(mod2G).connect(car1.frequency);
+      if (cross > 0) mod3.connect(mod3G).connect(car1.frequency);
+      car1.connect(driveNode);
+      if (car2) car2.connect(driveNode);
+      break;
+
+    case 8: // LORENZ / QUANTUM CHAOS FM: Complex Non-linear Spectrum
     default:
-      mod4.connect(mod4G).connect(mod3.frequency);
-      mod3.connect(mod3G).connect(mod2.frequency);
+      if (cross > 0) mod3.connect(mod3G).connect(mod2.frequency);
       mod2.connect(mod2G).connect(car1.frequency);
-      mod2G.connect(car2.frequency);
-      mod2.connect(fbGain).connect(mod2.frequency);
+      if (fb > 0) mod2.connect(fbGain).connect(mod2.frequency);
       car1.connect(driveNode);
-      car2.connect(driveNode);
+      if (car2) car2.connect(driveNode);
       break;
   }
 
@@ -238,7 +253,7 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
     try {
       inst.lfoOsc.connect(lfoG);
       lfoG.connect(car1.frequency);
-      lfoG.connect(car2.frequency);
+      if (car2) lfoG.connect(car2.frequency);
     } catch(err){}
   }
 
@@ -255,7 +270,7 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
   mod3.start(now);
   mod2.start(now);
   car1.start(now);
-  car2.start(now);
+  if (car2) car2.start(now);
 
   let voiceObj = {
     f, fm: fm2, t0: now,
@@ -263,8 +278,9 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
     mod: mod2, mod1: mod2, mod2, mod3, mod4,
     modG: mod2G, mod1G: mod2G, mod2G, mod3G, mod4G,
     lfoG, fbGain, driveNode, shaper, filter, env, panner,
-    nodes: [car1, car2, mod2, mod3, mod4, mod2G, lfoG, mod3G, mod4G, fbGain, driveNode, shaper, filter, env]
+    nodes: [car1, mod2, mod3, mod4, mod2G, lfoG, mod3G, mod4G, fbGain, driveNode, shaper, filter, env]
   };
+  if (car2) voiceObj.nodes.push(car2);
 
   // Complex Vibrato & Humanizer
   if (inst.vibrato && inst.vibrato.enabled && inst.vibrato.depth > 0) {
@@ -285,7 +301,7 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
 
     try {
       vibGainNode.connect(car1.frequency);
-      vibGainNode.connect(car2.frequency);
+      if (car2) vibGainNode.connect(car2.frequency);
     } catch(err){}
 
     vibLfo.start(now);
