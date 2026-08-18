@@ -32,7 +32,7 @@
     --rec: #ff3838;        /* Record Rot */
     --accent: #ff4757;     /* Aktive Synth-Farbe (dynamisch) */
     --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
-    --sidebar-w: 360px;
+    --sidebar-w: 88vw;
     --kb-h: 74px;
   }
   * { box-sizing: border-box; }
@@ -1451,9 +1451,9 @@
       </div>
 
       <div class="layout-btn-group">
-        <button class="layout-btn active" id="layStandard" title="2x2 Grid Layout">Grid</button>
+        <button class="layout-btn" id="layStandard" title="2x2 Grid Layout">Grid</button>
         <button class="layout-btn" id="layWideRack" title="Breites Doppel-Rack">Rack</button>
-        <button class="layout-btn" id="layMiniGfx" title="GFX auf 10% verkleinern (90% Rack-Fokus)">10% GFX</button>
+        <button class="layout-btn active" id="layMiniGfx" title="GFX auf 10% verkleinern (90% Rack-Fokus)">10% GFX</button>
         <button class="layout-btn" id="layFullscreen" title="Vollbild">⛶</button>
       </div>
 
@@ -1493,7 +1493,7 @@
 <!-- HAUPT-STUDIOBEREICH MIT RESIZABLE SPLITTERS -->
 <div id="studioLayout">
   <!-- Linke Seite: 4-Panel Visualizer Grid mit subtilen Umrandungen -->
-  <div class="plots-container" id="plotsContainer">
+  <div class="plots-container mini-gfx" id="plotsContainer">
     <div class="plot">
       <canvas id="cWave"></canvas>
       <div class="cap">1 · Zeitfunktion y(t)<b>Modell vs. Summenmessung</b></div>
@@ -1516,7 +1516,7 @@
   <div class="splitter-h" id="splitH" title="Ziehen zum Vergrößern/Verkleinern"></div>
 
   <!-- Rechte Seite: Sidebar Control Rack mit subtil farbcodierten Sektionen -->
-  <div class="sidebar-container" id="sidebarContainer">
+  <div class="sidebar-container multi-col" id="sidebarContainer">
     <div class="synth-header-badge" id="synthBadge">
       <span class="name" id="badgeName">1 · Lorenz Chaos FM</span>
       <span class="badge" id="badgeVoices">0 Stimmen aktiv</span>
@@ -3695,6 +3695,18 @@ layFullscreen.addEventListener("click", () => {
   }
 });
 
+function applyInitialLayout() {
+  const winW = window.innerWidth;
+  const newSidebarW = Math.max(360, Math.min(winW * 0.90, winW - 80));
+  document.documentElement.style.setProperty("--sidebar-w", Math.round(newSidebarW) + "px");
+  if (plotsContainer) plotsContainer.classList.add("mini-gfx");
+  if (sidebarContainer) sidebarContainer.classList.add("multi-col");
+  if (layMiniGfx) layMiniGfx.classList.add("active");
+  if (layStandard) layStandard.classList.remove("active");
+  if (layWideRack) layWideRack.classList.remove("active");
+  resize();
+}
+
 /* ============================================================
    Bessel-Funktion J_n(x)
    ============================================================ */
@@ -5461,7 +5473,7 @@ const startBtn = document.getElementById("startBtn");
 function startApp() {
   if (veil) veil.remove();
   initAudio();
-  resize();
+  applyInitialLayout();
   selectSynth(0);
 }
 
@@ -5472,9 +5484,9 @@ window.addEventListener("keydown", () => { if (document.body.contains(veil)) sta
 // Initialisierung
 setupUnifiedParamControls();
 setupArpControls();
+applyInitialLayout();
 selectSynth(0);
 readColors();
-resize();
 requestAnimationFrame(renderFrame);
 </script>
 </body>
