@@ -52,7 +52,8 @@ saveSongBtn.addEventListener("click", () => {
       isOn: layer.isOn,
       pauseSec: layer.pauseSec,
       audioWavBase64: audioBufferToWavBase64(layer.buffer)
-    }))
+    })),
+    fxConfig: typeof FX_CONFIG !== "undefined" ? JSON.parse(JSON.stringify(FX_CONFIG)) : null
   };
 
   const jsonStr = JSON.stringify(songData, null, 2);
@@ -160,6 +161,28 @@ songFileInput.addEventListener("change", async e => {
           createLoopLayer(audioBuf, savedLoop.synthIdx ?? 0, savedLoop);
         }
       }
+    }
+
+    // 4.5. FX Module wiederherstellen
+    if (songData.fxConfig && typeof FX_CONFIG !== "undefined") {
+      Object.keys(songData.fxConfig).forEach(fxId => {
+        if (FX_CONFIG[fxId]) {
+          const savedFx = songData.fxConfig[fxId];
+          FX_CONFIG[fxId].enabled = !!savedFx.enabled;
+          FX_CONFIG[fxId].mix = savedFx.mix ?? FX_CONFIG[fxId].mix;
+          if (savedFx.params) {
+            Object.keys(savedFx.params).forEach(pKey => {
+              if (FX_CONFIG[fxId].params[pKey] && savedFx.params[pKey].val !== undefined) {
+                FX_CONFIG[fxId].params[pKey].val = savedFx.params[pKey].val;
+              }
+            });
+          }
+          if (savedFx.oscillators) {
+            Object.assign(FX_CONFIG[fxId].oscillators, savedFx.oscillators);
+          }
+        }
+      });
+      if (typeof setupFxControls === "function") setupFxControls();
     }
 
     // 5. Aktiven Synthesizer umschalten & UI synchronisieren

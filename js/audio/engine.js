@@ -262,6 +262,8 @@ function initAudio() {
     inst.lfoOsc.frequency.value = inst.params.lfo;
     inst.lfoOsc.start();
   });
+
+  if (typeof initFxEngine === "function") initFxEngine();
 }
 
 function createReverbIR(duration, decay) {
