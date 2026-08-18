@@ -517,39 +517,54 @@
   }
   .grp-voice > h2 { color: #6ee7c0; }
 
-  /* Parameter-Blocks */
-  .param-block {
-    margin-bottom: 6px;
-    padding-bottom: 5px;
-    border-bottom: 1px dashed rgba(34, 45, 68, 0.4);
+  /* ============================================================
+     KOMPAKTE UNIFIED PARAMETER CONTROL ROW (ALL-IN-ONE)
+     ============================================================ */
+  .param-row-unified {
+    margin-bottom: 5px;
+    padding: 3.5px 6px 4px;
+    background: rgba(8, 12, 22, 0.7);
+    border: 1px solid rgba(28, 38, 58, 0.8);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5px;
+    transition: border-color .15s, background .15s;
   }
-  .param-block:last-child {
+  .param-row-unified:last-child {
     margin-bottom: 1px;
-    padding-bottom: 0;
-    border-bottom: none;
   }
-  .param-top-row {
+  .param-row-unified.osc-active {
+    border-color: rgba(255, 71, 87, 0.4);
+    background: rgba(14, 18, 30, 0.85);
+  }
+
+  .p-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 4px;
-    margin-bottom: 2px;
   }
-  .param-top-row .nm {
-    font-size: 9.5px;
+  .p-name {
+    font-size: 9px;
     color: var(--fg);
+    font-weight: 500;
+    white-space: nowrap;
   }
-  .param-right-ctrls {
+  .p-right {
     display: flex;
     align-items: center;
     gap: 5px;
   }
-  .param-right-ctrls .vl {
+  .p-val {
     font-size: 9.5px;
     color: var(--accent);
-    font-weight: 600;
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
+    min-width: 44px;
+    text-align: right;
   }
+
   .osc-toggle-label {
     display: flex;
     align-items: center;
@@ -578,126 +593,166 @@
     box-shadow: 0 0 6px var(--accent);
   }
 
-  .slider-wrapper {
-    position: relative;
-    width: 100%;
-    height: 12px;
+  .p-controls-row {
     display: flex;
-    align-items: center;
-  }
-  .osc-range-track {
-    position: absolute;
-    height: 3px;
-    background: var(--accent);
-    opacity: 0.45;
-    border-radius: 2px;
-    pointer-events: none;
-    display: none;
-  }
-  .slider-wrapper.osc-active .osc-range-track {
-    display: block;
-  }
-
-  input[type=range] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 12px;
-    background: transparent;
-    margin: 0;
-    cursor: ew-resize;
-    position: relative;
-    z-index: 2;
-  }
-  input[type=range]::-webkit-slider-runnable-track {
-    height: 2px;
-    background: var(--rule);
-  }
-  input[type=range]::-moz-range-track {
-    height: 2px;
-    background: var(--rule);
-  }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 4px;
-    height: 10px;
-    background: var(--accent);
-    margin-top: -4px;
-    border-radius: 0;
-    box-shadow: 0 0 4px var(--accent);
-  }
-  input[type=range]::-moz-range-thumb {
-    width: 4px;
-    height: 10px;
-    background: var(--accent);
-    border: none;
-    border-radius: 0;
-  }
-
-  .osc-drawer {
-    display: none;
-    margin-top: 3px;
-    padding: 3px 5px 4px;
-    background: #04060c;
-    border: 1px solid rgba(255, 71, 87, 0.25);
-    border-radius: 2px;
-  }
-  .param-block.osc-enabled .osc-drawer {
-    display: block;
-  }
-  .osc-drawer-grid {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 6px;
-  }
-  .osc-markers {
-    flex: 1;
-    display: flex;
-    gap: 4px;
-  }
-  .marker-lbl {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    font-size: 7.5px;
-    color: var(--dim);
-  }
-  .marker-input {
-    width: 100%;
-    font-family: var(--mono);
-    font-size: 8.5px;
-    color: var(--fg);
-    background: #080c16;
-    border: 1px solid var(--rule);
-    padding: 1px 3px;
-    border-radius: 2px;
-    outline: none;
-  }
-  .marker-input:focus {
-    border-color: var(--accent);
+    height: 18px;
   }
 
-  /* Drehknopf */
-  .knob-container {
+  /* Multi-Handle Track Area */
+  .track-area {
+    position: relative;
+    flex: 1;
+    height: 18px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    cursor: pointer;
     user-select: none;
+    touch-action: none;
+  }
+  .track-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #141c2c;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .track-span {
+    position: absolute;
+    height: 3px;
+    background: linear-gradient(90deg, #ffc46b, var(--accent));
+    border-radius: 2px;
+    opacity: 0.85;
+    box-shadow: 0 0 5px var(--accent);
+    pointer-events: none;
+    transition: opacity .12s;
+  }
+  .param-row-unified:not(.osc-active) .track-span {
+    opacity: 0.3;
+    background: #25334d;
+    box-shadow: none;
+  }
+
+  /* Draggable UI Handles */
+  .handle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    touch-action: none;
+    cursor: ew-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .08s, box-shadow .12s;
+  }
+  .handle:hover, .handle.dragging {
+    transform: translate(-50%, -50%) scale(1.15);
+    z-index: 10 !important;
+  }
+
+  /* Handle A (Start) */
+  .handle-a {
+    width: 11px;
+    height: 15px;
+    background: #090e1a;
+    border: 1.5px solid #ffc46b;
+    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(255, 196, 107, 0.4);
+    z-index: 5;
+  }
+  .handle-a .h-tag {
+    font-size: 7px;
+    font-weight: 800;
+    color: #ffc46b;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* Handle B (End) */
+  .handle-b {
+    width: 11px;
+    height: 15px;
+    background: #090e1a;
+    border: 1.5px solid #ff6b81;
+    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(255, 107, 129, 0.4);
+    z-index: 5;
+  }
+  .handle-b .h-tag {
+    font-size: 7px;
+    font-weight: 800;
+    color: #ff6b81;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .param-row-unified:not(.osc-active) .handle-a {
+    border-color: #556684;
+    box-shadow: none;
+  }
+  .param-row-unified:not(.osc-active) .handle-a .h-tag {
+    color: #556684;
+  }
+  .param-row-unified:not(.osc-active) .handle-b {
+    border-color: #556684;
+    box-shadow: none;
+  }
+  .param-row-unified:not(.osc-active) .handle-b .h-tag {
+    color: #556684;
+  }
+
+  /* Main Value Needle / Thumb */
+  .handle-thumb {
+    width: 4px;
+    height: 17px;
+    background: #ffffff;
+    border: 1px solid #000;
+    border-radius: 1px;
+    box-shadow: 0 0 7px #ffffff;
+    z-index: 7;
+    cursor: ew-resize;
+  }
+
+  /* Compact Rotary Knob in the same row */
+  .knob-mini-wrap {
+    display: flex;
+    align-items: center;
+    gap: 3px;
     cursor: ns-resize;
+    user-select: none;
+    flex-shrink: 0;
+    padding: 1px 3px;
+    border-radius: 2px;
+    background: rgba(14, 20, 34, 0.6);
+    border: 1px solid var(--rule);
+    touch-action: none;
+  }
+  .knob-mini-wrap:hover {
+    border-color: var(--dimmer);
+    background: rgba(18, 26, 44, 0.8);
   }
   .knob-dial {
-    width: 24px;
-    height: 24px;
+    width: 17px;
+    height: 17px;
     position: relative;
+    flex-shrink: 0;
   }
   .knob-svg { width: 100%; height: 100%; }
-  .knob-bg { fill: #070a14; stroke: var(--rule-bright); stroke-width: 2; }
-  .knob-arc { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; }
-  .knob-pointer { stroke: #ffffff; stroke-width: 1.6; stroke-linecap: round; }
-  .knob-label { display: flex; flex-direction: column; font-size: 7.5px; color: var(--dim); }
-  .knob-val { font-size: 8.5px; color: var(--accent); font-weight: 700; }
+  .knob-bg { fill: #070a14; stroke: var(--rule-bright); stroke-width: 2.2; }
+  .knob-arc { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; }
+  .knob-pointer { stroke: #ffffff; stroke-width: 1.8; stroke-linecap: round; }
+  .knob-val {
+    font-size: 8px;
+    color: var(--accent);
+    font-weight: 700;
+    min-width: 14px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
 
   /* Loop-Stack & Record */
   .rec-btn {
@@ -835,6 +890,34 @@
   .ctl .row { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 1px; }
   .ctl .nm { font-size: 9px; color: var(--fg); }
   .ctl .vl { font-size: 9px; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 12px;
+    background: transparent;
+    margin: 0;
+    cursor: ew-resize;
+  }
+  input[type=range]::-webkit-slider-runnable-track { height: 2px; background: var(--rule); }
+  input[type=range]::-moz-range-track { height: 2px; background: var(--rule); }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 4px;
+    height: 10px;
+    background: var(--accent);
+    margin-top: -4px;
+    border-radius: 0;
+    box-shadow: 0 0 4px var(--accent);
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 4px;
+    height: 10px;
+    background: var(--accent);
+    border: none;
+    border-radius: 0;
+  }
 
   .btns { display: flex; gap: 3px; flex-wrap: wrap; }
   button {
@@ -1108,150 +1191,138 @@
         </div>
       </div>
 
-      <!-- RACK SECTION 2: KLANG & MODULATION MIT OSZILLATION (Subtil Cyan) -->
+      <!-- RACK SECTION 2: KLANG & MODULATION MIT UNIFIED HANDLES (Subtil Cyan) -->
       <div class="grp grp-mod">
         <h2><span>Klang & Modulation</span><span id="paramPresetInfo" style="color:var(--dimmer);font-weight:normal"></span></h2>
         
         <!-- Verhältnis r -->
-        <div class="param-block" id="block_ratio">
-          <div class="param-top-row">
-            <span class="nm">Verhältnis r = f<sub>m</sub>/f<sub>c</sub></span>
-            <div class="param-right-ctrls">
-              <span class="vl" id="v_ratio">1.500</span>
+        <div class="param-row-unified" id="block_ratio" data-param="ratio">
+          <div class="p-header">
+            <span class="p-name">Verhältnis r = f<sub>m</sub>/f<sub>c</sub></span>
+            <div class="p-right">
+              <span class="p-val" id="v_ratio">1.500</span>
               <label class="osc-toggle-label" title="Oszillation An/Aus">
                 <input type="checkbox" id="osc_en_ratio" class="osc-chk" data-param="ratio">
                 <span class="osc-badge">~ OSC</span>
               </label>
             </div>
           </div>
-          <div class="slider-wrapper" id="wrap_ratio">
-            <div class="osc-range-track" id="track_ratio"></div>
-            <input type="range" id="ratio" min="0.05" max="9" step="0.005" value="1.5">
-          </div>
-          <div class="osc-drawer">
-            <div class="osc-drawer-grid">
-              <div class="osc-markers">
-                <label class="marker-lbl"><span>Start A</span><input type="number" id="min_ratio" class="marker-input" step="0.01"></label>
-                <label class="marker-lbl"><span>Ende B</span><input type="number" id="max_ratio" class="marker-input" step="0.01"></label>
+          <div class="p-controls-row">
+            <div class="track-area" id="trackarea_ratio" data-param="ratio">
+              <div class="track-line"></div>
+              <div class="track-span" id="span_ratio"></div>
+              <div class="handle handle-a" id="handle_a_ratio" title="Start A"><span class="h-tag">A</span></div>
+              <div class="handle handle-b" id="handle_b_ratio" title="Ende B"><span class="h-tag">B</span></div>
+              <div class="handle handle-thumb" id="thumb_ratio" title="Wert ziehen"></div>
+            </div>
+            <div class="knob-mini-wrap" id="knob_ratio" data-param="ratio" title="Geschwindigkeit (0–100)">
+              <div class="knob-dial">
+                <svg class="knob-svg" viewBox="0 0 32 32">
+                  <circle class="knob-bg" cx="16" cy="16" r="13" />
+                  <path class="knob-arc" d="" />
+                  <line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />
+                </svg>
               </div>
-              <div class="knob-container" id="knob_ratio" data-param="ratio">
-                <div class="knob-dial">
-                  <svg class="knob-svg" viewBox="0 0 40 40">
-                    <circle class="knob-bg" cx="20" cy="20" r="16" />
-                    <path class="knob-arc" d="" />
-                    <line class="knob-pointer" x1="20" y1="20" x2="20" y2="6" />
-                  </svg>
-                </div>
-                <div class="knob-label">Tempo<b class="knob-val">30</b></div>
-              </div>
+              <span class="knob-val">30</span>
             </div>
           </div>
         </div>
 
         <!-- Basis-Index I0 -->
-        <div class="param-block" id="block_I0">
-          <div class="param-top-row">
-            <span class="nm">Basis-Index I₀</span>
-            <div class="param-right-ctrls">
-              <span class="vl" id="v_I0">2.50</span>
+        <div class="param-row-unified" id="block_I0" data-param="I0">
+          <div class="p-header">
+            <span class="p-name">Basis-Index I₀</span>
+            <div class="p-right">
+              <span class="p-val" id="v_I0">2.50</span>
               <label class="osc-toggle-label" title="Oszillation An/Aus">
                 <input type="checkbox" id="osc_en_I0" class="osc-chk" data-param="I0">
                 <span class="osc-badge">~ OSC</span>
               </label>
             </div>
           </div>
-          <div class="slider-wrapper" id="wrap_I0">
-            <div class="osc-range-track" id="track_I0"></div>
-            <input type="range" id="I0" min="0" max="12" step="0.01" value="2.5">
-          </div>
-          <div class="osc-drawer">
-            <div class="osc-drawer-grid">
-              <div class="osc-markers">
-                <label class="marker-lbl"><span>Start A</span><input type="number" id="min_I0" class="marker-input" step="0.05"></label>
-                <label class="marker-lbl"><span>Ende B</span><input type="number" id="max_I0" class="marker-input" step="0.05"></label>
+          <div class="p-controls-row">
+            <div class="track-area" id="trackarea_I0" data-param="I0">
+              <div class="track-line"></div>
+              <div class="track-span" id="span_I0"></div>
+              <div class="handle handle-a" id="handle_a_I0" title="Start A"><span class="h-tag">A</span></div>
+              <div class="handle handle-b" id="handle_b_I0" title="Ende B"><span class="h-tag">B</span></div>
+              <div class="handle handle-thumb" id="thumb_I0" title="Wert ziehen"></div>
+            </div>
+            <div class="knob-mini-wrap" id="knob_I0" data-param="I0" title="Geschwindigkeit (0–100)">
+              <div class="knob-dial">
+                <svg class="knob-svg" viewBox="0 0 32 32">
+                  <circle class="knob-bg" cx="16" cy="16" r="13" />
+                  <path class="knob-arc" d="" />
+                  <line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />
+                </svg>
               </div>
-              <div class="knob-container" id="knob_I0" data-param="I0">
-                <div class="knob-dial">
-                  <svg class="knob-svg" viewBox="0 0 40 40">
-                    <circle class="knob-bg" cx="20" cy="20" r="16" />
-                    <path class="knob-arc" d="" />
-                    <line class="knob-pointer" x1="20" y1="20" x2="20" y2="6" />
-                  </svg>
-                </div>
-                <div class="knob-label">Tempo<b class="knob-val">25</b></div>
-              </div>
+              <span class="knob-val">25</span>
             </div>
           </div>
         </div>
 
         <!-- Index-Atem dI -->
-        <div class="param-block" id="block_dI">
-          <div class="param-top-row">
-            <span class="nm">Index-Atem ΔI</span>
-            <div class="param-right-ctrls">
-              <span class="vl" id="v_dI">1.50</span>
+        <div class="param-row-unified" id="block_dI" data-param="dI">
+          <div class="p-header">
+            <span class="p-name">Index-Atem ΔI</span>
+            <div class="p-right">
+              <span class="p-val" id="v_dI">1.50</span>
               <label class="osc-toggle-label" title="Oszillation An/Aus">
                 <input type="checkbox" id="osc_en_dI" class="osc-chk" data-param="dI">
                 <span class="osc-badge">~ OSC</span>
               </label>
             </div>
           </div>
-          <div class="slider-wrapper" id="wrap_dI">
-            <div class="osc-range-track" id="track_dI"></div>
-            <input type="range" id="dI" min="0" max="8" step="0.01" value="1.5">
-          </div>
-          <div class="osc-drawer">
-            <div class="osc-drawer-grid">
-              <div class="osc-markers">
-                <label class="marker-lbl"><span>Start A</span><input type="number" id="min_dI" class="marker-input" step="0.05"></label>
-                <label class="marker-lbl"><span>Ende B</span><input type="number" id="max_dI" class="marker-input" step="0.05"></label>
+          <div class="p-controls-row">
+            <div class="track-area" id="trackarea_dI" data-param="dI">
+              <div class="track-line"></div>
+              <div class="track-span" id="span_dI"></div>
+              <div class="handle handle-a" id="handle_a_dI" title="Start A"><span class="h-tag">A</span></div>
+              <div class="handle handle-b" id="handle_b_dI" title="Ende B"><span class="h-tag">B</span></div>
+              <div class="handle handle-thumb" id="thumb_dI" title="Wert ziehen"></div>
+            </div>
+            <div class="knob-mini-wrap" id="knob_dI" data-param="dI" title="Geschwindigkeit (0–100)">
+              <div class="knob-dial">
+                <svg class="knob-svg" viewBox="0 0 32 32">
+                  <circle class="knob-bg" cx="16" cy="16" r="13" />
+                  <path class="knob-arc" d="" />
+                  <line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />
+                </svg>
               </div>
-              <div class="knob-container" id="knob_dI" data-param="dI">
-                <div class="knob-dial">
-                  <svg class="knob-svg" viewBox="0 0 40 40">
-                    <circle class="knob-bg" cx="20" cy="20" r="16" />
-                    <path class="knob-arc" d="" />
-                    <line class="knob-pointer" x1="20" y1="20" x2="20" y2="6" />
-                  </svg>
-                </div>
-                <div class="knob-label">Tempo<b class="knob-val">30</b></div>
-              </div>
+              <span class="knob-val">30</span>
             </div>
           </div>
         </div>
 
         <!-- LFO Rate -->
-        <div class="param-block" id="block_lfo">
-          <div class="param-top-row">
-            <span class="nm">LFO / Rate f<sub>L</sub></span>
-            <div class="param-right-ctrls">
-              <span class="vl" id="v_lfo">0.080 Hz</span>
+        <div class="param-row-unified" id="block_lfo" data-param="lfo">
+          <div class="p-header">
+            <span class="p-name">LFO / Rate f<sub>L</sub></span>
+            <div class="p-right">
+              <span class="p-val" id="v_lfo">0.080 Hz</span>
               <label class="osc-toggle-label" title="Oszillation An/Aus">
                 <input type="checkbox" id="osc_en_lfo" class="osc-chk" data-param="lfo">
                 <span class="osc-badge">~ OSC</span>
               </label>
             </div>
           </div>
-          <div class="slider-wrapper" id="wrap_lfo">
-            <div class="osc-range-track" id="track_lfo"></div>
-            <input type="range" id="lfo" min="0.005" max="16" step="0.005" value="0.08">
-          </div>
-          <div class="osc-drawer">
-            <div class="osc-drawer-grid">
-              <div class="osc-markers">
-                <label class="marker-lbl"><span>Start A</span><input type="number" id="min_lfo" class="marker-input" step="0.01"></label>
-                <label class="marker-lbl"><span>Ende B</span><input type="number" id="max_lfo" class="marker-input" step="0.01"></label>
+          <div class="p-controls-row">
+            <div class="track-area" id="trackarea_lfo" data-param="lfo">
+              <div class="track-line"></div>
+              <div class="track-span" id="span_lfo"></div>
+              <div class="handle handle-a" id="handle_a_lfo" title="Start A"><span class="h-tag">A</span></div>
+              <div class="handle handle-b" id="handle_b_lfo" title="Ende B"><span class="h-tag">B</span></div>
+              <div class="handle handle-thumb" id="thumb_lfo" title="Wert ziehen"></div>
+            </div>
+            <div class="knob-mini-wrap" id="knob_lfo" data-param="lfo" title="Geschwindigkeit (0–100)">
+              <div class="knob-dial">
+                <svg class="knob-svg" viewBox="0 0 32 32">
+                  <circle class="knob-bg" cx="16" cy="16" r="13" />
+                  <path class="knob-arc" d="" />
+                  <line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />
+                </svg>
               </div>
-              <div class="knob-container" id="knob_lfo" data-param="lfo">
-                <div class="knob-dial">
-                  <svg class="knob-svg" viewBox="0 0 40 40">
-                    <circle class="knob-bg" cx="20" cy="20" r="16" />
-                    <path class="knob-arc" d="" />
-                    <line class="knob-pointer" x1="20" y1="20" x2="20" y2="6" />
-                  </svg>
-                </div>
-                <div class="knob-label">Tempo<b class="knob-val">20</b></div>
-              </div>
+              <span class="knob-val">20</span>
             </div>
           </div>
         </div>
@@ -1260,37 +1331,36 @@
       <!-- RACK SECTION 3: SPEZIAL-PARAMETER & HÜLLKURVE (Subtil Amethyst) -->
       <div class="grp grp-spec" id="customParamGrp">
         <h2><span id="customParamTitle">Spezial-Parameter</span></h2>
-        <div class="param-block" id="block_customParam">
-          <div class="param-top-row">
-            <span class="nm" id="customParamLabel">Chaos-Rayleigh ρ</span>
-            <div class="param-right-ctrls">
-              <span class="vl" id="v_custom">28.00</span>
+        
+        <!-- Spezial Parameter Unified Row -->
+        <div class="param-row-unified" id="block_customParam" data-param="customParam">
+          <div class="p-header">
+            <span class="p-name" id="customParamLabel">Chaos-Rayleigh ρ</span>
+            <div class="p-right">
+              <span class="p-val" id="v_custom">28.00</span>
               <label class="osc-toggle-label" title="Oszillation An/Aus">
                 <input type="checkbox" id="osc_en_customParam" class="osc-chk" data-param="customParam">
                 <span class="osc-badge">~ OSC</span>
               </label>
             </div>
           </div>
-          <div class="slider-wrapper" id="wrap_customParam">
-            <div class="osc-range-track" id="track_customParam"></div>
-            <input type="range" id="customParam" min="0" max="10" step="0.01" value="1.0">
-          </div>
-          <div class="osc-drawer">
-            <div class="osc-drawer-grid">
-              <div class="osc-markers">
-                <label class="marker-lbl"><span>Start A</span><input type="number" id="min_customParam" class="marker-input" step="0.1"></label>
-                <label class="marker-lbl"><span>Ende B</span><input type="number" id="max_customParam" class="marker-input" step="0.1"></label>
+          <div class="p-controls-row">
+            <div class="track-area" id="trackarea_customParam" data-param="customParam">
+              <div class="track-line"></div>
+              <div class="track-span" id="span_customParam"></div>
+              <div class="handle handle-a" id="handle_a_customParam" title="Start A"><span class="h-tag">A</span></div>
+              <div class="handle handle-b" id="handle_b_customParam" title="Ende B"><span class="h-tag">B</span></div>
+              <div class="handle handle-thumb" id="thumb_customParam" title="Wert ziehen"></div>
+            </div>
+            <div class="knob-mini-wrap" id="knob_customParam" data-param="customParam" title="Geschwindigkeit (0–100)">
+              <div class="knob-dial">
+                <svg class="knob-svg" viewBox="0 0 32 32">
+                  <circle class="knob-bg" cx="16" cy="16" r="13" />
+                  <path class="knob-arc" d="" />
+                  <line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />
+                </svg>
               </div>
-              <div class="knob-container" id="knob_customParam" data-param="customParam">
-                <div class="knob-dial">
-                  <svg class="knob-svg" viewBox="0 0 40 40">
-                    <circle class="knob-bg" cx="20" cy="20" r="16" />
-                    <path class="knob-arc" d="" />
-                    <line class="knob-pointer" x1="20" y1="20" x2="20" y2="6" />
-                  </svg>
-                </div>
-                <div class="knob-label">Tempo<b class="knob-val">35</b></div>
-              </div>
+              <span class="knob-val">35</span>
             </div>
           </div>
         </div>
@@ -1475,7 +1545,7 @@ const SYNTH_DEFS = [
   {
     id: 11, bank: "B", keyDisplay: "⇧2", name: "Kristall-Glocke", color: "#ffc46b",
     desc: "Inharmonische Glocken-FM mit exponentiellem Index-Decay",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A(t)<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + (<span class="sym">I₀<span class="val" id="f_I0">—</span></span> + <span class="sym idx">I<sub>pk</sub>·e<sup>-t/τ</sup><span class="val" id="f_I">—</span></span>)·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
+    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A(t)<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + (<span class="sym">I₀<span class="val" id="f_I0">—</span></span> + <span class="sym idx">I<sub>pk</sub>·e<sup>-t/tau</sup><span class="val" id="f_I">—</span></span>)·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
     formulaSub: 'Inharmonisches Verhältnis <em>r</em> ≈ 3.414 für metallische Röhrenglocken',
     customParam: { name: "Index-Decay τ", min: 0.1, max: 4, step: 0.05, val: 1.2 },
     defaults: { ratio: 3.414, I0: 0.4, dI: 4.8, lfo: 0.08, atk: 0.01, rel: 4.2, vol: 0.75, oct: 0, latch: false },
@@ -1511,7 +1581,7 @@ const SYNTH_DEFS = [
   {
     id: 15, bank: "B", keyDisplay: "⇧6", name: "Zupf-Koto / Tines", color: "#55efc4",
     desc: "Perkussives Pluck-FM mit steilem Start-Index & perkussivem Snap",
-    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A(t)<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + (<span class="sym">I₀<span class="val" id="f_I0">—</span></span> + <span class="sym idx">I<sub>pk</sub>·e<sup>-t/τ</sup><span class="val" id="f_I">—</span></span>)·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
+    formulaLatex: '<em>y</em>(<em>t</em>) = <span class="sym">A(t)<span class="val" id="f_A">—</span></span>·sin(2π<span class="sym"><em>f</em><sub>c</sub><span class="val" id="f_fc">—</span></span><em>t</em> + (<span class="sym">I₀<span class="val" id="f_I0">—</span></span> + <span class="sym idx">I<sub>pk</sub>·e<sup>-t/tau</sup><span class="val" id="f_I">—</span></span>)·sin(2π<span class="sym"><em>f</em><sub>m</sub><span class="val" id="f_fm">—</span></span><em>t</em>))',
     formulaSub: 'DX-Electric-Piano / Koto-Zupfen mit schnellem Hüllkurven-Transienten',
     customParam: { name: "Pluck-Snap", min: 1, max: 12, step: 0.1, val: 6.5 },
     defaults: { ratio: 1.0, I0: 0.2, dI: 5.5, lfo: 0.2, atk: 0.005, rel: 2.2, vol: 0.85, oct: 0, latch: false },
@@ -1561,6 +1631,14 @@ const SYNTH_DEFS = [
 let activeSynthIdx = 0;
 const lorenzState = { x: 0.1, y: 0, z: 0 };
 const OSC_PARAM_KEYS = ["ratio", "I0", "dI", "lfo", "customParam"];
+
+const PARAM_BOUNDS = {
+  ratio: { min: 0.05, max: 9.0, step: 0.005 },
+  I0: { min: 0.0, max: 12.0, step: 0.01 },
+  dI: { min: 0.0, max: 8.0, step: 0.01 },
+  lfo: { min: 0.005, max: 16.0, step: 0.005 },
+  customParam: { min: 0, max: 10, step: 0.01 }
+};
 
 const synthInstances = SYNTH_DEFS.map(def => {
   const oscs = {};
@@ -2212,7 +2290,7 @@ function setLayerVolume(id, vol) {
 
 function deleteLoopLayer(id) {
   const idx = loopStack.findIndex(l => l.id === id);
-  if (idx === -1) return;
+  if (!idx === -1) return;
   const layer = loopStack[idx];
   try {
     layer.srcNode.stop();
@@ -2535,8 +2613,34 @@ songFileInput.addEventListener("change", async e => {
 });
 
 /* ============================================================
-   PARAMETER-OSZILLATION & ROTARY KNOB DREHKNÖPFE
+   UNIFIED MULTI-HANDLE PARAMETER CONTROL & KNOB LOGIC
    ============================================================ */
+function getParamBounds(param) {
+  if (param === "customParam") {
+    return synthInstances[activeSynthIdx].def.customParam;
+  }
+  return PARAM_BOUNDS[param];
+}
+
+function valToPct(param, val) {
+  const b = getParamBounds(param);
+  const span = b.max - b.min;
+  if (span <= 0) return 0;
+  const clamped = Math.max(b.min, Math.min(b.max, val));
+  return (clamped - b.min) / span;
+}
+
+function pctToVal(param, pct) {
+  const b = getParamBounds(param);
+  const clamped = Math.max(0, Math.min(1, pct));
+  const raw = b.min + clamped * (b.max - b.min);
+  if (b.step) {
+    const inv = 1 / b.step;
+    return Math.round(raw * inv) / inv;
+  }
+  return raw;
+}
+
 function updateKnobVisual(container, val) {
   const arc = container.querySelector(".knob-arc");
   const pointer = container.querySelector(".knob-pointer");
@@ -2545,7 +2649,7 @@ function updateKnobVisual(container, val) {
   num.textContent = Math.round(val);
   const angle = -135 + (val / 100) * 270;
   const rad = (angle - 90) * Math.PI / 180;
-  const cx = 20, cy = 20, r = 14;
+  const cx = 16, cy = 16, r = 11;
   const x = cx + r * Math.cos(rad);
   const y = cy + r * Math.sin(rad);
 
@@ -2560,124 +2664,200 @@ function updateKnobVisual(container, val) {
   arc.setAttribute("d", `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x} ${y}`);
 }
 
-function initKnobs() {
-  document.querySelectorAll(".knob-container").forEach(knob => {
-    const param = knob.dataset.param;
-    let isDragging = false;
-    let startY = 0, startVal = 0;
-
-    const onPointerMove = e => {
-      if (!isDragging) return;
-      const dy = startY - e.clientY;
-      const inst = synthInstances[activeSynthIdx];
-      const osc = inst.oscillators[param];
-      const nextVal = Math.max(0, Math.min(100, startVal + dy * 0.75));
-      osc.speed = nextVal;
-      updateKnobVisual(knob, nextVal);
-    };
-
-    const onPointerUp = () => {
-      isDragging = false;
-      window.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("pointerup", onPointerUp);
-    };
-
-    knob.addEventListener("pointerdown", e => {
-      e.preventDefault();
-      isDragging = true;
-      startY = e.clientY;
-      const inst = synthInstances[activeSynthIdx];
-      startVal = inst.oscillators[param].speed;
-      window.addEventListener("pointermove", onPointerMove);
-      window.addEventListener("pointerup", onPointerUp);
-    });
-
-    knob.addEventListener("wheel", e => {
-      e.preventDefault();
-      const inst = synthInstances[activeSynthIdx];
-      const osc = inst.oscillators[param];
-      osc.speed = Math.max(0, Math.min(100, osc.speed - Math.sign(e.deltaY) * 3));
-      updateKnobVisual(knob, osc.speed);
-    }, { passive: false });
-  });
-}
-
-function updateTrackHighlight(param) {
+function updateParamRowVisual(param) {
   const inst = synthInstances[activeSynthIdx];
   const osc = inst.oscillators[param];
-  const inp = document.getElementById(param === "customParam" ? "customParam" : param);
-  const track = document.getElementById("track_" + param);
-  if (!inp || !track) return;
+  const block = document.getElementById("block_" + param);
+  const spanEl = document.getElementById("span_" + param);
+  const handleA = document.getElementById("handle_a_" + param);
+  const handleB = document.getElementById("handle_b_" + param);
+  const thumb = document.getElementById("thumb_" + param);
+  const knob = document.getElementById("knob_" + param);
+  const chk = document.getElementById("osc_en_" + param);
+  const valEl = document.getElementById(param === "customParam" ? "v_custom" : ("v_" + param));
 
-  const minLimit = parseFloat(inp.min), maxLimit = parseFloat(inp.max);
-  const span = maxLimit - minLimit;
-  if (span <= 0) return;
+  if (!block) return;
 
-  const pMin = Math.max(minLimit, Math.min(maxLimit, Math.min(osc.min, osc.max)));
-  const pMax = Math.max(minLimit, Math.min(maxLimit, Math.max(osc.min, osc.max)));
+  if (chk) chk.checked = osc.enabled;
+  block.classList.toggle("osc-active", osc.enabled);
 
-  const leftPct = ((pMin - minLimit) / span) * 100;
-  const widthPct = ((pMax - pMin) / span) * 100;
+  const pctA = Math.max(0, Math.min(1, valToPct(param, osc.min)));
+  const pctB = Math.max(0, Math.min(1, valToPct(param, osc.max)));
+  const curVal = (param === "customParam") ? inst.customVal : inst.params[param];
+  const pctThumb = Math.max(0, Math.min(1, valToPct(param, curVal)));
 
-  track.style.left = leftPct.toFixed(1) + "%";
-  track.style.width = widthPct.toFixed(1) + "%";
+  if (handleA) handleA.style.left = (pctA * 100).toFixed(2) + "%";
+  if (handleB) handleB.style.left = (pctB * 100).toFixed(2) + "%";
+  if (thumb) thumb.style.left = (pctThumb * 100).toFixed(2) + "%";
+
+  if (spanEl) {
+    const minP = Math.min(pctA, pctB);
+    const maxP = Math.max(pctA, pctB);
+    spanEl.style.left = (minP * 100).toFixed(2) + "%";
+    spanEl.style.width = ((maxP - minP) * 100).toFixed(2) + "%";
+  }
+
+  if (knob) updateKnobVisual(knob, osc.speed);
+  if (valEl) {
+    if (param === "customParam") {
+      valEl.textContent = curVal.toFixed(2);
+    } else if (PARAMS_MAP[param]) {
+      valEl.textContent = PARAMS_MAP[param].fmt(curVal);
+    }
+  }
+}
+
+function setupUnifiedParamControls() {
+  OSC_PARAM_KEYS.forEach(param => {
+    const block = document.getElementById("block_" + param);
+    const trackArea = document.getElementById("trackarea_" + param);
+    const handleA = document.getElementById("handle_a_" + param);
+    const handleB = document.getElementById("handle_b_" + param);
+    const thumb = document.getElementById("thumb_" + param);
+    const knob = document.getElementById("knob_" + param);
+    const chk = document.getElementById("osc_en_" + param);
+
+    if (chk) {
+      chk.addEventListener("change", () => {
+        const inst = synthInstances[activeSynthIdx];
+        inst.oscillators[param].enabled = chk.checked;
+        updateParamRowVisual(param);
+      });
+    }
+
+    if (knob) {
+      let isDraggingKnob = false, startY = 0, startSpeed = 0;
+      knob.addEventListener("pointerdown", e => {
+        e.preventDefault();
+        isDraggingKnob = true;
+        startY = e.clientY;
+        const inst = synthInstances[activeSynthIdx];
+        startSpeed = inst.oscillators[param].speed;
+        knob.setPointerCapture(e.pointerId);
+      });
+
+      knob.addEventListener("pointermove", e => {
+        if (!isDraggingKnob) return;
+        const dy = startY - e.clientY;
+        const inst = synthInstances[activeSynthIdx];
+        const nextSpeed = Math.max(0, Math.min(100, startSpeed + dy * 0.75));
+        inst.oscillators[param].speed = nextSpeed;
+        updateKnobVisual(knob, nextSpeed);
+      });
+
+      const onKnobUp = e => {
+        if (!isDraggingKnob) return;
+        isDraggingKnob = false;
+        try { knob.releasePointerCapture(e.pointerId); } catch(err){}
+      };
+      knob.addEventListener("pointerup", onKnobUp);
+      knob.addEventListener("pointercancel", onKnobUp);
+
+      knob.addEventListener("wheel", e => {
+        e.preventDefault();
+        const inst = synthInstances[activeSynthIdx];
+        const osc = inst.oscillators[param];
+        osc.speed = Math.max(0, Math.min(100, osc.speed - Math.sign(e.deltaY) * 3));
+        updateKnobVisual(knob, osc.speed);
+      }, { passive: false });
+    }
+
+    // Handles & Track Dragging
+    let activeDragTarget = null; // 'a', 'b', 'thumb', 'track'
+
+    function getTrackPct(e) {
+      const rect = trackArea.getBoundingClientRect();
+      const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
+      return rect.width > 0 ? (x / rect.width) : 0;
+    }
+
+    function onPointerMoveTrack(e) {
+      if (!activeDragTarget) return;
+      const pct = getTrackPct(e);
+      const val = pctToVal(param, pct);
+      const inst = synthInstances[activeSynthIdx];
+
+      if (activeDragTarget === "a") {
+        inst.oscillators[param].min = val;
+      } else if (activeDragTarget === "b") {
+        inst.oscillators[param].max = val;
+      } else if (activeDragTarget === "thumb" || activeDragTarget === "track") {
+        if (param === "customParam") {
+          inst.customVal = val;
+        } else {
+          inst.params[param] = val;
+          applyParamChange(param);
+        }
+      }
+      updateParamRowVisual(param);
+    }
+
+    function onPointerUpTrack(e) {
+      if (activeDragTarget) {
+        if (handleA) handleA.classList.remove("dragging");
+        if (handleB) handleB.classList.remove("dragging");
+        if (thumb) thumb.classList.remove("dragging");
+        try { trackArea.releasePointerCapture(e.pointerId); } catch(err){}
+        activeDragTarget = null;
+      }
+    }
+
+    if (trackArea) {
+      trackArea.addEventListener("pointerdown", e => {
+        e.preventDefault();
+        trackArea.setPointerCapture(e.pointerId);
+
+        if (e.target.closest(".handle-a")) {
+          activeDragTarget = "a";
+          if (handleA) handleA.classList.add("dragging");
+        } else if (e.target.closest(".handle-b")) {
+          activeDragTarget = "b";
+          if (handleB) handleB.classList.add("dragging");
+        } else if (e.target.closest(".handle-thumb")) {
+          activeDragTarget = "thumb";
+          if (thumb) thumb.classList.add("dragging");
+        } else {
+          // Klick auf die Spur: Bewege den näherliegenden Handle oder setze den Wert
+          const pct = getTrackPct(e);
+          const inst = synthInstances[activeSynthIdx];
+          const pctA = valToPct(param, inst.oscillators[param].min);
+          const pctB = valToPct(param, inst.oscillators[param].max);
+          const distA = Math.abs(pct - pctA);
+          const distB = Math.abs(pct - pctB);
+
+          if (distA < 0.08 && distA <= distB) {
+            activeDragTarget = "a";
+            inst.oscillators[param].min = pctToVal(param, pct);
+            if (handleA) handleA.classList.add("dragging");
+          } else if (distB < 0.08) {
+            activeDragTarget = "b";
+            inst.oscillators[param].max = pctToVal(param, pct);
+            if (handleB) handleB.classList.add("dragging");
+          } else {
+            activeDragTarget = "thumb";
+            const val = pctToVal(param, pct);
+            if (param === "customParam") {
+              inst.customVal = val;
+            } else {
+              inst.params[param] = val;
+              applyParamChange(param);
+            }
+            if (thumb) thumb.classList.add("dragging");
+          }
+        }
+        updateParamRowVisual(param);
+      });
+
+      trackArea.addEventListener("pointermove", onPointerMoveTrack);
+      trackArea.addEventListener("pointerup", onPointerUpTrack);
+      trackArea.addEventListener("pointercancel", onPointerUpTrack);
+    }
+  });
 }
 
 function syncOscillatorsUI() {
-  const inst = synthInstances[activeSynthIdx];
-  OSC_PARAM_KEYS.forEach(param => {
-    const osc = inst.oscillators[param];
-    const chk = document.getElementById("osc_en_" + param);
-    const block = document.getElementById("block_" + param);
-    const wrap = document.getElementById("wrap_" + param);
-    const inpMin = document.getElementById("min_" + param);
-    const inpMax = document.getElementById("max_" + param);
-    const knob = document.getElementById("knob_" + param);
-
-    if (chk) chk.checked = osc.enabled;
-    if (block) block.classList.toggle("osc-enabled", osc.enabled);
-    if (wrap) wrap.classList.toggle("osc-active", osc.enabled);
-
-    if (inpMin) inpMin.value = osc.min;
-    if (inpMax) inpMax.value = osc.max;
-    if (knob) updateKnobVisual(knob, osc.speed);
-    updateTrackHighlight(param);
-  });
+  OSC_PARAM_KEYS.forEach(param => updateParamRowVisual(param));
 }
-
-OSC_PARAM_KEYS.forEach(param => {
-  const chk = document.getElementById("osc_en_" + param);
-  const inpMin = document.getElementById("min_" + param);
-  const inpMax = document.getElementById("max_" + param);
-  const block = document.getElementById("block_" + param);
-  const wrap = document.getElementById("wrap_" + param);
-
-  if (chk) {
-    chk.addEventListener("change", () => {
-      const inst = synthInstances[activeSynthIdx];
-      inst.oscillators[param].enabled = chk.checked;
-      if (block) block.classList.toggle("osc-enabled", chk.checked);
-      if (wrap) wrap.classList.toggle("osc-active", chk.checked);
-      updateTrackHighlight(param);
-    });
-  }
-
-  if (inpMin) {
-    inpMin.addEventListener("input", e => {
-      const inst = synthInstances[activeSynthIdx];
-      inst.oscillators[param].min = parseFloat(e.target.value) || 0;
-      updateTrackHighlight(param);
-    });
-  }
-
-  if (inpMax) {
-    inpMax.addEventListener("input", e => {
-      const inst = synthInstances[activeSynthIdx];
-      inst.oscillators[param].max = parseFloat(e.target.value) || 1;
-      updateTrackHighlight(param);
-    });
-  }
-});
 
 /* ============================================================
    RESIZABLE SPLITTER LOGIK (SPLIT-H & SPLIT-V)
@@ -3182,18 +3362,12 @@ function renderFrame() {
         if (param === "customParam") {
           inst.customVal = val;
           if (sIdx === activeSynthIdx) {
-            const inp = document.getElementById("customParam");
-            if (inp) inp.value = val;
-            const out = document.getElementById("v_custom");
-            if (out) out.textContent = val.toFixed(2);
+            updateParamRowVisual("customParam");
           }
         } else {
           inst.params[param] = val;
           if (sIdx === activeSynthIdx) {
-            const inp = document.getElementById(param);
-            if (inp) inp.value = val;
-            const out = document.getElementById("v_" + param);
-            if (out && PARAMS_MAP[param]) out.textContent = PARAMS_MAP[param].fmt(val);
+            updateParamRowVisual(param);
           }
           if (sIdx === activeSynthIdx || inst.voices.size > 0) {
             applyParamChange(param, sIdx);
@@ -3338,15 +3512,14 @@ function selectSynth(idx) {
 
   const customParamTitle = document.getElementById("customParamTitle");
   const customParamLabel = document.getElementById("customParamLabel");
-  const customParamInp = document.getElementById("customParam");
 
   customParamTitle.textContent = inst.def.customParam.name;
   customParamLabel.textContent = inst.def.customParam.name;
-  customParamInp.min = inst.def.customParam.min;
-  customParamInp.max = inst.def.customParam.max;
-  customParamInp.step = inst.def.customParam.step;
-  customParamInp.value = inst.customVal;
-  document.getElementById("v_custom").textContent = inst.customVal.toFixed(2);
+  PARAM_BOUNDS.customParam = {
+    min: inst.def.customParam.min,
+    max: inst.def.customParam.max,
+    step: inst.def.customParam.step
+  };
 
   const presetContainer = document.getElementById("presetButtons");
   presetContainer.innerHTML = "";
@@ -3361,6 +3534,7 @@ function selectSynth(idx) {
       applyParamChange("ratio");
       applyParamChange("I0");
       applyParamChange("dI");
+      syncOscillatorsUI();
     });
     presetContainer.appendChild(btn);
   });
@@ -3390,10 +3564,10 @@ function updateUIBadges() {
    Parameter Regler Verwaltung
    ============================================================ */
 const PARAMS_MAP = {
-  ratio: { id: "ratio", fmt: v => v.toFixed(3), path: "ratio" },
-  I0: { id: "I0", fmt: v => v.toFixed(2), path: "I0" },
-  dI: { id: "dI", fmt: v => v.toFixed(2), path: "dI" },
-  lfo: { id: "lfo", fmt: v => v.toFixed(3) + " Hz", path: "lfo" },
+  ratio: { id: "block_ratio", fmt: v => v.toFixed(3), path: "ratio" },
+  I0: { id: "block_I0", fmt: v => v.toFixed(2), path: "I0" },
+  dI: { id: "block_dI", fmt: v => v.toFixed(2), path: "dI" },
+  lfo: { id: "block_lfo", fmt: v => v.toFixed(3) + " Hz", path: "lfo" },
   atk: { id: "atk", fmt: v => v.toFixed(3) + " s", path: "atk" },
   rel: { id: "rel", fmt: v => v.toFixed(2) + " s", path: "rel" },
   vol: { id: "synthVol", fmt: v => Math.round(v * 100) + " %", path: "vol" }
@@ -3401,7 +3575,7 @@ const PARAMS_MAP = {
 
 function syncSliderValues() {
   const inst = synthInstances[activeSynthIdx];
-  Object.keys(PARAMS_MAP).forEach(k => {
+  ["atk", "rel", "vol"].forEach(k => {
     const cfg = PARAMS_MAP[k];
     const inp = document.getElementById(cfg.id);
     const val = inst.params[cfg.path];
@@ -3419,10 +3593,6 @@ function syncSliderValues() {
 function applyParamChange(k, synthIdx = activeSynthIdx) {
   const inst = synthInstances[synthIdx];
   const val = inst.params[k];
-  if (synthIdx === activeSynthIdx) {
-    const out = document.getElementById("v_" + k);
-    if (out && PARAMS_MAP[k]) out.textContent = PARAMS_MAP[k].fmt(val);
-  }
 
   if (!ctx) return;
   const now = ctx.currentTime;
@@ -3449,22 +3619,17 @@ function applyParamChange(k, synthIdx = activeSynthIdx) {
   }
 }
 
-Object.keys(PARAMS_MAP).forEach(k => {
+["atk", "rel", "vol"].forEach(k => {
   const cfg = PARAMS_MAP[k];
   const inp = document.getElementById(cfg.id);
   if (!inp) return;
   inp.addEventListener("input", () => {
     const inst = synthInstances[activeSynthIdx];
     inst.params[cfg.path] = parseFloat(inp.value);
+    const out = document.getElementById("v_" + k);
+    if (out) out.textContent = cfg.fmt(inst.params[cfg.path]);
     applyParamChange(cfg.path);
   });
-});
-
-const customInp = document.getElementById("customParam");
-customInp.addEventListener("input", () => {
-  const inst = synthInstances[activeSynthIdx];
-  inst.customVal = parseFloat(customInp.value);
-  document.getElementById("v_custom").textContent = inst.customVal.toFixed(2);
 });
 
 document.getElementById("wet").addEventListener("input", e => {
@@ -3823,10 +3988,10 @@ startBtn.addEventListener("click", e => { e.stopPropagation(); startApp(); });
 window.addEventListener("keydown", () => { if (document.body.contains(veil)) startApp(); }, { once: true });
 
 // Initialisierung
+setupUnifiedParamControls();
 selectSynth(0);
 readColors();
 resize();
-initKnobs();
 requestAnimationFrame(renderFrame);
 </script>
 </body>
