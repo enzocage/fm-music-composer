@@ -38,11 +38,13 @@ function renderFrame() {
         const sineVal = 0.5 * (1 + Math.sin(osc.phase));
         const val = osc.min + (osc.max - osc.min) * sineVal;
 
-        if (param === "customParam") {
+        if (param === "customParam" || param === "custom_math") {
           inst.customVal = val;
+          inst.params[param] = val;
           if (sIdx === activeSynthIdx) {
-            updateParamRowVisual("customParam");
+            updateParamRowVisual(param);
           }
+          applyParamChange(param, sIdx);
         } else {
           inst.params[param] = val;
           if (sIdx === activeSynthIdx) {
@@ -221,9 +223,9 @@ startBtn.addEventListener("click", e => { e.stopPropagation(); startApp(); });
 window.addEventListener("keydown", () => { if (document.body.contains(veil)) startApp(); }, { once: true });
 
 // Initialisierung
-setupUnifiedParamControls();
+setupClusterTabs();
 setupArpControls();
-  setupPercControls();
+setupPercControls();
 applyInitialLayout();
 selectSynth(0);
 readColors();

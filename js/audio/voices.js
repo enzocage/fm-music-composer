@@ -1487,6 +1487,87 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
   syncKeys();
 }
 
+function applyParamChange(k, synthIdx = activeSynthIdx) {
+  const inst = synthInstances[synthIdx];
+  if (!inst) return;
+  const val = inst.params[k];
+
+  if (!ctx) return;
+  const now = ctx.currentTime;
+
+  if (k === "vol" && inst.bus) inst.bus.gain.setTargetAtTime(val, now, 0.05);
+  if (k === "lfo" && inst.lfoOsc) inst.lfoOsc.frequency.setTargetAtTime(val, now, 0.05);
+  if (k === "vibDepth") {
+    inst.vibrato.depth = val;
+    for (const vo of inst.voices.values()) {
+      if (vo.vibGainNode) vo.vibGainNode.gain.setTargetAtTime(val, now, 0.04);
+    }
+  }
+  if (k === "vibRate") {
+    const rVal = inst.vibrato.rate ?? 5.2;
+    for (const vo of inst.voices.values()) {
+      if (vo.vibLfo) vo.vibLfo.frequency.setTargetAtTime(rVal, now, 0.03);
+    }
+  }
+
+  // 24-Parameter Real-Time Matrix Modulation
+  for (const vo of inst.voices.values()) {
+    // Carrier Frequencies
+    if (k === "r1_ratio" || k === "op_detune") {
+      const detuneMult = Math.pow(2, (inst.params.op_detune || 0) / 1200);
+      const fc1 = vo.f * (inst.params.r1_ratio || 1.0) * detuneMult;
+      if (vo.car) vo.car.frequency.setTargetAtTime(fc1, now, 0.03);
+    }
+
+    // Modulator Frequencies & Gains
+    if (k === "r2_ratio" || k === "ratio") {
+      const fm2 = vo.f * (inst.params.r2_ratio || inst.params.ratio || 1.0);
+      if (vo.mod) vo.mod.frequency.setTargetAtTime(fm2, now, 0.03);
+    }
+    if (k === "r3_ratio") {
+      const fm3 = vo.f * (inst.params.r3_ratio || 2.0);
+      if (vo.mod3) vo.mod3.frequency.setTargetAtTime(fm3, now, 0.03);
+    }
+    if (k === "r4_ratio") {
+      const fm4 = vo.f * (inst.params.r4_ratio || 0.5);
+      if (vo.mod4) vo.mod4.frequency.setTargetAtTime(fm4, now, 0.03);
+    }
+
+    // Mod Index & Cross Mod
+    if (k === "mod_I0" || k === "I0" || k === "r2_ratio") {
+      const fm2 = vo.f * (inst.params.r2_ratio || 1.0);
+      const idx = inst.params.mod_I0 ?? inst.params.I0 ?? 2.5;
+      if (vo.modG) vo.modG.gain.setTargetAtTime(idx * fm2, now, 0.03);
+    }
+    if (k === "mod_dI" || k === "dI") {
+      const fm2 = vo.f * (inst.params.r2_ratio || 1.0);
+      const dIdx = inst.params.mod_dI ?? inst.params.dI ?? 1.2;
+      if (vo.lfoG) vo.lfoG.gain.setTargetAtTime(dIdx * fm2, now, 0.03);
+    }
+    if (k === "mod_cross") {
+      const fm3 = vo.f * (inst.params.r3_ratio || 2.0);
+      if (vo.mod3G) vo.mod3G.gain.setTargetAtTime(val * fm3, now, 0.03);
+    }
+    if (k === "mod_fb") {
+      if (vo.fbGain) vo.fbGain.gain.setTargetAtTime(Math.min(0.95, val * 0.15), now, 0.03);
+    }
+
+    // Filter Cutoff & Reso
+    if (k === "flt_cutoff" && vo.filter) {
+      vo.filter.frequency.setTargetAtTime(Math.max(20, Math.min(20000, val)), now, 0.03);
+    }
+    if (k === "flt_reso" && vo.filter) {
+      vo.filter.Q.setTargetAtTime(Math.max(0.1, Math.min(20, val)), now, 0.03);
+    }
+
+    // Stereo Panning
+    if (k === "space_pan" && vo.panner) {
+      const panVal = (val - 50) / 50; // -1 to +1
+      vo.panner.pan.setTargetAtTime(panVal, now, 0.04);
+    }
+  }
+}
+
 function noteOff(sem, synthIdx = activeSynthIdx) {
   const inst = synthInstances[synthIdx];
   const v = inst.voices.get(sem);

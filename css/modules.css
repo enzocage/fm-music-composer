@@ -975,3 +975,48 @@
   .export-dl-btn:active {
     transform: translateY(0);
   }
+
+  /* ============================================================
+     PLAN 3: 24-Parameter Multi-Cluster Rack Tabs Styling
+     ============================================================ */
+  .param-cluster-tab-bar {
+    display: flex;
+    gap: 2px;
+    background: rgba(4, 7, 14, 0.9);
+    padding: 2px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .param-cluster-tab {
+    flex: 1;
+    min-width: 60px;
+    font-family: var(--mono);
+    font-size: 7.5px;
+    font-weight: 700;
+    color: var(--dim);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    padding: 3px 4px;
+    cursor: pointer;
+    transition: all .12s ease;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .param-cluster-tab:hover {
+    color: var(--fg);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .param-cluster-tab.active {
+    color: #05070d;
+    background: var(--accent, #00f2fe);
+    font-weight: 800;
+    box-shadow: 0 0 8px -2px var(--accent, #00f2fe);
+  }
+
+  .synth-params-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 4px;
+  }

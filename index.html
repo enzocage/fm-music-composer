@@ -220,190 +220,34 @@
         </div>
       </div>
 
-      <!-- RACK SECTION 2: KLANG & MODULATION MIT UNIFIED HANDLES (Subtil Cyan) -->
-      <div class="grp grp-mod">
-        <h2><span>Klang & Modulation</span><span id="paramPresetInfo" style="color:var(--dimmer);font-weight:normal"></span></h2>
-        
-        <!-- Verhältnis r -->
-        <div class="param-row-unified" id="block_ratio" data-param="ratio">
-          <div class="p-header">
-            <span class="p-name">Verhältnis r = f<sub>m</sub>/f<sub>c</sub></span>
-            <div class="p-right">
-              <span class="p-val" id="v_ratio">1.500</span>
-              <label class="osc-toggle-label" title="Oszillation An/Aus">
-                <input type="checkbox" id="osc_en_ratio" class="osc-chk" data-param="ratio">
-                <span class="osc-badge">~ OSC</span>
-              </label>
-            </div>
-          </div>
-          <div class="p-controls-row">
-            <div class="track-area" id="trackarea_ratio" data-param="ratio">
-              <div class="track-line"></div>
-              <div class="track-span" id="span_ratio"></div>
-              <div class="handle handle-a" id="handle_a_ratio" title="Start A"><span class="h-tag">A</span></div>
-              <div class="handle handle-b" id="handle_b_ratio" title="Ende B"><span class="h-tag">B</span></div>
-              <div class="handle handle-thumb" id="thumb_ratio" title="Wert ziehen"></div>
-            </div>
-            <div class="knob-mini-wrap" id="knob_ratio" data-param="ratio" title="Geschwindigkeit (0–100)">
-              <div class="knob-dial">
-                <svg class="knob-svg" viewBox="0 0 32 32">
-                  <circle class="knob-bg" cx="16" cy="16" r="13" />
-                  <path class="knob-arc" d="" />
-                  <line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />
-                </svg>
-              </div>
-              <span class="knob-val">30</span>
-            </div>
-          </div>
+      <!-- RACK SECTION 2: 24-PARAMETER 6-OPERATOR HIGH-ORDER MATRIX (PLAN 3) -->
+      <div class="grp grp-synth-matrix" id="synthMatrixGrp">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; flex-wrap:wrap; gap:4px;">
+          <h2><span style="color:var(--accent); font-weight:800;">6-Operator Matrix (24 Parameter)</span></h2>
+          <button type="button" class="arp-pre-btn" id="btnRandomizeCluster" style="padding:1px 6px; font-size:7.5px; border-color:rgba(0,242,254,0.4); color:var(--accent);" title="Zufällige musikalische Mutation für aktiven Cluster">⚄ Mutieren</button>
         </div>
 
-        <!-- Basis-Index I0 -->
-        <div class="param-row-unified" id="block_I0" data-param="I0">
-          <div class="p-header">
-            <span class="p-name">Basis-Index I₀</span>
-            <div class="p-right">
-              <span class="p-val" id="v_I0">2.50</span>
-              <label class="osc-toggle-label" title="Oszillation An/Aus">
-                <input type="checkbox" id="osc_en_I0" class="osc-chk" data-param="I0">
-                <span class="osc-badge">~ OSC</span>
-              </label>
-            </div>
-          </div>
-          <div class="p-controls-row">
-            <div class="track-area" id="trackarea_I0" data-param="I0">
-              <div class="track-line"></div>
-              <div class="track-span" id="span_I0"></div>
-              <div class="handle handle-a" id="handle_a_I0" title="Start A"><span class="h-tag">A</span></div>
-              <div class="handle handle-b" id="handle_b_I0" title="Ende B"><span class="h-tag">B</span></div>
-              <div class="handle handle-thumb" id="thumb_I0" title="Wert ziehen"></div>
-            </div>
-            <div class="knob-mini-wrap" id="knob_I0" data-param="I0" title="Geschwindigkeit (0–100)">
-              <div class="knob-dial">
-                <svg class="knob-svg" viewBox="0 0 32 32">
-                  <circle class="knob-bg" cx="16" cy="16" r="13" />
-                  <path class="knob-arc" d="" />
-                  <line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />
-                </svg>
-              </div>
-              <span class="knob-val">25</span>
-            </div>
-          </div>
+        <!-- 5 Cluster Tabs Navigation -->
+        <div class="param-cluster-tab-bar" id="paramClusterTabs" style="display:flex; gap:2px; margin-bottom:6px; flex-wrap:wrap;">
+          <button type="button" class="param-cluster-tab active" data-cluster="operators" title="Carrier & Modulator Ratios, Fine-Detune & Spread">🎛️ Operatoren (6)</button>
+          <button type="button" class="param-cluster-tab" data-cluster="modulation" title="Haupt-Index I0, Dynamik ΔI, Cross-Mod & Feedback">🌊 Modulation & FB (5)</button>
+          <button type="button" class="param-cluster-tab" data-cluster="waveshaping" title="Chebyshev Wavefolding, Morph, Bias & Drive">📐 Waveshaper (4)</button>
+          <button type="button" class="param-cluster-tab" data-cluster="envelopes_filter" title="Filter Cutoff, Resonanz & ADSR Hüllkurven">🎚️ Filter & Hüllkurven (8)</button>
+          <button type="button" class="param-cluster-tab" data-cluster="all" title="Alle 24 Parameter im Voll-Überblick">⊞ Alle 24</button>
         </div>
 
-        <!-- Index-Atem dI -->
-        <div class="param-row-unified" id="block_dI" data-param="dI">
-          <div class="p-header">
-            <span class="p-name">Index-Atem ΔI</span>
-            <div class="p-right">
-              <span class="p-val" id="v_dI">1.50</span>
-              <label class="osc-toggle-label" title="Oszillation An/Aus">
-                <input type="checkbox" id="osc_en_dI" class="osc-chk" data-param="dI">
-                <span class="osc-badge">~ OSC</span>
-              </label>
-            </div>
-          </div>
-          <div class="p-controls-row">
-            <div class="track-area" id="trackarea_dI" data-param="dI">
-              <div class="track-line"></div>
-              <div class="track-span" id="span_dI"></div>
-              <div class="handle handle-a" id="handle_a_dI" title="Start A"><span class="h-tag">A</span></div>
-              <div class="handle handle-b" id="handle_b_dI" title="Ende B"><span class="h-tag">B</span></div>
-              <div class="handle handle-thumb" id="thumb_dI" title="Wert ziehen"></div>
-            </div>
-            <div class="knob-mini-wrap" id="knob_dI" data-param="dI" title="Geschwindigkeit (0–100)">
-              <div class="knob-dial">
-                <svg class="knob-svg" viewBox="0 0 32 32">
-                  <circle class="knob-bg" cx="16" cy="16" r="13" />
-                  <path class="knob-arc" d="" />
-                  <line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />
-                </svg>
-              </div>
-              <span class="knob-val">30</span>
-            </div>
-          </div>
-        </div>
+        <!-- Dynamischer 24-Parameter Container -->
+        <div id="synthParamsContainer" class="synth-params-grid"></div>
 
-        <!-- LFO Rate -->
-        <div class="param-row-unified" id="block_lfo" data-param="lfo">
-          <div class="p-header">
-            <span class="p-name">LFO / Rate f<sub>L</sub></span>
-            <div class="p-right">
-              <span class="p-val" id="v_lfo">0.080 Hz</span>
-              <label class="osc-toggle-label" title="Oszillation An/Aus">
-                <input type="checkbox" id="osc_en_lfo" class="osc-chk" data-param="lfo">
-                <span class="osc-badge">~ OSC</span>
-              </label>
-            </div>
+        <!-- Global Master & Wet Dials -->
+        <div style="margin-top:6px; border-top:1px solid var(--rule); padding-top:4px; display:flex; flex-direction:column; gap:3px;">
+          <div style="display:flex; gap:8px;">
+            <label class="ctl" style="flex:1;"><span class="row"><span class="nm">Synth Lautstärke</span><span class="vl" id="v_vol">85 %</span></span>
+              <input type="range" id="synthVol" min="0" max="1" step="0.01" value="0.85"></label>
+            <label class="ctl" style="flex:1;"><span class="row"><span class="nm">Faltungshall Mix</span><span class="vl" id="v_wet">50 %</span></span>
+              <input type="range" id="wet" min="0" max="1" step="0.01" value="0.5"></label>
           </div>
-          <div class="p-controls-row">
-            <div class="track-area" id="trackarea_lfo" data-param="lfo">
-              <div class="track-line"></div>
-              <div class="track-span" id="span_lfo"></div>
-              <div class="handle handle-a" id="handle_a_lfo" title="Start A"><span class="h-tag">A</span></div>
-              <div class="handle handle-b" id="handle_b_lfo" title="Ende B"><span class="h-tag">B</span></div>
-              <div class="handle handle-thumb" id="thumb_lfo" title="Wert ziehen"></div>
-            </div>
-            <div class="knob-mini-wrap" id="knob_lfo" data-param="lfo" title="Geschwindigkeit (0–100)">
-              <div class="knob-dial">
-                <svg class="knob-svg" viewBox="0 0 32 32">
-                  <circle class="knob-bg" cx="16" cy="16" r="13" />
-                  <path class="knob-arc" d="" />
-                  <line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />
-                </svg>
-              </div>
-              <span class="knob-val">20</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RACK SECTION 3: SPEZIAL-PARAMETER & HÜLLKURVE (Subtil Amethyst) -->
-      <div class="grp grp-spec" id="customParamGrp">
-        <h2><span id="customParamTitle">Spezial-Parameter</span></h2>
-        
-        <!-- Spezial Parameter Unified Row -->
-        <div class="param-row-unified" id="block_customParam" data-param="customParam">
-          <div class="p-header">
-            <span class="p-name" id="customParamLabel">Chaos-Rayleigh ρ</span>
-            <div class="p-right">
-              <span class="p-val" id="v_custom">28.00</span>
-              <label class="osc-toggle-label" title="Oszillation An/Aus">
-                <input type="checkbox" id="osc_en_customParam" class="osc-chk" data-param="customParam">
-                <span class="osc-badge">~ OSC</span>
-              </label>
-            </div>
-          </div>
-          <div class="p-controls-row">
-            <div class="track-area" id="trackarea_customParam" data-param="customParam">
-              <div class="track-line"></div>
-              <div class="track-span" id="span_customParam"></div>
-              <div class="handle handle-a" id="handle_a_customParam" title="Start A"><span class="h-tag">A</span></div>
-              <div class="handle handle-b" id="handle_b_customParam" title="Ende B"><span class="h-tag">B</span></div>
-              <div class="handle handle-thumb" id="thumb_customParam" title="Wert ziehen"></div>
-            </div>
-            <div class="knob-mini-wrap" id="knob_customParam" data-param="customParam" title="Geschwindigkeit (0–100)">
-              <div class="knob-dial">
-                <svg class="knob-svg" viewBox="0 0 32 32">
-                  <circle class="knob-bg" cx="16" cy="16" r="13" />
-                  <path class="knob-arc" d="" />
-                  <line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />
-                </svg>
-              </div>
-              <span class="knob-val">35</span>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top:6px;border-top:1px solid rgba(162, 155, 254, 0.25);padding-top:5px;">
-          <label class="ctl"><span class="row"><span class="nm">Attack</span><span class="vl" id="v_atk"></span></span>
-            <input type="range" id="atk" min="0.005" max="6" step="0.005" value="0.1"></label>
-          <label class="ctl"><span class="row"><span class="nm">Release</span><span class="vl" id="v_rel"></span></span>
-            <input type="range" id="rel" min="0.05" max="12" step="0.01" value="3.5"></label>
-          <label class="ctl"><span class="row"><span class="nm">Synth Pegel</span><span class="vl" id="v_vol"></span></span>
-            <input type="range" id="synthVol" min="0" max="1" step="0.01" value="0.8"></label>
-          <label class="ctl"><span class="row"><span class="nm">Master Hall</span><span class="vl" id="v_wet"></span></span>
-            <input type="range" id="wet" min="0" max="1" step="0.01" value="0.5"></label>
-          <label class="ctl"><span class="row"><span class="nm">Master Pegel</span><span class="vl" id="v_master"></span></span>
+          <label class="ctl"><span class="row"><span class="nm">Master Pegel</span><span class="vl" id="v_master">65 %</span></span>
             <input type="range" id="master" min="0" max="1" step="0.01" value="0.65"></label>
         </div>
       </div>

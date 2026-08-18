@@ -102,10 +102,25 @@ songFileInput.addEventListener("change", async e => {
       songData.synths.forEach((savedSynth, idx) => {
         if (idx < synthInstances.length) {
           const inst = synthInstances[idx];
-          if (savedSynth.params) Object.assign(inst.params, savedSynth.params);
+          if (savedSynth.params) {
+            Object.assign(inst.params, savedSynth.params);
+            if (inst.params.r1_ratio === undefined) inst.params.r1_ratio = 1.0;
+            if (inst.params.r2_ratio === undefined) inst.params.r2_ratio = inst.params.ratio ?? 1.0;
+            if (inst.params.r3_ratio === undefined) inst.params.r3_ratio = (inst.params.ratio ? inst.params.ratio * 2.0 : 2.0);
+            if (inst.params.r4_ratio === undefined) inst.params.r4_ratio = 0.5;
+            if (inst.params.mod_I0 === undefined) inst.params.mod_I0 = inst.params.I0 ?? 2.5;
+            if (inst.params.mod_dI === undefined) inst.params.mod_dI = inst.params.dI ?? 1.2;
+            if (inst.params.mod_cross === undefined) inst.params.mod_cross = 0.0;
+            if (inst.params.mod_fb === undefined) inst.params.mod_fb = 0.0;
+            if (inst.params.shape_fold === undefined) inst.params.shape_fold = 0.0;
+            if (inst.params.shape_drive === undefined) inst.params.shape_drive = 1.0;
+            if (inst.params.flt_cutoff === undefined) inst.params.flt_cutoff = 12000.0;
+            if (inst.params.flt_reso === undefined) inst.params.flt_reso = 1.0;
+            if (inst.params.space_pan === undefined) inst.params.space_pan = 50.0;
+          }
           if (savedSynth.customVal !== undefined) inst.customVal = savedSynth.customVal;
           if (savedSynth.vibrato) Object.assign(inst.vibrato, savedSynth.vibrato);
-          if (savedSynth.oscillators) inst.oscillators = savedSynth.oscillators;
+          if (savedSynth.oscillators) Object.assign(inst.oscillators, savedSynth.oscillators);
         }
       });
     }
@@ -513,37 +528,47 @@ function selectSynth(idx) {
   const customParamTitle = document.getElementById("customParamTitle");
   const customParamLabel = document.getElementById("customParamLabel");
 
-  customParamTitle.textContent = inst.def.customParam.name;
-  customParamLabel.textContent = inst.def.customParam.name;
-  PARAM_BOUNDS.customParam = {
-    min: inst.def.customParam.min,
-    max: inst.def.customParam.max,
-    step: inst.def.customParam.step
-  };
+  if (inst.def.customParam) {
+    if (customParamTitle) customParamTitle.textContent = inst.def.customParam.name;
+    if (customParamLabel) customParamLabel.textContent = inst.def.customParam.name;
+    PARAM_BOUNDS.custom_math = {
+      name: inst.def.customParam.name,
+      min: inst.def.customParam.min,
+      max: inst.def.customParam.max,
+      step: inst.def.customParam.step,
+      unit: "Val",
+      fmt: v => v.toFixed(2)
+    };
+    PARAM_BOUNDS.customParam = PARAM_BOUNDS.custom_math;
+  }
 
   const presetContainer = document.getElementById("presetButtons");
-  presetContainer.innerHTML = "";
-  inst.def.presets.forEach(p => {
-    const btn = document.createElement("button");
-    btn.textContent = p.name;
-    btn.addEventListener("click", () => {
-      inst.params.ratio = p.r;
-      inst.params.I0 = p.i;
-      inst.params.dI = p.d;
-      syncSliderValues();
-      applyParamChange("ratio");
-      applyParamChange("I0");
-      applyParamChange("dI");
-      syncOscillatorsUI();
+  if (presetContainer && inst.def.presets) {
+    presetContainer.innerHTML = "";
+    inst.def.presets.forEach(p => {
+      const btn = document.createElement("button");
+      btn.textContent = p.name;
+      btn.addEventListener("click", () => {
+        inst.params.r1_ratio = 1.0;
+        inst.params.r2_ratio = p.r;
+        inst.params.ratio = p.r;
+        inst.params.mod_I0 = p.i;
+        inst.params.I0 = p.i;
+        inst.params.mod_dI = p.d;
+        inst.params.dI = p.d;
+        syncSliderValues();
+        applyParamChange("r2_ratio");
+        applyParamChange("mod_I0");
+        applyParamChange("mod_dI");
+      });
+      presetContainer.appendChild(btn);
     });
-    presetContainer.appendChild(btn);
-  });
+  }
 
   const latchBtn = document.getElementById("latch");
-  latchBtn.setAttribute("aria-pressed", inst.params.latch);
+  if (latchBtn) latchBtn.setAttribute("aria-pressed", inst.params.latch);
 
   syncSliderValues();
-  syncOscillatorsUI();
   updateUIBadges();
   syncKeys();
 }

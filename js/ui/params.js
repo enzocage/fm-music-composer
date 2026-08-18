@@ -1,13 +1,14 @@
 "use strict";
 
 /* ============================================================
-   UNIFIED MULTI-HANDLE PARAMETER CONTROL & KNOB LOGIC
+   24-Parameter Matrix & Cluster UI Generator (PLAN 3)
    ============================================================ */
 function getParamBounds(param) {
-  if (param === "customParam") {
-    return synthInstances[activeSynthIdx].def.customParam;
+  if (param === "custom_math" || param === "customParam") {
+    const inst = synthInstances[activeSynthIdx];
+    return inst.def.customParam || { min: 0, max: 10, step: 0.01 };
   }
-  return PARAM_BOUNDS[param];
+  return PARAM_BOUNDS[param] || { min: 0, max: 10, step: 0.01 };
 }
 
 function valToPct(param, val) {
@@ -33,6 +34,7 @@ function updateKnobVisual(container, val) {
   const arc = container.querySelector(".knob-arc");
   const pointer = container.querySelector(".knob-pointer");
   const num = container.querySelector(".knob-val");
+  if (!arc || !pointer || !num) return;
 
   num.textContent = Math.round(val);
   const angle = -135 + (val / 100) * 270;
@@ -49,12 +51,14 @@ function updateKnobVisual(container, val) {
   const x1 = cx + r * Math.cos(startRad);
   const y1 = cy + r * Math.sin(startRad);
   const largeArc = (val / 100) * 270 > 180 ? 1 : 0;
-  arc.setAttribute("d", `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x} ${y}`);
+  arc.setAttribute("d", "M " + x1 + " " + y1 + " A " + r + " " + r + " 0 " + largeArc + " 1 " + x + " " + y);
 }
 
 function updateParamRowVisual(param) {
   const inst = synthInstances[activeSynthIdx];
   const osc = inst.oscillators[param];
+  if (!osc) return;
+
   const block = document.getElementById("block_" + param);
   const spanEl = document.getElementById("span_" + param);
   const handleA = document.getElementById("handle_a_" + param);
@@ -62,7 +66,7 @@ function updateParamRowVisual(param) {
   const thumb = document.getElementById("thumb_" + param);
   const knob = document.getElementById("knob_" + param);
   const chk = document.getElementById("osc_en_" + param);
-  const valEl = document.getElementById(param === "customParam" ? "v_custom" : ("v_" + param));
+  const valEl = document.getElementById("v_" + param);
 
   if (!block) return;
 
@@ -71,7 +75,7 @@ function updateParamRowVisual(param) {
 
   const pctA = Math.max(0, Math.min(1, valToPct(param, osc.min)));
   const pctB = Math.max(0, Math.min(1, valToPct(param, osc.max)));
-  const curVal = (param === "customParam") ? inst.customVal : inst.params[param];
+  const curVal = inst.params[param] ?? (PARAM_BOUNDS[param] ? PARAM_BOUNDS[param].min : 0);
   const pctThumb = Math.max(0, Math.min(1, valToPct(param, curVal)));
 
   if (handleA) handleA.style.left = (pctA * 100).toFixed(2) + "%";
@@ -87,192 +91,265 @@ function updateParamRowVisual(param) {
 
   if (knob) updateKnobVisual(knob, osc.speed);
   if (valEl) {
-    if (param === "customParam") {
-      valEl.textContent = curVal.toFixed(2);
-    } else if (PARAMS_MAP[param]) {
-      valEl.textContent = PARAMS_MAP[param].fmt(curVal);
-    }
+    const b = PARAM_BOUNDS[param];
+    valEl.textContent = b && b.fmt ? b.fmt(curVal) : curVal.toFixed(2);
   }
 }
 
-function setupUnifiedParamControls() {
-  OSC_PARAM_KEYS.forEach(param => {
-    const block = document.getElementById("block_" + param);
-    const trackArea = document.getElementById("trackarea_" + param);
-    const handleA = document.getElementById("handle_a_" + param);
-    const handleB = document.getElementById("handle_b_" + param);
-    const thumb = document.getElementById("thumb_" + param);
-    const knob = document.getElementById("knob_" + param);
-    const chk = document.getElementById("osc_en_" + param);
+function buildUnifiedParamRowHTML(paramKey, pObj) {
+  const b = PARAM_BOUNDS[paramKey] || { name: paramKey, fmt: v => v.toFixed(2) };
+  const curVal = pObj.val ?? (b.min ?? 0);
+  const dispVal = b.fmt ? b.fmt(curVal) : curVal.toFixed(2);
 
-    if (chk) {
-      chk.addEventListener("change", () => {
-        const inst = synthInstances[activeSynthIdx];
-        inst.oscillators[param].enabled = chk.checked;
-        updateParamRowVisual(param);
-      });
-    }
+  return (
+    '<div class="param-row-unified" id="block_' + paramKey + '" data-param="' + paramKey + '">' +
+      '<div class="p-header">' +
+        '<span class="p-name">' + (b.name || paramKey) + '</span>' +
+        '<div class="p-right">' +
+          '<span class="p-val" id="v_' + paramKey + '">' + dispVal + '</span>' +
+          '<label class="osc-toggle-label" title="Oszillation An/Aus">' +
+            '<input type="checkbox" id="osc_en_' + paramKey + '" class="osc-chk" data-param="' + paramKey + '">' +
+            '<span class="osc-badge">~ OSC</span>' +
+          '</label>' +
+        '</div>' +
+      '</div>' +
+      '<div class="p-controls-row">' +
+        '<div class="track-area" id="trackarea_' + paramKey + '" data-param="' + paramKey + '">' +
+          '<div class="track-line"></div>' +
+          '<div class="track-span" id="span_' + paramKey + '"></div>' +
+          '<div class="handle handle-a" id="handle_a_' + paramKey + '" title="Start A"><span class="h-tag">A</span></div>' +
+          '<div class="handle handle-b" id="handle_b_' + paramKey + '" title="Ende B"><span class="h-tag">B</span></div>' +
+          '<div class="handle handle-thumb" id="thumb_' + paramKey + '" title="Wert ziehen"></div>' +
+        '</div>' +
+        '<div class="knob-mini-wrap" id="knob_' + paramKey + '" data-param="' + paramKey + '" title="Oszillations-Speed (0.01–10 Hz)">' +
+          '<div class="knob-dial">' +
+            '<svg class="knob-svg" viewBox="0 0 32 32">' +
+              '<circle class="knob-bg" cx="16" cy="16" r="13" />' +
+              '<path class="knob-arc" d="" />' +
+              '<line class="knob-pointer" x1="16" y1="16" x2="16" y2="4" />' +
+            '</svg>' +
+          '</div>' +
+          '<span class="knob-val">' + Math.round(pObj.osc ? pObj.osc.speed : 25) + '</span>' +
+        '</div>' +
+      '</div>' +
+    '</div>'
+  );
+}
 
-    if (knob) {
-      let isDraggingKnob = false, startY = 0, startSpeed = 0;
-      knob.addEventListener("pointerdown", e => {
-        e.preventDefault();
-        isDraggingKnob = true;
-        startY = e.clientY;
-        const inst = synthInstances[activeSynthIdx];
-        startSpeed = inst.oscillators[param].speed;
-        knob.setPointerCapture(e.pointerId);
-      });
+function bindUnifiedParamRow(paramKey) {
+  const block = document.getElementById("block_" + paramKey);
+  const trackArea = document.getElementById("trackarea_" + paramKey);
+  const handleA = document.getElementById("handle_a_" + paramKey);
+  const handleB = document.getElementById("handle_b_" + paramKey);
+  const thumb = document.getElementById("thumb_" + paramKey);
+  const knob = document.getElementById("knob_" + paramKey);
+  const chk = document.getElementById("osc_en_" + paramKey);
 
-      knob.addEventListener("pointermove", e => {
-        if (!isDraggingKnob) return;
-        const dy = startY - e.clientY;
-        const inst = synthInstances[activeSynthIdx];
+  if (!block || !trackArea) return;
+
+  if (chk) {
+    chk.addEventListener("change", () => {
+      const inst = synthInstances[activeSynthIdx];
+      if (inst.oscillators[paramKey]) {
+        inst.oscillators[paramKey].enabled = chk.checked;
+        updateParamRowVisual(paramKey);
+      }
+    });
+  }
+
+  if (knob) {
+    let isDraggingKnob = false, startY = 0, startSpeed = 0;
+    knob.addEventListener("pointerdown", e => {
+      e.preventDefault();
+      isDraggingKnob = true;
+      startY = e.clientY;
+      const inst = synthInstances[activeSynthIdx];
+      startSpeed = inst.oscillators[paramKey] ? inst.oscillators[paramKey].speed : 25;
+      knob.setPointerCapture(e.pointerId);
+    });
+
+    knob.addEventListener("pointermove", e => {
+      if (!isDraggingKnob) return;
+      const dy = startY - e.clientY;
+      const inst = synthInstances[activeSynthIdx];
+      if (inst.oscillators[paramKey]) {
         const nextSpeed = Math.max(0, Math.min(100, startSpeed + dy * 0.75));
-        inst.oscillators[param].speed = nextSpeed;
+        inst.oscillators[paramKey].speed = nextSpeed;
         updateKnobVisual(knob, nextSpeed);
-      });
+      }
+    });
 
-      const onKnobUp = e => {
-        if (!isDraggingKnob) return;
-        isDraggingKnob = false;
-        try { knob.releasePointerCapture(e.pointerId); } catch(err){}
-      };
-      knob.addEventListener("pointerup", onKnobUp);
-      knob.addEventListener("pointercancel", onKnobUp);
+    const onKnobUp = e => {
+      if (!isDraggingKnob) return;
+      isDraggingKnob = false;
+      try { knob.releasePointerCapture(e.pointerId); } catch(err){}
+    };
+    knob.addEventListener("pointerup", onKnobUp);
+    knob.addEventListener("pointercancel", onKnobUp);
 
-      knob.addEventListener("wheel", e => {
-        e.preventDefault();
-        const inst = synthInstances[activeSynthIdx];
-        const osc = inst.oscillators[param];
+    knob.addEventListener("wheel", e => {
+      e.preventDefault();
+      const inst = synthInstances[activeSynthIdx];
+      if (inst.oscillators[paramKey]) {
+        const osc = inst.oscillators[paramKey];
         osc.speed = Math.max(0, Math.min(100, osc.speed - Math.sign(e.deltaY) * 3));
         updateKnobVisual(knob, osc.speed);
-      }, { passive: false });
+      }
+    }, { passive: false });
+  }
+
+  let activeDragTarget = null;
+
+  function getTrackPct(e) {
+    const rect = trackArea.getBoundingClientRect();
+    const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
+    return rect.width > 0 ? (x / rect.width) : 0;
+  }
+
+  function onPointerMoveTrack(e) {
+    if (!activeDragTarget) return;
+    const pct = getTrackPct(e);
+    const val = pctToVal(paramKey, pct);
+    const inst = synthInstances[activeSynthIdx];
+
+    if (activeDragTarget === "a" && inst.oscillators[paramKey]) {
+      inst.oscillators[paramKey].min = val;
+    } else if (activeDragTarget === "b" && inst.oscillators[paramKey]) {
+      inst.oscillators[paramKey].max = val;
+    } else if (activeDragTarget === "thumb" || activeDragTarget === "track") {
+      inst.params[paramKey] = val;
+      if (paramKey === "custom_math" || paramKey === "customParam") {
+        inst.customVal = val;
+      }
+      applyParamChange(paramKey);
     }
+    updateParamRowVisual(paramKey);
+  }
 
-    // Handles & Track Dragging
-    let activeDragTarget = null; // 'a', 'b', 'thumb', 'track'
-
-    function getTrackPct(e) {
-      const rect = trackArea.getBoundingClientRect();
-      const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
-      return rect.width > 0 ? (x / rect.width) : 0;
+  function onPointerUpTrack(e) {
+    if (activeDragTarget) {
+      if (handleA) handleA.classList.remove("dragging");
+      if (handleB) handleB.classList.remove("dragging");
+      if (thumb) thumb.classList.remove("dragging");
+      try { trackArea.releasePointerCapture(e.pointerId); } catch(err){}
+      activeDragTarget = null;
     }
+  }
 
-    function onPointerMoveTrack(e) {
-      if (!activeDragTarget) return;
+  trackArea.addEventListener("pointerdown", e => {
+    e.preventDefault();
+    trackArea.setPointerCapture(e.pointerId);
+
+    if (e.target.closest(".handle-a")) {
+      activeDragTarget = "a";
+      if (handleA) handleA.classList.add("dragging");
+    } else if (e.target.closest(".handle-b")) {
+      activeDragTarget = "b";
+      if (handleB) handleB.classList.add("dragging");
+    } else if (e.target.closest(".handle-thumb")) {
+      activeDragTarget = "thumb";
+      if (thumb) thumb.classList.add("dragging");
+    } else {
       const pct = getTrackPct(e);
-      const val = pctToVal(param, pct);
       const inst = synthInstances[activeSynthIdx];
+      const osc = inst.oscillators[paramKey] || { min: 0, max: 10 };
+      const pctA = valToPct(paramKey, osc.min);
+      const pctB = valToPct(paramKey, osc.max);
+      const distA = Math.abs(pct - pctA);
+      const distB = Math.abs(pct - pctB);
 
-      if (activeDragTarget === "a") {
-        inst.oscillators[param].min = val;
-      } else if (activeDragTarget === "b") {
-        inst.oscillators[param].max = val;
-      } else if (activeDragTarget === "thumb" || activeDragTarget === "track") {
-        if (param === "customParam") {
+      if (distA < 0.08 && distA <= distB) {
+        activeDragTarget = "a";
+        osc.min = pctToVal(paramKey, pct);
+        if (handleA) handleA.classList.add("dragging");
+      } else if (distB < 0.08) {
+        activeDragTarget = "b";
+        osc.max = pctToVal(paramKey, pct);
+        if (handleB) handleB.classList.add("dragging");
+      } else {
+        activeDragTarget = "thumb";
+        const val = pctToVal(paramKey, pct);
+        inst.params[paramKey] = val;
+        if (paramKey === "custom_math" || paramKey === "customParam") {
           inst.customVal = val;
-        } else {
-          inst.params[param] = val;
-          applyParamChange(param);
         }
-      }
-      updateParamRowVisual(param);
-    }
-
-    function onPointerUpTrack(e) {
-      if (activeDragTarget) {
-        if (handleA) handleA.classList.remove("dragging");
-        if (handleB) handleB.classList.remove("dragging");
-        if (thumb) thumb.classList.remove("dragging");
-        try { trackArea.releasePointerCapture(e.pointerId); } catch(err){}
-        activeDragTarget = null;
+        applyParamChange(paramKey);
+        if (thumb) thumb.classList.add("dragging");
       }
     }
+    updateParamRowVisual(paramKey);
+  });
 
-    if (trackArea) {
-      trackArea.addEventListener("pointerdown", e => {
-        e.preventDefault();
-        trackArea.setPointerCapture(e.pointerId);
+  trackArea.addEventListener("pointermove", onPointerMoveTrack);
+  trackArea.addEventListener("pointerup", onPointerUpTrack);
+  trackArea.addEventListener("pointercancel", onPointerUpTrack);
+}
 
-        if (e.target.closest(".handle-a")) {
-          activeDragTarget = "a";
-          if (handleA) handleA.classList.add("dragging");
-        } else if (e.target.closest(".handle-b")) {
-          activeDragTarget = "b";
-          if (handleB) handleB.classList.add("dragging");
-        } else if (e.target.closest(".handle-thumb")) {
-          activeDragTarget = "thumb";
-          if (thumb) thumb.classList.add("dragging");
-        } else {
-          const pct = getTrackPct(e);
-          const inst = synthInstances[activeSynthIdx];
-          const pctA = valToPct(param, inst.oscillators[param].min);
-          const pctB = valToPct(param, inst.oscillators[param].max);
-          const distA = Math.abs(pct - pctA);
-          const distB = Math.abs(pct - pctB);
+function renderSynthParamRack() {
+  const container = document.getElementById("synthParamsContainer");
+  if (!container) return;
 
-          if (distA < 0.08 && distA <= distB) {
-            activeDragTarget = "a";
-            inst.oscillators[param].min = pctToVal(param, pct);
-            if (handleA) handleA.classList.add("dragging");
-          } else if (distB < 0.08) {
-            activeDragTarget = "b";
-            inst.oscillators[param].max = pctToVal(param, pct);
-            if (handleB) handleB.classList.add("dragging");
-          } else {
-            activeDragTarget = "thumb";
-            const val = pctToVal(param, pct);
-            if (param === "customParam") {
-              inst.customVal = val;
-            } else {
-              inst.params[param] = val;
-              applyParamChange(param);
-            }
-            if (thumb) thumb.classList.add("dragging");
-          }
-        }
-        updateParamRowVisual(param);
-      });
+  const inst = synthInstances[activeSynthIdx];
+  container.innerHTML = "";
 
-      trackArea.addEventListener("pointermove", onPointerMoveTrack);
-      trackArea.addEventListener("pointerup", onPointerUpTrack);
-      trackArea.addEventListener("pointercancel", onPointerUpTrack);
-    }
+  let keysToRender = [];
+  if (activeParamCluster === "all") {
+    keysToRender = OSC_PARAM_KEYS.filter(k => k !== "vibDepth");
+  } else if (SYNTH_PARAM_CLUSTERS[activeParamCluster]) {
+    keysToRender = SYNTH_PARAM_CLUSTERS[activeParamCluster].keys;
+  } else {
+    keysToRender = SYNTH_PARAM_CLUSTERS.operators.keys;
+  }
+
+  keysToRender.forEach(k => {
+    const b = PARAM_BOUNDS[k] || { min: 0, max: 10 };
+    const pObj = {
+      val: inst.params[k] ?? b.min,
+      osc: inst.oscillators[k] || { min: b.min, max: b.max, speed: 25 }
+    };
+    container.insertAdjacentHTML("beforeend", buildUnifiedParamRowHTML(k, pObj));
+    bindUnifiedParamRow(k);
+    updateParamRowVisual(k);
   });
 }
 
-function syncOscillatorsUI() {
-  OSC_PARAM_KEYS.forEach(param => updateParamRowVisual(param));
+function setupClusterTabs() {
+  const tabBtns = document.querySelectorAll(".param-cluster-tab");
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeParamCluster = btn.dataset.cluster;
+      tabBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderSynthParamRack();
+    });
+  });
+
+  const randBtn = document.getElementById("btnRandomizeCluster");
+  if (randBtn) {
+    randBtn.addEventListener("click", () => {
+      const inst = synthInstances[activeSynthIdx];
+      let keys = [];
+      if (activeParamCluster === "all") {
+        keys = OSC_PARAM_KEYS.filter(k => k !== "vibDepth");
+      } else if (SYNTH_PARAM_CLUSTERS[activeParamCluster]) {
+        keys = SYNTH_PARAM_CLUSTERS[activeParamCluster].keys;
+      }
+      keys.forEach(k => {
+        const b = PARAM_BOUNDS[k] || { min: 0, max: 10 };
+        const randVal = b.min + Math.random() * (b.max - b.min);
+        inst.params[k] = Math.round(randVal * 100) / 100;
+        applyParamChange(k);
+        updateParamRowVisual(k);
+      });
+    });
+  }
 }
-
-
-/* ============================================================
-   Parameter Regler Verwaltung & Vibrato UI
-   ============================================================ */
-const PARAMS_MAP = {
-  ratio: { id: "block_ratio", fmt: v => v.toFixed(3), path: "ratio" },
-  I0: { id: "block_I0", fmt: v => v.toFixed(2), path: "I0" },
-  dI: { id: "block_dI", fmt: v => v.toFixed(2), path: "dI" },
-  lfo: { id: "block_lfo", fmt: v => v.toFixed(3) + " Hz", path: "lfo" },
-  vibDepth: { id: "block_vibDepth", fmt: v => v.toFixed(2) + " Hz", path: "vibDepth" },
-  atk: { id: "atk", fmt: v => v.toFixed(3) + " s", path: "atk" },
-  rel: { id: "rel", fmt: v => v.toFixed(2) + " s", path: "rel" },
-  vol: { id: "synthVol", fmt: v => Math.round(v * 100) + " %", path: "vol" }
-};
 
 function syncSliderValues() {
   const inst = synthInstances[activeSynthIdx];
-  ["atk", "rel", "vol"].forEach(k => {
-    const cfg = PARAMS_MAP[k];
-    const inp = document.getElementById(cfg.id);
-    const val = inst.params[cfg.path];
-    if (inp) inp.value = val;
-    const out = document.getElementById("v_" + k);
-    if (out) out.textContent = cfg.fmt(val);
-  });
 
-  // Vibrato UI Synchronisation
+  renderSynthParamRack();
+
   const vibChk = document.getElementById("vib_enabled");
   const vibBadge = document.getElementById("vib_badge");
   if (vibChk) {
@@ -306,57 +383,25 @@ function syncSliderValues() {
     document.getElementById("v_vibHuman").textContent = Math.round(inst.vibrato.humanize ?? 25) + " %";
   }
 
-  const vibKnobVal = document.querySelector("#knob_vibDepth .knob-val");
-  if (vibKnobVal) vibKnobVal.textContent = Math.round(inst.oscillators.vibDepth?.speed ?? 20);
-
-  document.getElementById("wet").value = GLOBAL.wet;
-  document.getElementById("v_wet").textContent = Math.round(GLOBAL.wet * 100) + " %";
-  document.getElementById("master").value = GLOBAL.master;
-  document.getElementById("v_master").textContent = Math.round(GLOBAL.master * 100) + " %";
-}
-
-function applyParamChange(k, synthIdx = activeSynthIdx) {
-  const inst = synthInstances[synthIdx];
-  const val = inst.params[k];
-
-  if (!ctx) return;
-  const now = ctx.currentTime;
-
-  if (k === "vol") inst.bus.gain.setTargetAtTime(val, now, 0.05);
-  if (k === "lfo" && inst.lfoOsc) inst.lfoOsc.frequency.setTargetAtTime(val, now, 0.05);
-  if (k === "vibDepth") {
-    inst.vibrato.depth = val;
-    for (const vo of inst.voices.values()) {
-      if (vo.vibGainNode) vo.vibGainNode.gain.setTargetAtTime(val, now, 0.04);
-    }
+  const synthVolInp = document.getElementById("synthVol");
+  if (synthVolInp) {
+    synthVolInp.value = inst.params.vol;
+    const vVol = document.getElementById("v_vol");
+    if (vVol) vVol.textContent = Math.round(inst.params.vol * 100) + " %";
   }
-  if (k === "vibRate") {
-    const rVal = inst.vibrato.rate ?? 5.2;
-    for (const vo of inst.voices.values()) {
-      if (vo.vibLfo) vo.vibLfo.frequency.setTargetAtTime(rVal, now, 0.03);
-    }
+
+  const wetInp = document.getElementById("wet");
+  if (wetInp) {
+    wetInp.value = GLOBAL.wet;
+    document.getElementById("v_wet").textContent = Math.round(GLOBAL.wet * 100) + " %";
   }
-  if (k === "ratio") {
-    for (const vo of inst.voices.values()) {
-      vo.fm = vo.f * inst.params.ratio;
-      if (vo.mod) vo.mod.frequency.setTargetAtTime(vo.fm, now, 0.04);
-      if (vo.modG) vo.modG.gain.setTargetAtTime(inst.params.I0 * vo.fm, now, 0.04);
-      if (vo.lfoG) vo.lfoG.gain.setTargetAtTime(inst.params.dI * vo.fm, now, 0.04);
-    }
-  }
-  if (k === "I0") {
-    for (const vo of inst.voices.values()) {
-      if (vo.modG) vo.modG.gain.setTargetAtTime(inst.params.I0 * (vo.fm || vo.f * inst.params.ratio), now, 0.05);
-    }
-  }
-  if (k === "dI") {
-    for (const vo of inst.voices.values()) {
-      if (vo.lfoG) vo.lfoG.gain.setTargetAtTime(inst.params.dI * (vo.fm || vo.f * inst.params.ratio), now, 0.05);
-    }
+  const masterInp = document.getElementById("master");
+  if (masterInp) {
+    masterInp.value = GLOBAL.master;
+    document.getElementById("v_master").textContent = Math.round(GLOBAL.master * 100) + " %";
   }
 }
 
-// Vibrato UI Listener
 const vibChk = document.getElementById("vib_enabled");
 if (vibChk) {
   vibChk.addEventListener("change", () => {
@@ -414,78 +459,67 @@ if (vibHumanInp) {
   });
 }
 
-["atk", "rel", "vol"].forEach(k => {
-  const cfg = PARAMS_MAP[k];
-  const inp = document.getElementById(cfg.id);
-  if (!inp) return;
-  inp.addEventListener("input", () => {
+const synthVolInp = document.getElementById("synthVol");
+if (synthVolInp) {
+  synthVolInp.addEventListener("input", () => {
     const inst = synthInstances[activeSynthIdx];
-    inst.params[cfg.path] = parseFloat(inp.value);
-    const out = document.getElementById("v_" + k);
-    if (out) out.textContent = cfg.fmt(inst.params[cfg.path]);
-    applyParamChange(cfg.path);
+    inst.params.vol = parseFloat(synthVolInp.value);
+    const vVol = document.getElementById("v_vol");
+    if (vVol) vVol.textContent = Math.round(inst.params.vol * 100) + " %";
+    if (inst.bus && ctx) {
+      inst.bus.gain.setTargetAtTime(inst.params.vol, ctx.currentTime, 0.05);
+    }
   });
-});
+}
 
-document.getElementById("wet").addEventListener("input", e => {
-  GLOBAL.wet = parseFloat(e.target.value);
-  document.getElementById("v_wet").textContent = Math.round(GLOBAL.wet * 100) + " %";
-  if (ctx) {
-    wetGain.gain.setTargetAtTime(GLOBAL.wet, ctx.currentTime, 0.08);
-    dryGain.gain.setTargetAtTime(1 - GLOBAL.wet * 0.5, ctx.currentTime, 0.08);
-  }
-});
+const wetInp = document.getElementById("wet");
+if (wetInp) {
+  wetInp.addEventListener("input", () => {
+    GLOBAL.wet = parseFloat(wetInp.value);
+    document.getElementById("v_wet").textContent = Math.round(GLOBAL.wet * 100) + " %";
+    if (ctx && wetGain && dryGain) {
+      wetGain.gain.setTargetAtTime(GLOBAL.wet, ctx.currentTime, 0.05);
+      dryGain.gain.setTargetAtTime(1 - GLOBAL.wet * 0.5, ctx.currentTime, 0.05);
+    }
+  });
+}
 
-document.getElementById("master").addEventListener("input", e => {
-  GLOBAL.master = parseFloat(e.target.value);
-  document.getElementById("v_master").textContent = Math.round(GLOBAL.master * 100) + " %";
-  if (ctx) masterGain.gain.setTargetAtTime(GLOBAL.master, ctx.currentTime, 0.05);
-});
-
-const latchBtn = document.getElementById("latch");
-latchBtn.addEventListener("click", () => {
-  const inst = synthInstances[activeSynthIdx];
-  inst.params.latch = !inst.params.latch;
-  latchBtn.setAttribute("aria-pressed", inst.params.latch);
-  if (!inst.params.latch) panicSynth(activeSynthIdx);
-});
-
-document.getElementById("synthPanic").addEventListener("click", () => panicSynth(activeSynthIdx));
-document.getElementById("globalPanic").addEventListener("click", panicAll);
+const masterInp = document.getElementById("master");
+if (masterInp) {
+  masterInp.addEventListener("input", () => {
+    GLOBAL.master = parseFloat(masterInp.value);
+    document.getElementById("v_master").textContent = Math.round(GLOBAL.master * 100) + " %";
+    if (ctx && masterGain) {
+      masterGain.gain.setTargetAtTime(GLOBAL.master, ctx.currentTime, 0.05);
+    }
+  });
+}
 
 function updateOctaveUI() {
   const inst = synthInstances[activeSynthIdx];
-  if (!inst) return;
-  const oct = inst.params.oct;
-  const str = (oct > 0 ? "+" : "") + oct;
+  const oct = inst.params.oct || 0;
+  const octValEl = document.getElementById("kbOctVal");
+  if (octValEl) {
+    octValEl.textContent = (oct >= 0 ? "+" : "") + oct;
+    octValEl.style.color = oct === 0 ? "var(--dim)" : (oct > 0 ? "#ffc46b" : "#38c7ff");
+  }
 
-  const octlabel = document.getElementById("octlabel");
-  if (octlabel) octlabel.textContent = str;
+  const octaveOffsetBadge = document.getElementById("octaveOffsetBadge");
+  if (octaveOffsetBadge) {
+    octaveOffsetBadge.textContent = "OKT: " + (oct >= 0 ? "+" : "") + oct;
+  }
 
-  const kbOctVal = document.getElementById("kbOctVal");
-  if (kbOctVal) kbOctVal.textContent = str;
-
-  const pips = document.querySelectorAll("#kbOctPips .oct-pip");
-  pips.forEach(p => {
-    const pOct = parseInt(p.getAttribute("data-oct"), 10);
-    p.classList.toggle("active", pOct === oct);
-  });
-
-  // Dynamische Tonhöhen-Beschriftung auf den Klaviertasten (C3, C4, C5...)
-  const baseOct = 4 + oct;
-  if (typeof keyEls !== "undefined" && keyEls.length > 0) {
+  if (typeof keyEls !== "undefined" && Array.isArray(keyEls)) {
     keyEls.forEach((kEl, i) => {
       const ntSpan = kEl.querySelector(".nt");
       if (ntSpan) {
-        const noteName = NOTES[i];
-        const isTopC = (i === 12);
-        const displayOct = isTopC ? (baseOct + 1) : baseOct;
-        ntSpan.textContent = `${noteName}${displayOct}`;
+        const baseNote = NOTES[i];
+        const octaveNum = 3 + oct;
+        ntSpan.textContent = baseNote + octaveNum;
       }
     });
   }
 
-  // Latch-Status im unteren Element synchronisieren
   const kbLatchToggle = document.getElementById("kbLatchToggle");
   if (kbLatchToggle) {
     kbLatchToggle.classList.toggle("active", !!inst.params.latch);
@@ -504,26 +538,15 @@ function setOctave(d) {
   const now = ctx.currentTime;
   for (const [sem, v] of inst.voices) {
     v.f = getFreq(sem, inst.params.oct);
-    v.fm = v.f * inst.params.ratio;
     if (v.car) v.car.frequency.setTargetAtTime(v.f, now, 0.12);
-    if (v.car1) v.car1.frequency.setTargetAtTime(v.f, now, 0.12);
-    if (v.car2) v.car2.frequency.setTargetAtTime(v.f, now, 0.12);
-    if (v.car3) v.car3.frequency.setTargetAtTime(v.f, now, 0.12);
-    if (v.carR) v.carR.frequency.setTargetAtTime(v.f * 1.003, now, 0.12);
-    if (v.carSub) v.carSub.frequency.setTargetAtTime(v.f * 0.5, now, 0.12);
-    if (v.carHigh) v.carHigh.frequency.setTargetAtTime(v.f * 2.0, now, 0.12);
-    if (v.clusterCars) v.clusterCars.forEach((c, idx) => { try { c.frequency.setTargetAtTime(v.f + (idx - 2) * 0.8, now, 0.12); } catch(e){} });
-    if (v.mod) v.mod.frequency.setTargetAtTime(v.fm, now, 0.12);
-    if (v.modG) v.modG.gain.setTargetAtTime(inst.params.I0 * v.fm, now, 0.12);
-    if (v.lfoG) v.lfoG.gain.setTargetAtTime(inst.params.dI * v.fm, now, 0.12);
   }
 }
 
-// Rack Spielhilfen Octave Buttons
-document.getElementById("octup").addEventListener("click", () => setOctave(+1));
-document.getElementById("octdn").addEventListener("click", () => setOctave(-1));
+const octUp = document.getElementById("octup");
+const octDn = document.getElementById("octdn");
+if (octUp) octUp.addEventListener("click", () => setOctave(+1));
+if (octDn) octDn.addEventListener("click", () => setOctave(-1));
 
-// Unteres Element (Klaviatur) Octave Buttons
 const kbOctDn = document.getElementById("kbOctDn");
 const kbOctUp = document.getElementById("kbOctUp");
 const kbOctRst = document.getElementById("kbOctRst");
@@ -544,8 +567,7 @@ if (kbLatchToggle) {
   kbLatchToggle.addEventListener("click", () => {
     const inst = synthInstances[activeSynthIdx];
     inst.params.latch = !inst.params.latch;
-    latchBtn.setAttribute("aria-pressed", inst.params.latch);
     updateOctaveUI();
-    if (!inst.params.latch) panicSynth(activeSynthIdx);
+    if (!inst.params.latch && typeof panicSynth === "function") panicSynth(activeSynthIdx);
   });
 }
