@@ -211,15 +211,27 @@ Every sound shaping parameter ($r, I_0, \Delta I, f_L, \Delta f_{vib}$, custom p
 
 ---
 
-### 6. Complete Song Save & Load (.json)
+### 6. Master Song Recording & Audio Export (Lossless WAV & 320 kbps MP3)
+Directly capture your entire live studio performance into pristine standalone audio files:
+- **One-Click Master Recording (`[ REC SONG ]` / Key `M`):** Taps directly off the master dynamics processor, capturing live synthesizer play, the 16-step arpeggiator, all active multi-layer loop tracks, and convolution reverb in real time.
+- **Live Elapsed Timer Badge:** Dynamic pulsing indicator (`[ 🔴 REC 01:24 ]`) tracking recording progress.
+- **Master Audio Export Modal:**
+  - **Lossless WAV Export:** 16-bit / 48kHz Stereo PCM `.wav` with uncompressed studio fidelity.
+  - **320 kbps MP3 Export:** High-bitrate 320 kbps CBR MP3 powered by client-side pure JS encoding for universal compatibility.
+  - **Interactive Waveform Display:** Visualizes the full amplitude envelope of the recorded song.
+  - **In-Browser Audio Player:** Preview and listen to your song before downloading.
+
+---
+
+### 7. Complete Song Save & Load (.json)
 Save your complete musical composition to a portable `.json` file:
 - **Lossless Audio Serializer:** Encodes all recorded loops as 32-bit Float WAV base64 data.
-- **Full Parameter Snapshot:** Preserves all 20 synthesizer configurations, custom variables, active oscillator states, speed knob settings, complete vibrato parameters, individual loop pause lengths (1–100s), global master/reverb levels, and speech pause parameters.
+- **Full Parameter Snapshot:** Preserves all 100 synthesizer configurations, custom variables, active oscillator states, speed knob settings, complete vibrato parameters, individual loop pause lengths (1–100s), global master/reverb levels, and arpeggiator sequences.
 - **One-Click Instant Restore:** Reloads loops, reconstructs audio buffers, and restores all UI dials and switches.
 
 ---
 
-### 7. 4-Panel Synchronized Oscilloscopes & Ultra-Compact 10% GFX Scaling
+### 8. 4-Panel Synchronized Oscilloscopes & Ultra-Compact 10% GFX Scaling
 1. **$y(t)$ Time Domain:** Real-time microphone/sum measurement vs. analytical active synthesizer model.
 2. **$f(t)$ Instantaneous Frequency:** Modulator trajectory and deviation bandwidth $\pm D$.
 3. **Spectrum Analysis:** Real FFT magnitude vs. analytical Bessel sideband stems $|J_n(I)|$.
@@ -229,7 +241,7 @@ Save your complete musical composition to a portable `.json` file:
 
 ---
 
-### 8. Resizable Modular Studio Layout
+### 9. Resizable Modular Studio Layout
 - **Horizontal Splitter (`#splitH`):** Drag to adjust width between visualizer plots and the control rack (from 10% to 90%).
 - **Vertical Splitter (`#splitV`):** Drag to customize piano keyboard height.
 - **Dual-Rack / Multi-Column Mode:** Automatically arranges controls into parallel columns when expanded, making every dial, vibrato module, and loop card visible without scrolling.
@@ -243,9 +255,10 @@ Save your complete musical composition to a portable `.json` file:
 |---|---|
 | `A`, `W`, `S`, `E`, `D`, `F`, `T`, `G`, `Z`, `H`, `U`, `J`, `K` | Play chromatic scale (C to C') polyphonically |
 | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `0` | Direct Synth Selection (1–10 within current bank, no Shift) |
-| `ß` / `´` | Previous / Next Soundbank (Cycle through Banks A to G) |
+| `ß` / `´` | Previous / Next Soundbank (Cycle through Banks A to J) |
 | `Y` / `X` | Transpose Octave Down / Up (Expanded Range: $-3$ to $+3$) |
-| `R` | Start / Stop Loop Recording (REC) |
+| `M` | Master Song Audio Recording (Export **WAV** / **320 kbps MP3**) |
+| `R` | Start / Stop Loop Layer Recording (REC) |
 | `H` | Toggle Header Expand / Compact Command Center Details |
 | `Ü` | Toggle Help & Keybindings Overlay (`Code by Felix Schmidt`) |
 | `Escape` | Close Overlays / Global Panic (Silence all voices) |
