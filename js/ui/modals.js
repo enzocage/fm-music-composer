@@ -1,6 +1,167 @@
 "use strict";
 
 /* ============================================================
+   SONG SPEICHERN & LADEN (.JSON)
+   ============================================================ */
+const saveSongBtn = document.getElementById("saveSongBtn");
+const loadSongBtn = document.getElementById("loadSongBtn");
+const songFileInput = document.getElementById("songFileInput");
+
+saveSongBtn.addEventListener("click", () => {
+  const songData = {
+    version: "2.0",
+    appName: "FM Music Composer",
+    savedAt: new Date().toISOString(),
+    global: {
+      master: GLOBAL.master,
+      wet: GLOBAL.wet,
+      oct: GLOBAL.oct
+    },
+    activeSynthIdx,
+    loopState: {
+      extraPauseSec: loopState.extraPauseSec,
+      volume: loopState.volume
+    },
+    arpState: {
+      enabled: arpState.enabled,
+      latch: arpState.latch,
+      bpm: arpState.bpm,
+      division: arpState.division,
+      direction: arpState.direction,
+      octaves: arpState.octaves,
+      gate: arpState.gate,
+      swing: arpState.swing,
+      steps: arpState.steps.map(s => ({ on: !!s.on, oct: s.oct ?? 0 }))
+    },
+    synths: synthInstances.map(inst => ({
+      id: inst.def.id,
+      name: inst.def.name,
+      params: { ...inst.params },
+      customVal: inst.customVal,
+      vibrato: { ...inst.vibrato },
+      oscillators: JSON.parse(JSON.stringify(inst.oscillators))
+    })),
+    loops: loopStack.map(layer => ({
+      id: layer.id,
+      synthIdx: layer.synthIdx,
+      synthName: layer.synthName,
+      keyDisplay: layer.keyDisplay,
+      color: layer.color,
+      duration: layer.duration,
+      volume: layer.volume,
+      isOn: layer.isOn,
+      pauseSec: layer.pauseSec,
+      audioWavBase64: audioBufferToWavBase64(layer.buffer)
+    }))
+  };
+
+  const jsonStr = JSON.stringify(songData, null, 2);
+  const blob = new Blob([jsonStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const now = new Date();
+  const pad = n => String(n).padStart(2, "0");
+  const ts = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}`;
+  a.href = url;
+  a.download = `fm_music_composer_song_${ts}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  saveSongBtn.textContent = "✓ Saved";
+  setTimeout(() => saveSongBtn.textContent = "💾 Save", 1600);
+});
+
+loadSongBtn.addEventListener("click", () => songFileInput.click());
+
+songFileInput.addEventListener("change", async e => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+
+  try {
+    loadSongBtn.textContent = "Lädt…";
+    const text = await file.text();
+    const songData = JSON.parse(text);
+
+    initAudio();
+    if (ctx.state === "suspended") await ctx.resume();
+
+    // 1. Globale Einstellungen
+    if (songData.global) {
+      GLOBAL.master = songData.global.master ?? 0.65;
+      GLOBAL.wet = songData.global.wet ?? 0.5;
+      GLOBAL.oct = songData.global.oct ?? 0;
+      if (masterGain) masterGain.gain.setValueAtTime(GLOBAL.master, ctx.currentTime);
+      if (wetGain) wetGain.gain.setValueAtTime(GLOBAL.wet, ctx.currentTime);
+      if (dryGain) dryGain.gain.setValueAtTime(1 - GLOBAL.wet * 0.5, ctx.currentTime);
+    }
+
+    // 2. Synthesizer Parameter, Vibrato & Oszillatoren wiederherstellen
+    if (Array.isArray(songData.synths)) {
+      songData.synths.forEach((savedSynth, idx) => {
+        if (idx < synthInstances.length) {
+          const inst = synthInstances[idx];
+          if (savedSynth.params) Object.assign(inst.params, savedSynth.params);
+          if (savedSynth.customVal !== undefined) inst.customVal = savedSynth.customVal;
+          if (savedSynth.vibrato) Object.assign(inst.vibrato, savedSynth.vibrato);
+          if (savedSynth.oscillators) inst.oscillators = savedSynth.oscillators;
+        }
+      });
+    }
+
+    // 3. Sprach-Loop Parameter
+    if (songData.loopState) {
+      loopState.extraPauseSec = songData.loopState.extraPauseSec ?? 2.5;
+      loopState.volume = songData.loopState.volume ?? 0.5;
+      pauseDurInp.value = loopState.extraPauseSec;
+      loopVolInp.value = loopState.volume;
+      document.getElementById("v_pausedur").textContent = "+" + loopState.extraPauseSec.toFixed(1) + " s";
+      document.getElementById("v_loopvol").textContent = Math.round(loopState.volume * 100) + " %";
+    }
+
+    // 3.5. Arpeggiator Parameter wiederherstellen
+    if (songData.arpState) {
+      arpState.enabled = !!songData.arpState.enabled;
+      arpState.latch = !!songData.arpState.latch;
+      arpState.bpm = songData.arpState.bpm ?? 124;
+      arpState.division = songData.arpState.division ?? "1/16";
+      arpState.direction = songData.arpState.direction ?? "up";
+      arpState.octaves = songData.arpState.octaves ?? 2;
+      arpState.gate = songData.arpState.gate ?? 0.65;
+      arpState.swing = songData.arpState.swing ?? 0;
+      if (Array.isArray(songData.arpState.steps)) {
+        arpState.steps = songData.arpState.steps.map(s => ({ on: !!s.on, oct: s.oct ?? 0 }));
+      }
+      if (typeof syncArpUI === "function") syncArpUI();
+    }
+
+    // 4. Loops wiederherstellen
+    clearAllLoops();
+    if (Array.isArray(songData.loops)) {
+      for (const savedLoop of songData.loops) {
+        if (savedLoop.audioWavBase64) {
+          const audioBuf = await wavBase64ToAudioBuffer(savedLoop.audioWavBase64);
+          createLoopLayer(audioBuf, savedLoop.synthIdx ?? 0, savedLoop);
+        }
+      }
+    }
+
+    // 5. Aktiven Synthesizer umschalten & UI synchronisieren
+    selectSynth(songData.activeSynthIdx ?? 0);
+
+    loadSongBtn.textContent = "✓ Loaded";
+    setTimeout(() => loadSongBtn.textContent = "📂 Load", 1600);
+  } catch (err) {
+    console.error("Fehler beim Laden des Songs:", err);
+    alert("Konnte Song-Datei nicht laden: " + err.message);
+    loadSongBtn.textContent = "📂 Load";
+  }
+  songFileInput.value = "";
+});
+
+
+/* ============================================================
    RESIZABLE SPLITTER LOGIK (SPLIT-H, SPLIT-V & SPLIT-HEADER)
    ============================================================ */
 const splitH = document.getElementById("splitH");
@@ -143,377 +304,641 @@ function applyInitialLayout() {
   resize();
 }
 
-/* ============================================================
-   Bessel-Funktion J_n(x)
-   ============================================================ */
-function besselJ(n, x) {
-  n = Math.abs(n);
-  if (x === 0) return n === 0 ? 1 : 0;
-  const h = x / 2;
-  let term = 1;
-  for (let i = 1; i <= n; i++) term *= h / i;
-  let sum = term;
-  for (let k = 1; k < 75; k++) {
-    term *= -(h * h) / (k * (n + k));
-    sum += term;
-    if (Math.abs(term) < 1e-16 * Math.abs(sum) && k > x) break;
-  }
-  return sum;
-}
 
 /* ============================================================
-   Canvas-Grafik & Visualisierung mit ResizeObserver
+   UI Steuerung & Dynamisch erweiterbare Kopfzeile
    ============================================================ */
-const CV = {};
-["cWave", "cFreq", "cSpec", "cOrb"].forEach(id => {
-  const c = document.getElementById(id);
-  CV[id] = { c, g: c.getContext("2d"), w: 0, h: 0 };
+const expandHeaderBtn = document.getElementById("expandHeaderBtn");
+const expandBtnTxt = document.getElementById("expandBtnTxt");
+const hudCenterCapsule = document.getElementById("hudCenterCapsule");
+
+const synthSelect = document.getElementById("synthSelect");
+const microPillsBar = document.getElementById("microPillsBar");
+const formulaInline = document.getElementById("formulaInline");
+const drawerPillsA = document.getElementById("drawerPillsA");
+const drawerPillsB = document.getElementById("drawerPillsB");
+const drawerSynthName = document.getElementById("drawerSynthName");
+const drawerSynthSub = document.getElementById("drawerSynthSub");
+const drawerFormulaLatex = document.getElementById("drawerFormulaLatex");
+
+const synthBadge = document.getElementById("synthBadge");
+const badgeName = document.getElementById("badgeName");
+const badgeVoices = document.getElementById("badgeVoices");
+const activeSynthTag = document.getElementById("activeSynthTag");
+// 7-Bank Definitionen & Universal Controller
+
+
+const bankButtons = {
+  A: document.getElementById("btnBankA"),
+  B: document.getElementById("btnBankB"),
+  C: document.getElementById("btnBankC"),
+  D: document.getElementById("btnBankD"),
+  E: document.getElementById("btnBankE"),
+  F: document.getElementById("btnBankF"),
+  G: document.getElementById("btnBankG"),
+  H: document.getElementById("btnBankH"),
+  I: document.getElementById("btnBankI"),
+  J: document.getElementById("btnBankJ")
+};
+
+const drawerPillContainers = {
+  A: document.getElementById("drawerPillsA"),
+  B: document.getElementById("drawerPillsB"),
+  C: document.getElementById("drawerPillsC"),
+  D: document.getElementById("drawerPillsD"),
+  E: document.getElementById("drawerPillsE"),
+  F: document.getElementById("drawerPillsF"),
+  G: document.getElementById("drawerPillsG"),
+  H: document.getElementById("drawerPillsH"),
+  I: document.getElementById("drawerPillsI"),
+  J: document.getElementById("drawerPillsJ")
+};
+
+function toggleHeaderExpand(forceState = null) {
+  const isExpanded = forceState !== null ? forceState : !topHeader.classList.contains("expanded");
+  topHeader.classList.toggle("expanded", isExpanded);
+  topHeader.style.maxHeight = isExpanded ? "380px" : "";
+  const expandBtnTxt = document.getElementById("expandBtnTxt");
+  if (expandBtnTxt) expandBtnTxt.textContent = isExpanded ? "▴ KOMPAKT" : "▾ DETAILS";
+  setTimeout(() => resize(), 100);
+  setTimeout(() => resize(), 300);
+}
+
+expandHeaderBtn.addEventListener("click", () => toggleHeaderExpand());
+hudCenterCapsule.addEventListener("click", () => toggleHeaderExpand());
+
+// 70 Synths in Dropdown mit 7 Gruppen aufbauen
+synthSelect.innerHTML = "";
+BANKS.forEach(b => {
+  const grp = document.createElement("optgroup");
+  grp.label = b.name;
+  for (let i = b.offset; i < b.offset + 10; i++) {
+    const def = SYNTH_DEFS[i];
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = `[${i + 1}] ${def.name}`;
+    grp.appendChild(opt);
+  }
+  synthSelect.appendChild(grp);
+});
+synthSelect.addEventListener("change", e => selectSynth(parseInt(e.target.value, 10)));
+
+// 10 dynamische Micro-Pills für primäre Leiste
+const microPills = [];
+microPillsBar.innerHTML = "";
+for (let k = 0; k < 10; k++) {
+  const p = document.createElement("button");
+  p.type = "button";
+  p.className = "micro-pill" + (k === 0 ? " active" : "");
+  p.innerHTML = `<span class="p-num">${k === 9 ? '0' : (k + 1)}</span><span class="voice-dot"></span>`;
+  p.addEventListener("click", () => {
+    const bObj = BANKS.find(b => b.id === currentBankId) || BANKS[0];
+    selectSynth(bObj.offset + k);
+  });
+  microPillsBar.appendChild(p);
+  microPills.push(p);
+}
+
+// 70 Drawer Pills im ausfahrbaren Bereich aufbauen
+const drawerPillEls = [];
+SYNTH_DEFS.forEach((def, i) => {
+  const pill = document.createElement("div");
+  pill.className = "drawer-synth-pill" + (i === 0 ? " active" : "");
+  pill.style.setProperty("--pill-color", def.color);
+  pill.innerHTML = `<span class="d-key">${i + 1}</span> <span>${def.name}</span>`;
+  pill.addEventListener("click", () => selectSynth(i));
+  
+  if (drawerPillContainers[def.bank]) {
+    drawerPillContainers[def.bank].appendChild(pill);
+  }
+
+  drawerPillEls.push(pill);
 });
 
-function resize() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  for (const k in CV) {
-    const o = CV[k];
-    const r = o.c.getBoundingClientRect();
-    o.w = Math.max(1, Math.round(r.width));
-    o.h = Math.max(1, Math.round(r.height));
-    o.c.width = o.w * dpr;
-    o.c.height = o.h * dpr;
-    o.g.setTransform(dpr, 0, 0, dpr, 0, 0);
+Object.keys(bankButtons).forEach(bId => {
+  const btn = bankButtons[bId];
+  if (btn) {
+    btn.addEventListener("click", () => setBank(bId));
   }
-  orbFirst = true;
-}
-window.addEventListener("resize", resize);
+});
 
-if (window.ResizeObserver && plotsContainer) {
-  const ro = new ResizeObserver(() => resize());
-  ro.observe(plotsContainer);
+const btnBankPrev = document.getElementById("btnBankPrev");
+const btnBankNext = document.getElementById("btnBankNext");
+if (btnBankPrev) btnBankPrev.addEventListener("click", () => cycleBank(-1));
+if (btnBankNext) btnBankNext.addEventListener("click", () => cycleBank(+1));
+
+function cycleBank(direction = +1) {
+  const curIdx = BANKS.findIndex(b => b.id === currentBankId);
+  const nextIdx = (curIdx + direction + BANKS.length) % BANKS.length;
+  setBank(BANKS[nextIdx].id);
 }
 
-const cssVal = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-let COLORS = {};
-function readColors() {
-  COLORS = {
-    panel: cssVal("--panel"),
-    grid: cssVal("--grid"),
-    rule: cssVal("--rule"),
-    dim: cssVal("--dim"),
-    dimmer: cssVal("--dimmer"),
-    fg: cssVal("--fg"),
-    mess: cssVal("--mess"),
-    modl: cssVal("--modl"),
-    phos: cssVal("--phos"),
-    hot: cssVal("--hot"),
-    rec: cssVal("--rec"),
-    accent: synthInstances[activeSynthIdx].def.color
+function setBank(bId) {
+  currentBankId = bId;
+  const bObj = BANKS.find(b => b.id === bId) || BANKS[0];
+  const offset = bObj.offset;
+  const inBank = activeSynthIdx >= offset && activeSynthIdx < offset + 10;
+  if (!inBank) {
+    selectSynth(offset + (activeSynthIdx % 10));
+  } else {
+    renderMicroPills();
+  }
+}
+
+function renderMicroPills() {
+  const defActive = SYNTH_DEFS[activeSynthIdx];
+  if (defActive) currentBankId = defActive.bank;
+
+  Object.keys(bankButtons).forEach(bId => {
+    if (bankButtons[bId]) {
+      bankButtons[bId].classList.toggle("active", bId === currentBankId);
+    }
+  });
+
+  const bObj = BANKS.find(b => b.id === currentBankId) || BANKS[0];
+  microPills.forEach((p, k) => {
+    const synthIdx = bObj.offset + k;
+    const def = SYNTH_DEFS[synthIdx];
+    p.style.setProperty("--pill-color", def.color);
+    p.title = `[${synthIdx + 1}] ${def.name}`;
+    p.querySelector(".p-num").textContent = `${k === 9 ? '0' : (k + 1)}`;
+    p.classList.toggle("active", synthIdx === activeSynthIdx);
+    p.classList.toggle("has-voices", synthInstances[synthIdx].voices.size > 0);
+  });
+
+  drawerPillEls.forEach((pill, i) => {
+    pill.classList.toggle("active", i === activeSynthIdx);
+  });
+}
+
+function selectSynth(idx) {
+  if (idx < 0 || idx >= synthInstances.length) return;
+  activeSynthIdx = idx;
+  const inst = synthInstances[idx];
+
+  document.documentElement.style.setProperty("--accent", inst.def.color);
+  synthSelect.value = idx;
+
+  renderMicroPills();
+
+  formulaInline.innerHTML = inst.def.formulaLatex;
+  formulaInline.title = inst.def.desc + " — " + inst.def.formulaSub;
+
+  drawerSynthName.textContent = `[${inst.def.keyDisplay}] · ${inst.def.name}`;
+  drawerSynthName.style.color = inst.def.color;
+  drawerSynthSub.textContent = inst.def.desc + " — " + inst.def.formulaSub;
+  drawerFormulaLatex.innerHTML = inst.def.formulaLatex;
+
+  badgeName.textContent = `[${inst.def.keyDisplay}] · ${inst.def.name}`;
+  badgeName.style.color = inst.def.color;
+  synthBadge.style.borderColor = inst.def.color;
+  activeSynthTag.textContent = `[${inst.def.keyDisplay}] ${inst.def.name}`;
+  activeSynthTag.style.color = inst.def.color;
+
+  const customParamTitle = document.getElementById("customParamTitle");
+  const customParamLabel = document.getElementById("customParamLabel");
+
+  customParamTitle.textContent = inst.def.customParam.name;
+  customParamLabel.textContent = inst.def.customParam.name;
+  PARAM_BOUNDS.customParam = {
+    min: inst.def.customParam.min,
+    max: inst.def.customParam.max,
+    step: inst.def.customParam.step
   };
+
+  const presetContainer = document.getElementById("presetButtons");
+  presetContainer.innerHTML = "";
+  inst.def.presets.forEach(p => {
+    const btn = document.createElement("button");
+    btn.textContent = p.name;
+    btn.addEventListener("click", () => {
+      inst.params.ratio = p.r;
+      inst.params.I0 = p.i;
+      inst.params.dI = p.d;
+      syncSliderValues();
+      applyParamChange("ratio");
+      applyParamChange("I0");
+      applyParamChange("dI");
+      syncOscillatorsUI();
+    });
+    presetContainer.appendChild(btn);
+  });
+
+  const latchBtn = document.getElementById("latch");
+  latchBtn.setAttribute("aria-pressed", inst.params.latch);
+
+  syncSliderValues();
+  syncOscillatorsUI();
+  updateUIBadges();
+  syncKeys();
 }
 
-function drawGrid(g, w, h, rows, cols) {
-  g.strokeStyle = COLORS.grid;
-  g.lineWidth = 1;
-  g.beginPath();
-  for (let i = 1; i < rows; i++) {
-    const y = Math.round(h * i / rows) + 0.5;
-    g.moveTo(0, y); g.lineTo(w, y);
+function updateUIBadges() {
+  const isBankB = (activeSynthIdx >= 10);
+  microPills.forEach((p, k) => {
+    const synthIdx = (isBankB ? 10 : 0) + k;
+    p.classList.toggle("has-voices", synthInstances[synthIdx].voices.size > 0);
+  });
+
+  const activeInst = synthInstances[activeSynthIdx];
+  badgeVoices.textContent = `${activeInst.voices.size} ${activeInst.voices.size === 1 ? "Stimme" : "Stimmen"} aktiv`;
+  updateOctaveUI();
+}
+
+
+/* ============================================================
+   Hilfe- & Referenz-Modal (Taste Ü)
+   ============================================================ */
+function toggleHelpModal(forceState = null) {
+  const helpOverlay = document.getElementById("helpOverlay");
+  if (!helpOverlay) return;
+  const isHidden = helpOverlay.classList.contains("hidden");
+  const targetState = forceState !== null ? forceState : isHidden;
+  helpOverlay.classList.toggle("hidden", !targetState);
+}
+
+const openHelpBtn = document.getElementById("openHelpBtn");
+const closeHelpBtn = document.getElementById("closeHelpBtn");
+const okHelpBtn = document.getElementById("okHelpBtn");
+const helpOverlay = document.getElementById("helpOverlay");
+
+if (openHelpBtn) openHelpBtn.addEventListener("click", () => toggleHelpModal(true));
+if (closeHelpBtn) closeHelpBtn.addEventListener("click", () => toggleHelpModal(false));
+if (okHelpBtn) okHelpBtn.addEventListener("click", () => toggleHelpModal(false));
+if (helpOverlay) {
+  helpOverlay.addEventListener("click", e => {
+    if (e.target === helpOverlay) toggleHelpModal(false);
+  });
+}
+
+window.addEventListener("keydown", e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+  // Nur echte Texteingaben blockieren (z. B. wenn Textfelder da wären), nie Slider oder Knöpfe!
+  if (e.target && e.target.tagName === "INPUT" && (e.target.type === "text" || e.target.type === "password" || e.target.type === "search")) {
+    return;
   }
-  for (let i = 1; i < cols; i++) {
-    const x = Math.round(w * i / cols) + 0.5;
-    g.moveTo(x, 0); g.lineTo(x, h);
+  if (e.target && e.target.tagName === "TEXTAREA") {
+    return;
   }
-  g.stroke();
+
+  // Hilfe-Modal mit Ü / ü umschalten
+  const isHelpKey = (
+    e.key === "ü" || e.key === "Ü" ||
+    (e.code === "BracketLeft" && !e.ctrlKey && !e.altKey && !e.metaKey)
+  );
+  if (isHelpKey && !e.repeat) {
+    e.preventDefault();
+    toggleHelpModal();
+    return;
+  }
+
+  if (e.key.toLowerCase() === "m" && !e.repeat) {
+    e.preventDefault();
+    toggleMasterRecording();
+    return;
+  }
+  if (e.key === "Escape") {
+    const exportEl = document.getElementById("audioExportModal");
+    if (exportEl && !exportEl.classList.contains("hidden")) {
+      closeAudioExportModal();
+      return;
+    }
+    const helpEl = document.getElementById("helpOverlay");
+    if (helpEl && !helpEl.classList.contains("hidden")) {
+      toggleHelpModal(false);
+      return;
+    }
+    panicAll();
+    return;
+  }
+  if (e.key.toLowerCase() === "r" && !e.repeat) {
+    e.preventDefault();
+    toggleRecording();
+    return;
+  }
+  if (e.key.toLowerCase() === "h" && !e.repeat) {
+    e.preventDefault();
+    toggleHeaderExpand();
+    return;
+  }
+
+  // Bank Umschalten mit ß (Zurück) und ´ (Vorwärts)
+  const isBankPrev = (
+    e.key === "ß" || e.key === "SS" || e.key === "?" ||
+    e.code === "Minus" || e.code === "NumpadSubtract"
+  );
+  if (isBankPrev && !e.repeat) {
+    e.preventDefault();
+    ensureAudioActive();
+    cycleBank(-1);
+    return;
+  }
+
+  const isBankNext = (
+    e.key === "´" || e.key === "`" || e.key === "^" || e.key === "Dead" ||
+    e.code === "Equal" || e.code === "Backquote" || e.code === "NumpadAdd"
+  );
+  if (isBankNext && !e.repeat) {
+    e.preventDefault();
+    ensureAudioActive();
+    cycleBank(+1);
+    return;
+  }
+
+  // Instrument-Auswahl mit Tasten 1 bis 0 (ohne Shift) für die aktuell aktive Bank
+  const digitMatch = e.code && e.code.match(/^Digit([0-9])$/);
+  if (digitMatch && !e.repeat) {
+    const num = parseInt(digitMatch[1], 10);
+    const digitIdx = (num === 0 ? 9 : num - 1);
+    e.preventDefault();
+    ensureAudioActive();
+    const bObj = BANKS.find(b => b.id === currentBankId) || BANKS[0];
+    selectSynth(bObj.offset + digitIdx);
+    return;
+  }
+
+  if (e.code === "KeyX" || e.key.toLowerCase() === "x") {
+    if (!e.repeat) {
+      e.preventDefault();
+      ensureAudioActive();
+      setOctave(+1);
+    }
+    return;
+  }
+
+  const isOctDown = (
+    (e.code === "KeyY" && e.key.toLowerCase() === "y") ||
+    (e.code === "KeyZ" && e.key.toLowerCase() === "y") ||
+    (e.code === "IntlBackslash")
+  );
+  if (isOctDown && e.code !== "KeyY" && e.code !== "KeyZ") {
+    if (!e.repeat) {
+      e.preventDefault();
+      ensureAudioActive();
+      setOctave(-1);
+    }
+    return;
+  }
+
+  const noteIdx = resolveNoteFromKeyEvent(e);
+  if (noteIdx !== null && noteIdx >= 0 && noteIdx <= 12) {
+    e.preventDefault();
+    if (document.activeElement && document.activeElement !== document.body && document.activeElement.tagName !== "BODY") {
+      try { document.activeElement.blur(); } catch(err){}
+    }
+
+    if (e.repeat) return;
+    ensureAudioActive();
+    activeHeldPhysicalNotes.set(e.code, noteIdx);
+    toggleKey(noteIdx);
+    return;
+  }
+});
+
+window.addEventListener("keyup", e => {
+  if (e.target && e.target.tagName === "INPUT" && (e.target.type === "text" || e.target.type === "password" || e.target.type === "search")) {
+    return;
+  }
+  if (e.target && e.target.tagName === "TEXTAREA") {
+    return;
+  }
+
+  const noteIdx = activeHeldPhysicalNotes.get(e.code) ?? resolveNoteFromKeyEvent(e);
+  if (noteIdx !== null && noteIdx >= 0 && noteIdx <= 12) {
+    activeHeldPhysicalNotes.delete(e.code);
+    releaseKey(noteIdx);
+  }
+});
+
+window.addEventListener("blur", () => {
+  activeHeldPhysicalNotes.clear();
+  const inst = synthInstances[activeSynthIdx];
+  if (!inst.params.latch && !arpState.latch) {
+    panicSynth(activeSynthIdx);
+  }
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    activeHeldPhysicalNotes.clear();
+    const inst = synthInstances[activeSynthIdx];
+    if (!inst.params.latch && !arpState.latch) {
+      panicSynth(activeSynthIdx);
+    }
+  }
+});
+
+/* ============================================================
+   Sprach-Zuspiel
+   ============================================================ */
+const MP3_URL = "https://files.catbox.moe/wknx4w.mp3";
+
+const loopState = {
+  isPlaying: false,
+  extraPauseSec: 2.5,
+  volume: 0.5,
+  buffer: null,
+  segments: [],
+  currentSegmentIdx: 0,
+  isPausedPhase: false,
+  phaseStartTime: 0,
+  phaseDuration: 0,
+  activeSourceNode: null,
+  pauseTimerId: null,
+  gainNode: null,
+  isLoading: false
+};
+
+const loopBtn = document.getElementById("loopbtn");
+const loopVolInp = document.getElementById("loopvol");
+const pauseDurInp = document.getElementById("pausedur");
+const loopStatusText = document.getElementById("loopStatusText");
+const loopStatusTimer = document.getElementById("loopStatusTimer");
+const loopBar = document.getElementById("loopBar");
+
+function initLoopAudio() {
+  if (!ctx || loopState.gainNode) return;
+  loopState.gainNode = ctx.createGain();
+  loopState.gainNode.gain.value = loopState.volume;
+  loopState.gainNode.connect(masterGain);
 }
 
-function drawLabel(g, txt, x, y, col, size, align) {
-  g.fillStyle = col;
-  g.font = (size || 9) + "px " + cssVal("--mono");
-  g.textAlign = align || "left";
-  g.fillText(txt, x, y);
-  g.textAlign = "left";
-}
+pauseDurInp.addEventListener("input", () => {
+  loopState.extraPauseSec = parseFloat(pauseDurInp.value);
+  document.getElementById("v_pausedur").textContent = "+" + loopState.extraPauseSec.toFixed(1) + " s";
+});
 
-/* ------------------------------------------------------------
-   Panel 1: Zeitfunktion y(t)
-   ------------------------------------------------------------ */
-function drawWave(currentI, activeInst) {
-  const o = CV.cWave, g = o.g, w = o.w, h = o.h, mid = h * 0.54;
-  g.fillStyle = "#070c18";
-  g.fillRect(0, 0, w, h);
-  drawGrid(g, w, h, 4, 8);
+loopVolInp.addEventListener("input", () => {
+  loopState.volume = parseFloat(loopVolInp.value);
+  document.getElementById("v_loopvol").textContent = Math.round(loopState.volume * 100) + " %";
+  if (loopState.gainNode && ctx) {
+    loopState.gainNode.gain.setTargetAtTime(loopState.volume, ctx.currentTime, 0.05);
+  }
+});
 
-  g.strokeStyle = COLORS.rule;
-  g.beginPath(); g.moveTo(0, Math.round(mid) + 0.5); g.lineTo(w, Math.round(mid) + 0.5); g.stroke();
+function detectSpeechSegments(audioBuf) {
+  const channel = audioBuf.getChannelData(0);
+  const sr = audioBuf.sampleRate;
+  const winDuration = 0.04;
+  const winSize = Math.floor(sr * winDuration);
+  const numWins = Math.floor(channel.length / winSize);
+  const energies = new Float32Array(numWins);
 
-  const prim = activeInst.primary;
-  const span = 2 / Math.min(prim.f, prim.fm || prim.f * 2);
-  const N = Math.min(w * 2, 1400);
+  for (let i = 0; i < numWins; i++) {
+    let sum = 0;
+    const start = i * winSize;
+    for (let j = 0; j < winSize; j++) {
+      const s = channel[start + j];
+      sum += s * s;
+    }
+    energies[i] = Math.sqrt(sum / winSize);
+  }
 
-  const activeVoices = [...activeInst.voices.values()];
-  const ys = new Float64Array(N);
-  let mx = 1e-9;
+  const threshold = 0.012;
+  const minSilenceDuration = 0.35;
+  const minSilenceWins = Math.floor(minSilenceDuration / winDuration);
 
-  for (let i = 0; i < N; i++) {
-    const t = (i / (N - 1)) * span;
-    let s = 0;
-    if (activeVoices.length) {
-      for (const v of activeVoices) {
-        const a = v.env.gain.value;
-        if (activeSynthIdx === 0) {
-          const lx = lorenzState.x * 0.15;
-          s += a * Math.sin(2 * Math.PI * v.f * t + currentI * lx * Math.sin(2 * Math.PI * v.fm * t));
-        } else if (activeSynthIdx === 1) {
-          const raw = Math.sin(2 * Math.PI * v.f * t + currentI * Math.sin(2 * Math.PI * v.fm * t));
-          s += a * Math.tanh(activeInst.customVal * raw);
-        } else if (activeSynthIdx === 13) {
-          const I2 = activeInst.customVal;
-          s += a * Math.sin(2 * Math.PI * v.f * t + currentI * Math.sin(2 * Math.PI * v.fm * t + I2 * Math.sin(2 * Math.PI * (v.f * 3) * t)));
-        } else {
-          s += a * Math.sin(2 * Math.PI * v.f * t + currentI * Math.sin(2 * Math.PI * v.fm * t));
+  const segments = [];
+  let inSpeech = false;
+  let segStart = 0;
+  let silenceWins = 0;
+
+  for (let i = 0; i < numWins; i++) {
+    const isVoice = energies[i] > threshold;
+    if (isVoice) {
+      if (!inSpeech) {
+        inSpeech = true;
+        segStart = Math.max(0, (i - 2) * winDuration);
+      }
+      silenceWins = 0;
+    } else {
+      if (inSpeech) {
+        silenceWins++;
+        if (silenceWins >= minSilenceWins) {
+          inSpeech = false;
+          const segEnd = Math.min(audioBuf.duration, (i - silenceWins + 2) * winDuration);
+          if (segEnd - segStart > 0.4) {
+            segments.push({ start: segStart, end: segEnd });
+          }
         }
       }
-    } else {
-      s = 0.18 * Math.sin(2 * Math.PI * prim.f * t + currentI * Math.sin(2 * Math.PI * prim.fm * t));
     }
-    ys[i] = s;
-    if (Math.abs(s) > mx) mx = Math.abs(s);
   }
-  const amp = (h * 0.34) / mx;
+  if (inSpeech) segments.push({ start: segStart, end: audioBuf.duration });
 
-  g.strokeStyle = "rgba(159,168,255,0.16)";
-  g.lineWidth = 1;
-  g.beginPath();
-  for (let i = 0; i < N; i++) {
-    const t = (i / (N - 1)) * span, x = (i / (N - 1)) * w;
-    const y = mid - h * 0.38 * Math.sin(2 * Math.PI * prim.fm * t);
-    i ? g.lineTo(x, y) : g.moveTo(x, y);
+  if (segments.length === 0) {
+    const step = audioBuf.duration / 4;
+    for (let k = 0; k < 4; k++) segments.push({ start: k * step, end: (k + 1) * step });
   }
-  g.stroke();
-
-  let totalActiveVoices = 0;
-  synthInstances.forEach(inst => totalActiveVoices += inst.voices.size);
-  const activeStackLayers = loopStack.filter(l => l.isOn).length;
-
-  if (analyser && (totalActiveVoices > 0 || activeStackLayers > 0)) {
-    analyser.getFloatTimeDomainData(timeData);
-    const need = Math.min(timeData.length - 2, Math.floor(span * ctx.sampleRate));
-    let st = 0;
-    for (let i = 1; i < timeData.length - need - 1; i++) {
-      if (timeData[i - 1] <= 0 && timeData[i] > 0) { st = i; break; }
-    }
-    let mm = 1e-9;
-    for (let i = st; i < st + need; i++) mm = Math.max(mm, Math.abs(timeData[i]));
-
-    g.strokeStyle = COLORS.mess;
-    g.lineWidth = 1.5;
-    g.globalAlpha = 0.92;
-    g.beginPath();
-    for (let i = 0; i <= need; i++) {
-      const x = (i / need) * w;
-      const y = mid - (timeData[st + i] / mm) * h * 0.34;
-      i ? g.lineTo(x, y) : g.moveTo(x, y);
-    }
-    g.stroke();
-    g.globalAlpha = 1;
-  }
-
-  g.strokeStyle = activeInst.def.color;
-  g.lineWidth = 1.3;
-  g.globalAlpha = activeVoices.length ? 0.95 : 0.45;
-  g.setLineDash([4, 3]);
-  g.beginPath();
-  for (let i = 0; i < N; i++) {
-    const x = (i / (N - 1)) * w;
-    const y = mid - ys[i] * amp;
-    i ? g.lineTo(x, y) : g.moveTo(x, y);
-  }
-  g.stroke();
-  g.setLineDash([]);
-  g.globalAlpha = 1;
-
-  drawLabel(g, (span * 1000).toFixed(1) + " ms", w - 6, h - 6, COLORS.dimmer, 8.5, "right");
-  drawLabel(g, activeInst.def.name + " (Modell)", 6, h - 6, activeInst.def.color, 8.5);
+  return segments;
 }
 
-/* ------------------------------------------------------------
-   Panel 2: Momentanfrequenz & Modulationsraum f(t)
-   ------------------------------------------------------------ */
-function drawFreq(currentI, activeInst) {
-  const o = CV.cFreq, g = o.g, w = o.w, h = o.h;
-  g.fillStyle = "#090a16";
-  g.fillRect(0, 0, w, h);
+async function loadLoopAudio() {
+  if (loopState.buffer) return loopState.buffer;
+  loopState.isLoading = true;
+  loopStatusText.textContent = "Lade Sprach-Sample …";
+  loopStatusTimer.textContent = "Pufferung";
 
-  const fc = activeInst.primary.f, fm = activeInst.primary.fm;
-  const D = currentI * fm;
-  const span = 2 / Math.min(fc, fm || fc * 2);
-  const top = Math.max(fc + D * 1.15, fc * 1.7);
-  const bot = Math.min(fc - D * 1.15, -fc * 0.2);
-  const Y = f => h - 12 - ((f - bot) / (top - bot)) * (h - 36);
-
-  drawGrid(g, w, h, 4, 8);
-
-  if (bot < 0) {
-    g.strokeStyle = COLORS.hot;
-    g.globalAlpha = 0.55;
-    g.setLineDash([3, 3]);
-    g.beginPath(); g.moveTo(0, Y(0)); g.lineTo(w, Y(0)); g.stroke();
-    g.setLineDash([]);
-    g.globalAlpha = 1;
-    drawLabel(g, "f = 0 · Phasenumkehr", 6, Y(0) - 4, COLORS.hot, 8);
+  try {
+    const resp = await fetch(MP3_URL);
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const arrayBuffer = await resp.arrayBuffer();
+    initAudio();
+    const audioBuf = await ctx.decodeAudioData(arrayBuffer);
+    loopState.buffer = audioBuf;
+    loopState.segments = detectSpeechSegments(audioBuf);
+    loopState.isLoading = false;
+    loopStatusText.textContent = `${loopState.segments.length} Phrasen`;
+    return audioBuf;
+  } catch (err) {
+    console.warn("Audio Fetch:", err);
+    loopState.isLoading = false;
+    loopStatusText.textContent = "Blockiert";
+    return null;
   }
-
-  g.fillStyle = "rgba(255, 71, 87, 0.05)";
-  g.fillRect(0, Y(fc + D), w, Math.max(1, Y(fc - D) - Y(fc + D)));
-
-  g.strokeStyle = COLORS.rule;
-  g.beginPath(); g.moveTo(0, Y(fc)); g.lineTo(w, Y(fc)); g.stroke();
-
-  g.strokeStyle = activeInst.def.color;
-  g.lineWidth = 1.5;
-  g.beginPath();
-  const N = Math.min(w, 900);
-  for (let i = 0; i < N; i++) {
-    const t = (i / (N - 1)) * span;
-    let instFreq = fc + D * Math.cos(2 * Math.PI * fm * t);
-    if (activeSynthIdx === 0) {
-      instFreq += lorenzState.x * 12 * Math.sin(2 * Math.PI * fm * 0.5 * t);
-    }
-    const x = (i / (N - 1)) * w;
-    i ? g.lineTo(x, Y(instFreq)) : g.moveTo(x, Y(instFreq));
-  }
-  g.stroke();
-
-  drawLabel(g, "f_c = " + fc.toFixed(1) + " Hz", 6, Y(fc) - 4, COLORS.dim, 8.5);
-  drawLabel(g, "+D = " + (fc + D).toFixed(0) + " Hz", w - 6, Y(fc + D) + 10, COLORS.dimmer, 8.5, "right");
-  drawLabel(g, "−D = " + (fc - D).toFixed(0) + " Hz", w - 6, Y(fc - D) - 4, COLORS.dimmer, 8.5, "right");
 }
 
-/* ------------------------------------------------------------
-   Panel 3: Spektrum & Bessel-Seitenbänder J_n(I)
-   ------------------------------------------------------------ */
-function drawSpec(currentI, activeInst) {
-  const o = CV.cSpec, g = o.g, w = o.w, h = o.h;
-  g.fillStyle = "#0a0818";
-  g.fillRect(0, 0, w, h);
+function playNextSegment() {
+  if (!loopState.isPlaying || !loopState.buffer || !loopState.segments.length) return;
+  const seg = loopState.segments[loopState.currentSegmentIdx];
+  const segDuration = seg.end - seg.start;
 
-  const fc = activeInst.primary.f, fm = activeInst.primary.fm;
-  const nMax = Math.min(28, Math.ceil(currentI) + 6);
-  const fMax = Math.min(9500, Math.max(1600, fc + (nMax + 1) * fm));
-  const X = f => (f / fMax) * w;
-  const base = h - 16, topPx = 14;
-  const dB2y = d => base - Math.max(0, Math.min(1, (d + 98) / 98)) * (base - topPx);
+  loopState.isPausedPhase = false;
+  loopState.phaseStartTime = performance.now();
+  loopState.phaseDuration = segDuration * 1000;
+  loopStatusText.textContent = `Sample ${loopState.currentSegmentIdx + 1}/${loopState.segments.length}`;
 
-  drawGrid(g, w, h, 4, 8);
-  g.strokeStyle = COLORS.rule;
-  g.beginPath(); g.moveTo(0, base + 0.5); g.lineTo(w, base + 0.5); g.stroke();
+  const source = ctx.createBufferSource();
+  source.buffer = loopState.buffer;
+  source.connect(loopState.gainNode);
+  source.onended = () => { if (loopState.isPlaying) startPausePhase(); };
 
-  let peak = -200;
-  let hasAnyVoices = false;
-  synthInstances.forEach(s => { if (s.voices.size > 0) hasAnyVoices = true; });
-  if (loopStack.some(l => l.isOn)) hasAnyVoices = true;
-
-  if (analyser && hasAnyVoices) {
-    analyser.getFloatFrequencyData(freqData);
-    const binSize = ctx.sampleRate / analyser.fftSize;
-    g.beginPath(); g.moveTo(0, base);
-    for (let i = 0; i < freqData.length; i++) {
-      const f = i * binSize;
-      if (f > fMax) break;
-      peak = Math.max(peak, freqData[i]);
-      g.lineTo(X(f), dB2y(freqData[i]));
-    }
-    g.lineTo(w, base);
-    g.closePath();
-    g.fillStyle = "rgba(255,196,107,0.15)";
-    g.fill();
-    g.strokeStyle = COLORS.mess;
-    g.lineWidth = 1.1;
-    g.stroke();
-  }
-
-  let tmax = 0;
-  const lines = [];
-  for (let n = -nMax; n <= nMax; n++) {
-    const a = Math.abs(besselJ(n, currentI));
-    if (a < 0.005) continue;
-    const f = fc + n * fm;
-    lines.push({ f: Math.abs(f), a, fold: f < 0, n });
-    tmax = Math.max(tmax, a);
-  }
-
-  const off = (hasAnyVoices && peak > -185) ? peak - 20 * Math.log10(Math.max(1e-4, tmax)) : -15;
-  for (const L of lines) {
-    if (L.f > fMax) continue;
-    const y = dB2y(20 * Math.log10(L.a) + off);
-    const x = Math.round(X(L.f)) + 0.5;
-
-    g.strokeStyle = L.fold ? COLORS.hot : activeInst.def.color;
-    g.globalAlpha = L.fold ? 0.85 : 0.8;
-    g.lineWidth = 1;
-    g.beginPath(); g.moveTo(x, base); g.lineTo(x, y); g.stroke();
-
-    g.fillStyle = L.fold ? COLORS.hot : activeInst.def.color;
-    g.beginPath(); g.arc(x, y, 2.0, 0, Math.PI * 2); g.fill();
-    g.globalAlpha = 1;
-
-    if (Math.abs(L.n) <= 3 && L.a > 0.09) {
-      drawLabel(g, (L.n > 0 ? "+" : "") + L.n, x + 2, y - 4, COLORS.dimmer, 7.5);
-    }
-  }
-
-  for (let f = 0; f <= fMax; f += fMax > 4000 ? 2000 : (fMax > 1800 ? 500 : 250)) {
-    drawLabel(g, (f / 1000).toFixed(f >= 1000 ? 1 : 2).replace(/\.00$/, "0") + "k", X(f) + 2, h - 4, COLORS.dimmer, 7.5);
-  }
-  drawLabel(g, "|J_n(I)| · f_m = " + fm.toFixed(1) + " Hz", w - 6, topPx + 2, COLORS.dimmer, 8.5, "right");
+  loopState.activeSourceNode = source;
+  source.start(0, seg.start, segDuration);
 }
 
-/* ------------------------------------------------------------
-   Panel 4: Phasenporträt (y, ẏ)
-   ------------------------------------------------------------ */
-let orbFirst = true;
-function drawOrb() {
-  const o = CV.cOrb, g = o.g, w = o.w, h = o.h;
-  if (orbFirst) {
-    g.fillStyle = "#060e14";
-    g.fillRect(0, 0, w, h);
-    orbFirst = false;
+function startPausePhase() {
+  if (!loopState.isPlaying) return;
+  loopState.activeSourceNode = null;
+  loopState.isPausedPhase = true;
+  loopState.phaseStartTime = performance.now();
+
+  const pauseMs = Math.max(100, loopState.extraPauseSec * 1000);
+  loopState.phaseDuration = pauseMs;
+  loopStatusText.textContent = `Pause (+${loopState.extraPauseSec.toFixed(1)}s)`;
+
+  loopState.pauseTimerId = setTimeout(() => {
+    if (!loopState.isPlaying) return;
+    loopState.currentSegmentIdx = (loopState.currentSegmentIdx + 1) % loopState.segments.length;
+    playNextSegment();
+  }, pauseMs);
+}
+
+function stopLoopPlayback() {
+  loopState.isPlaying = false;
+  if (loopState.pauseTimerId) { clearTimeout(loopState.pauseTimerId); loopState.pauseTimerId = null; }
+  if (loopState.activeSourceNode) {
+    try { loopState.activeSourceNode.stop(); } catch(e){}
+    loopState.activeSourceNode = null;
   }
-  g.fillStyle = "rgba(6,14,20,0.14)";
-  g.fillRect(0, 0, w, h);
+  loopBtn.setAttribute("aria-pressed", "false");
+  loopBtn.textContent = "Abspielen";
+  loopStatusText.textContent = "Pausiert";
+  loopStatusTimer.textContent = "0.0 s";
+  loopBar.style.width = "0%";
+}
 
-  const cx = w / 2, cy = h / 2, R = Math.min(w, h) * 0.38;
-  g.strokeStyle = COLORS.grid;
-  g.lineWidth = 1;
-  g.beginPath();
-  g.moveTo(cx - R * 1.25, cy); g.lineTo(cx + R * 1.25, cy);
-  g.moveTo(cx, cy - R * 1.25); g.lineTo(cx + R * 1.25, cy);
-  g.stroke();
+loopBtn.addEventListener("click", async () => {
+  initAudio();
+  if (ctx.state === "suspended") ctx.resume();
 
-  let hasAnyVoices = false;
-  synthInstances.forEach(s => { if (s.voices.size > 0) hasAnyVoices = true; });
-  if (loopStack.some(l => l.isOn)) hasAnyVoices = true;
-
-  if (!analyser || !hasAnyVoices) return;
-
-  analyser.getFloatTimeDomainData(timeData);
-  const n = Math.min(timeData.length - 2, 2600);
-  let my = 1e-9, md = 1e-9;
-  for (let i = 1; i < n; i++) {
-    my = Math.max(my, Math.abs(timeData[i]));
-    md = Math.max(md, Math.abs(timeData[i + 1] - timeData[i - 1]));
+  if (loopState.isPlaying) {
+    stopLoopPlayback();
+  } else {
+    loopBtn.textContent = "Lade …";
+    const buf = await loadLoopAudio();
+    if (!buf) { loopBtn.textContent = "Abspielen"; return; }
+    loopState.isPlaying = true;
+    loopBtn.setAttribute("aria-pressed", "true");
+    loopBtn.textContent = "Stopp";
+    playNextSegment();
   }
+});
 
-  g.strokeStyle = synthInstances[activeSynthIdx].def.color;
-  g.lineWidth = 1.1;
-  g.globalAlpha = 0.6;
-  g.beginPath();
-  for (let i = 1; i < n; i++) {
-    const x = cx + (timeData[i] / my) * R;
-    const y = cy - ((timeData[i + 1] - timeData[i - 1]) / md) * R;
-    i > 1 ? g.lineTo(x, y) : g.moveTo(x, y);
+function updateLoopStatusFrame() {
+  if (!loopState.isPlaying || loopState.phaseDuration <= 0) return;
+  const elapsed = performance.now() - loopState.phaseStartTime;
+  const progress = Math.min(1, Math.max(0, elapsed / loopState.phaseDuration));
+  loopBar.style.width = (progress * 100).toFixed(1) + "%";
+
+  if (loopState.isPausedPhase) {
+    const remainingSec = Math.max(0, (loopState.phaseDuration - elapsed) / 1000);
+    loopStatusTimer.textContent = remainingSec.toFixed(1) + " s";
+    loopBar.style.background = "#ff6b81";
+  } else {
+    const currentSec = (elapsed / 1000);
+    loopStatusTimer.textContent = currentSec.toFixed(1) + " s";
+    loopBar.style.background = "#ffc46b";
   }
-  g.stroke();
-  g.globalAlpha = 1;
-
-  drawLabel(g, "y →", cx + R * 1.25 - 18, cy - 4, COLORS.dimmer, 8);
-  drawLabel(g, "ẏ ↑", cx + 4, cy - R * 1.25 + 10, COLORS.dimmer, 8);
 }
