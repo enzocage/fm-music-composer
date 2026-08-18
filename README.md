@@ -40,9 +40,14 @@
 
 ---
 
-### 2. Multi-Layer Live Loop Stack & Recording
-- **One-Click Live Capture:** Press `R` or click `[ ● LOOP AUFNEHMEN (R) ]` to record the active synthesizer output in real-time.
+### 2. Multi-Layer Live Loop Stack with Individual Pause Knobs (1 to 100s)
+- **One-Click Live Capture:** Press `R` or click `[ ● REC (R) ]` to record the active synthesizer output in real-time.
 - **Seamless Loop Points:** 128-sample crossfading automatically eliminates clicks and pops at loop boundaries.
+- **Individual Rotary Pause Knobs (0 to 100 s):**
+  - Every loop layer features its own interactive rotary knob to configure a pause period between $1\text{ s}$ and $100\text{ s}$ (or $0\text{ s}$ for seamless continuous looping).
+  - After playing through, the loop pauses for the designated time and **automatically restarts from the beginning**.
+  - Real-time countdown timer badge (`[▶ 1.4s]` / `[⏸ 4.2s]`) and progress indicator.
+  - Supports vertical dragging and mouse wheel control.
 - **Dynamic Rack Cards:**
   - Real-time animated playhead tracker.
   - Mini waveform display rendered directly from the audio buffer.
@@ -52,14 +57,20 @@
 
 ---
 
-### 3. Per-Parameter Sine-Wave Automation (`~ OSC`)
+### 3. Ultra-Compact 1-Element Intelligent HUD Header
+- Consolidated title, Bank A/B segmented switcher, 10 dynamic micro-pills with voice-activity indicators, dropdown selector, live DSP telemetry ($f_c, f_m, I, D$), song save/load, and layout buttons into a single sleek 38px strip.
+- Frees over 210 vertical pixels for maximum oscilloscope and rack clarity.
+
+---
+
+### 4. Per-Parameter Visible UI Handles & Automation (`~ OSC`)
 Every sound shaping parameter ($r, I_0, \Delta I, f_L$, custom parameters like $\rho, \gamma, m, \alpha$) features an autonomous modulation engine:
-- **`[ ~ OSC ]` Toggle Checkbox:** Instantly enables automated continuous sine-wave oscillation.
-- **Start A & Ende B Markers:** Sets precise boundaries $[A, B]$ for parameter sweeps.
-- **Illuminated Track Span:** Visual glowing highlight on the main slider track displaying the active oscillation window.
-- **Rotary Speed Knob (0 to 100):**
-  - Smooth interactive rotary dial with circular SVG needle and pointer.
-  - Drag vertically or use the mouse wheel.
+- **`[ ~ OSC ]` Toggle Badge:** Instantly enables automated continuous sine-wave oscillation.
+- **Visible Draggable Handles `[ A ]` & `[ B ]`:** Tactile handles setting the exact oscillation boundaries without numeric drawers.
+- **Echtzeit-Wertnadel (White Needle):** Displays live parameter value and oscillates at 60 FPS between $A$ and $B$.
+- **Integrated Single-Row Rotary Speed Knob (0 to 100):**
+  - Smooth interactive rotary dial with circular SVG needle and pointer embedded in the same control row.
+  - Drag vertically or use mouse wheel.
   - Rate ranges from ultra-slow organic drifts ($0.01\text{ Hz}$ / $100\text{ s}$) up to $4.5\text{ Hz}$ vibrato/wobble.
 
 ---
