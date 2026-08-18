@@ -66,7 +66,33 @@
 
 ---
 
-### 4. Complete Complex-Vibrato & Humanizer Engine (All 20 Instruments)
+### 4. Complex Programmable & Keyboard-Playable Arpeggiator
+A high-precision Web Audio lookahead arpeggiator and step sequencer usable across all 20 synthesizers:
+- **`[ ~ ARP ]` Master Toggle:** Activates/deactivates live arpeggio mode.
+- **Keyboard Playable / Held-Chord Input:** Press any chord on your physical computer keyboard or screen keys; the arpeggiator sequences through the chord in real time!
+- **`[ Hold ]` (Latch Mode):** Keeps the arpeggio repeating continuously after you release the keys until a new chord is pressed.
+- **6 Directional Modes:**
+  - `▲ Up`: Ascending note sequence.
+  - `▼ Down`: Descending note sequence.
+  - `▲▼ Up/Dn`: Bouncing ascending and descending pattern.
+  - `⚄ Rand`: Random note selection from held chord notes.
+  - `▶◀ Conv`: Converging pattern (alternating outer and inner notes).
+  - `■ Chord`: Staccato-gated simultaneous chord rhythm.
+- **Subdivision Clock:** `1/4`, `1/8`, `1/16`, `1/16T` (Triplets), and `1/32` notes.
+- **Octave Span (1 to 4 Octaves):** Cascades arpeggiated patterns across 1, 2, 3, or 4 octaves.
+- **Interactive 16-Step Matrix Sequencer:**
+  - 16 clickable step gate toggles with real-time running LED playhead tracker.
+  - Per-step octave transposition badges (`-1`, `0`, `+1`, `+2`).
+- **Groove & Articulation Controls:**
+  - **Tempo:** 40 to 280 BPM.
+  - **Gate-Length:** 10% (ultra-short staccato pluck) to 100% (legato sustain).
+  - **Swing / Shuffle:** 0% to 65% groove shuffle.
+- **Pattern Presets:** `[ 16th Straight ]`, `[ Euklid 5/16 ]`, `[ Euklid 7/16 ]`, `[ Synkope ]`, `[ Oct Dance ]`, `[ Random ]`.
+- **Lossless `.json` Save/Load:** Patterns and arpeggio settings are saved and restored with your song project.
+
+---
+
+### 5. Complete Complex-Vibrato & Humanizer Engine (All 20 Instruments)
 Every instrument includes an acoustic/electronic vibrato modulation module:
 - **`[ ~ VIB ]` Master Toggle:** Activates/deactivates pitch vibrato for the selected instrument.
 - **Waveform Selector:**
@@ -82,7 +108,7 @@ Every instrument includes an acoustic/electronic vibrato modulation module:
 
 ---
 
-### 5. Per-Parameter Visible UI Handles & Automation (`~ OSC`)
+### 6. Per-Parameter Visible UI Handles & Automation (`~ OSC`)
 Every sound shaping parameter ($r, I_0, \Delta I, f_L, \Delta f_{vib}$, custom parameters like $\rho, \gamma, m, \alpha$) features an autonomous modulation engine:
 - **`[ ~ OSC ]` Toggle Badge:** Instantly enables automated continuous sine-wave oscillation.
 - **Visible Draggable Handles `[ A ]` & `[ B ]`:** Tactile handles setting the exact oscillation boundaries without numeric drawers.

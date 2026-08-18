@@ -677,6 +677,122 @@
     box-shadow: 0 0 6px rgba(162, 155, 254, 0.3);
   }
 
+  /* Modul 3.6: Programmierbarer Arpeggiator (Subtil Bernstein / Gold) */
+  .grp-arp {
+    background: linear-gradient(180deg, #130f07 0%, #080603 100%);
+    border-color: rgba(255, 196, 107, 0.35);
+    border-left: 2px solid #ffc46b;
+  }
+  .grp-arp > h2 { color: #ffc46b; }
+
+  .arp-mode-btn, .arp-div-btn, .arp-oct-btn, .arp-pre-btn {
+    font-family: var(--mono);
+    font-size: 7.5px;
+    font-weight: 600;
+    padding: 2px 4px;
+    background: #080c16;
+    border: 1px solid var(--rule);
+    color: var(--dim);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .1s;
+    white-space: nowrap;
+  }
+  .arp-mode-btn:hover, .arp-div-btn:hover, .arp-oct-btn:hover, .arp-pre-btn:hover {
+    color: var(--fg);
+    border-color: var(--dimmer);
+  }
+  .arp-mode-btn.active, .arp-div-btn.active, .arp-oct-btn.active {
+    background: rgba(255, 196, 107, 0.25);
+    color: #ffffff;
+    border-color: #ffc46b;
+    font-weight: 700;
+    box-shadow: 0 0 6px rgba(255, 196, 107, 0.3);
+  }
+
+  /* 16-Step Arpeggio Matrix */
+  .arp-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 2px;
+    background: rgba(5, 7, 12, 0.9);
+    padding: 4px 3px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    margin-top: 4px;
+  }
+  .arp-step-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    position: relative;
+  }
+  .arp-step-col:nth-child(4n) {
+    border-right: 1px solid rgba(255,255,255,0.06);
+    padding-right: 2px;
+  }
+  .arp-step-col:last-child {
+    border-right: none;
+  }
+  .arp-step-led {
+    width: 3.5px;
+    height: 3.5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    transition: background 0.04s, box-shadow 0.04s;
+  }
+  .arp-step-col.active-playhead .arp-step-led {
+    background: #ffc46b;
+    box-shadow: 0 0 6px #ffc46b, 0 0 10px #ffc46b;
+  }
+  .arp-step-gate {
+    width: 100%;
+    height: 18px;
+    background: #090e18;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .08s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px;
+    font-weight: 700;
+    color: var(--dimmer);
+    padding: 0;
+  }
+  .arp-step-gate:hover {
+    border-color: #ffc46b;
+  }
+  .arp-step-gate.on {
+    background: rgba(56, 199, 255, 0.25);
+    border-color: #38c7ff;
+    color: #38c7ff;
+    box-shadow: 0 0 4px rgba(56, 199, 255, 0.2);
+  }
+  .arp-step-col.active-playhead .arp-step-gate.on {
+    background: #38c7ff;
+    color: #05070d;
+    box-shadow: 0 0 8px #38c7ff;
+  }
+  .arp-step-oct {
+    font-size: 6.5px;
+    font-family: var(--mono);
+    color: var(--dim);
+    cursor: pointer;
+    user-select: none;
+    padding: 0 1px;
+    border-radius: 1px;
+    background: rgba(255,255,255,0.04);
+    min-width: 12px;
+    text-align: center;
+  }
+  .arp-step-oct:hover {
+    color: #ffc46b;
+    background: rgba(255,196,107,0.15);
+  }
+
   /* Modul 4: Spielhilfen & Sprach-Zuspieler (Subtil Jade/Teal) */
   .grp-voice {
     background: linear-gradient(180deg, #050e12 0%, #03080b 100%);
@@ -1674,6 +1790,76 @@
         </div>
       </div>
 
+      <!-- RACK SECTION 3.6: PROGRAMMIERBARER ARPEGGIATOR (Subtil Bernstein) -->
+      <div class="grp grp-arp" id="arpeggiatorGrp">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+          <h2><span style="color:#ffc46b;">Programmierbarer Arpeggiator</span></h2>
+          <div style="display:flex; gap:3px; align-items:center;">
+            <button type="button" id="arp_latch_btn" class="arp-mode-btn" title="Akkord halten (Latch)">Hold</button>
+            <label class="osc-toggle-label" title="Arpeggiator Ein/Aus">
+              <input type="checkbox" id="arp_enabled" class="osc-chk">
+              <span class="osc-badge" id="arp_badge" style="font-weight:700;">~ ARP</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Modus / Laufrichtung -->
+        <div style="display:flex; gap:2px; margin-bottom:4px; flex-wrap:wrap;">
+          <button type="button" class="arp-mode-btn active" data-dir="up" title="Aufwärts">▲ Up</button>
+          <button type="button" class="arp-mode-btn" data-dir="down" title="Abwärts">▼ Down</button>
+          <button type="button" class="arp-mode-btn" data-dir="up_down" title="Auf & Ab">▲▼ Up/Dn</button>
+          <button type="button" class="arp-mode-btn" data-dir="random" title="Zufall">⚄ Rand</button>
+          <button type="button" class="arp-mode-btn" data-dir="converge" title="Konvergierend">▶◀ Conv</button>
+          <button type="button" class="arp-mode-btn" data-dir="chord" title="Gated Chord">■ Chord</button>
+        </div>
+
+        <!-- Taktteilung & Oktaven-Span -->
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:4px; margin-bottom:5px;">
+          <div style="display:flex; gap:1.5px;">
+            <button type="button" class="arp-div-btn" data-div="1/4">1/4</button>
+            <button type="button" class="arp-div-btn" data-div="1/8">1/8</button>
+            <button type="button" class="arp-div-btn active" data-div="1/16">1/16</button>
+            <button type="button" class="arp-div-btn" data-div="1/16T">1/16T</button>
+            <button type="button" class="arp-div-btn" data-div="1/32">1/32</button>
+          </div>
+          <div style="display:flex; gap:1.5px; align-items:center;">
+            <span style="font-size:7px; color:var(--dim); margin-right:1px;">Okt:</span>
+            <button type="button" class="arp-oct-btn" data-oct="1">1</button>
+            <button type="button" class="arp-oct-btn active" data-oct="2">2</button>
+            <button type="button" class="arp-oct-btn" data-oct="3">3</button>
+            <button type="button" class="arp-oct-btn" data-oct="4">4</button>
+          </div>
+        </div>
+
+        <!-- Tempo / BPM & Gate-Dauer -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-bottom:4px;">
+          <label class="ctl"><span class="row"><span class="nm">Tempo (BPM)</span><span class="vl" id="v_arpBpm">124</span></span>
+            <input type="range" id="arpBpm" min="40" max="280" step="1" value="124"></label>
+          <label class="ctl"><span class="row"><span class="nm">Gate-Dauer</span><span class="vl" id="v_arpGate">65 %</span></span>
+            <input type="range" id="arpGate" min="10" max="100" step="1" value="65"></label>
+        </div>
+
+        <label class="ctl" style="margin-bottom:4px;"><span class="row"><span class="nm">Swing / Shuffle Groove</span><span class="vl" id="v_arpSwing">0 %</span></span>
+          <input type="range" id="arpSwing" min="0" max="65" step="1" value="0"></label>
+
+        <!-- 16-Step Pattern Sequencer Matrix -->
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:4px;">
+          <span style="font-size:7.5px; font-weight:700; color:#ffc46b; text-transform:uppercase;">16-Step Gate Matrix & Oktave</span>
+          <span id="arpActiveNotesHint" style="font-size:7px; color:var(--dim);">Tasten halten</span>
+        </div>
+        <div class="arp-matrix-grid" id="arpMatrixGrid"></div>
+
+        <!-- Pattern Presets -->
+        <div class="btns" style="margin-top:5px; gap:2px;">
+          <button type="button" class="arp-pre-btn" data-pattern="straight">16th Straight</button>
+          <button type="button" class="arp-pre-btn" data-pattern="euc5">Euklid 5/16</button>
+          <button type="button" class="arp-pre-btn" data-pattern="euc7">Euklid 7/16</button>
+          <button type="button" class="arp-pre-btn" data-pattern="sync">Synkope</button>
+          <button type="button" class="arp-pre-btn" data-pattern="dance">Oct Dance</button>
+          <button type="button" class="arp-pre-btn" data-pattern="rand">Random</button>
+        </div>
+      </div>
+
       <!-- RACK SECTION 4: SPIELHILFEN & SPRACH-ZUSPIEL (Subtil Jade) -->
       <div class="grp grp-voice">
         <h2><span>Spielhilfen & Presets</span></h2>
@@ -2475,6 +2661,15 @@ function noteOff(sem, synthIdx = activeSynthIdx) {
 function panicSynth(synthIdx = activeSynthIdx) {
   const inst = synthInstances[synthIdx];
   [...inst.voices.keys()].forEach(sem => noteOff(sem, synthIdx));
+  if (synthIdx === activeSynthIdx && typeof stopArpClock === "function") {
+    stopArpClock();
+    if (typeof arpState !== "undefined" && arpState) {
+      arpState.heldKeys.clear();
+      arpState.latchedKeys = [];
+      if (typeof updateArpActiveNotesHint === "function") updateArpActiveNotesHint();
+      if (typeof syncKeys === "function") syncKeys();
+    }
+  }
 }
 
 function panicAll() {
@@ -3014,6 +3209,17 @@ saveSongBtn.addEventListener("click", () => {
       extraPauseSec: loopState.extraPauseSec,
       volume: loopState.volume
     },
+    arpState: {
+      enabled: arpState.enabled,
+      latch: arpState.latch,
+      bpm: arpState.bpm,
+      division: arpState.division,
+      direction: arpState.direction,
+      octaves: arpState.octaves,
+      gate: arpState.gate,
+      swing: arpState.swing,
+      steps: arpState.steps.map(s => ({ on: !!s.on, oct: s.oct ?? 0 }))
+    },
     synths: synthInstances.map(inst => ({
       id: inst.def.id,
       name: inst.def.name,
@@ -3099,6 +3305,22 @@ songFileInput.addEventListener("change", async e => {
       loopVolInp.value = loopState.volume;
       document.getElementById("v_pausedur").textContent = "+" + loopState.extraPauseSec.toFixed(1) + " s";
       document.getElementById("v_loopvol").textContent = Math.round(loopState.volume * 100) + " %";
+    }
+
+    // 3.5. Arpeggiator Parameter wiederherstellen
+    if (songData.arpState) {
+      arpState.enabled = !!songData.arpState.enabled;
+      arpState.latch = !!songData.arpState.latch;
+      arpState.bpm = songData.arpState.bpm ?? 124;
+      arpState.division = songData.arpState.division ?? "1/16";
+      arpState.direction = songData.arpState.direction ?? "up";
+      arpState.octaves = songData.arpState.octaves ?? 2;
+      arpState.gate = songData.arpState.gate ?? 0.65;
+      arpState.swing = songData.arpState.swing ?? 0;
+      if (Array.isArray(songData.arpState.steps)) {
+        arpState.steps = songData.arpState.steps.map(s => ({ on: !!s.on, oct: s.oct ?? 0 }));
+      }
+      if (typeof syncArpUI === "function") syncArpUI();
     }
 
     // 4. Loops wiederherstellen
@@ -4364,6 +4586,432 @@ document.getElementById("octup").addEventListener("click", () => setOctave(+1));
 document.getElementById("octdn").addEventListener("click", () => setOctave(-1));
 
 /* ============================================================
+   KOMPLEXER PROGRAMMIERBARER ARPEGGIATOR (Lookahead Clock)
+   ============================================================ */
+const arpState = {
+  enabled: false,
+  latch: false,
+  bpm: 124,
+  division: "1/16",
+  direction: "up",
+  octaves: 2,
+  gate: 0.65,
+  swing: 0.0,
+  steps: Array.from({ length: 16 }, () => ({ on: true, oct: 0 })),
+  heldKeys: new Set(),
+  latchedKeys: [],
+  currentStepIndex: 0,
+  noteSequenceIndex: 0,
+  nextNoteTime: 0,
+  timerId: null,
+  activeNoteSem: null,
+  activeNoteOffTimer: null
+};
+
+const ARP_DIV_FACTORS = {
+  "1/4": 1.0,
+  "1/8": 0.5,
+  "1/16": 0.25,
+  "1/16T": 1 / 6,
+  "1/32": 0.125
+};
+
+const ARP_PRESETS = {
+  straight: () => Array.from({ length: 16 }, () => ({ on: true, oct: 0 })),
+  euc5: () => {
+    const hits = [0, 3, 6, 10, 13];
+    return Array.from({ length: 16 }, (_, i) => ({ on: hits.includes(i), oct: 0 }));
+  },
+  euc7: () => {
+    const hits = [0, 2, 5, 7, 9, 12, 14];
+    return Array.from({ length: 16 }, (_, i) => ({ on: hits.includes(i), oct: 0 }));
+  },
+  sync: () => {
+    const hits = [0, 3, 6, 8, 11, 14];
+    return Array.from({ length: 16 }, (_, i) => ({ on: hits.includes(i), oct: (i % 6 === 0 ? 1 : 0) }));
+  },
+  dance: () => {
+    return Array.from({ length: 16 }, (_, i) => ({ on: (i % 2 === 0 || i % 3 === 0), oct: (i % 4 === 2 ? 1 : (i % 4 === 3 ? 2 : 0)) }));
+  },
+  rand: () => {
+    const octs = [-1, 0, 0, 1, 1, 2];
+    return Array.from({ length: 16 }, () => ({ on: Math.random() > 0.3, oct: octs[Math.floor(Math.random() * octs.length)] }));
+  }
+};
+
+function getNoteSequence(baseNotes, direction, octaves) {
+  if (!baseNotes || baseNotes.length === 0) return [];
+  const sorted = [...baseNotes].sort((a, b) => a - b);
+  const fullNotes = [];
+  for (let oct = 0; oct < octaves; oct++) {
+    for (const n of sorted) {
+      fullNotes.push(n + oct * 12);
+    }
+  }
+
+  if (direction === "up") {
+    return fullNotes;
+  } else if (direction === "down") {
+    return [...fullNotes].reverse();
+  } else if (direction === "up_down") {
+    if (fullNotes.length <= 1) return fullNotes;
+    const downPart = fullNotes.slice(1, -1).reverse();
+    return fullNotes.concat(downPart);
+  } else if (direction === "converge") {
+    const res = [];
+    let l = 0, r = fullNotes.length - 1;
+    while (l <= r) {
+      if (l === r) { res.push(fullNotes[l]); }
+      else { res.push(fullNotes[l]); res.push(fullNotes[r]); }
+      l++; r--;
+    }
+    return res;
+  } else if (direction === "random") {
+    return fullNotes;
+  } else if (direction === "chord") {
+    return [fullNotes];
+  }
+  return fullNotes;
+}
+
+function startArpClock() {
+  if (arpState.timerId !== null) return;
+  initAudio();
+  if (ctx.state === "suspended") ctx.resume();
+  arpState.nextNoteTime = ctx.currentTime + 0.01;
+  arpState.currentStepIndex = 0;
+  arpState.noteSequenceIndex = 0;
+  arpState.timerId = setInterval(arpScheduleLoop, 25);
+}
+
+function stopArpClock() {
+  if (arpState.timerId !== null) {
+    clearInterval(arpState.timerId);
+    arpState.timerId = null;
+  }
+  if (arpState.activeNoteSem !== null) {
+    if (Array.isArray(arpState.activeNoteSem)) {
+      arpState.activeNoteSem.forEach(n => noteOff(n, activeSynthIdx));
+    } else {
+      noteOff(arpState.activeNoteSem, activeSynthIdx);
+    }
+    arpState.activeNoteSem = null;
+  }
+  if (arpState.activeNoteOffTimer) {
+    clearTimeout(arpState.activeNoteOffTimer);
+    arpState.activeNoteOffTimer = null;
+  }
+  document.querySelectorAll(".arp-step-col").forEach(c => c.classList.remove("active-playhead"));
+}
+
+function arpScheduleLoop() {
+  if (!ctx || !arpState.enabled) {
+    stopArpClock();
+    return;
+  }
+
+  const activeKeys = (arpState.heldKeys.size > 0 ? Array.from(arpState.heldKeys) : arpState.latchedKeys);
+  if (activeKeys.length === 0) {
+    if (!arpState.latch) {
+      stopArpClock();
+      return;
+    }
+  }
+
+  const lookahead = 0.12;
+  while (arpState.nextNoteTime < ctx.currentTime + lookahead) {
+    scheduleArpStep(arpState.nextNoteTime, activeKeys);
+
+    const beatSec = 60 / Math.max(30, arpState.bpm);
+    const divFactor = ARP_DIV_FACTORS[arpState.division] || 0.25;
+    let stepDur = beatSec * divFactor * 4;
+
+    if (arpState.swing > 0 && (arpState.currentStepIndex % 2 === 1)) {
+      stepDur += stepDur * (arpState.swing * 0.45);
+    } else if (arpState.swing > 0 && (arpState.currentStepIndex % 2 === 0)) {
+      stepDur -= stepDur * (arpState.swing * 0.45);
+    }
+    stepDur = Math.max(0.02, stepDur);
+
+    arpState.nextNoteTime += stepDur;
+    arpState.currentStepIndex = (arpState.currentStepIndex + 1) % 16;
+  }
+}
+
+function scheduleArpStep(time, activeKeys) {
+  const stepIdx = arpState.currentStepIndex;
+  const step = arpState.steps[stepIdx];
+
+  const now = ctx ? ctx.currentTime : 0;
+  const delayMs = Math.max(0, (time - now) * 1000);
+
+  setTimeout(() => {
+    document.querySelectorAll(".arp-step-col").forEach((c, idx) => {
+      c.classList.toggle("active-playhead", idx === stepIdx);
+    });
+  }, delayMs);
+
+  if (!step || !step.on || activeKeys.length === 0) {
+    return;
+  }
+
+  const seq = getNoteSequence(activeKeys, arpState.direction, arpState.octaves);
+  if (seq.length === 0) return;
+
+  let targetNote;
+  if (arpState.direction === "random") {
+    targetNote = seq[Math.floor(Math.random() * seq.length)] + step.oct * 12;
+  } else if (arpState.direction === "chord") {
+    targetNote = seq[0].map(n => n + step.oct * 12);
+  } else {
+    const idx = arpState.noteSequenceIndex % seq.length;
+    targetNote = seq[idx] + step.oct * 12;
+    arpState.noteSequenceIndex++;
+  }
+
+  const beatSec = 60 / Math.max(30, arpState.bpm);
+  const divFactor = ARP_DIV_FACTORS[arpState.division] || 0.25;
+  const rawStepDur = beatSec * divFactor * 4;
+  const noteDuration = Math.max(0.03, rawStepDur * Math.max(0.1, Math.min(1.0, arpState.gate)));
+
+  setTimeout(() => {
+    if (!arpState.enabled) return;
+
+    if (arpState.activeNoteSem !== null) {
+      if (Array.isArray(arpState.activeNoteSem)) {
+        arpState.activeNoteSem.forEach(n => noteOff(n, activeSynthIdx));
+      } else {
+        noteOff(arpState.activeNoteSem, activeSynthIdx);
+      }
+    }
+
+    if (Array.isArray(targetNote)) {
+      targetNote.forEach(n => noteOn(n, activeSynthIdx));
+      arpState.activeNoteSem = targetNote;
+    } else {
+      noteOn(targetNote, activeSynthIdx);
+      arpState.activeNoteSem = targetNote;
+    }
+
+    arpState.activeNoteOffTimer = setTimeout(() => {
+      if (arpState.activeNoteSem !== null) {
+        if (Array.isArray(arpState.activeNoteSem)) {
+          arpState.activeNoteSem.forEach(n => noteOff(n, activeSynthIdx));
+        } else {
+          noteOff(arpState.activeNoteSem, activeSynthIdx);
+        }
+        arpState.activeNoteSem = null;
+      }
+    }, noteDuration * 1000);
+  }, delayMs);
+}
+
+function updateArpActiveNotesHint() {
+  const hintEl = document.getElementById("arpActiveNotesHint");
+  if (!hintEl) return;
+  const activeKeys = (arpState.heldKeys.size > 0 ? Array.from(arpState.heldKeys) : arpState.latchedKeys);
+  if (activeKeys.length === 0) {
+    hintEl.textContent = arpState.latch ? "Hold aktiv (Bereit)" : "Tasten halten";
+    hintEl.style.color = "var(--dim)";
+  } else {
+    const noteNames = activeKeys.map(k => NOTES[k] || ("N" + k));
+    hintEl.textContent = `Akkord: [ ${noteNames.join(" · ")} ]`;
+    hintEl.style.color = "#ffc46b";
+  }
+}
+
+function renderArpMatrix() {
+  const container = document.getElementById("arpMatrixGrid");
+  if (!container) return;
+  container.innerHTML = "";
+
+  arpState.steps.forEach((step, idx) => {
+    const col = document.createElement("div");
+    col.className = "arp-step-col";
+    col.id = `arp_col_${idx}`;
+
+    const led = document.createElement("div");
+    led.className = "arp-step-led";
+
+    const gateBtn = document.createElement("button");
+    gateBtn.type = "button";
+    gateBtn.className = "arp-step-gate" + (step.on ? " on" : "");
+    gateBtn.textContent = idx + 1;
+    gateBtn.title = `Step ${idx + 1}: ${step.on ? "Aktiv" : "Stumm"}`;
+    gateBtn.addEventListener("click", () => {
+      step.on = !step.on;
+      gateBtn.classList.toggle("on", step.on);
+      gateBtn.title = `Step ${idx + 1}: ${step.on ? "Aktiv" : "Stumm"}`;
+    });
+
+    const octBadge = document.createElement("div");
+    octBadge.className = "arp-step-oct";
+    octBadge.textContent = (step.oct > 0 ? "+" : "") + step.oct;
+    octBadge.title = `Oktaven-Versatz: ${step.oct} (Klicken zum Umschalten)`;
+    octBadge.addEventListener("click", () => {
+      if (step.oct === 0) step.oct = 1;
+      else if (step.oct === 1) step.oct = 2;
+      else if (step.oct === 2) step.oct = -1;
+      else step.oct = 0;
+      octBadge.textContent = (step.oct > 0 ? "+" : "") + step.oct;
+      octBadge.style.color = step.oct !== 0 ? "#ffc46b" : "var(--dim)";
+    });
+    if (step.oct !== 0) octBadge.style.color = "#ffc46b";
+
+    col.appendChild(led);
+    col.appendChild(gateBtn);
+    col.appendChild(octBadge);
+    container.appendChild(col);
+  });
+}
+
+function setupArpControls() {
+  const arpChk = document.getElementById("arp_enabled");
+  const arpBadge = document.getElementById("arp_badge");
+  const arpLatchBtn = document.getElementById("arp_latch_btn");
+  const arpBpmInp = document.getElementById("arpBpm");
+  const arpGateInp = document.getElementById("arpGate");
+  const arpSwingInp = document.getElementById("arpSwing");
+
+  if (arpChk) {
+    arpChk.addEventListener("change", () => {
+      arpState.enabled = arpChk.checked;
+      if (arpBadge) {
+        arpBadge.style.background = arpState.enabled ? "#ffc46b" : "transparent";
+        arpBadge.style.color = arpState.enabled ? "#05070d" : "var(--dim)";
+        arpBadge.style.borderColor = arpState.enabled ? "#ffc46b" : "var(--rule)";
+      }
+      if (!arpState.enabled) {
+        stopArpClock();
+        panicSynth(activeSynthIdx);
+      }
+      updateArpActiveNotesHint();
+      syncKeys();
+    });
+  }
+
+  if (arpLatchBtn) {
+    arpLatchBtn.addEventListener("click", () => {
+      arpState.latch = !arpState.latch;
+      arpLatchBtn.classList.toggle("active", arpState.latch);
+      if (!arpState.latch && arpState.heldKeys.size === 0) {
+        arpState.latchedKeys = [];
+        stopArpClock();
+      }
+      updateArpActiveNotesHint();
+      syncKeys();
+    });
+  }
+
+  document.querySelectorAll(".arp-mode-btn[data-dir]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      arpState.direction = btn.dataset.dir;
+      document.querySelectorAll(".arp-mode-btn[data-dir]").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+
+  document.querySelectorAll(".arp-div-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      arpState.division = btn.dataset.div;
+      document.querySelectorAll(".arp-div-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+
+  document.querySelectorAll(".arp-oct-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      arpState.octaves = parseInt(btn.dataset.oct, 10);
+      document.querySelectorAll(".arp-oct-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+
+  if (arpBpmInp) {
+    arpBpmInp.addEventListener("input", () => {
+      arpState.bpm = parseInt(arpBpmInp.value, 10);
+      document.getElementById("v_arpBpm").textContent = arpState.bpm;
+    });
+  }
+
+  if (arpGateInp) {
+    arpGateInp.addEventListener("input", () => {
+      arpState.gate = parseInt(arpGateInp.value, 10) / 100;
+      document.getElementById("v_arpGate").textContent = Math.round(arpState.gate * 100) + " %";
+    });
+  }
+
+  if (arpSwingInp) {
+    arpSwingInp.addEventListener("input", () => {
+      arpState.swing = parseInt(arpSwingInp.value, 10) / 100;
+      document.getElementById("v_arpSwing").textContent = Math.round(arpState.swing * 100) + " %";
+    });
+  }
+
+  document.querySelectorAll(".arp-pre-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const patKey = btn.dataset.pattern;
+      if (ARP_PRESETS[patKey]) {
+        arpState.steps = ARP_PRESETS[patKey]();
+        renderArpMatrix();
+      }
+    });
+  });
+
+  renderArpMatrix();
+}
+
+function syncArpUI() {
+  const arpChk = document.getElementById("arp_enabled");
+  const arpBadge = document.getElementById("arp_badge");
+  const arpLatchBtn = document.getElementById("arp_latch_btn");
+  const arpBpmInp = document.getElementById("arpBpm");
+  const arpGateInp = document.getElementById("arpGate");
+  const arpSwingInp = document.getElementById("arpSwing");
+
+  if (arpChk) {
+    arpChk.checked = arpState.enabled;
+    if (arpBadge) {
+      arpBadge.style.background = arpState.enabled ? "#ffc46b" : "transparent";
+      arpBadge.style.color = arpState.enabled ? "#05070d" : "var(--dim)";
+      arpBadge.style.borderColor = arpState.enabled ? "#ffc46b" : "var(--rule)";
+    }
+  }
+
+  if (arpLatchBtn) arpLatchBtn.classList.toggle("active", arpState.latch);
+
+  document.querySelectorAll(".arp-mode-btn[data-dir]").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.dir === arpState.direction);
+  });
+
+  document.querySelectorAll(".arp-div-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.div === arpState.division);
+  });
+
+  document.querySelectorAll(".arp-oct-btn").forEach(btn => {
+    btn.classList.toggle("active", parseInt(btn.dataset.oct, 10) === arpState.octaves);
+  });
+
+  if (arpBpmInp) {
+    arpBpmInp.value = arpState.bpm;
+    document.getElementById("v_arpBpm").textContent = arpState.bpm;
+  }
+
+  if (arpGateInp) {
+    arpGateInp.value = Math.round(arpState.gate * 100);
+    document.getElementById("v_arpGate").textContent = Math.round(arpState.gate * 100) + " %";
+  }
+
+  if (arpSwingInp) {
+    arpSwingInp.value = Math.round(arpState.swing * 100);
+    document.getElementById("v_arpSwing").textContent = Math.round(arpState.swing * 100) + " %";
+  }
+
+  renderArpMatrix();
+  updateArpActiveNotesHint();
+}
+
+/* ============================================================
    Klaviatur
    ============================================================ */
 const keysEl = document.getElementById("keys");
@@ -4376,14 +5024,8 @@ LETTERS.forEach((ltr, i) => {
   d.innerHTML = `<span class="ltr">${ltr.toUpperCase()}</span><span class="nt">${NOTES[i]}</span>`;
 
   d.addEventListener("pointerdown", e => { e.preventDefault(); toggleKey(i); });
-  d.addEventListener("pointerup", () => {
-    const inst = synthInstances[activeSynthIdx];
-    if (!inst.params.latch) noteOff(i, activeSynthIdx);
-  });
-  d.addEventListener("pointerleave", () => {
-    const inst = synthInstances[activeSynthIdx];
-    if (!inst.params.latch) noteOff(i, activeSynthIdx);
-  });
+  d.addEventListener("pointerup", () => releaseKey(i));
+  d.addEventListener("pointerleave", () => releaseKey(i));
 
   keysEl.appendChild(d);
   keyEls.push(d);
@@ -4391,6 +5033,18 @@ LETTERS.forEach((ltr, i) => {
 
 function toggleKey(i) {
   const inst = synthInstances[activeSynthIdx];
+  if (arpState.enabled) {
+    if (arpState.latch && arpState.heldKeys.size === 0) {
+      arpState.latchedKeys = [];
+    }
+    arpState.heldKeys.add(i);
+    arpState.latchedKeys = Array.from(arpState.heldKeys).sort((a, b) => a - b);
+    updateArpActiveNotesHint();
+    syncKeys();
+    startArpClock();
+    return;
+  }
+
   if (inst.params.latch && inst.voices.has(i)) {
     noteOff(i, activeSynthIdx);
   } else {
@@ -4398,9 +5052,34 @@ function toggleKey(i) {
   }
 }
 
+function releaseKey(i) {
+  const inst = synthInstances[activeSynthIdx];
+  if (arpState.enabled) {
+    arpState.heldKeys.delete(i);
+    if (!arpState.latch) {
+      arpState.latchedKeys = Array.from(arpState.heldKeys).sort((a, b) => a - b);
+      if (arpState.latchedKeys.length === 0) {
+        stopArpClock();
+      }
+    }
+    updateArpActiveNotesHint();
+    syncKeys();
+    return;
+  }
+
+  if (!inst.params.latch) noteOff(i, activeSynthIdx);
+}
+
 function syncKeys() {
   const inst = synthInstances[activeSynthIdx];
-  keyEls.forEach((d, i) => d.classList.toggle("on", inst.voices.has(i)));
+  keyEls.forEach((d, i) => {
+    if (arpState.enabled) {
+      const isHeld = arpState.heldKeys.has(i) || (arpState.latch && arpState.latchedKeys.includes(i));
+      d.classList.toggle("on", isHeld);
+    } else {
+      d.classList.toggle("on", inst.voices.has(i));
+    }
+  });
 }
 
 const KEYMAP = {};
@@ -4436,9 +5115,8 @@ window.addEventListener("keydown", e => {
 window.addEventListener("keyup", e => {
   const k = e.key.toLowerCase();
   const i = KEYMAP[k];
-  const inst = synthInstances[activeSynthIdx];
-  if (i === undefined || inst.params.latch) return;
-  noteOff(i, activeSynthIdx);
+  if (i === undefined) return;
+  releaseKey(i);
 });
 
 /* ============================================================
@@ -4674,6 +5352,7 @@ window.addEventListener("keydown", () => { if (document.body.contains(veil)) sta
 
 // Initialisierung
 setupUnifiedParamControls();
+setupArpControls();
 selectSynth(0);
 readColors();
 resize();
