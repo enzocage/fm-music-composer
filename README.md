@@ -172,34 +172,30 @@ A high-precision Web Audio lookahead arpeggiator and step sequencer usable acros
 
 ---
 
-### 5. Multi-Voice Ambient Percussion Stepper & Pattern Suggestion Engine
-A dedicated multi-track organic percussion and landscape sequencer featuring **6 synthesized drum voices** with individual 16-step patterns, mute/solo controls, and an **Intelligent Pattern Suggestion Engine**:
-- **6 Dedicated Drum Synthesis DSP Engines:**
-  1. **`BASE DRUM` (Deep Sinus):** Pure sine wave sub-bass drop ($150\text{ Hz} \to 45\text{ Hz}$) with fast pitch envelope and snappy click attack transient.
-  2. **`HI-HAT` (High Short Noise):** High-pass filtered white noise ($7.5\text{ kHz}$) with rapid exponential decay ($45\text{ ms}$).
-  3. **`CYMBAL` (High Long Noise):** High airy noise ($6.2\text{ kHz}$) blended with 4 inharmonic metallic FM cluster carriers and long decay ($1.8\text{ s}$).
-  4. **`SNARE DRUM` (Hard Deep Noise):** Dual-layer engine combining deep fundamental body tone ($195\text{ Hz}$) and snappy high-pass noise burst.
-  5. **`WOOD / PING` (Buchla 292 LPG):** Organic resonant woodblock ping with non-linear vactrol slew.
-  6. **`SHAKER / DUST` (Granular Noise):** Soft ambient granular noise burst with controllable grain density.
+### 5. Multi-Voice Ambient Percussion Stepper, Parameter Oscillation & Overarching Modulators
+A dedicated multi-track organic percussion and landscape sequencer featuring **6 synthesized drum voices** with individual 16-step patterns, mute/solo controls, **autonomous parameter oscillation tracks (`~ OSC`) for every single drum voice**, and an **Overarching Beat-Loop Master Modulator Suite**:
+- **6 Dedicated Drum Synthesis DSP Engines with Autonomous Parameter Oscillation:**
+  1. **`BASE DRUM` (Deep Sinus):** Pure sine wave sub-bass drop with 4 configurable parameter rows: *Sub-Freq $f_0$* ($30–100\text{Hz}$), *Pitch-Drop $\Delta f$* ($20–300\text{Hz}$), *Decay* ($0.05–1.2\text{s}$), *Click Transient* ($0–100\%$) — each with `[ ~ OSC ]`, draggable $[A, B]$ handles, live needle, and rotary speed knob!
+  2. **`HI-HAT` (High Short Noise):** High-pass filtered white noise with 4 parameter rows: *Cutoff $f_{hh}$* ($3000–14000\text{Hz}$), *Hat Decay* ($15–250\text{ms}$), *Metallic Ring* ($0–100\%$), *Velocity Response* ($0–100\%$) [~ OSC].
+  3. **`CYMBAL` (High Long Noise):** Metallic FM cluster & white noise with 4 parameter rows: *Cymbal Decay* ($0.4–4.5\text{s}$), *FM Cluster Spread* ($1.0–5.0$), *Air Shimmer Band* ($2000–16000\text{Hz}$), *Resonance Q* ($0.5–8.0$) [~ OSC].
+  4. **`SNARE DRUM` (Hard Deep Noise):** Dual-layer body + noise with 4 parameter rows: *Body Freq $f_{sn}$* ($100–350\text{Hz}$), *Noise Mix* ($0–100\%$), *Snare Decay* ($0.05–0.6\text{s}$), *Snappy Cutoff* ($500–8000\text{Hz}$) [~ OSC].
+  5. **`WOOD / PING` (Buchla 292 LPG):** Organic resonant woodblock with 4 parameter rows: *Wood Pitch $f_{wd}$* ($200–2500\text{Hz}$), *Vactrol LPG Slew* ($0.01–0.5\text{s}$), *Bessel Harmonics* ($1.0–4.0$), *Damping* ($0–100\%$) [~ OSC].
+  6. **`SHAKER / DUST` (Granular Noise):** Ambient granular friction with 4 parameter rows: *Grain Density* ($10–100\%$), *Grain Decay* ($10–150\text{ms}$), *Center Bandpass* ($1000–10000\text{Hz}$), *Granular Scatter* ($0–100\%$) [~ OSC].
+- **🌊 Overarching Beat-Loop Master Modulators (Global LFO Suite):**
+  - **`Master Filter Morph` [~ OSC]:** Autonomous low-pass/band-pass filter sweeping the entire percussion stage ($200\text{Hz} \leftrightarrow 14000\text{Hz}$).
+  - **`Swing / Groove Breathe` [~ OSC]:** Continuous dynamic expansion and relaxation of the 16th-note shuffle groove ($0\% \leftrightarrow 75\%$).
+  - **`Chaos / Timing Jitter` [~ OSC]:** Micro-timing humanizer wave ($0\text{ms} \leftrightarrow 40\text{ms}$).
+  - **`Binaural Orbital Pan` [~ OSC]:** Sweeping circular spatialization of the percussion field.
+  - **`Space Reverb Swell` [~ OSC]:** Dynamic wet/dry swell into the 5.5s convolution chamber ($0\% \leftrightarrow 100\%$).
+  - **`Drive / Tape Crunch` [~ OSC]:** Warm analogue wave-shaping saturation ($0.0 \leftrightarrow 5.0$).
+  - **Beat-Sync LFO Quantization:** Lock loop modulators directly to musical tempo divisions (`Free Hz`, `1/4 Beat`, `1/2 Beat`, `1 Bar (4/4)`, `2 Bars`, `4 Bars`)!
 - **Interactive 16-Step Grid & Multi-Track Overview:**
   - 16 clickable velocity step pads for the active voice.
   - Multi-track visualizer displaying real-time running LED playheads across all 6 tracks simultaneously.
   - Per-track **MUTE**, **SOLO**, and **VOLUME** dials.
 - **Intelligent Pattern Suggestion Engine:**
-  - Plausible per-element pattern generators:
-    - *Base Drum:* `[ 4-on-Floor ]`, `[ Downbeat (1&3) ]`, `[ Syncopated Sub ]`, `[ Minimal Pulse ]`.
-    - *Hi-Hat:* `[ 8th Offbeat ]`, `[ 16th Running ]`, `[ Euclid 7/16 ]`, `[ Flutter Wave ]`.
-    - *Cymbal:* `[ Bar 1 Crash ]`, `[ Swell Beat 4+ ]`, `[ Periodic Shimmer ]`.
-    - *Snare Drum:* `[ Backbeat (2&4) ]`, `[ Ghost Notes ]`, `[ Polyrhythm 3/8 ]`, `[ Sparse Accent ]`.
-    - *Wood / Ping:* `[ Euclid 5/16 ]`, `[ Micro-Shuffle ]`, `[ Poisson Rain ]`.
-    - *Shaker / Dust:* `[ Running 16th ]`, `[ Ambient 8th ]`, `[ Granular Dust ]`.
-- **Global Landscape Smart-Composers:**
-  - `[ 🌌 Deep Ambient ]`: Sub-bass downbeat, ghost snare, offbeat hi-hat, and Poisson drops.
-  - `[ 🍃 Forest Glitch ]`: Syncopated sub, flutter hi-hat, Euclid woodclicks, and granular dust.
-  - `[ 🌊 Dub Drift ]`: Sparse sub on 1 & 11, backbeat snare, cymbal shimmer, and shaker.
-  - `[ ⚡ Micro-Techno ]`: 4-on-the-floor kick, 8th offbeat hat, backbeat snare, and 16th shaker.
-  - `[ 🪐 Cosmic Dust ]`: Sparse sub pulse, periodic cymbal swell, and granular continuous shimmer.
-  - `[ ⚄ Smart Auto-Compose ]`: Algorithmic generator assembling coherent, plausible rhythms across all 6 voices in one click!
+  - Plausible per-element pattern generators (*4-on-Floor, Downbeat 1&3, Syncopated Sub, Backbeat 2&4, Ghost Notes, Polyrhythm 3/8, 8th Offbeat, 16th Running, Euclid 7/16, Bar 1 Crash, Swell 4+, Euclid 5/16, Poisson Rain, Granular Dust*).
+  - Global Landscape Smart-Composers: `[ 🌌 Deep Ambient ]`, `[ 🍃 Forest Glitch ]`, `[ 🌊 Dub Drift ]`, `[ ⚡ Micro-Techno ]`, `[ 🪐 Cosmic Dust ]`, `[ ⚄ Smart Auto-Compose All ]`.
 
 ---
 

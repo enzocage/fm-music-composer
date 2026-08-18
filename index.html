@@ -2848,97 +2848,35 @@
         <!-- Multi-Track Landscape Mini-Overview (All 6 Tracks at a Glance) -->
         <div class="perc-overview-wrap" id="percOverviewWrap" title="Echtzeit-Gesamtübersicht aller 6 Percussion-Spuren"></div>
 
-        <!-- 15 Feinfühlige Klang- & Timing-Parameter -->
-        <div class="perc-grid-params">
-          <!-- 1. Swing / Groove -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">1 · Swing / Groove</span><span class="p-num" id="v_perc_swing">15 %</span></div>
-            <input type="range" class="perc-slider" id="p_perc_swing" min="0" max="75" step="1" value="15">
+                <!-- VOICES CONFIGURABLE OSCILLATION PARAMETERS RACK -->
+        <div style="margin-top:6px;border-top:1px solid rgba(46,213,115,0.25);padding-top:5px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-size:7.5px;font-weight:800;letter-spacing:.08em;color:#2ed573;text-transform:uppercase;" id="percParamSectionTitle">BASE DRUM PARAMETER (~ OSC AUTO)</span>
+            <span style="font-size:6.5px;color:var(--dim);">Taktiler A/B Bereich & Drehregler</span>
           </div>
+          <div id="percVoiceParamsContainer"></div>
+        </div>
 
-          <!-- 2. Chaos / Jitter -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">2 · Chaos / Jitter</span><span class="p-num" id="v_perc_jitter">10 ms</span></div>
-            <input type="range" class="perc-slider" id="p_perc_jitter" min="0" max="40" step="1" value="10">
+        <!-- OVERARCHING BEAT-LOOP MODULATION ENGINE (ÜBERGEORDNETE SCHLEIFEN-EFFEKTE) -->
+        <div style="margin-top:8px;background:rgba(2,12,8,0.7);border:1px solid rgba(46,213,115,0.3);border-radius:3px;padding:6px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+            <div style="display:flex;align-items:center;gap:4px;">
+              <span style="font-size:8px;font-weight:800;color:#2ed573;letter-spacing:.08em;">🌊 ÜBERGEORDNETE BEAT-LOOP MODULATION</span>
+              <span style="font-family:var(--mono);font-size:6.5px;background:rgba(46,213,115,0.2);color:#2ed573;padding:1px 3px;border-radius:2px;">MASTER LFO</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:3px;">
+              <span style="font-size:6.5px;color:var(--dim);">SYNC:</span>
+              <select id="percLfoSyncSelect" style="background:#081018;border:1px solid rgba(46,213,115,0.4);color:#2ed573;font-family:var(--mono);font-size:7.5px;font-weight:700;padding:1px 3px;border-radius:2px;cursor:pointer;">
+                <option value="free">Free Hz</option>
+                <option value="1_4">1/4 Takt</option>
+                <option value="1_2">1/2 Takt</option>
+                <option value="1_1" selected>1 Takt (4/4)</option>
+                <option value="2_1">2 Takte</option>
+                <option value="4_1">4 Takte</option>
+              </select>
+            </div>
           </div>
-
-          <!-- 3. Base Drum Pitch Drop -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">3 · Base Sub-Frequenz</span><span class="p-num" id="v_perc_base_freq">48 Hz</span></div>
-            <input type="range" class="perc-slider" id="p_perc_base_freq" min="30" max="90" step="1" value="48">
-          </div>
-
-          <!-- 4. Hihat Crisp Decay -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">4 · Hi-Hat Abklingzeit</span><span class="p-num" id="v_perc_hh_decay">45 ms</span></div>
-            <input type="range" class="perc-slider" id="p_perc_hh_decay" min="15" max="150" step="1" value="45">
-          </div>
-
-          <!-- 5. Cymbal Shimmer Decay -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">5 · Cymbal Ausklang</span><span class="p-num" id="v_perc_cym_decay">1.8 s</span></div>
-            <input type="range" class="perc-slider" id="p_perc_cym_decay" min="0.5" max="3.5" step="0.1" value="1.8">
-          </div>
-
-          <!-- 6. Snare Body & Noise Mix -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">6 · Snare Ton/Rausch-Mix</span><span class="p-num" id="v_perc_snare_mix">60 %</span></div>
-            <input type="range" class="perc-slider" id="p_perc_snare_mix" min="10" max="90" step="1" value="60">
-          </div>
-
-          <!-- 7. Wood Resonance Pitch -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">7 · Wood / Ping Tonhöhe</span><span class="p-num" id="v_perc_wood_pitch">720 Hz</span></div>
-            <input type="range" class="perc-slider" id="p_perc_wood_pitch" min="200" max="2200" step="10" value="720">
-          </div>
-
-          <!-- 8. Shaker Granular Density -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">8 · Shaker Korndichte</span><span class="p-num" id="v_perc_shaker_dens">75 %</span></div>
-            <input type="range" class="perc-slider" id="p_perc_shaker_dens" min="10" max="100" step="1" value="75">
-          </div>
-
-          <!-- 9. Tone Filter Cutoff -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">9 · Master Dämpfung</span><span class="p-num" id="v_perc_tone">5200 Hz</span></div>
-            <input type="range" class="perc-slider" id="p_perc_tone" min="400" max="14000" step="100" value="5200">
-          </div>
-
-          <!-- 10. Granular Dust Scatter -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">10 · Granularstaub Burst</span><span class="p-num" id="v_perc_scatter">30 %</span></div>
-            <input type="range" class="perc-slider" id="p_perc_scatter" min="0" max="100" step="1" value="30">
-          </div>
-
-          <!-- 11. Stereo Pan Drift -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">11 · Stereo Pan Drift</span><span class="p-num" id="v_perc_pan">65 %</span></div>
-            <input type="range" class="perc-slider" id="p_perc_pan" min="0" max="100" step="1" value="65">
-          </div>
-
-          <!-- 12. Probability Gate Mask -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">12 · Zufall Wahrsch.</span><span class="p-num" id="v_perc_prob">90 %</span></div>
-            <input type="range" class="perc-slider" id="p_perc_prob" min="20" max="100" step="1" value="90">
-          </div>
-
-          <!-- 13. Reverb Space Send -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">13 · Hall-Anteil (Space)</span><span class="p-num" id="v_perc_space">40 %</span></div>
-            <input type="range" class="perc-slider" id="p_perc_space" min="0" max="100" step="1" value="40">
-          </div>
-
-          <!-- 14. Downbeat Accent Weight -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">14 · Downbeat Akzent</span><span class="p-num" id="v_perc_accent">1.5 x</span></div>
-            <input type="range" class="perc-slider" id="p_perc_accent" min="1.0" max="3.0" step="0.1" value="1.5">
-          </div>
-
-          <!-- 15. Master Loop Bars -->
-          <div class="perc-param-item">
-            <div class="perc-param-hdr"><span class="p-lbl">15 · Loop-Länge</span><span class="p-num" id="v_perc_bars">1 Takt (4/4)</span></div>
-            <input type="range" class="perc-slider" id="p_perc_bars" min="1" max="4" step="1" value="1">
-          </div>
+          <div id="percOverarchingParamsContainer"></div>
         </div>
 
         <!-- Master Perkussion Pegel -->
@@ -11526,6 +11464,86 @@ function renderFrame() {
       });
     });
 
+    
+    // ------------------------------------------------------------
+    // Percussion Multi-Voice & Overarching Parameter Oscillations
+    // ------------------------------------------------------------
+    if (typeof percState !== "undefined") {
+      // 1. Per-Voice Parameter Oscillations
+      Object.keys(percState.voices).forEach(vKey => {
+        const vObj = percState.voices[vKey];
+        if (!vObj || !vObj.params) return;
+        Object.keys(vObj.params).forEach(pKey => {
+          const pObj = vObj.params[pKey];
+          if (!pObj.osc || !pObj.osc.enabled) return;
+
+          const f_osc = 0.01 + Math.pow(pObj.osc.speed / 100, 2) * 4.5;
+          pObj.osc.phase += 2 * Math.PI * f_osc * dt;
+          if (pObj.osc.phase > Math.PI * 2) pObj.osc.phase -= Math.PI * 2;
+
+          const sineVal = 0.5 * (1 + Math.sin(pObj.osc.phase));
+          pObj.val = pObj.osc.min + (pObj.osc.max - pObj.osc.min) * sineVal;
+
+          if (vKey === percState.activeVoice) {
+            const thumb = document.getElementById("thumb_v_" + vKey + "_" + pKey);
+            const vDisp = document.getElementById("v_v_" + vKey + "_" + pKey);
+            if (thumb) {
+              const pct = (pObj.val - pObj.min) / (pObj.max - pObj.min);
+              thumb.style.left = (Math.max(0, Math.min(1, pct)) * 100) + "%";
+            }
+            if (vDisp) {
+              vDisp.textContent = (typeof pObj.val === 'number' ? pObj.val.toFixed(pObj.unit === ' s' ? 2 : (pObj.unit === ' x' ? 1 : 0)) : pObj.val) + pObj.unit;
+            }
+          }
+        });
+      });
+
+      // 2. Overarching Beat-Loop Modulators
+      if (percState.overarching) {
+        let lfoSpeedMultiplier = 1.0;
+        if (percState.lfoSync !== "free") {
+          const beatSec = 60 / masterClock.bpm;
+          if (percState.lfoSync === "1_4") lfoSpeedMultiplier = 1 / (beatSec * 1);
+          else if (percState.lfoSync === "1_2") lfoSpeedMultiplier = 1 / (beatSec * 2);
+          else if (percState.lfoSync === "1_1") lfoSpeedMultiplier = 1 / (beatSec * 4);
+          else if (percState.lfoSync === "2_1") lfoSpeedMultiplier = 1 / (beatSec * 8);
+          else if (percState.lfoSync === "4_1") lfoSpeedMultiplier = 1 / (beatSec * 16);
+        }
+
+        Object.keys(percState.overarching).forEach(oaKey => {
+          const oaObj = percState.overarching[oaKey];
+          if (!oaObj.osc || !oaObj.osc.enabled) return;
+
+          const baseSpeed = (percState.lfoSync === "free") ? (0.01 + Math.pow(oaObj.osc.speed / 100, 2) * 4.5) : (lfoSpeedMultiplier * (oaObj.osc.speed / 50));
+          oaObj.osc.phase += 2 * Math.PI * baseSpeed * dt;
+          if (oaObj.osc.phase > Math.PI * 2) oaObj.osc.phase -= Math.PI * 2;
+
+          const sineVal = 0.5 * (1 + Math.sin(oaObj.osc.phase));
+          oaObj.val = oaObj.osc.min + (oaObj.osc.max - oaObj.osc.min) * sineVal;
+
+          const thumb = document.getElementById("thumb_oa_" + oaKey);
+          const vDisp = document.getElementById("v_oa_" + oaKey);
+          if (thumb) {
+            const pct = (oaObj.val - oaObj.min) / (oaObj.max - oaObj.min);
+            thumb.style.left = (Math.max(0, Math.min(1, pct)) * 100) + "%";
+          }
+          if (vDisp) {
+            vDisp.textContent = (typeof oaObj.val === 'number' ? oaObj.val.toFixed(oaObj.unit === ' s' ? 2 : (oaObj.unit === ' x' ? 1 : 0)) : oaObj.val) + oaObj.unit;
+          }
+
+          // Apply live audio changes
+          if (oaKey === "masterFilter" && percState.filterNode) {
+            percState.filterNode.frequency.setValueAtTime(oaObj.val, ctx.currentTime);
+          } else if (oaKey === "loopDrive" && percState.driveNode) {
+            percState.driveNode.curve = makeDistortionCurve(oaObj.val);
+          } else if (oaKey === "spaceSwell") {
+            if (percState.wetGain) percState.wetGain.gain.setValueAtTime(oaObj.val / 100, ctx.currentTime);
+            if (percState.dryGain) percState.dryGain.gain.setValueAtTime(1.0 - (oaObj.val / 100) * 0.4, ctx.currentTime);
+          }
+        });
+      }
+    }
+
     // Loop Layer Playheads & Pause Status
     if (loopStack.length > 0) {
       const nowMs = performance.now();
@@ -12401,7 +12419,7 @@ function renderArpMatrix() {
 
 
 /* ============================================================
-   Multi-Voice Drum Synthesis, Stepper & Pattern Suggestion Engine
+   Multi-Voice Drum Synthesis, Stepper & Parameter Oscillation
    ============================================================ */
 const masterClock = {
   bpm: 120,
@@ -12410,25 +12428,139 @@ const masterClock = {
   beatUnit: 4
 };
 
+const DRUM_VOICES_CONFIG = {
+  base: {
+    name: "BASE DRUM (Deep Sinus)",
+    color: "#ff4757",
+    vol: 0.85,
+    mute: false,
+    solo: false,
+    steps: [1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+    suggestions: [
+      { name: "4-on-Floor", pat: [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0] },
+      { name: "Downbeat (1&3)", pat: [1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0] },
+      { name: "Syncopated Sub", pat: [1,0,0,0, 0,0,1,0, 0,0,0,0, 0,1,0,0] },
+      { name: "Minimal Pulse", pat: [1,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0] }
+    ],
+    params: {
+      baseFreq: { name: "Sub-Frequenz f₀", min: 30, max: 100, val: 48, unit: " Hz", osc: { min: 38, max: 62, speed: 20, enabled: false, phase: 0 } },
+      pitchDrop: { name: "Pitch-Drop Tiefe Δf", min: 20, max: 300, val: 120, unit: " Hz", osc: { min: 60, max: 180, speed: 25, enabled: false, phase: 0 } },
+      decay: { name: "Sub-Ausklingzeit", min: 0.05, max: 1.20, val: 0.45, unit: " s", osc: { min: 0.20, max: 0.80, speed: 15, enabled: false, phase: 0 } },
+      clickPunch: { name: "Click / Punch", min: 0, max: 100, val: 75, unit: " %", osc: { min: 30, max: 90, speed: 30, enabled: false, phase: 0 } }
+    }
+  },
+  hihat: {
+    name: "HI-HAT (High Short Noise)",
+    color: "#38c7ff",
+    vol: 0.65,
+    mute: false,
+    solo: false,
+    steps: [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0],
+    suggestions: [
+      { name: "8th Offbeat", pat: [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0] },
+      { name: "16th Running", pat: [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1] },
+      { name: "Euclid 7/16", pat: [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,0,0] },
+      { name: "Flutter Wave", pat: [1,0,1,1, 0,1,0,1, 1,1,0,1, 0,1,1,0] }
+    ],
+    params: {
+      hhCutoff: { name: "Hochpass Cutoff", min: 3000, max: 14000, val: 7500, unit: " Hz", osc: { min: 4500, max: 11000, speed: 30, enabled: false, phase: 0 } },
+      hhDecay: { name: "Hat Ausklingzeit", min: 15, max: 250, val: 45, unit: " ms", osc: { min: 25, max: 120, speed: 25, enabled: false, phase: 0 } },
+      metallicRing: { name: "Metallic Ring", min: 0, max: 100, val: 35, unit: " %", osc: { min: 10, max: 70, speed: 20, enabled: false, phase: 0 } },
+      velResponse: { name: "Velocity Dynamik", min: 0, max: 100, val: 80, unit: " %", osc: { min: 40, max: 95, speed: 15, enabled: false, phase: 0 } }
+    }
+  },
+  cymbal: {
+    name: "CYMBAL (High Long Noise)",
+    color: "#a29bfe",
+    vol: 0.60,
+    mute: false,
+    solo: false,
+    steps: [1,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    suggestions: [
+      { name: "Bar 1 Crash", pat: [1,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0] },
+      { name: "Swell Beat 4+", pat: [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,1,1] },
+      { name: "Periodic Shimmer", pat: [1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0] }
+    ],
+    params: {
+      cymDecay: { name: "Cymbal Decay", min: 0.4, max: 4.5, val: 1.8, unit: " s", osc: { min: 0.8, max: 3.2, speed: 12, enabled: false, phase: 0 } },
+      clusterSpread: { name: "Cluster Spreizung", min: 1.0, max: 5.0, val: 2.5, unit: " x", osc: { min: 1.5, max: 4.0, speed: 18, enabled: false, phase: 0 } },
+      shimmerFilter: { name: "Air Shimmer Band", min: 2000, max: 16000, val: 6200, unit: " Hz", osc: { min: 3500, max: 9500, speed: 22, enabled: false, phase: 0 } },
+      metallicRes: { name: "Resonanz Güte Q", min: 0.5, max: 8.0, val: 1.5, unit: "", osc: { min: 0.8, max: 4.5, speed: 16, enabled: false, phase: 0 } }
+    }
+  },
+  snare: {
+    name: "SNARE DRUM (Hard Noise)",
+    color: "#ffc46b",
+    vol: 0.75,
+    mute: false,
+    solo: false,
+    steps: [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+    suggestions: [
+      { name: "Backbeat (2&4)", pat: [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0] },
+      { name: "Ghost Notes", pat: [0,0,0,0, 1,0,0,1, 0,0,1,0, 1,0,0,0] },
+      { name: "Polyrhythm 3/8", pat: [0,0,1,0, 0,1,0,0, 1,0,0,1, 0,0,1,0] },
+      { name: "Sparse Accent", pat: [0,0,0,0, 0,0,0,0, 0,0,0,0, 1,0,0,0] }
+    ],
+    params: {
+      bodyFreq: { name: "Body Tonhöhe f_sn", min: 100, max: 350, val: 195, unit: " Hz", osc: { min: 140, max: 260, speed: 22, enabled: false, phase: 0 } },
+      noiseMix: { name: "Rausch-Anteil", min: 0, max: 100, val: 60, unit: " %", osc: { min: 25, max: 85, speed: 28, enabled: false, phase: 0 } },
+      snareDecay: { name: "Snare Decay", min: 0.05, max: 0.60, val: 0.18, unit: " s", osc: { min: 0.10, max: 0.35, speed: 18, enabled: false, phase: 0 } },
+      snappyCutoff: { name: "Snappy Hochpass", min: 500, max: 8000, val: 2400, unit: " Hz", osc: { min: 1200, max: 4800, speed: 35, enabled: false, phase: 0 } }
+    }
+  },
+  wood: {
+    name: "WOOD / PING (Buchla LPG)",
+    color: "#2ed573",
+    vol: 0.70,
+    mute: false,
+    solo: false,
+    steps: [0,0,0,0, 0,0,1,0, 0,0,0,0, 0,1,0,0],
+    suggestions: [
+      { name: "Euclid 5/16", pat: [1,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,0,0] },
+      { name: "Micro-Shuffle", pat: [0,1,0,0, 0,1,0,0, 0,1,0,0, 0,1,0,0] },
+      { name: "Poisson Rain", pat: [0,0,1,0, 0,0,0,1, 0,1,0,0, 0,0,1,0] }
+    ],
+    params: {
+      woodPitch: { name: "Holz Tonhöhe f_wd", min: 200, max: 2500, val: 720, unit: " Hz", osc: { min: 350, max: 1400, speed: 26, enabled: false, phase: 0 } },
+      vactrolSlew: { name: "Vactrol Slew Decay", min: 0.01, max: 0.50, val: 0.09, unit: " s", osc: { min: 0.03, max: 0.25, speed: 20, enabled: false, phase: 0 } },
+      besselHarmonics: { name: "Bessel Harmonische", min: 1.0, max: 4.0, val: 2.29, unit: "", osc: { min: 1.4, max: 3.6, speed: 15, enabled: false, phase: 0 } },
+      damping: { name: "Resonanz Dämpfung", min: 0, max: 100, val: 40, unit: " %", osc: { min: 15, max: 75, speed: 22, enabled: false, phase: 0 } }
+    }
+  },
+  shaker: {
+    name: "SHAKER / DUST (Granular Noise)",
+    color: "#70a1ff",
+    vol: 0.55,
+    mute: false,
+    solo: false,
+    steps: [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1],
+    suggestions: [
+      { name: "Running 16th", pat: [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1] },
+      { name: "Ambient 8th", pat: [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0] },
+      { name: "Granular Dust", pat: [0,1,1,0, 1,0,0,1, 1,1,0,1, 0,0,1,1] }
+    ],
+    params: {
+      grainDens: { name: "Shaker Korndichte", min: 10, max: 100, val: 75, unit: " %", osc: { min: 30, max: 95, speed: 24, enabled: false, phase: 0 } },
+      grainDecay: { name: "Grain Ausklingzeit", min: 10, max: 150, val: 60, unit: " ms", osc: { min: 20, max: 110, speed: 32, enabled: false, phase: 0 } },
+      centerBP: { name: "Bandpass Zentrum", min: 1000, max: 10000, val: 4500, unit: " Hz", osc: { min: 2200, max: 7800, speed: 28, enabled: false, phase: 0 } },
+      scatterJitter: { name: "Scatter Jitter", min: 0, max: 100, val: 35, unit: " %", osc: { min: 10, max: 80, speed: 30, enabled: false, phase: 0 } }
+    }
+  }
+};
+
+const OVERARCHING_PERC_MODS = {
+  masterFilter: { name: "Master Filter Morph", min: 200, max: 14000, val: 5200, unit: " Hz", osc: { min: 800, max: 9500, speed: 20, enabled: false, phase: 0 } },
+  grooveSwing: { name: "Swing / Groove Breathe", min: 0, max: 75, val: 15, unit: " %", osc: { min: 5, max: 45, speed: 15, enabled: false, phase: 0 } },
+  chaosJitter: { name: "Chaos / Timing Jitter", min: 0, max: 40, val: 10, unit: " ms", osc: { min: 2, max: 28, speed: 25, enabled: false, phase: 0 } },
+  orbitalPan: { name: "Binaural Orbital Pan", min: 0, max: 100, val: 65, unit: " %", osc: { min: 20, max: 95, speed: 18, enabled: false, phase: 0 } },
+  spaceSwell: { name: "Space Reverb Swell", min: 0, max: 100, val: 40, unit: " %", osc: { min: 15, max: 80, speed: 12, enabled: false, phase: 0 } },
+  loopDrive: { name: "Drive / Tape Crunch", min: 0.0, max: 5.0, val: 1.2, unit: " x", osc: { min: 0.2, max: 3.5, speed: 22, enabled: false, phase: 0 } }
+};
+
 const percState = {
   enabled: false,
   activeVoice: "base",
   volume: 0.80,
-  swing: 15,
-  jitter: 10,
-  baseFreq: 48,
-  hhDecay: 45,
-  cymDecay: 1.8,
-  snareMix: 60,
-  woodPitch: 720,
-  shakerDens: 75,
-  tone: 5200,
-  scatter: 30,
-  pan: 65,
-  prob: 90,
-  space: 40,
-  accent: 1.5,
-  bars: 1,
   currentStep: 0,
   timerId: null,
   noiseBuffer: null,
@@ -12436,89 +12568,10 @@ const percState = {
   dryGain: null,
   wetGain: null,
   filterNode: null,
-  voices: {
-    base: {
-      name: "BASE DRUM (Deep Sinus)",
-      color: "#ff4757",
-      vol: 0.85,
-      mute: false,
-      solo: false,
-      steps: [1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
-      suggestions: [
-        { name: "4-on-Floor", pat: [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0] },
-        { name: "Downbeat (1&3)", pat: [1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0] },
-        { name: "Syncopated Sub", pat: [1,0,0,0, 0,0,1,0, 0,0,0,0, 0,1,0,0] },
-        { name: "Minimal Pulse", pat: [1,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0] }
-      ]
-    },
-    hihat: {
-      name: "HI-HAT (High Short Noise)",
-      color: "#38c7ff",
-      vol: 0.65,
-      mute: false,
-      solo: false,
-      steps: [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0],
-      suggestions: [
-        { name: "8th Offbeat", pat: [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0] },
-        { name: "16th Running", pat: [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1] },
-        { name: "Euclid 7/16", pat: [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,0,0] },
-        { name: "Flutter Wave", pat: [1,0,1,1, 0,1,0,1, 1,1,0,1, 0,1,1,0] }
-      ]
-    },
-    cymbal: {
-      name: "CYMBAL (High Long Noise)",
-      color: "#a29bfe",
-      vol: 0.60,
-      mute: false,
-      solo: false,
-      steps: [1,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
-      suggestions: [
-        { name: "Bar 1 Crash", pat: [1,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0] },
-        { name: "Swell Beat 4+", pat: [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,1,1] },
-        { name: "Periodic Shimmer", pat: [1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0] }
-      ]
-    },
-    snare: {
-      name: "SNARE DRUM (Hard Deep Noise)",
-      color: "#ffc46b",
-      vol: 0.75,
-      mute: false,
-      solo: false,
-      steps: [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
-      suggestions: [
-        { name: "Backbeat (2&4)", pat: [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0] },
-        { name: "Ghost Notes", pat: [0,0,0,0, 1,0,0,1, 0,0,1,0, 1,0,0,0] },
-        { name: "Polyrhythm 3/8", pat: [0,0,1,0, 0,1,0,0, 1,0,0,1, 0,0,1,0] },
-        { name: "Sparse Accent", pat: [0,0,0,0, 0,0,0,0, 0,0,0,0, 1,0,0,0] }
-      ]
-    },
-    wood: {
-      name: "WOOD / PING (Buchla LPG)",
-      color: "#2ed573",
-      vol: 0.70,
-      mute: false,
-      solo: false,
-      steps: [0,0,0,0, 0,0,1,0, 0,0,0,0, 0,1,0,0],
-      suggestions: [
-        { name: "Euclid 5/16", pat: [1,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,0,0] },
-        { name: "Micro-Shuffle", pat: [0,1,0,0, 0,1,0,0, 0,1,0,0, 0,1,0,0] },
-        { name: "Poisson Rain", pat: [0,0,1,0, 0,0,0,1, 0,1,0,0, 0,0,1,0] }
-      ]
-    },
-    shaker: {
-      name: "SHAKER / DUST (Granular Noise)",
-      color: "#70a1ff",
-      vol: 0.55,
-      mute: false,
-      solo: false,
-      steps: [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1],
-      suggestions: [
-        { name: "Running 16th", pat: [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1] },
-        { name: "Ambient 8th", pat: [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0] },
-        { name: "Granular Dust", pat: [0,1,1,0, 1,0,0,1, 1,1,0,1, 0,0,1,1] }
-      ]
-    }
-  }
+  driveNode: null,
+  lfoSync: "1_1",
+  voices: DRUM_VOICES_CONFIG,
+  overarching: OVERARCHING_PERC_MODS
 };
 
 function getNoiseBuffer() {
@@ -12534,6 +12587,18 @@ function getNoiseBuffer() {
   return buffer;
 }
 
+function makeDistortionCurve(amount) {
+  const k = typeof amount === "number" ? amount * 15 : 0;
+  const n_samples = 44100;
+  const curve = new Float32Array(n_samples);
+  const deg = Math.PI / 180;
+  for (let i = 0; i < n_samples; ++i) {
+    const x = (i * 2) / n_samples - 1;
+    curve[i] = ((3 + k) * x * 20 * deg) / (Math.PI + k * Math.abs(x));
+  }
+  return curve;
+}
+
 function initPercAudio() {
   if (!ctx || percState.bus) return;
   percState.bus = ctx.createGain();
@@ -12541,16 +12606,21 @@ function initPercAudio() {
 
   percState.filterNode = ctx.createBiquadFilter();
   percState.filterNode.type = "lowpass";
-  percState.filterNode.frequency.value = percState.tone;
+  percState.filterNode.frequency.value = percState.overarching.masterFilter.val;
   percState.filterNode.Q.value = 1.0;
 
+  percState.driveNode = ctx.createWaveShaper();
+  percState.driveNode.curve = makeDistortionCurve(percState.overarching.loopDrive.val);
+  percState.driveNode.oversample = "2x";
+
   percState.dryGain = ctx.createGain();
-  percState.dryGain.gain.value = 1.0 - (percState.space / 100) * 0.4;
+  percState.dryGain.gain.value = 1.0 - (percState.overarching.spaceSwell.val / 100) * 0.4;
 
   percState.wetGain = ctx.createGain();
-  percState.wetGain.gain.value = (percState.space / 100);
+  percState.wetGain.gain.value = (percState.overarching.spaceSwell.val / 100);
 
-  percState.bus.connect(percState.filterNode);
+  percState.bus.connect(percState.driveNode);
+  percState.driveNode.connect(percState.filterNode);
   percState.filterNode.connect(percState.dryGain).connect(masterGain);
   if (conv) percState.filterNode.connect(percState.wetGain).connect(conv);
 }
@@ -12565,6 +12635,7 @@ function triggerDrumVoice(voiceKey, velocity, triggerT) {
   const voice = percState.voices[voiceKey];
   if (!voice) return;
 
+  const p = voice.params;
   const vel = velocity * voice.vol;
   const noiseBuf = getNoiseBuffer();
 
@@ -12572,8 +12643,8 @@ function triggerDrumVoice(voiceKey, velocity, triggerT) {
   let panner = null;
   if (ctx.createStereoPanner) {
     panner = ctx.createStereoPanner();
-    const panRange = percState.pan / 100;
-    panner.pan.setValueAtTime((Math.random() * 2 - 1) * panRange, triggerT);
+    const panExtent = (percState.overarching.orbitalPan.val / 100);
+    panner.pan.setValueAtTime((Math.random() * 2 - 1) * panExtent, triggerT);
     panner.connect(percState.bus);
   }
 
@@ -12581,52 +12652,65 @@ function triggerDrumVoice(voiceKey, velocity, triggerT) {
 
   switch(voiceKey) {
     case "base": {
-      // 1. BASE DRUM: Deep Sinus Sub-Bass Drop with snappy click transient
+      // 1. BASE DRUM: Sub-Bass Sinus Drop + Click Transient
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       const click = ctx.createOscillator();
       const clickGain = ctx.createGain();
 
-      const startFreq = percState.baseFreq * 3.5;
-      const endFreq = percState.baseFreq;
+      const f0 = p.baseFreq.val;
+      const df = p.pitchDrop.val;
+      const dec = p.decay.val;
+      const clickAmt = p.clickPunch.val / 100;
 
-      osc.frequency.setValueAtTime(startFreq, triggerT);
-      osc.frequency.exponentialRampToValueAtTime(endFreq, triggerT + 0.07);
+      osc.frequency.setValueAtTime(f0 + df, triggerT);
+      osc.frequency.exponentialRampToValueAtTime(f0, triggerT + 0.06);
 
-      gain.gain.setValueAtTime(vel * 1.2, triggerT);
-      gain.gain.exponentialRampToValueAtTime(0.0001, triggerT + 0.45);
+      gain.gain.setValueAtTime(vel * 1.25, triggerT);
+      gain.gain.exponentialRampToValueAtTime(0.0001, triggerT + dec);
 
-      // Snappy attack transient click
-      click.type = "triangle";
-      click.frequency.setValueAtTime(450, triggerT);
-      click.frequency.exponentialRampToValueAtTime(40, triggerT + 0.015);
-      clickGain.gain.setValueAtTime(vel * 0.8, triggerT);
-      clickGain.gain.exponentialRampToValueAtTime(0.0001, triggerT + 0.015);
+      if (clickAmt > 0) {
+        click.type = "triangle";
+        click.frequency.setValueAtTime(450, triggerT);
+        click.frequency.exponentialRampToValueAtTime(40, triggerT + 0.015);
+        clickGain.gain.setValueAtTime(vel * clickAmt * 0.9, triggerT);
+        clickGain.gain.exponentialRampToValueAtTime(0.0001, triggerT + 0.015);
+        click.connect(clickGain).connect(dest);
+        click.start(triggerT);
+        click.stop(triggerT + 0.02);
+      }
 
       osc.connect(gain).connect(dest);
-      click.connect(clickGain).connect(dest);
-
       osc.start(triggerT);
-      click.start(triggerT);
-      osc.stop(triggerT + 0.5);
-      click.stop(triggerT + 0.02);
+      osc.stop(triggerT + dec + 0.05);
       break;
     }
 
     case "hihat": {
-      // 2. HI-HAT: High short crisp white noise burst with bandpass
+      // 2. HI-HAT: High short crisp noise + metallic ring
       if (!noiseBuf) return;
       const noise = ctx.createBufferSource();
       noise.buffer = noiseBuf;
 
       const filter = ctx.createBiquadFilter();
       filter.type = "highpass";
-      filter.frequency.setValueAtTime(7500, triggerT);
+      filter.frequency.setValueAtTime(p.hhCutoff.val, triggerT);
 
       const gain = ctx.createGain();
-      const dur = percState.hhDecay / 1000;
-      gain.gain.setValueAtTime(vel * 0.9, triggerT);
+      const dur = p.hhDecay.val / 1000;
+      gain.gain.setValueAtTime(vel * (p.velResponse.val / 100), triggerT);
       gain.gain.exponentialRampToValueAtTime(0.0001, triggerT + dur);
+
+      if (p.metallicRing.val > 0) {
+        const ring = ctx.createOscillator();
+        const rGain = ctx.createGain();
+        ring.frequency.setValueAtTime(8500, triggerT);
+        rGain.gain.setValueAtTime(vel * (p.metallicRing.val / 100) * 0.3, triggerT);
+        rGain.gain.exponentialRampToValueAtTime(0.0001, triggerT + dur * 0.7);
+        ring.connect(rGain).connect(dest);
+        ring.start(triggerT);
+        ring.stop(triggerT + dur);
+      }
 
       noise.connect(filter).connect(gain).connect(dest);
       noise.start(triggerT);
@@ -12635,29 +12719,29 @@ function triggerDrumVoice(voiceKey, velocity, triggerT) {
     }
 
     case "cymbal": {
-      // 3. CYMBAL: High long airy white noise + metallic FM shimmer
+      // 3. CYMBAL: High long airy white noise + inharmonic FM shimmer
       if (!noiseBuf) return;
       const noise = ctx.createBufferSource();
       noise.buffer = noiseBuf;
 
       const nFilter = ctx.createBiquadFilter();
       nFilter.type = "bandpass";
-      nFilter.frequency.setValueAtTime(6200, triggerT);
-      nFilter.Q.value = 1.5;
+      nFilter.frequency.setValueAtTime(p.shimmerFilter.val, triggerT);
+      nFilter.Q.value = p.metallicRes.val;
 
       const gain = ctx.createGain();
-      const dur = percState.cymDecay;
-      gain.gain.setValueAtTime(vel * 0.7, triggerT);
+      const dur = p.cymDecay.val;
+      gain.gain.setValueAtTime(vel * 0.75, triggerT);
       gain.gain.exponentialRampToValueAtTime(0.0001, triggerT + dur);
 
-      // Metallic FM shimmer cluster
-      const metallicFreqs = [2150, 3180, 4290, 5410];
-      metallicFreqs.forEach(f => {
+      const spread = p.clusterSpread.val;
+      const baseFreqs = [2150, 3180, 4290, 5410];
+      baseFreqs.forEach((f, i) => {
         const mOsc = ctx.createOscillator();
         const mGain = ctx.createGain();
-        mOsc.frequency.setValueAtTime(f, triggerT);
+        mOsc.frequency.setValueAtTime(f * (1 + (i * 0.15 * spread)), triggerT);
         mGain.gain.setValueAtTime(vel * 0.12, triggerT);
-        mGain.gain.exponentialRampToValueAtTime(0.0001, triggerT + dur * 0.7);
+        mGain.gain.exponentialRampToValueAtTime(0.0001, triggerT + dur * 0.75);
         mOsc.connect(mGain).connect(dest);
         mOsc.start(triggerT);
         mOsc.stop(triggerT + dur);
@@ -12670,53 +12754,58 @@ function triggerDrumVoice(voiceKey, velocity, triggerT) {
     }
 
     case "snare": {
-      // 4. SNARE DRUM: Hard deep body tone (185 Hz) + snappy filtered white noise
+      // 4. SNARE DRUM: Body fundamental + Snappy filtered noise
       const bodyOsc = ctx.createOscillator();
       const bodyGain = ctx.createGain();
-      bodyOsc.frequency.setValueAtTime(195, triggerT);
-      bodyOsc.frequency.exponentialRampToValueAtTime(130, triggerT + 0.09);
+      bodyOsc.frequency.setValueAtTime(p.bodyFreq.val, triggerT);
+      bodyOsc.frequency.exponentialRampToValueAtTime(p.bodyFreq.val * 0.65, triggerT + 0.08);
 
-      const bodyWeight = (100 - percState.snareMix) / 100;
-      bodyGain.gain.setValueAtTime(vel * bodyWeight * 1.1, triggerT);
-      bodyGain.gain.exponentialRampToValueAtTime(0.0001, triggerT + 0.15);
+      const noiseWeight = p.noiseMix.val / 100;
+      const bodyWeight = 1.0 - noiseWeight;
+      const dur = p.snareDecay.val;
+
+      bodyGain.gain.setValueAtTime(vel * bodyWeight * 1.2, triggerT);
+      bodyGain.gain.exponentialRampToValueAtTime(0.0001, triggerT + dur * 0.8);
 
       bodyOsc.connect(bodyGain).connect(dest);
       bodyOsc.start(triggerT);
-      bodyOsc.stop(triggerT + 0.16);
+      bodyOsc.stop(triggerT + dur);
 
-      if (noiseBuf) {
+      if (noiseBuf && noiseWeight > 0) {
         const noise = ctx.createBufferSource();
         noise.buffer = noiseBuf;
         const nFilter = ctx.createBiquadFilter();
         nFilter.type = "highpass";
-        nFilter.frequency.setValueAtTime(2200, triggerT);
+        nFilter.frequency.setValueAtTime(p.snappyCutoff.val, triggerT);
 
         const nGain = ctx.createGain();
-        const noiseWeight = percState.snareMix / 100;
-        nGain.gain.setValueAtTime(vel * noiseWeight * 1.0, triggerT);
-        nGain.gain.exponentialRampToValueAtTime(0.0001, triggerT + 0.18);
+        nGain.gain.setValueAtTime(vel * noiseWeight * 1.1, triggerT);
+        nGain.gain.exponentialRampToValueAtTime(0.0001, triggerT + dur);
 
         noise.connect(nFilter).connect(nGain).connect(dest);
         noise.start(triggerT);
-        noise.stop(triggerT + 0.2);
+        noise.stop(triggerT + dur + 0.02);
       }
       break;
     }
 
     case "wood": {
-      // 5. WOOD / PING: Buchla 292 Vactrol LPG resonant organic woodblock
+      // 5. WOOD / PING: Buchla 292 LPG resonant organic woodblock
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-      osc.frequency.setValueAtTime(percState.woodPitch, triggerT);
-      osc.frequency.exponentialRampToValueAtTime(percState.woodPitch * 0.85, triggerT + 0.08);
+      const f = p.woodPitch.val;
+      const slew = p.vactrolSlew.val;
+
+      osc.frequency.setValueAtTime(f, triggerT);
+      osc.frequency.exponentialRampToValueAtTime(f * p.besselHarmonics.val * 0.5, triggerT + slew);
 
       gain.gain.setValueAtTime(0.001, triggerT);
-      gain.gain.linearRampToValueAtTime(vel * 1.1, triggerT + 0.001);
-      gain.gain.exponentialRampToValueAtTime(0.0001, triggerT + 0.09);
+      gain.gain.linearRampToValueAtTime(vel * (1.0 - (p.damping.val / 100) * 0.4), triggerT + 0.001);
+      gain.gain.exponentialRampToValueAtTime(0.0001, triggerT + slew);
 
       osc.connect(gain).connect(dest);
       osc.start(triggerT);
-      osc.stop(triggerT + 0.1);
+      osc.stop(triggerT + slew + 0.02);
       break;
     }
 
@@ -12728,43 +12817,254 @@ function triggerDrumVoice(voiceKey, velocity, triggerT) {
 
       const bpf = ctx.createBiquadFilter();
       bpf.type = "bandpass";
-      bpf.frequency.setValueAtTime(4500, triggerT);
+      bpf.frequency.setValueAtTime(p.centerBP.val, triggerT);
       bpf.Q.value = 2.0;
 
+      const dur = p.grainDecay.val / 1000;
       const gain = ctx.createGain();
-      gain.gain.setValueAtTime(vel * (percState.shakerDens / 100) * 0.8, triggerT);
-      gain.gain.exponentialRampToValueAtTime(0.0001, triggerT + 0.06);
+      gain.gain.setValueAtTime(vel * (p.grainDens.val / 100) * 0.85, triggerT);
+      gain.gain.exponentialRampToValueAtTime(0.0001, triggerT + dur);
 
       noise.connect(bpf).connect(gain).connect(dest);
       noise.start(triggerT);
-      noise.stop(triggerT + 0.08);
+      noise.stop(triggerT + dur + 0.02);
       break;
     }
-  }
-
-  // Micro Granular Scatter Bursts
-  if (Math.random() * 100 < percState.scatter && voiceKey !== "base") {
-    const sOsc = ctx.createOscillator();
-    sOsc.frequency.value = 3500 + Math.random() * 4000;
-    const sG = ctx.createGain();
-    const sT = triggerT + 0.015 + Math.random() * 0.02;
-    sG.gain.setValueAtTime(vel * 0.15, sT);
-    sG.gain.exponentialRampToValueAtTime(0.0001, sT + 0.02);
-    sOsc.connect(sG).connect(dest);
-    sOsc.start(sT);
-    sOsc.stop(sT + 0.03);
   }
 }
 
 // ------------------------------------------------------------
-// Multi-Track Step Sequencer UI & Scheduling
+// Generic Unified Parameter UI Row Generator & Binder
 // ------------------------------------------------------------
+function buildUnifiedParamRowHTML(paramKey, pObj, prefix = "perc_") {
+  const pId = prefix + paramKey;
+  return `
+    <div class="param-row-unified${pObj.osc.enabled ? ' osc-active' : ''}" id="block_${pId}" data-param="${pId}">
+      <div class="p-header">
+        <span class="p-name">${pObj.name}</span>
+        <div class="p-right">
+          <span class="p-val" id="v_${pId}">${typeof pObj.val === 'number' ? pObj.val.toFixed(pObj.unit === ' s' ? 2 : (pObj.unit === ' x' ? 1 : 0)) : pObj.val}${pObj.unit}</span>
+          <label class="osc-toggle-label" title="Oszillation An/Aus">
+            <input type="checkbox" id="osc_en_${pId}" class="osc-chk"${pObj.osc.enabled ? ' checked' : ''}>
+            <span class="osc-badge">~ OSC</span>
+          </label>
+        </div>
+      </div>
+      <div class="p-controls-row">
+        <div class="track-area" id="trackarea_${pId}" data-param="${pId}">
+          <div class="track-line"></div>
+          <div class="track-span" id="span_${pId}"></div>
+          <div class="handle handle-a" id="handle_a_${pId}" title="Start A"><span class="h-tag">A</span></div>
+          <div class="handle handle-b" id="handle_b_${pId}" title="Ende B"><span class="h-tag">B</span></div>
+          <div class="handle handle-thumb" id="thumb_${pId}" title="Wert ziehen"></div>
+        </div>
+        <div class="knob-mini-wrap" id="knob_${pId}" data-param="${pId}" title="Oszillations-Geschwindigkeit (0.01–10 Hz)">
+          <div class="knob-dial">
+            <svg class="knob-svg" viewBox="0 0 32 32">
+              <circle class="knob-bg" cx="16" cy="16" r="13" />
+              <path class="knob-arc" id="knob_arc_${pId}" d="" />
+              <line class="knob-pointer" id="knob_ptr_${pId}" x1="16" y1="16" x2="16" y2="4" />
+            </svg>
+          </div>
+          <span class="knob-val" id="knob_val_${pId}">${pObj.osc.speed}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function bindUnifiedParamRow(paramKey, pObj, prefix = "perc_", onChange = null) {
+  const pId = prefix + paramKey;
+  const block = document.getElementById("block_" + pId);
+  const trackArea = document.getElementById("trackarea_" + pId);
+  const span = document.getElementById("span_" + pId);
+  const handleA = document.getElementById("handle_a_" + pId);
+  const handleB = document.getElementById("handle_b_" + pId);
+  const thumb = document.getElementById("thumb_" + pId);
+  const chk = document.getElementById("osc_en_" + pId);
+  const vDisplay = document.getElementById("v_" + pId);
+  const knobWrap = document.getElementById("knob_" + pId);
+  const knobArc = document.getElementById("knob_arc_" + pId);
+  const knobPtr = document.getElementById("knob_ptr_" + pId);
+  const knobVal = document.getElementById("knob_val_" + pId);
+
+  function valToPct(v) { return Math.max(0, Math.min(1, (v - pObj.min) / (pObj.max - pObj.min))); }
+  function pctToVal(p) { return pObj.min + p * (pObj.max - pObj.min); }
+
+  function updateVisuals() {
+    const pctVal = valToPct(pObj.val);
+    const pctA = valToPct(pObj.osc.min);
+    const pctB = valToPct(pObj.osc.max);
+
+    if (thumb) thumb.style.left = (pctVal * 100) + "%";
+    if (handleA) handleA.style.left = (pctA * 100) + "%";
+    if (handleB) handleB.style.left = (pctB * 100) + "%";
+
+    if (span) {
+      const leftP = Math.min(pctA, pctB) * 100;
+      const widthP = Math.abs(pctB - pctA) * 100;
+      span.style.left = leftP + "%";
+      span.style.width = Math.max(2, widthP) + "%";
+    }
+
+    if (vDisplay) {
+      vDisplay.textContent = (typeof pObj.val === 'number' ? pObj.val.toFixed(pObj.unit === ' s' ? 2 : (pObj.unit === ' x' ? 1 : 0)) : pObj.val) + pObj.unit;
+    }
+
+    // Rotary Dial
+    if (knobVal) knobVal.textContent = pObj.osc.speed;
+    const angle = (pObj.osc.speed / 100) * 270 - 135;
+    if (knobPtr) knobPtr.setAttribute("transform", "rotate(" + angle + " 16 16)");
+    if (knobArc) {
+      const rad = 13, cx = 16, cy = 16;
+      const startAngle = -135 * Math.PI / 180;
+      const endAngle = angle * Math.PI / 180;
+      const x1 = cx + rad * Math.cos(startAngle);
+      const y1 = cy + rad * Math.sin(startAngle);
+      const x2 = cx + rad * Math.cos(endAngle);
+      const y2 = cy + rad * Math.sin(endAngle);
+      const largeArc = (endAngle - startAngle > Math.PI) ? 1 : 0;
+      knobArc.setAttribute("d", `M ${x1} ${y1} A ${rad} ${rad} 0 ${largeArc} 1 ${x2} ${y2}`);
+    }
+
+    if (block) block.classList.toggle("osc-active", !!pObj.osc.enabled);
+  }
+
+  if (chk) {
+    chk.addEventListener("change", () => {
+      pObj.osc.enabled = chk.checked;
+      updateVisuals();
+    });
+  }
+
+  // Pointer dragging for Handles A, B and Thumb
+  let dragTarget = null;
+  if (trackArea) {
+    trackArea.addEventListener("pointerdown", e => {
+      e.preventDefault();
+      trackArea.setPointerCapture(e.pointerId);
+      const rect = trackArea.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+
+      if (e.target.closest(".handle-a")) dragTarget = "a";
+      else if (e.target.closest(".handle-b")) dragTarget = "b";
+      else if (e.target.closest(".handle-thumb")) dragTarget = "thumb";
+      else {
+        const pctA = valToPct(pObj.osc.min);
+        const pctB = valToPct(pObj.osc.max);
+        const dA = Math.abs(pct - pctA);
+        const dB = Math.abs(pct - pctB);
+        if (dA < 0.08 && dA <= dB) dragTarget = "a";
+        else if (dB < 0.08) dragTarget = "b";
+        else {
+          dragTarget = "thumb";
+          pObj.val = pctToVal(pct);
+          if (onChange) onChange(pObj.val);
+        }
+      }
+      updateVisuals();
+    });
+
+    trackArea.addEventListener("pointermove", e => {
+      if (!dragTarget) return;
+      const rect = trackArea.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      const val = pctToVal(pct);
+
+      if (dragTarget === "a") pObj.osc.min = val;
+      else if (dragTarget === "b") pObj.osc.max = val;
+      else if (dragTarget === "thumb") {
+        pObj.val = val;
+        if (onChange) onChange(val);
+      }
+      updateVisuals();
+    });
+
+    const stopDrag = e => {
+      if (dragTarget) {
+        try { trackArea.releasePointerCapture(e.pointerId); } catch(err){}
+        dragTarget = null;
+      }
+    };
+    trackArea.addEventListener("pointerup", stopDrag);
+    trackArea.addEventListener("pointercancel", stopDrag);
+  }
+
+  // Rotary Knob Dragging
+  if (knobWrap) {
+    let knobStartY = 0, knobStartSpeed = 0;
+    knobWrap.addEventListener("pointerdown", e => {
+      e.preventDefault();
+      knobWrap.setPointerCapture(e.pointerId);
+      knobStartY = e.clientY;
+      knobStartSpeed = pObj.osc.speed;
+    });
+    knobWrap.addEventListener("pointermove", e => {
+      if (knobStartY === 0) return;
+      const dy = knobStartY - e.clientY;
+      pObj.osc.speed = Math.max(1, Math.min(100, Math.round(knobStartSpeed + dy * 0.7)));
+      updateVisuals();
+    });
+    const stopKnob = e => {
+      if (knobStartY !== 0) {
+        try { knobWrap.releasePointerCapture(e.pointerId); } catch(err){}
+        knobStartY = 0;
+      }
+    };
+    knobWrap.addEventListener("pointerup", stopKnob);
+    knobWrap.addEventListener("pointercancel", stopKnob);
+  }
+
+  updateVisuals();
+}
+
+// ------------------------------------------------------------
+// Render and Bind Voice & Overarching Racks
+// ------------------------------------------------------------
+function renderPercVoiceParams() {
+  const container = document.getElementById("percVoiceParamsContainer");
+  const title = document.getElementById("percParamSectionTitle");
+  if (!container) return;
+
+  const activeKey = percState.activeVoice;
+  const voice = percState.voices[activeKey];
+  if (!voice) return;
+
+  if (title) title.textContent = voice.name + " PARAMETER (~ OSC AUTO)";
+
+  container.innerHTML = "";
+  Object.keys(voice.params).forEach(k => {
+    const pObj = voice.params[k];
+    const rowHTML = buildUnifiedParamRowHTML(k, pObj, "v_" + activeKey + "_");
+    container.insertAdjacentHTML("beforeend", rowHTML);
+    bindUnifiedParamRow(k, pObj, "v_" + activeKey + "_");
+  });
+}
+
+function renderPercOverarchingParams() {
+  const container = document.getElementById("percOverarchingParamsContainer");
+  if (!container) return;
+  container.innerHTML = "";
+
+  Object.keys(percState.overarching).forEach(k => {
+    const pObj = percState.overarching[k];
+    const rowHTML = buildUnifiedParamRowHTML(k, pObj, "oa_");
+    container.insertAdjacentHTML("beforeend", rowHTML);
+    bindUnifiedParamRow(k, pObj, "oa_", val => {
+      if (k === "masterFilter" && percState.filterNode) percState.filterNode.frequency.value = val;
+      if (k === "loopDrive" && percState.driveNode) percState.driveNode.curve = makeDistortionCurve(val);
+      if (k === "spaceSwell") {
+        if (percState.wetGain) percState.wetGain.gain.value = val / 100;
+        if (percState.dryGain) percState.dryGain.gain.value = 1.0 - (val / 100) * 0.4;
+      }
+    });
+  });
+}
+
 function renderPercVoiceUI() {
   const activeKey = percState.activeVoice;
   const voice = percState.voices[activeKey];
   if (!voice) return;
 
-  // Update Title and Color
   const title = document.getElementById("percActiveVoiceTitle");
   if (title) {
     title.textContent = voice.name;
@@ -12787,7 +13087,6 @@ function renderPercVoiceUI() {
   const volSlider = document.getElementById("p_voice_vol");
   if (volSlider) volSlider.value = Math.round(voice.vol * 100);
 
-  // Render Plausible Pattern Suggestion Buttons for this Voice
   const suggContainer = document.getElementById("percPlausibleBtns");
   if (suggContainer) {
     suggContainer.innerHTML = "";
@@ -12809,6 +13108,7 @@ function renderPercVoiceUI() {
 
   renderPercStepGrid();
   renderPercOverview();
+  renderPercVoiceParams();
 }
 
 function renderPercStepGrid() {
@@ -12942,14 +13242,13 @@ function startPercEngineClock() {
   function stepClock() {
     if (!percState.enabled) return;
 
-    // Calculate 16th note interval from Master BPM
     const beatSec = 60 / masterClock.bpm;
     const stepSec = beatSec / 4;
+    const swingVal = percState.overarching.grooveSwing.val;
     const isEvenStep = (percState.currentStep % 2 === 1);
-    const swingSec = isEvenStep ? (stepSec * (percState.swing / 100) * 0.5) : 0;
+    const swingSec = isEvenStep ? (stepSec * (swingVal / 100) * 0.5) : 0;
     const currentInterval = (stepSec + swingSec) * 1000;
 
-    // Update Step UI Playhead
     document.querySelectorAll(".perc-step-btn").forEach((b, idx) => {
       b.classList.toggle("active-playhead", idx === percState.currentStep);
     });
@@ -12964,16 +13263,13 @@ function startPercEngineClock() {
     const badge = document.getElementById("percBeatBadge");
     if (badge) badge.textContent = beatNum + "." + subNum + " (" + masterClock.timeSignature + ")";
 
-    // Check Solo State
     const hasSolo = Object.values(percState.voices).some(v => v.solo);
-
-    // Trigger Active Drum Voices
     const now = ctx.currentTime;
     const isDownbeat = (percState.currentStep % 4 === 0);
-    const accentMultiplier = isDownbeat ? percState.accent : 1.0;
+    const accentMultiplier = isDownbeat ? 1.4 : 1.0;
 
-    // Jitter micro-timing
-    const jitterSec = (Math.random() - 0.5) * (percState.jitter / 1000);
+    const jitterMs = percState.overarching.chaosJitter.val;
+    const jitterSec = (Math.random() - 0.5) * (jitterMs / 1000);
     const triggerT = Math.max(now, now + jitterSec);
 
     Object.keys(percState.voices).forEach(k => {
@@ -12983,11 +13279,7 @@ function startPercEngineClock() {
 
       const isHit = v.steps[percState.currentStep];
       if (isHit) {
-        // Probability gate check
-        const probPass = (Math.random() * 100) <= percState.prob;
-        if (probPass) {
-          triggerDrumVoice(k, isHit * accentMultiplier, triggerT);
-        }
+        triggerDrumVoice(k, isHit * accentMultiplier, triggerT);
       }
     });
 
@@ -13119,37 +13411,12 @@ function setupPercControls() {
     });
   }
 
-  // Sliders Mapping
-  const sliders = [
-    { id: "p_perc_swing", vId: "v_perc_swing", key: "swing", unit: " %" },
-    { id: "p_perc_jitter", vId: "v_perc_jitter", key: "jitter", unit: " ms" },
-    { id: "p_perc_base_freq", vId: "v_perc_base_freq", key: "baseFreq", unit: " Hz" },
-    { id: "p_perc_hh_decay", vId: "v_perc_hh_decay", key: "hhDecay", unit: " ms" },
-    { id: "p_perc_cym_decay", vId: "v_perc_cym_decay", key: "cymDecay", unit: " s" },
-    { id: "p_perc_snare_mix", vId: "v_perc_snare_mix", key: "snareMix", unit: " %" },
-    { id: "p_perc_wood_pitch", vId: "v_perc_wood_pitch", key: "woodPitch", unit: " Hz" },
-    { id: "p_perc_shaker_dens", vId: "v_perc_shaker_dens", key: "shakerDens", unit: " %" },
-    { id: "p_perc_tone", vId: "v_perc_tone", key: "tone", unit: " Hz", onChange: () => { if (percState.filterNode) percState.filterNode.frequency.value = percState.tone; } },
-    { id: "p_perc_scatter", vId: "v_perc_scatter", key: "scatter", unit: " %" },
-    { id: "p_perc_pan", vId: "v_perc_pan", key: "pan", unit: " %" },
-    { id: "p_perc_prob", vId: "v_perc_prob", key: "prob", unit: " %" },
-    { id: "p_perc_space", vId: "v_perc_space", key: "space", unit: " %", onChange: () => { if (percState.wetGain) percState.wetGain.gain.value = percState.space / 100; } },
-    { id: "p_perc_accent", vId: "v_perc_accent", key: "accent", unit: " x" },
-    { id: "p_perc_bars", vId: "v_perc_bars", key: "bars", unit: " Takt(e)" }
-  ];
-
-  sliders.forEach(item => {
-    const sEl = document.getElementById(item.id);
-    const vEl = document.getElementById(item.vId);
-    if (sEl) {
-      sEl.addEventListener("input", () => {
-        const val = parseFloat(sEl.value);
-        percState[item.key] = val;
-        if (vEl) vEl.textContent = val + item.unit;
-        if (item.onChange) item.onChange();
-      });
-    }
-  });
+  const lfoSyncSel = document.getElementById("percLfoSyncSelect");
+  if (lfoSyncSel) {
+    lfoSyncSel.addEventListener("change", () => {
+      percState.lfoSync = lfoSyncSel.value;
+    });
+  }
 
   const masterVol = document.getElementById("p_perc_vol");
   const masterVolV = document.getElementById("v_perc_vol");
@@ -13162,6 +13429,7 @@ function setupPercControls() {
   }
 
   renderPercVoiceUI();
+  renderPercOverarchingParams();
 }
 
 function setupArpControls() {
