@@ -172,27 +172,34 @@ A high-precision Web Audio lookahead arpeggiator and step sequencer usable acros
 
 ---
 
-### 5. Ambient Percussive Structure Generator (15 Parameters & 4/4 Clock Sync)
-A dedicated West-Coast organic FM, modal resonator, and granular microsound percussive generator designed strictly for ambient textures:
-- **Global Master Clock Sync:** Locks to the top row **Numeric BPM (30–300 BPM)** and **4/4 (or 3/4, 5/4, 6/8, 7/8)** time signature.
-- **16-Step Visual Playhead & Velocity Fill Bar:** Displays running 16th-note sequence and live dynamic strike energy.
-- **15 Sound Sculpting & Stochastic Parameters:**
-  1. **`Dichte (Density)` (0.2–10.0 Hz):** Poisson stochastic event trigger frequency.
-  2. **`Swing / Groove` (0–75%):** 16th-note shuffle groove timing.
-  3. **`Euclid Hits` (1–16 / 16):** Euclidean rhythmic algorithm distribution.
-  4. **`Chaos / Jitter` (0–40 ms):** Organic micro-timing displacement for natural human/fluid scatter.
-  5. **`FM Ratio r_p` (0.25–8.0):** Harmonic / inharmonic spectral ratio.
-  6. **`FM Strike Index I_p` (0.0–12.0):** Attack transient modulation depth.
-  7. **`Vactrol LPG Decay` (0.01–1.20 s):** Non-linear Low Pass Gate slew decay.
-  8. **`Modal Pitch Spread` (0.0–4.0 st):** Microtonal secondary modal dispersion.
-  9. **`Dämpfung / Tone` (200–12000 Hz):** Dynamic low-pass damping filter.
-  10. **`Granular Scatter` (0–100%):** Micro-grain particle burst probability.
-  11. **`Stereo Pan Drift` (0–100%):** Asymmetric binaural spatialization across stereo field.
-  12. **`Zufall Wahrscheinlichkeit` (10–100%):** Stochastic gate drop chance.
-  13. **`Hall-Anteil (Space)` (0–100%):** Wet send into 5.5s convolution impulse reverb.
-  14. **`Downbeat Akzent` (1.0–3.0x):** Dynamic velocity weighting on primary downbeats ($1, 2, 3, 4$).
-  15. **`Loop-Länge (Takte)` (1–4 Takte):** Loop bar cycle synchronizer.
-- **Instant Ambient Presets:** `[ Zen Wasser ]`, `[ Buchla Wald ]`, `[ Granularstaub ]`, `[ Mikro-Glitch ]`, `[ ⚄ Re-Seed ]`.
+### 5. Multi-Voice Ambient Percussion Stepper & Pattern Suggestion Engine
+A dedicated multi-track organic percussion and landscape sequencer featuring **6 synthesized drum voices** with individual 16-step patterns, mute/solo controls, and an **Intelligent Pattern Suggestion Engine**:
+- **6 Dedicated Drum Synthesis DSP Engines:**
+  1. **`BASE DRUM` (Deep Sinus):** Pure sine wave sub-bass drop ($150\text{ Hz} \to 45\text{ Hz}$) with fast pitch envelope and snappy click attack transient.
+  2. **`HI-HAT` (High Short Noise):** High-pass filtered white noise ($7.5\text{ kHz}$) with rapid exponential decay ($45\text{ ms}$).
+  3. **`CYMBAL` (High Long Noise):** High airy noise ($6.2\text{ kHz}$) blended with 4 inharmonic metallic FM cluster carriers and long decay ($1.8\text{ s}$).
+  4. **`SNARE DRUM` (Hard Deep Noise):** Dual-layer engine combining deep fundamental body tone ($195\text{ Hz}$) and snappy high-pass noise burst.
+  5. **`WOOD / PING` (Buchla 292 LPG):** Organic resonant woodblock ping with non-linear vactrol slew.
+  6. **`SHAKER / DUST` (Granular Noise):** Soft ambient granular noise burst with controllable grain density.
+- **Interactive 16-Step Grid & Multi-Track Overview:**
+  - 16 clickable velocity step pads for the active voice.
+  - Multi-track visualizer displaying real-time running LED playheads across all 6 tracks simultaneously.
+  - Per-track **MUTE**, **SOLO**, and **VOLUME** dials.
+- **Intelligent Pattern Suggestion Engine:**
+  - Plausible per-element pattern generators:
+    - *Base Drum:* `[ 4-on-Floor ]`, `[ Downbeat (1&3) ]`, `[ Syncopated Sub ]`, `[ Minimal Pulse ]`.
+    - *Hi-Hat:* `[ 8th Offbeat ]`, `[ 16th Running ]`, `[ Euclid 7/16 ]`, `[ Flutter Wave ]`.
+    - *Cymbal:* `[ Bar 1 Crash ]`, `[ Swell Beat 4+ ]`, `[ Periodic Shimmer ]`.
+    - *Snare Drum:* `[ Backbeat (2&4) ]`, `[ Ghost Notes ]`, `[ Polyrhythm 3/8 ]`, `[ Sparse Accent ]`.
+    - *Wood / Ping:* `[ Euclid 5/16 ]`, `[ Micro-Shuffle ]`, `[ Poisson Rain ]`.
+    - *Shaker / Dust:* `[ Running 16th ]`, `[ Ambient 8th ]`, `[ Granular Dust ]`.
+- **Global Landscape Smart-Composers:**
+  - `[ 🌌 Deep Ambient ]`: Sub-bass downbeat, ghost snare, offbeat hi-hat, and Poisson drops.
+  - `[ 🍃 Forest Glitch ]`: Syncopated sub, flutter hi-hat, Euclid woodclicks, and granular dust.
+  - `[ 🌊 Dub Drift ]`: Sparse sub on 1 & 11, backbeat snare, cymbal shimmer, and shaker.
+  - `[ ⚡ Micro-Techno ]`: 4-on-the-floor kick, 8th offbeat hat, backbeat snare, and 16th shaker.
+  - `[ 🪐 Cosmic Dust ]`: Sparse sub pulse, periodic cymbal swell, and granular continuous shimmer.
+  - `[ ⚄ Smart Auto-Compose ]`: Algorithmic generator assembling coherent, plausible rhythms across all 6 voices in one click!
 
 ---
 
