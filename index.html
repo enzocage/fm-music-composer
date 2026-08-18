@@ -4337,7 +4337,7 @@ document.getElementById("globalPanic").addEventListener("click", panicAll);
 
 function setOctave(d) {
   const inst = synthInstances[activeSynthIdx];
-  const n = Math.max(-2, Math.min(2, inst.params.oct + d));
+  const n = Math.max(-3, Math.min(3, inst.params.oct + d));
   if (n === inst.params.oct) return;
   inst.params.oct = n;
   document.getElementById("octlabel").textContent = (n > 0 ? "+" : "") + n;
@@ -4348,6 +4348,13 @@ function setOctave(d) {
     v.f = getFreq(sem, inst.params.oct);
     v.fm = v.f * inst.params.ratio;
     if (v.car) v.car.frequency.setTargetAtTime(v.f, now, 0.12);
+    if (v.car1) v.car1.frequency.setTargetAtTime(v.f, now, 0.12);
+    if (v.car2) v.car2.frequency.setTargetAtTime(v.f, now, 0.12);
+    if (v.car3) v.car3.frequency.setTargetAtTime(v.f, now, 0.12);
+    if (v.carR) v.carR.frequency.setTargetAtTime(v.f * 1.003, now, 0.12);
+    if (v.carSub) v.carSub.frequency.setTargetAtTime(v.f * 0.5, now, 0.12);
+    if (v.carHigh) v.carHigh.frequency.setTargetAtTime(v.f * 2.0, now, 0.12);
+    if (v.clusterCars) v.clusterCars.forEach((c, idx) => { try { c.frequency.setTargetAtTime(v.f + (idx - 2) * 0.8, now, 0.12); } catch(e){} });
     if (v.mod) v.mod.frequency.setTargetAtTime(v.fm, now, 0.12);
     if (v.modG) v.modG.gain.setTargetAtTime(inst.params.I0 * v.fm, now, 0.12);
     if (v.lfoG) v.lfoG.gain.setTargetAtTime(inst.params.dI * v.fm, now, 0.12);

@@ -127,7 +127,7 @@ Save your complete musical composition to a portable `.json` file:
 | `A`, `W`, `S`, `E`, `D`, `F`, `T`, `G`, `Z`, `H`, `U`, `J`, `K` | Play chromatic scale (C to C') |
 | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `0` | Select Bank A Synthesizers (1–10) |
 | `Shift + 1` to `Shift + 0` | Select Bank B Synthesizers (11–20) |
-| `Y` / `X` | Octave Down ($-1$) / Octave Up ($+1$) |
+| `Y` / `X` | Transpose Octave Down / Up (Expanded Range: $-3$ to $+3$) |
 | `R` | Start / Stop Loop Recording (REC) |
 | `H` | Toggle Header Expand / Compact Details |
 | `Escape` | Global Panic (Silence all voices) |
