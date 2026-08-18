@@ -1,0 +1,332 @@
+/* Rechter Bereich: Sidebar Rack (Skaliert flüssig bis 90% Breite) */
+  .sidebar-container {
+    width: var(--sidebar-w);
+    min-width: 240px;
+    max-width: 95vw;
+    height: 100%;
+    background: #05070e;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 10px 12px;
+    flex-shrink: 0;
+  }
+
+  .rack-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sidebar-container.multi-col .rack-grid {
+    display: block;
+    column-width: 270px;
+    column-gap: 8px;
+  }
+  .sidebar-container.multi-col .rack-grid > .grp {
+    break-inside: avoid;
+    margin-bottom: 8px;
+    display: block;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  .synth-header-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 7px;
+    background: linear-gradient(90deg, rgba(255, 71, 87, 0.12) 0%, rgba(10, 15, 28, 0.8) 100%);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    margin-bottom: 6px;
+  }
+  .synth-header-badge .name {
+    font-weight: 700;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: .04em;
+  }
+  .synth-header-badge .badge {
+    font-size: 8.5px;
+    background: rgba(255,255,255,0.08);
+    padding: 1px 4px;
+    border-radius: 2px;
+    color: var(--fg);
+  }
+
+  
+  /* Modul 3.7: Ambient Percussive Structure Generator (Subtil Smaragd / Gold) */
+  
+  /* Multi-Voice Stepper Styles */
+  .perc-voice-tab-bar {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+  }
+  .perc-voice-tab {
+    font-family: var(--mono);
+    font-size: 7.5px;
+    font-weight: 700;
+    padding: 3px 6px;
+    background: #080d18;
+    border: 1px solid var(--rule);
+    color: var(--dim);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .12s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .perc-voice-tab:hover {
+    color: #fff;
+    border-color: var(--dimmer);
+  }
+  .perc-voice-tab.active {
+    background: rgba(46, 213, 115, 0.2);
+    border-color: #2ed573;
+    color: #2ed573;
+    box-shadow: 0 0 8px rgba(46, 213, 115, 0.3);
+  }
+  .perc-voice-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* Multi-Track Interactive 16-Step Matrix Grid */
+  .perc-step-grid {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 2px;
+    background: rgba(4, 8, 14, 0.95);
+    padding: 5px 3px;
+    border: 1px solid rgba(46, 213, 115, 0.3);
+    border-radius: 3px;
+    margin: 4px 0;
+  }
+  .perc-step-btn {
+    width: 100%;
+    height: 24px;
+    background: #081018;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 0;
+    transition: all .08s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 0;
+  }
+  .perc-step-btn:hover {
+    border-color: #2ed573;
+  }
+  .perc-step-btn.on {
+    background: rgba(46, 213, 115, 0.35);
+    border-color: #2ed573;
+    box-shadow: 0 0 6px rgba(46, 213, 115, 0.3);
+  }
+  .perc-step-btn.active-playhead {
+    border-color: #ffffff !important;
+    box-shadow: 0 0 8px #ffffff;
+  }
+  .perc-step-btn.active-playhead.on {
+    background: #2ed573 !important;
+    box-shadow: 0 0 12px #2ed573;
+  }
+  .perc-step-dot {
+    width: 3.5px;
+    height: 3.5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+  .perc-step-btn.on .perc-step-dot {
+    background: #2ed573;
+  }
+  .perc-step-btn.active-playhead .perc-step-dot {
+    background: #ffffff;
+  }
+  .perc-step-num {
+    font-size: 6px;
+    font-family: var(--mono);
+    color: var(--dimmer);
+  }
+  .perc-step-btn.on .perc-step-num {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  /* Compact Overview Multi-Track Visualizer Bars */
+  .perc-overview-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: #03060a;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 3px 4px;
+    margin: 4px 0;
+  }
+  .perc-ov-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 8px;
+  }
+  .perc-ov-name {
+    width: 38px;
+    font-size: 6px;
+    font-family: var(--mono);
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .perc-ov-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 1.5px;
+    height: 100%;
+  }
+  .perc-ov-step {
+    height: 100%;
+    background: rgba(255,255,255,0.04);
+    border-radius: 1px;
+  }
+  .perc-ov-step.on {
+    border-radius: 1px;
+  }
+  .perc-ov-step.active-step {
+    background: #ffffff !important;
+  }
+
+  .grp-perc {
+    background: linear-gradient(180deg, #04100c 0%, #020806 100%);
+    border-color: rgba(46, 213, 115, 0.35);
+    border-left: 2px solid #2ed573;
+  }
+  .grp-perc > h2 { color: #2ed573; }
+
+  .perc-grid-params {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 8px;
+    margin-top: 5px;
+  }
+  @media (max-width: 580px) {
+    .perc-grid-params { grid-template-columns: 1fr; }
+  }
+  .perc-param-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .perc-param-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5px;
+  }
+  .perc-param-hdr .p-lbl {
+    color: var(--dim);
+    font-weight: 600;
+  }
+  .perc-param-hdr .p-num {
+    font-family: var(--mono);
+    color: #7ad7ff;
+    font-weight: 700;
+    font-size: 7.5px;
+  }
+  .perc-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #101a2a;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  .perc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2ed573;
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 4px #2ed573;
+    cursor: pointer;
+  }
+  .perc-slider::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2ed573;
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 4px #2ed573;
+    cursor: pointer;
+  }
+
+  /* 16-Step Percussion Visualizer Bar */
+  .perc-matrix-bar {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 2px;
+    background: rgba(4, 9, 14, 0.9);
+    padding: 4px 3px;
+    border: 1px solid rgba(46, 213, 115, 0.25);
+    border-radius: 3px;
+    margin-top: 4px;
+  }
+  .perc-step-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .perc-step-cell:nth-child(4n) {
+    border-right: 1px solid rgba(255,255,255,0.08);
+    padding-right: 2px;
+  }
+  .perc-step-cell:last-child {
+    border-right: none;
+  }
+  .perc-step-led {
+    width: 3.5px;
+    height: 3.5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    transition: background 0.04s, box-shadow 0.04s;
+  }
+  .perc-step-cell.active-step .perc-step-led {
+    background: #2ed573;
+    box-shadow: 0 0 6px #2ed573, 0 0 10px #2ed573;
+  }
+  .perc-step-bar {
+    width: 100%;
+    height: 14px;
+    background: #081016;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .perc-step-fill {
+    width: 100%;
+    background: linear-gradient(180deg, #2ed573 0%, #10ac84 100%);
+    height: 0%;
+    transition: height 0.1s;
+  }
+  .perc-step-cell.active-step .perc-step-fill {
+    background: #ffffff;
+    box-shadow: 0 0 6px #2ed573;
+  }

@@ -273,6 +273,40 @@ Save your complete musical composition to a portable `.json` file:
 
 ---
 
+## 📁 Project Architecture & Folder Structure
+
+```
+fm-music-composer/
+├── index.html                   # Semantic HTML entry point
+├── css/
+│   ├── main.css                 # Design tokens, reset, header HUD & bank controls
+│   ├── studio.css               # Studio splitters, oscilloscope canvases & layout
+│   ├── modules.css              # Looper, parameter racks, arpeggio matrix & drum stepper
+│   └── modals.css               # Help overlay, Audio export modal & veil
+├── js/
+│   ├── config/
+│   │   ├── banks.js             # 10 Soundbank definitions (Banks A to J)
+│   │   └── synth_defs.js        # 100 Synthesizer DSP definitions & math models
+│   ├── audio/
+│   │   ├── engine.js            # Web Audio Context, compressor & convolution reverb
+│   │   ├── voices.js            # Polyphonic voice allocator & 100 DSP synthesis switch topologies
+│   │   ├── looper.js            # Multi-layer looper recording & playback engine
+│   │   ├── export.js            # Lossless WAV & 320 kbps MP3 encoder
+│   │   ├── percussion.js        # 6-voice drum synthesis & multi-track step sequencer
+│   │   └── arpeggiator.js       # Lookahead step scheduler & 16-step matrix
+│   ├── ui/
+│   │   ├── oscilloscopes.js     # 4 synchronized oscilloscopes (Wave, Freq, FFT, Phase)
+│   │   ├── keyboard.js          # Interactive chromatic piano & keyboard listeners
+│   │   ├── params.js            # Unified [A, B] handles & rotary speed knobs
+│   │   └── modals.js            # Help modal, song project save/load & splitters
+│   └── app.js                   # Master application bootstrapper & 60 FPS animation loop
+├── lib/
+│   └── lame.min.js              # Offline pure JS 320 kbps MP3 encoder
+└── README.md
+```
+
+---
+
 ## 🚀 Getting Started
 
 1. Clone or download this repository:
@@ -280,7 +314,7 @@ Save your complete musical composition to a portable `.json` file:
    git clone https://github.com/enzocage/fm-music-composer.git
    cd fm-music-composer
    ```
-2. Open `index.html` in any modern web browser (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge).
+2. Open `index.html` in any modern web browser (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge) — runs 100% offline via `file:///` or via any local server!
 3. Click **"Studio aktivieren"** to start the Web Audio Context.
 4. Play notes with your keyboard or mouse, toggle `~ OSC` for automation, press `Ü` for help, and press `R` to capture your loops!
 
