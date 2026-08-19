@@ -644,6 +644,6 @@ function panicAll() {
     activeHeldPhysicalNotes.clear();
   }
 
-  updateUIBadges();
-  syncKeys();
+  if (typeof updateUIBadges === "function") updateUIBadges();
+  if (typeof syncKeys === "function") syncKeys();
 }

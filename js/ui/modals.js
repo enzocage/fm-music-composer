@@ -827,7 +827,7 @@ function selectSynth(idx) {
     OSC_PARAM_KEYS.forEach(k => updateParamRowVisual(k));
   }
   updateUIBadges();
-  syncKeys();
+  if (typeof syncKeys === "function") syncKeys();
 }
 
 const synthPanicBtn = document.getElementById("synthPanic");
@@ -856,15 +856,22 @@ if (latchBtn) {
 }
 
 function updateUIBadges() {
-  const isBankB = (activeSynthIdx >= 10);
+  const bObj = (typeof BANKS !== "undefined" && Array.isArray(BANKS))
+    ? (BANKS.find(b => b.id === currentBankId) || BANKS[0])
+    : { offset: 0 };
+  const offset = bObj ? bObj.offset : 0;
   microPills.forEach((p, k) => {
-    const synthIdx = (isBankB ? 10 : 0) + k;
-    p.classList.toggle("has-voices", synthInstances[synthIdx].voices.size > 0);
+    const synthIdx = offset + k;
+    if (synthInstances && synthInstances[synthIdx]) {
+      p.classList.toggle("has-voices", synthInstances[synthIdx].voices.size > 0);
+    }
   });
 
-  const activeInst = synthInstances[activeSynthIdx];
-  badgeVoices.textContent = `${activeInst.voices.size} ${activeInst.voices.size === 1 ? "Stimme" : "Stimmen"} aktiv`;
-  updateOctaveUI();
+  const activeInst = synthInstances ? synthInstances[activeSynthIdx] : null;
+  if (activeInst && badgeVoices) {
+    badgeVoices.textContent = `${activeInst.voices.size} ${activeInst.voices.size === 1 ? "Stimme" : "Stimmen"} aktiv`;
+  }
+  if (typeof updateOctaveUI === "function") updateOctaveUI();
 }
 
 
