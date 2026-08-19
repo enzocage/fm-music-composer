@@ -312,7 +312,7 @@ function createSynthInstance(def) {
   return inst;
 }
 
-let synthInstances = SYNTH_DEFS.map(createSynthInstance);
+var synthInstances = SYNTH_DEFS.map(createSynthInstance);
 
 const GLOBAL = { master: 0.65, wet: 0.5, oct: 0 };
 const BASE_FREQ = 130.813;
@@ -384,7 +384,9 @@ function initAudio() {
 function createReverbIR(duration, decay) {
   const sampleRate = ctx ? ctx.sampleRate : 48000;
   const length = Math.max(1, Math.floor(sampleRate * duration));
-  const impulse = new AudioBuffer({ length, numberOfChannels: 2, sampleRate });
+  const impulse = (typeof ctx !== "undefined" && ctx && typeof ctx.createBuffer === "function")
+    ? ctx.createBuffer(2, length, sampleRate)
+    : (typeof AudioBuffer !== "undefined" ? new AudioBuffer({ length, numberOfChannels: 2, sampleRate }) : { getChannelData: () => new Float32Array(length) });
   const left = impulse.getChannelData(0);
   const right = impulse.getChannelData(1);
 

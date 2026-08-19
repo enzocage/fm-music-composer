@@ -366,53 +366,29 @@ const activeSynthTag = document.getElementById("activeSynthTag");
 // 7-Bank Definitionen & Universal Controller
 
 
-const bankButtons = {
-  A: document.getElementById("btnBankA"),
-  B: document.getElementById("btnBankB"),
-  C: document.getElementById("btnBankC"),
-  D: document.getElementById("btnBankD"),
-  E: document.getElementById("btnBankE"),
-  F: document.getElementById("btnBankF"),
-  G: document.getElementById("btnBankG"),
-  H: document.getElementById("btnBankH"),
-  I: document.getElementById("btnBankI"),
-  J: document.getElementById("btnBankJ"),
-  K: document.getElementById("btnBankK"),
-  L: document.getElementById("btnBankL"),
-  M: document.getElementById("btnBankM")
-};
-
-const drawerPillContainers = {
-  A: document.getElementById("drawerPillsA"),
-  B: document.getElementById("drawerPillsB"),
-  C: document.getElementById("drawerPillsC"),
-  D: document.getElementById("drawerPillsD"),
-  E: document.getElementById("drawerPillsE"),
-  F: document.getElementById("drawerPillsF"),
-  G: document.getElementById("drawerPillsG"),
-  H: document.getElementById("drawerPillsH"),
-  I: document.getElementById("drawerPillsI"),
-  J: document.getElementById("drawerPillsJ"),
-  K: document.getElementById("drawerPillsK"),
-  L: document.getElementById("drawerPillsL"),
-  M: document.getElementById("drawerPillsM")
-};
-
-function toggleHeaderExpand(forceState = null) {
-  const isExpanded = forceState !== null ? forceState : !topHeader.classList.contains("expanded");
-  topHeader.classList.toggle("expanded", isExpanded);
-  topHeader.style.maxHeight = isExpanded ? "380px" : "";
-  const expandBtnTxt = document.getElementById("expandBtnTxt");
-  if (expandBtnTxt) expandBtnTxt.textContent = isExpanded ? "▴ KOMPAKT" : "▾ DETAILS";
-  setTimeout(() => resize(), 100);
-  setTimeout(() => resize(), 300);
-}
-
-expandHeaderBtn.addEventListener("click", () => toggleHeaderExpand());
-hudCenterCapsule.addEventListener("click", () => toggleHeaderExpand());
-
+let bankButtons = {};
 const drawerPillEls = [];
 const microPills = [];
+
+function renderDynamicBankButtons() {
+  const container = document.getElementById("dynamicBankButtons");
+  if (!container) return;
+  container.innerHTML = "";
+  bankButtons = {};
+
+  BANKS.forEach(b => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "bank-seg-btn" + (b.id === currentBankId ? " active" : "");
+    btn.id = `btnBank${b.id}`;
+    btn.style.setProperty("--bank-color", b.color);
+    btn.title = `${b.name} (${b.complexityLabel || ''})`;
+    btn.textContent = b.id;
+    btn.addEventListener("click", () => setBank(b.id));
+    container.appendChild(btn);
+    bankButtons[b.id] = btn;
+  });
+}
 
 function buildSynthSelectors() {
   // 1. Dropdown
@@ -450,27 +426,74 @@ function buildSynthSelectors() {
     microPills.push(p);
   }
 
-  // 3. Drawer Pills im ausfahrbaren Bereich
-  drawerPillEls.length = 0;
-  Object.keys(drawerPillContainers).forEach(k => {
-    if (drawerPillContainers[k]) drawerPillContainers[k].innerHTML = "";
-  });
+  // 3. Dynamic Drawer Banks & Pills
+  const drawerContainer = document.getElementById("drawerSynthsContainer");
+  if (drawerContainer) {
+    drawerContainer.innerHTML = "";
+    drawerPillEls.length = 0;
 
-  SYNTH_DEFS.forEach((def, i) => {
-    const pill = document.createElement("div");
-    pill.className = "drawer-synth-pill" + (i === activeSynthIdx ? " active" : "");
-    pill.style.setProperty("--pill-color", def.color);
-    pill.innerHTML = `<span class="d-key">${i + 1}</span> <span>${def.name}</span>`;
-    pill.addEventListener("click", () => selectSynth(i));
-    
-    if (drawerPillContainers[def.bank]) {
-      drawerPillContainers[def.bank].appendChild(pill);
-    }
+    BANKS.forEach(b => {
+      const col = document.createElement("div");
+      col.className = "drawer-bank-col";
+      
+      const title = document.createElement("div");
+      title.className = "drawer-bank-title";
+      title.style.color = b.color;
+      title.textContent = `${b.name}`;
+      col.appendChild(title);
 
-    drawerPillEls.push(pill);
-  });
+      const grid = document.createElement("div");
+      grid.className = "drawer-pills-grid";
+
+      for (let i = b.offset; i < b.offset + 10; i++) {
+        if (i >= SYNTH_DEFS.length) break;
+        const def = SYNTH_DEFS[i];
+        const pill = document.createElement("div");
+        pill.className = "drawer-synth-pill" + (i === activeSynthIdx ? " active" : "");
+        pill.style.setProperty("--pill-color", def.color);
+        pill.innerHTML = `<span class="d-key">${i + 1}</span> <span>${def.name}</span>`;
+        pill.addEventListener("click", () => selectSynth(i));
+        grid.appendChild(pill);
+        drawerPillEls.push(pill);
+      }
+
+      col.appendChild(grid);
+      drawerContainer.appendChild(col);
+    });
+  }
 
   renderMicroPills();
+}
+
+function selectEngine(engineId) {
+  const engine = (typeof SYNTH_ENGINES !== "undefined")
+    ? (SYNTH_ENGINES.find(e => e.id === engineId) || SYNTH_ENGINES[0])
+    : null;
+  if (!engine) return;
+
+  if (typeof panicAll === "function") panicAll();
+
+  currentEngineId = engine.id;
+  activeEngine = engine;
+  SYNTH_DEFS = engine.presets;
+  BANKS = getBanksForEngine(engine);
+  currentBankId = BANKS[0].id;
+
+  synthInstances = SYNTH_DEFS.map(createSynthInstance);
+
+  const engSelect = document.getElementById("synthEngineSelect");
+  if (engSelect) engSelect.value = engine.id;
+
+  document.documentElement.style.setProperty("--accent", engine.color || "#00c6fb");
+
+  renderDynamicBankButtons();
+  buildSynthSelectors();
+  selectSynth(0);
+}
+
+const synthEngineSelect = document.getElementById("synthEngineSelect");
+if (synthEngineSelect) {
+  synthEngineSelect.addEventListener("change", e => selectEngine(e.target.value));
 }
 
 synthSelect.addEventListener("change", e => selectSynth(parseInt(e.target.value, 10)));
@@ -626,15 +649,9 @@ if (btnLoadInstrumentJson && instrumentFileInput) {
   });
 }
 
-// Initialisiere Dropdown & Drawer
+// Initialisiere dynamische Bank-Buttons, Dropdown & Drawer
+renderDynamicBankButtons();
 buildSynthSelectors();
-
-Object.keys(bankButtons).forEach(bId => {
-  const btn = bankButtons[bId];
-  if (btn) {
-    btn.addEventListener("click", () => setBank(bId));
-  }
-});
 
 const btnBankPrev = document.getElementById("btnBankPrev");
 const btnBankNext = document.getElementById("btnBankNext");

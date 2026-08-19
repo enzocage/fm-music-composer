@@ -22,25 +22,31 @@
 <header id="topHeader">
   <!-- PRIMÄRE HUD-ZEILE (Intelligentes 3-Cluster Responsive Layout) -->
   <div class="top-row-bar">
-    <!-- CLUSTER 1: INSTRUMENTEN-NAVIGATION & BANK -->
+    <!-- CLUSTER 1: INSTRUMENTEN-NAVIGATION, SYNTH ENGINE & BANK -->
     <div class="header-cluster header-cluster-nav">
       <span class="logo-tag">FM COMPOSER</span>
-      
-      <div class="bank-segmented">
+
+      <!-- SYNTHESIZER ENGINE SELECTOR -->
+      <div class="synth-engine-picker-wrap" title="Synthesizer-Engine wählen (DX7, Minimoog, Juno-106, TB-303, Prophet-5, Buchla, M1, YM2612, OB-Xa, Virus TI, Enzo Synth)">
+        <span class="engine-picker-label">SYNTH:</span>
+        <select id="synthEngineSelect" class="synth-engine-select">
+          <option value="dx7" selected>🎹 Yamaha DX7 (1983)</option>
+          <option value="minimoog">🪵 Moog Minimoog Model D (1970)</option>
+          <option value="juno106">🎛️ Roland Juno-106 (1984)</option>
+          <option value="tb303">🧪 Roland TB-303 Acid (1981)</option>
+          <option value="prophet5">🌌 Sequential Prophet-5 (1978)</option>
+          <option value="buchla259">⚡ Buchla 259/292 LPG (1973)</option>
+          <option value="korg_m1">🏛️ Korg M1 Workstation (1988)</option>
+          <option value="ym2612">🕹️ Sega Genesis YM2612 (1988)</option>
+          <option value="obxa">🎺 Oberheim OB-Xa (1980)</option>
+          <option value="virus">⚡ Access Virus TI / Nord (1997)</option>
+          <option value="enzo_synth">🧬 Enzo Synth (130 Matrix Presets)</option>
+        </select>
+      </div>
+
+      <div class="bank-segmented" id="bankSegmentedBar">
         <button type="button" class="bank-nav-arrow-btn" id="btnBankPrev" title="Vorherige Bank (Taste ß)">◀ ß</button>
-        <button type="button" class="bank-seg-btn active" id="btnBankA" title="Bank A: Pure Sine & Einstieg (Stufe 1 · 4 Params)">A</button>
-        <button type="button" class="bank-seg-btn" id="btnBankB" title="Bank B: CCRMA & Harmonik (Stufe 2 · 6 Params)">B</button>
-        <button type="button" class="bank-seg-btn" id="btnBankC" title="Bank C: DX7 & 80s Icons (Stufe 3 · 8 Params)">C</button>
-        <button type="button" class="bank-seg-btn" id="btnBankD" title="Bank D: YM2612 & Arcade (Stufe 4 · 10 Params)">D</button>
-        <button type="button" class="bank-seg-btn" id="btnBankE" title="Bank E: World Acoustic & Saiten (Stufe 5 · 12 Params)">E</button>
-        <button type="button" class="bank-seg-btn" id="btnBankF" title="Bank F: Cinematic & Ambient Drones (Stufe 6 · 14 Params)">F</button>
-        <button type="button" class="bank-seg-btn" id="btnBankG" title="Bank G: Buchla & Organic Perc (Stufe 7 · 15 Params)">G</button>
-        <button type="button" class="bank-seg-btn" id="btnBankH" title="Bank H: Modular & Acid FX (Stufe 8 · 16 Params)">H</button>
-        <button type="button" class="bank-seg-btn" id="btnBankI" title="Bank I: Exotik & Chaos (Stufe 9 · 18 Params)">I</button>
-        <button type="button" class="bank-seg-btn" id="btnBankJ" title="Bank J: Generative Kinetic (Stufe 10 · 20 Params)">J</button>
-        <button type="button" class="bank-seg-btn" id="btnBankK" title="Bank K: Cyberpunk & Dark Electro (Stufe 11 · 22 Params)">K</button>
-        <button type="button" class="bank-seg-btn" id="btnBankL" title="Bank L: Cosmic Deep Space (Stufe 12 · 24 Params)">L</button>
-        <button type="button" class="bank-seg-btn" id="btnBankM" title="Bank M: Hyperpop & Future Bass (Stufe 13 · 24 Params)">M</button>
+        <div id="dynamicBankButtons" style="display:flex;gap:1.5px;align-items:stretch;"></div>
         <button type="button" class="bank-nav-arrow-btn" id="btnBankNext" title="Nächste Bank (Taste ´)">´ ▶</button>
       </div>
 
@@ -119,60 +125,7 @@
 
   <!-- AUSFAHRBARER DETAILS-DRAWER (20 Synths & vollständige Mathematik) -->
   <div class="header-expanded-drawer" id="expandedDrawer">
-    <div class="drawer-synths-section">
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#ff4757;">BANK A: EXOTIK & CHAOS</div>
-        <div class="drawer-pills-grid" id="drawerPillsA"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#38c7ff;">BANK B: KLASSIK & LABOR</div>
-        <div class="drawer-pills-grid" id="drawerPillsB"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#00f2fe;">BANK C: DX7 & 80s ICONS</div>
-        <div class="drawer-pills-grid" id="drawerPillsC"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#00c6fb;">BANK D: YM2612 & ARCADE</div>
-        <div class="drawer-pills-grid" id="drawerPillsD"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#8fd3f4;">BANK E: CINEMATIC DRONES</div>
-        <div class="drawer-pills-grid" id="drawerPillsE"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#ffd200;">BANK F: WORLD ACOUSTIC</div>
-        <div class="drawer-pills-grid" id="drawerPillsF"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#ff007f;">BANK G: MODULAR & FX</div>
-        <div class="drawer-pills-grid" id="drawerPillsG"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#2ed573;">BANK H: BUCHLA & ORGANIC PERC</div>
-        <div class="drawer-pills-grid" id="drawerPillsH"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#a29bfe;">BANK I: MICROSOUND & GLITCH FX</div>
-        <div class="drawer-pills-grid" id="drawerPillsI"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#ffa502;">BANK J: GENERATIVE KINETIC</div>
-        <div class="drawer-pills-grid" id="drawerPillsJ"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#e056fd;">BANK K: CYBERPUNK & DARK ELECTRO</div>
-        <div class="drawer-pills-grid" id="drawerPillsK"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#48dbfb;">BANK L: COSMIC AMBIENT & DEEP SPACE</div>
-        <div class="drawer-pills-grid" id="drawerPillsL"></div>
-      </div>
-      <div class="drawer-bank-col">
-        <div class="drawer-bank-title" style="color:#ff9ff3;">BANK M: HYPERPOP & FUTURE BASS</div>
-        <div class="drawer-pills-grid" id="drawerPillsM"></div>
-      </div>
-    </div>
+    <div class="drawer-synths-section" id="drawerSynthsContainer"></div>
 
     <div class="drawer-math-box">
       <div class="drawer-formula-title">
@@ -808,6 +761,7 @@
 
 <!-- Modular JavaScript Application Architecture -->
 <script src="lib/lame.min.js"></script>
+<script src="js/config/synth_engines.js"></script>
 <script src="js/config/banks.js"></script>
 <script src="js/config/synth_defs.js"></script>
 <script src="js/audio/engine.js"></script>

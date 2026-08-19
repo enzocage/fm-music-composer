@@ -310,8 +310,8 @@ function noteOn(sem, synthIdx = activeSynthIdx) {
   }
 
   inst.voices.set(sem, voiceObj);
-  updateUIBadges();
-  syncKeys();
+  if (typeof updateUIBadges === "function") updateUIBadges();
+  if (typeof syncKeys === "function") syncKeys();
 }
 
 function applyParamChange(k, synthIdx = activeSynthIdx) {
@@ -470,8 +470,8 @@ function noteOff(sem, synthIdx = activeSynthIdx) {
   }, rel * 1600);
 
   inst.voices.delete(sem);
-  updateUIBadges();
-  syncKeys();
+  if (typeof updateUIBadges === "function") updateUIBadges();
+  if (typeof syncKeys === "function") syncKeys();
 }
 
 function panicSynth(synthIdx = activeSynthIdx) {
@@ -517,8 +517,8 @@ function panicSynth(synthIdx = activeSynthIdx) {
     }
   }
 
-  updateUIBadges();
-  syncKeys();
+  if (typeof updateUIBadges === "function") updateUIBadges();
+  if (typeof syncKeys === "function") syncKeys();
 }
 
 function panicAll() {
