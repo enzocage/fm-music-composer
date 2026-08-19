@@ -350,11 +350,29 @@ const expandHeaderBtn = document.getElementById("expandHeaderBtn");
 const expandBtnTxt = document.getElementById("expandBtnTxt");
 const hudCenterCapsule = document.getElementById("hudCenterCapsule");
 
+function toggleHeaderExpand(forceState = null) {
+  if (!topHeader) return;
+  const isExpanded = forceState !== null ? forceState : !topHeader.classList.contains("expanded");
+  topHeader.classList.toggle("expanded", isExpanded);
+  topHeader.style.maxHeight = isExpanded ? "450px" : "";
+  const expandTxt = document.getElementById("expandBtnTxt");
+  if (expandTxt) expandTxt.textContent = isExpanded ? "▴ KOMPAKT" : "▾ DETAILS";
+  if (typeof resize === "function") {
+    setTimeout(() => resize(), 100);
+    setTimeout(() => resize(), 300);
+  }
+}
+
+if (expandHeaderBtn) {
+  expandHeaderBtn.addEventListener("click", () => toggleHeaderExpand());
+}
+if (hudCenterCapsule) {
+  hudCenterCapsule.addEventListener("click", () => toggleHeaderExpand());
+}
+
 const synthSelect = document.getElementById("synthSelect");
 const microPillsBar = document.getElementById("microPillsBar");
 const formulaInline = document.getElementById("formulaInline");
-const drawerPillsA = document.getElementById("drawerPillsA");
-const drawerPillsB = document.getElementById("drawerPillsB");
 const drawerSynthName = document.getElementById("drawerSynthName");
 const drawerSynthSub = document.getElementById("drawerSynthSub");
 const drawerFormulaLatex = document.getElementById("drawerFormulaLatex");
@@ -363,8 +381,6 @@ const synthBadge = document.getElementById("synthBadge");
 const badgeName = document.getElementById("badgeName");
 const badgeVoices = document.getElementById("badgeVoices");
 const activeSynthTag = document.getElementById("activeSynthTag");
-// 7-Bank Definitionen & Universal Controller
-
 
 let bankButtons = {};
 const drawerPillEls = [];
