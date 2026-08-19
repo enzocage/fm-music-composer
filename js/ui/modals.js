@@ -729,6 +729,7 @@ function selectSynth(idx) {
   }
 
   activeSynthIdx = idx;
+  if (typeof window !== "undefined") window.activeSynthIdx = activeSynthIdx;
   const inst = synthInstances[idx];
 
   // Ensure Audio Bus exists for selected instrument
@@ -792,39 +793,44 @@ function selectSynth(idx) {
   }
 
   const presetContainer = document.getElementById("presetButtons");
-  if (presetContainer && inst.def.presets) {
+  if (presetContainer) {
     presetContainer.innerHTML = "";
-    const presetList = Array.isArray(inst.def.presets)
-      ? inst.def.presets
-      : Object.values(inst.def.presets);
-
-    presetList.forEach(p => {
-      const btn = document.createElement("button");
-      btn.className = "arp-pre-btn";
-      btn.textContent = p.name;
-      btn.addEventListener("click", () => {
-        if (p.params) {
-          Object.assign(inst.params, p.params);
-        }
-        Object.keys(p).forEach(pk => {
-          if (pk !== "name" && pk !== "params") inst.params[pk] = p[pk];
+    if (inst.def.presets && Array.isArray(inst.def.presets)) {
+      inst.def.presets.forEach(p => {
+        const btn = document.createElement("button");
+        btn.className = "arp-pre-btn";
+        btn.textContent = p.name;
+        btn.addEventListener("click", () => {
+          if (p.params) {
+            Object.assign(inst.params, p.params);
+          }
+          Object.keys(p).forEach(pk => {
+            if (pk !== "name" && pk !== "params") inst.params[pk] = p[pk];
+          });
+          if (p.r !== undefined) { inst.params.r2_ratio = p.r; inst.params.ratio = p.r; }
+          if (p.i !== undefined) { inst.params.mod_I0 = p.i; inst.params.I0 = p.i; }
+          if (p.d !== undefined) { inst.params.mod_dI = p.d; inst.params.dI = p.d; }
+          syncSliderValues();
+          if (typeof OSC_PARAM_KEYS !== "undefined" && typeof applyParamChange === "function") {
+            OSC_PARAM_KEYS.forEach(k => applyParamChange(k, activeSynthIdx));
+          }
         });
-        if (p.r !== undefined) { inst.params.r2_ratio = p.r; inst.params.ratio = p.r; }
-        if (p.i !== undefined) { inst.params.mod_I0 = p.i; inst.params.I0 = p.i; }
-        if (p.d !== undefined) { inst.params.mod_dI = p.d; inst.params.dI = p.d; }
-        syncSliderValues();
-        OSC_PARAM_KEYS.forEach(k => applyParamChange(k));
+        presetContainer.appendChild(btn);
       });
-      presetContainer.appendChild(btn);
-    });
+    }
   }
 
   const latchBtn = document.getElementById("latch");
   if (latchBtn) latchBtn.setAttribute("aria-pressed", inst.params.latch);
 
   syncSliderValues();
-  if (typeof OSC_PARAM_KEYS !== "undefined" && typeof updateParamRowVisual === "function") {
-    OSC_PARAM_KEYS.forEach(k => updateParamRowVisual(k));
+  if (typeof OSC_PARAM_KEYS !== "undefined") {
+    if (typeof updateParamRowVisual === "function") {
+      OSC_PARAM_KEYS.forEach(k => updateParamRowVisual(k));
+    }
+    if (typeof applyParamChange === "function") {
+      OSC_PARAM_KEYS.forEach(k => applyParamChange(k, activeSynthIdx));
+    }
   }
   updateUIBadges();
   if (typeof syncKeys === "function") syncKeys();

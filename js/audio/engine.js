@@ -3,7 +3,8 @@
 /* ============================================================
    Zustand & Datenstrukturen: 8-Algorithmen FM Matrix Engine (PLAN 4)
    ============================================================ */
-let activeSynthIdx = 0;
+var activeSynthIdx = 0;
+if (typeof window !== "undefined") window.activeSynthIdx = activeSynthIdx;
 const lorenzState = { x: 0.1, y: 0, z: 0 };
 
 const FM_ALGORITHMS = {
@@ -199,11 +200,17 @@ let lastFrameT = 0;
 
 function createSynthInstance(def) {
   const oscs = {};
-  const src = Object.assign({}, def.defaults || {}, def.params || {});
+  const src = Object.assign({}, def, def.defaults || {}, def.params || {});
   
+  const rawSus = src.env_sus ?? src.sus ?? 70;
+  const normalizedSus = rawSus <= 1.0 ? rawSus * 100 : rawSus;
+
+  const rawModSus = src.mod_env_sus ?? (normalizedSus * 0.6);
+  const normalizedModSus = rawModSus <= 1.0 ? rawModSus * 100 : rawModSus;
+
   const defParams = {
     // Topologie & Algorithmus (Plan 4)
-    algo_type: def.algo_type ?? src.algo_type ?? 1,
+    algo_type: src.algo_type ?? 1,
     op_wave: src.op_wave ?? 0,
     key_scaling: src.key_scaling ?? 25.0,
 
@@ -231,17 +238,18 @@ function createSynthInstance(def) {
     // Cluster 4: ADSR Envelopes (Amplitude & Modulator)
     env_atk: src.env_atk ?? src.atk ?? 0.02,
     env_dec: src.env_dec ?? 0.8,
-    env_sus: src.env_sus ?? 70.0,
+    env_sus: normalizedSus,
     env_rel: src.env_rel ?? src.rel ?? 1.5,
     mod_env_atk: src.mod_env_atk ?? 0.003,
     mod_env_dec: src.mod_env_dec ?? 0.4,
-    mod_env_sus: src.mod_env_sus ?? 25.0,
-    mod_env_rel: src.mod_env_rel ?? 0.5,
+    mod_env_sus: normalizedModSus,
+    mod_env_rel: src.mod_env_rel ?? (src.env_rel ? src.env_rel * 0.5 : 0.5),
 
     // Cluster 5: Filter & Space
     flt_cutoff: src.flt_cutoff ?? 12000.0,
     flt_reso: src.flt_reso ?? 1.0,
-    flt_envAmt: src.flt_envAmt ?? 0.0,
+    flt_envAmt: src.flt_envAmt ?? src.flt_env_amt ?? 0.0,
+    flt_env_amt: src.flt_env_amt ?? src.flt_envAmt ?? 0.0,
     space_pan: src.space_pan ?? 50.0,
 
     // Cluster 6: Custom & Aliases
